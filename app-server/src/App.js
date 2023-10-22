@@ -6,6 +6,7 @@ import Layout from './components/layout';
 
 
 function App() {
+  const test = process.env.TEST
   return (
     <Router>
       <Routes>
