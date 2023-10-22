@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 
 function Layout() {
+
+  const tmp = 3+4;
+  
   return(
     <>
       <header className="header-area header-sticky">
@@ -37,7 +40,7 @@ function Layout() {
                 <p>LUGX Gaming is free Bootstrap 5 HTML CSS website template for your gaming websites. You can download and use this layout for commercial purposes. Please tell your friends about TemplateMo.</p>
                 <div className="search-input">
                   <form id="search" action="#">
-                    <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                    <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" />
                     <button role="button">Search Now</button>
                   </form>
                 </div>
@@ -366,6 +369,6 @@ function Layout() {
     </>
 
   );
-};
+}
 
 export default Layout;
