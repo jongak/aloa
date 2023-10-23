@@ -9,20 +9,26 @@ if (process.env.NODE_ENV) {
 }
 
 var express = require("express");
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 var cors = require("cors");
 
-// var indexRouter = require("./routes/index");
+var indexRouter = require("./routes/index");
 
 var app = express();
 
-// app.use(logger("dev"));
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 
 // 교차출처 처리
 // 서버가 다르면 추가
 app.use(cors());
-// app.use("/api", indexRouter);
+app.use("/api", indexRouter);
 
 // 404 에러 처리
 app.use("/api", (req, res, next) => {

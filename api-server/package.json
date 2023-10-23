@@ -1,22 +1,14 @@
 {
-  "name": "api-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "api-server2",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./bin/www-https",
-    "dev": "cross-env NODE_ENV=development nodemon ./bin/www",
-    "local": "cross-env NODE_ENV=local nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.3",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "nodemon": "^3.0.1",
-    "path": "^0.12.7"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
   }
 }
