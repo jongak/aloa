@@ -1,7 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/common/Card";
+import { useRef } from "react";
 
 function Home() {
+  const queryRef = useRef("");
+  const navigate = useNavigate();
+
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      navigate(`/character/${queryRef.current.value}`);
+    }
+  };
+
+  const handleButtonClick = () => {
+    navigate(`/character/${queryRef.current.value}`);
+  };
   return (
     <>
       <div className="main-banner">
@@ -17,14 +30,16 @@ function Home() {
                 </h2> */}
 
                 <div className="search-input">
-                  <form id="search" action="#">
+                  <form>
                     <input
                       type="text"
                       placeholder="Type Something"
-                      id="searchText"
-                      name="searchKeyword"
+                      ref={queryRef}
+                      onKeyPress={handleOnKeyPress}
                     />
-                    <button role="button">Search Now</button>
+                    <button onClick={handleButtonClick}>
+                      <i className="fa fa-search"></i>
+                    </button>
                   </form>
                 </div>
               </div>

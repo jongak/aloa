@@ -3,7 +3,7 @@ import saveAs from "file-saver";
 import { useRef } from "react";
 
 const capture = function () {
-  const divRef = useRef < HTMLDivElement > null;
+  const divRef = useRef(null);
 
   const handleDownload = async () => {
     if (!divRef.current) return;
@@ -22,7 +22,7 @@ const capture = function () {
   };
 
   return (
-    <div className="App">
+    <div className="Cap">
       <div
         ref={divRef}
         style={{ backgroundColor: "lime", width: "300px", height: "200px" }}

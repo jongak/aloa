@@ -9,6 +9,7 @@ import Product from "./pages/product";
 import Contact from "./pages/contact";
 import Search from "./pages/search";
 import Capture from "./pages/capture";
+import CharacterDetail from "./pages/characterDetail";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
           <Route path="/capture" element={<Capture />} />
+          <Route path="/character" element={<Layout />}>
+            <Route path=":id" element={<CharacterDetail />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
