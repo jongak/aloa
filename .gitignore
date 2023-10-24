@@ -1,7 +1,7 @@
 ins
 .history
 **/node_modules
-**/TEST
+# **/TEST
 workspace2
 
 # 오피스 임시파일
