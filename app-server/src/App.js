@@ -8,6 +8,7 @@ import Shop from "./pages/shop";
 import Product from "./pages/product";
 import Contact from "./pages/contact";
 import Search from "./pages/search";
+import Capture from "./pages/capture";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/product-details" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/capture" element={<Capture />} />
         </Route>
       </Routes>
     </Router>
