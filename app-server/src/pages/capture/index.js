@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
 import { useRef } from "react";
+import CardImg from "../../components/common/CardImg";
 
 const capture = function () {
   const divRef = useRef(null);
@@ -10,7 +11,11 @@ const capture = function () {
 
     try {
       const div = divRef.current;
-      const canvas = await html2canvas(div, { scale: 2 });
+      const canvas = await html2canvas(div, {
+        scale: 2,
+        allowTaint: true,
+        useCORS: true,
+      });
       canvas.toBlob((blob) => {
         if (blob !== null) {
           saveAs(blob, "result.png");
@@ -23,13 +28,7 @@ const capture = function () {
 
   return (
     <div className="Cap">
-      <div
-        ref={divRef}
-        style={{ backgroundColor: "lime", width: "300px", height: "200px" }}
-      >
-        <h1>Hello CodeSandbox</h1>
-        <h2>Start editing to see some magic happen!</h2>
-      </div>
+      <CardImg divRef={divRef} />
       <button onClick={handleDownload}>다운로드</button>
     </div>
   );

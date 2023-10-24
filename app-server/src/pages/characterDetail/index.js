@@ -13,8 +13,6 @@ const CharacterDetail = function () {
       console.error(err);
     }
   };
-  getData(id);
-  console.log("들어옴");
   return <div></div>;
 };
 

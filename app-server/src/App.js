@@ -22,7 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/search" element={<Search />} />
           <Route path="/capture" element={<Capture />} />
-          <Route path="/character" element={<Layout />}>
+          <Route path="/character">
             <Route path=":id" element={<CharacterDetail />} />
           </Route>
         </Route>
