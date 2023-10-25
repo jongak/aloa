@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import Card from "../../components/common/Card";
-import { useRef } from "react";
+// import Tilt from "react-parallax-tilt";
+import { Tilt } from "react-next-tilt";
+// import "./holofoil.css";
+import "./cards.css";
 
 function Home() {
   const queryRef = useRef("");
@@ -57,6 +60,7 @@ function Home() {
                             alt=""
                             style={{ maxWidth: "44px" }}
                           />
+                          <div className="card__shine"></div>
                         </div>
                         <h4>나만의 로아카드를 만들어보세요</h4>
                       </div>
@@ -68,15 +72,63 @@ function Home() {
 
             <div className="col-lg-4 offset-lg-2">
               <div className="right-image">
-                <img src="/assets/images/card_example.png" alt="" />
+                <Tilt>
+                  <img src="/assets/images/card_example.png" alt="" />
+                </Tilt>
+                <Tilt>
+                  <Card />
+                </Tilt>
+
+                <Tilt
+                  lineGlareEnable={false}
+                  tiltProps={{
+                    [`className`]: "card dragon / masked",
+                    [`data-rarity`]: "rare holo v",
+                  }}
+                  tiltStyle={{
+                    "background-color": "#fff",
+                    "--pointer-x": "50%",
+                    "--pointer-y": "50%",
+                    "--pointer-from-center": 0,
+                    "--pointer-from-top": "0.5",
+                    "--pointer-from-left": "0.5",
+                    "--card-opacity": 0,
+                    "--rotate-x": "0deg",
+                    "--rotate-y": "0deg",
+                    "--background-x": "50%",
+                    "--background-y": "50%",
+                    "--card-scale": "1",
+                    "--translate-x": "0px",
+                    "--translate-y": "0px",
+                  }}
+                  style={{ width: "150%" }}
+                >
+                  <div className="card__translater">
+                    <button
+                      className="card__rotator"
+                      aria-label="Expand the Pokemon Card; Dragonite V."
+                      tabIndex="0"
+                    >
+                      <div className="card__front">
+                        <img
+                          // src="https://images.pokemontcg.io/pgo/49_hires.png"
+                          src="/assets/images/card_example.png"
+                          className="inner-element"
+                          alt="Front design of the Dragonite V Pokemon Card, with the stats and info around the edge"
+                          loading="lazy"
+                          width="660"
+                          height="921"
+                        />
+                        <div className="card__shine"></div>{" "}
+                        <div className="card__glare"></div>
+                      </div>
+                    </button>
+                  </div>
+                </Tilt>
                 {/* <span className="price">$22</span>
                 <span className="offer">-40%</span> */}
               </div>
             </div>
-
-            <section>
-              <Card />
-            </section>
           </div>
         </div>
       </div>
