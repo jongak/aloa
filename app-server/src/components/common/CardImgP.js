@@ -1,9 +1,33 @@
+import axios from "axios";
 import "./holofoil.css";
+import { useEffect, useRef } from "react";
+
+const imgurl = [
+  "https://img.lostark.co.kr/armory/7/20b6dbe15f97e00ed8a1e38bc65661f7ae6ba10d06e6071852f25ca6d3c6b05d.png",
+  "https://img.lostark.co.kr/armory/7/eb6148f94d92abe15db50db40380bd9e1c9fd93e5fa874002df5a11dae9713cb.png",
+  "https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png",
+];
 
 const CardImg = function ({
   divRef,
   bgImgSrc = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/a4bcb45671d44e938c2f7e0efccf7e54.jpg",
 }) {
+  const imgRef = useRef([{}, {}, {}]);
+  const getData = async function (url) {
+    try {
+      const res = await axios.get(`/?url=${url}`);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    imgurl.map(async (url, i) => {
+      const base64Data = await getData(url);
+      imgRef.current[i].src = base64Data;
+      // imgRef.current[i].src = url;
+    });
+  }, []);
   return (
     <div
       className="cardImg"
@@ -70,36 +94,25 @@ const CardImg = function ({
               alignItems: "center",
             }}
           >
-            <div
-              className="cardCharacter"
-              style={{
-                width: "30%",
-                height: "90%",
-                backgroundPosition: "50% 30%",
-                backgroundSize: "230%",
-                backgroundImage: `url(https://img.lostark.co.kr/armory/7/20b6dbe15f97e00ed8a1e38bc65661f7ae6ba10d06e6071852f25ca6d3c6b05d.png)`,
-              }}
-            ></div>
-            <div
-              className="cardCharacter"
-              style={{
-                width: "30%",
-                height: "90%",
-                backgroundPosition: "50% 30%",
-                backgroundSize: "230%",
-                backgroundImage: `url(https://img.lostark.co.kr/armory/7/eb6148f94d92abe15db50db40380bd9e1c9fd93e5fa874002df5a11dae9713cb.png)`,
-              }}
-            ></div>
-            <div
-              className="cardCharacter"
-              style={{
-                width: "30%",
-                height: "90%",
-                backgroundPosition: "50% 30%",
-                backgroundSize: "230%",
-                backgroundImage: `url(https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png)`,
-              }}
-            ></div>
+            {[0, 1, 2].map((item) => (
+              <div
+                className="imgCrop"
+                key={item}
+                style={{
+                  width: "30%",
+                  height: "90%",
+                  overflow: "hidden",
+                }}
+              >
+                <img
+                  className="cardCharacter"
+                  ref={(ref) => (imgRef.current[item] = ref)}
+                  style={{
+                    transform: "scale(2,2) translate(-0%,30%)",
+                  }}
+                />
+              </div>
+            ))}
           </div>
           <div
             className="ImgTitles"

@@ -31,6 +31,7 @@ app.use(cors());
 app.use("/api", indexRouter);
 
 const url = require("url");
+var proxy = require("html2canvas-proxy");
 const request = require("request");
 
 function validUrl(req, res, next) {
@@ -46,7 +47,7 @@ function validUrl(req, res, next) {
   }
 }
 
-app.use("/api", (req, res, next) => {
+app.use("/api", proxy(), (req, res, next) => {
   // 프록시 서버 미들웨어
   switch (req.query.responseType) {
     case "blob":
