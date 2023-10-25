@@ -1,6 +1,4 @@
-// import "./holofoil.css";
-import React from "react";
-// import Tilt from "react-parallax-tilt";
+import "./holofoil.css";
 
 const Card = function () {
   return (
@@ -34,16 +32,23 @@ const Card = function () {
           aria-label="Expand the Pokemon Card; Dragonite V."
           tabIndex="0"
         >
+          {/* <img
+          className="card__back"
+          src="https://tcg.pokemon.com/assets/img/global/tcg-card-back-2x.jpg"
+          alt="The back of a Pokemon Card, a Pokeball in the center with Pokemon logo above and below"
+          loading="lazy"
+          width="660"
+          height="921"
+        />{" "} */}
           <div className="card__front">
             <img
               // src="https://images.pokemontcg.io/pgo/49_hires.png"
               src="/assets/images/card_example.png"
-              className="inner-element"
               alt="Front design of the Dragonite V Pokemon Card, with the stats and info around the edge"
               loading="lazy"
               width="660"
               height="921"
-            />
+            />{" "}
             <div className="card__shine"></div>{" "}
             <div className="card__glare"></div>
           </div>
