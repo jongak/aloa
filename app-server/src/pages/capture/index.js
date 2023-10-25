@@ -1,11 +1,11 @@
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import CardImg from "../../components/common/CardImg";
+import axios from "axios";
 
 const capture = function () {
   const divRef = useRef(null);
-
   const handleDownload = async () => {
     if (!divRef.current) return;
 
@@ -15,6 +15,7 @@ const capture = function () {
         scale: 2,
         allowTaint: true,
         useCORS: true,
+        // proxy: "/html2canvas-proxy",
       });
       canvas.toBlob((blob) => {
         if (blob !== null) {
@@ -27,7 +28,8 @@ const capture = function () {
   };
 
   return (
-    <div className="Cap">
+    <div className="Cap" style={{ margin: "100px" }}>
+      {/* <img ref={divRef} alt="이미지" /> */}
       <CardImg divRef={divRef} />
       <button onClick={handleDownload}>다운로드</button>
     </div>

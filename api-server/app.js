@@ -30,6 +30,47 @@ app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 app.use(cors());
 app.use("/api", indexRouter);
 
+const url = require("url");
+const request = require("request");
+
+function validUrl(req, res, next) {
+  if (!req.query.url) {
+    next(new Error("No url specified"));
+  } else if (
+    typeof req.quert.url !== "string" ||
+    url.parse(req.query.url).host === null
+  ) {
+    next(new Error(`Invalid url specified: ${req.query.url}`));
+  } else {
+    next();
+  }
+}
+
+app.use("/api", (req, res, next) => {
+  // 프록시 서버 미들웨어
+  switch (req.query.responseType) {
+    case "blob":
+      req.pipe(request(req.query.url).on("error", next)).pipe(res);
+      break;
+    case "text":
+    default:
+      request(
+        { url: req.query.url, encoding: "binary" },
+        (error, response, body) => {
+          if (error) {
+            return next(error);
+          }
+          res.send(
+            `
+            data:${response.headers["content-type"]}; base64, 
+            ${Buffer.from(body, "binary").toString("base64")}`
+          );
+        }
+      );
+      break;
+  }
+});
+
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
   console.error(404, req.url);
