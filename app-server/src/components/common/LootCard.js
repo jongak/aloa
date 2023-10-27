@@ -3,7 +3,7 @@ import $ from "jquery";
 import "./style.css";
 
 export default function LootCard({
-  rarityPreset = "common", //홀로그램 디폴트
+  rarityPreset = "custom", //홀로그램 디폴트
   landscape = false, //90도 회전
   img, //이미지
   canvasRef = null, //이미지
@@ -15,6 +15,7 @@ export default function LootCard({
   className = "",
   style = {}, //메인div관련 stlye
 }) {
+  console.log(holographicOptions);
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -24,7 +25,6 @@ export default function LootCard({
   );
   const cardRef = useRef();
 
-  console.log("랜더링");
   useEffect(() => {
     if (canvasRef) {
       cardRef.current.replaceChildren(canvasRef);
@@ -44,16 +44,16 @@ export default function LootCard({
     $cards.attr("style", customStyles);
 
     // // TODO: fix animations
-    if (animationOptions?.animatedOnIdle) {
-      if (!$cards.hasClass("animated")) {
-        clearInterval(y);
-        clearTimeout(z);
-        y = setInterval(() => {
-          $cards.addClass("animated");
-          z = setTimeout(() => $cards.removeClass("animated"), 12000);
-        }, animationOptions?.intervalOnIdle || 5000);
-      }
-    }
+    // if (animationOptions?.animatedOnIdle) {
+    //   if (!$cards.hasClass("animated")) {
+    //     clearInterval(y);
+    //     clearTimeout(z);
+    //     y = setInterval(() => {
+    //       $cards.addClass("animated");
+    //       z = setTimeout(() => $cards.removeClass("animated"), 12000);
+    //     }, animationOptions?.intervalOnIdle || 5000);
+    //   }
+    // }
 
     $cards
       .on("mousemove touchmove", function (e) {

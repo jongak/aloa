@@ -10,6 +10,9 @@ import Contact from "./pages/contact";
 import Search from "./pages/search";
 import Capture from "./pages/capture";
 
+import { Provider } from "react-redux";
+import store from "./store/store";
+
 import CharacterDetail from "./pages/characterDetail";
 import Battle from "./pages/characterDetail/Battle";
 import InternalStability from "./pages/characterDetail/InternalStability";
@@ -20,28 +23,33 @@ import Guild from "./pages/characterDetail/Guild";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product-details" element={<Product />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/capture" element={<Capture />} />
-          <Route path="/character">
-            <Route path=":id" element={<CharacterDetail />}>
-              <Route index element={<Battle />} />
-              <Route path="internalStability" element={<InternalStability />} />
-              <Route path="avatar" element={<Avatar />} />
-              <Route path="statistics" element={<Statistics />} />
-              <Route path="character" element={<Character />} />
-              <Route path="guild" element={<Guild />} />
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/product-details" element={<Product />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/capture" element={<Capture />} />
+            <Route path="/character">
+              <Route path=":id" element={<CharacterDetail />}>
+                <Route index element={<Battle />} />
+                <Route
+                  path="internalStability"
+                  element={<InternalStability />}
+                />
+                <Route path="avatar" element={<Avatar />} />
+                <Route path="statistics" element={<Statistics />} />
+                <Route path="character" element={<Character />} />
+                <Route path="guild" element={<Guild />} />
+              </Route>
             </Route>
           </Route>
-        </Route>
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 
