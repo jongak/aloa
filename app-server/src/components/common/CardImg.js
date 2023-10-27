@@ -9,6 +9,7 @@ const imgurl = [
 ];
 
 const CardImg = function ({
+  style,
   divRef,
   bgImgSrc = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/a4bcb45671d44e938c2f7e0efccf7e54.jpg",
 }) {
@@ -25,13 +26,14 @@ const CardImg = function ({
     imgurl.map(async (url, i) => {
       const base64Data = await getData(url);
       imgRef.current[i].src = base64Data;
+      // imgRef.current[i].src = url;
     });
   }, []);
   return (
     <div
       className="cardImg"
       ref={divRef}
-      style={{ margin: "100px", width: "600px", height: "800px" }}
+      style={{ ...style, margin: "100px", width: "600px", height: "800px" }}
     >
       <div
         className="cardBody"
@@ -101,19 +103,13 @@ const CardImg = function ({
                   width: "30%",
                   height: "90%",
                   overflow: "hidden",
-                  position: "relative",
                 }}
               >
                 <img
                   className="cardCharacter"
                   ref={(ref) => (imgRef.current[item] = ref)}
                   style={{
-                    position: "absolute",
-                    top: "-10%",
-                    left: "-25%",
-                    width: "150%",
-                    height: "150%",
-                    objectFit: "cover",
+                    transform: "scale(2,2) translate(-0%,30%)",
                   }}
                 />
               </div>

@@ -1,6 +1,6 @@
 import "./holofoil.css";
 
-const Card = function () {
+const CardC = function () {
   return (
     <div
       className="card dragon / masked"
@@ -24,6 +24,7 @@ const Card = function () {
         "--card-scale": "1",
         "--translate-x": "0px",
         "--translate-y": "0px",
+        width: "400px",
       }}
     >
       <div className="card__translater">
@@ -58,4 +59,4 @@ const Card = function () {
   );
 };
 
-export default Card;
+export default CardC;

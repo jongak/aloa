@@ -6,12 +6,14 @@ import axios from "axios";
 import Button from "../../components/common/Button";
 import LootCard from "../../components/common/LootCard";
 import img from "../../img/result_5.png";
-import Canvas2Image from "canvas2image";
+import CardC from "../../components/common/CardC";
 
 const capture = function () {
   const divRef = useRef(null);
-  const canvasRef = useRef();
-  const [colorRef, setColorRef] = useState("black");
+  const [canvasRef, setCanvasRef] = useState();
+  const [isChanged, setIsChanged] = useState(true);
+  const rarityPresetRef = useRef("common");
+
   useEffect(() => {
     const fetchData = async () => {
       const div = divRef.current;
@@ -20,7 +22,7 @@ const capture = function () {
         allowTaint: true,
         useCORS: true,
       });
-      canvasRef.current = Canvas2Image.saveAsImage(canvas);
+      setCanvasRef(canvas);
 
       // 여기서 canvas를 사용하거나 다른 작업을 수행할 수 있습니다.
     };
@@ -28,19 +30,20 @@ const capture = function () {
     fetchData();
 
     // colorRef를 의존성 배열에 추가
-  }, [colorRef]);
+  }, [rarityPresetRef]);
 
   const onChangeToggle = (event) => {
-    setColorRef(event.target.dataset.value);
+    rarityPresetRef.current = event.target.dataset.value;
+    setIsChanged(!isChanged);
   };
 
-  const colors = ["red", "yellow", "blue"];
-  const colorsList = colors.map((color) => {
+  const rarityPresets = ["common", "legendary", "holographic"];
+  const rarityPresetsList = rarityPresets.map((rarityPreset) => {
     return (
       <Button
         type="button"
-        value={color}
-        key={color}
+        value={rarityPreset}
+        key={rarityPreset}
         onClick={onChangeToggle}
         // className="item"
         style={{
@@ -49,18 +52,15 @@ const capture = function () {
           fontWeight: "bold",
           border: "1px solid",
         }}
-        title={color}
+        title={rarityPreset}
       />
     );
   });
-  if (canvasRef.current) {
-    console.log(canvasRef.current.childNodes[0]);
-  }
 
   return (
     <div className="Cap" style={{ margin: "100px" }}>
-      {colorsList}
-      <div
+      {rarityPresetsList}
+      {/* <div
         style={{
           backgroundColor: `${colorRef}`,
           position: "absolute",
@@ -70,29 +70,37 @@ const capture = function () {
           top: "-500px",
         }}
         ref={divRef}
-      />
+      /> */}
       {/* <img ref={divRef} alt="이미지" /> */}
-      {/* <CardImg divRef={divRef} /> */}
-      <div className="canvas" ref={canvasRef} />
+      <CardImg
+        divRef={divRef}
+        style={{ position: "absolute", top: "-1000px" }}
+      />
+
       <LootCard
-        img={canvasRef.current ? canvasRef.current.childNodes[0] : null}
-        shineOptions={{
-          color1: "#6dd5ed",
-          color2: "#2193b0",
-        }}
-        holographicOptions={{
-          glow: true,
-          color1: "#0077be",
-          color2: "#0087b3",
-          color3: "#0097a8",
-          color4: "#00a799",
-          color5: "#00b78e",
-        }}
+        pp={isChanged}
+        rarityPreset={rarityPresetRef.current}
+        // img={
+        //   "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
+        // }
+        canvasRef={canvasRef}
+        // shineOptions={{
+        //   color1: "#6dd5ed",
+        //   color2: "#2193b0",
+        // }}
+        // holographicOptions={{
+        //   glow: true,
+        //   color1: "#0077be",
+        //   color2: "#0087b3",
+        //   color3: "#0097a8",
+        //   color4: "#00a799",
+        //   color5: "#00b78e",
+        // }}
         shadowOptions={{
           default: { color1: "#6dd5ed", color2: "#2193b0" },
           hover: { color1: "#6dd5ed", color2: "#2193b0" },
         }}
-        size={{ height: 410, width: 300 }}
+        size={{ height: 400, width: 300 }}
       />
     </div>
   );

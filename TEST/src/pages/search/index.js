@@ -1,33 +1,36 @@
-import axios from "axios";
-import { useRef } from "react";
-axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
-import LootCard from "../../components/layout/LootCard";
-import img from "../../img/result_5.png";
-const Search = function () {
+import { useMemo, useEffect, useState, useRef } from "react";
+
+function App() {
+  const number = useRef(1);
+  const [isKorea, setIsKorea] = useState(true);
+
+  // 1번 location
+  const location = {
+    country: isKorea ? "한국" : "일본",
+  };
+
+  // 2번 location
+  // const location = useMemo(() => {
+  //   return {
+  //     country: isKorea ? '한국' : '일본'
+  //   }
+  // }, [isKorea])
+
+  useEffect(() => {
+    console.log("useEffect 호출!");
+  }, [location]);
+
   return (
-    <LootCard
-      // img={
-      //   "https://assets.pokemon.com/assets/cms2/img/cards/web/SV3PT5/SV3PT5_EN_200.png"
-      // }
-      img={img}
-      shineOptions={{
-        color1: "#6dd5ed",
-        color2: "#2193b0",
-      }}
-      holographicOptions={{
-        glow: true,
-        color1: "#0077be",
-        color2: "#0087b3",
-        color3: "#0097a8",
-        color4: "#00a799",
-        color5: "#00b78e",
-      }}
-      shadowOptions={{
-        default: { color1: "#6dd5ed", color2: "#2193b0" },
-        hover: { color1: "#6dd5ed", color2: "#2193b0" },
-      }}
-      size={{ height: 410, width: 300 }}
-    />
+    <header className="App-header">
+      <h2>하루에 몇 끼 먹어요?</h2>
+      <input type="number" ref={number} />
+      <hr />
+
+      <h2>내가 있는 나라는?</h2>
+      <p>나라: {location.country}</p>
+      <button onClick={() => setIsKorea(!isKorea)}>Update</button>
+    </header>
   );
-};
-export default Search;
+}
+
+export default App;

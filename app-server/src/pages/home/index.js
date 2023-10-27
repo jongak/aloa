@@ -4,6 +4,7 @@ import Card from "../../components/common/Card";
 import { Tilt } from "react-next-tilt";
 // import "./holofoil.css";
 import "./cards.css";
+import { useRef } from "react";
 
 function Home() {
   const queryRef = useRef("");

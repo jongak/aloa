@@ -1,24 +1,35 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css";
 
 export default function LootCard({
-  rarityPreset = "common",
-  landscape = false,
-  img,
-  animationOptions = null,
-  shineOptions = null,
-  holographicOptions = null,
-  size = null,
-  shadowOptions = null,
+  rarityPreset = "common", //홀로그램 디폴트
+  landscape = false, //90도 회전
+  img, //이미지
+  canvasRef = null, //이미지
+  animationOptions = null, // 애니메이션 관련 모르겠음
+  shineOptions = null, //고정빛 커스텀
+  holographicOptions = null, //홀로그램 커스텀
+  size = null, //카드 크기(canvasRef이용헀으면 둘다 줄여야됨)
+  shadowOptions = null, //그림자관련 default: 고정 그림자 색 hover는 안먹힘
   className = "",
-  style = {},
+  style = {}, //메인div관련 stlye
 }) {
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const id = useMemo(
+    () => Math.floor(Math.random() * 100000 + Math.random() * 100000),
+    []
+  );
+  const cardRef = useRef();
 
-  const id = Math.floor(Math.random() * 100000 + Math.random() * 100000);
+  console.log("랜더링");
+  useEffect(() => {
+    if (canvasRef) {
+      cardRef.current.replaceChildren(canvasRef);
+    }
+  }, [canvasRef]);
 
   useEffect(() => {
     let x, y, z;
@@ -33,16 +44,16 @@ export default function LootCard({
     $cards.attr("style", customStyles);
 
     // // TODO: fix animations
-    // if (animationOptions?.animatedOnIdle) {
-    //   if (!$cards.hasClass("animated")) {
-    //     clearInterval(y);
-    //     clearTimeout(z);
-    //     y = setInterval(() => {
-    //       $cards.addClass("animated");
-    //       z = setTimeout(() => $cards.removeClass("animated"), 12000);
-    //     }, animationOptions?.intervalOnIdle || 5000);
-    //   }
-    // }
+    if (animationOptions?.animatedOnIdle) {
+      if (!$cards.hasClass("animated")) {
+        clearInterval(y);
+        clearTimeout(z);
+        y = setInterval(() => {
+          $cards.addClass("animated");
+          z = setTimeout(() => $cards.removeClass("animated"), 12000);
+        }, animationOptions?.intervalOnIdle || 5000);
+      }
+    }
 
     $cards
       .on("mousemove touchmove", function (e) {
@@ -97,7 +108,6 @@ export default function LootCard({
 
         if (shineOptions) {
           const { color1, color2 } = shineOptions;
-
           style += `
             .card-holo-${id}:before {
               background-image: linear-gradient(115deg, transparent 0%, ${color1}  25%, transparent 47%, transparent 53%, ${color2} 75%, transparent 100%);
@@ -166,16 +176,16 @@ export default function LootCard({
             animationOptions.delayOnMouseOut || 2500
           );
 
-        // if (animationOptions?.animatedOnIdle) {
-        //   if (!$cards.hasClass("animated")) {
-        //     clearInterval(y);
-        //     clearTimeout(z);
-        //     y = setInterval(() => {
-        //       $cards.addClass("animated");
-        //       z = setTimeout(() => $cards.removeClass("animated"), 12000);
-        //     }, animationOptions?.intervalOnIdle || 5000);
-        //   }
-        // }
+        if (animationOptions?.animatedOnIdle) {
+          if (!$cards.hasClass("animated")) {
+            clearInterval(y);
+            clearTimeout(z);
+            y = setInterval(() => {
+              $cards.addClass("animated");
+              z = setTimeout(() => $cards.removeClass("animated"), 12000);
+            }, animationOptions?.intervalOnIdle || 5000);
+          }
+        }
       });
     setIsLoaded(true);
   }, [
@@ -199,6 +209,7 @@ export default function LootCard({
   return (
     <section className="cards" id="opening">
       <div
+        ref={cardRef}
         className={`
           ${rarityPreset || ""}
           ${holographicOptions ? "holographic" : ""}
@@ -213,8 +224,11 @@ export default function LootCard({
           ${landscape ? "landscape" : ""}
           ${className || ""}
         `}
-        style={{ backgroundImage: `url(${img})`, ...style }}
-      />
+        style={{
+          backgroundImage: `url(${img})`,
+          ...style,
+        }}
+      ></div>
       <style className="hover"></style>
     </section>
   );
