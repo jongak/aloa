@@ -1,6 +1,6 @@
 import html2canvas from "html2canvas";
 import saveAs from "file-saver";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import CardImg from "../../components/common/CardImg";
 import axios from "axios";
 import Button from "../../components/common/Button";
@@ -11,8 +11,19 @@ import CardC from "../../components/common/CardC";
 const capture = function () {
   const divRef = useRef(null);
   const [canvasRef, setCanvasRef] = useState();
+  const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
   const rarityPresetRef = useRef("common");
+  const cardImgMemo = useMemo(() => {
+    console.log("카드이미지");
+    return (
+      <CardImg
+        setIsLoading={setIsLoading}
+        divRef={divRef}
+        //  style={{ position: "absolute", top: "-1000px" }}
+      />
+    );
+  }, [isLoading]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +37,13 @@ const capture = function () {
 
       // 여기서 canvas를 사용하거나 다른 작업을 수행할 수 있습니다.
     };
-
-    fetchData();
+    if (isLoading) {
+      console.log("뷁");
+      fetchData();
+    }
 
     // colorRef를 의존성 배열에 추가
-  }, [rarityPresetRef]);
+  }, [isLoading]);
 
   const onChangeToggle = (event) => {
     rarityPresetRef.current = event.target.dataset.value;
@@ -72,13 +85,9 @@ const capture = function () {
         ref={divRef}
       /> */}
       {/* <img ref={divRef} alt="이미지" /> */}
-      <CardImg
-        divRef={divRef}
-        style={{ position: "absolute", top: "-1000px" }}
-      />
 
+      {cardImgMemo}
       <LootCard
-        pp={isChanged}
         rarityPreset={rarityPresetRef.current}
         // img={
         //   "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
@@ -100,7 +109,7 @@ const capture = function () {
           default: { color1: "#6dd5ed", color2: "#2193b0" },
           hover: { color1: "#6dd5ed", color2: "#2193b0" },
         }}
-        size={{ height: 400, width: 300 }}
+        size={{ height: 800, width: 600 }}
       />
     </div>
   );
