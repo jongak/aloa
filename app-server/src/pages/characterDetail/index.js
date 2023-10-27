@@ -26,19 +26,26 @@ const CharacterDetail = function () {
           즐겨 찾기
         </div>
         <div className="col-3 btn btn-outline-info" type="button">
-          카드 만들기
+          카드 생성
         </div>
-        <div className="col-3 btn btn-outline-info" type="button">
-          현재 셋팅 저장하기
+        <div
+          className="col-3 btn btn-outline-info"
+          type="button"
+          style={{ whiteSpace: "nowrap" }}
+        >
+          현재 셋팅 저장
         </div>
         <div className="col-3 btn btn-outline-info" type="button">
           갱신 하기
         </div>
       </div>
       <div className="row">
-        <div className="col-7" style={{ backgroundColor: "white" }}>
+        <div
+          className="col-lg-7 col-sm-12"
+          style={{ backgroundColor: "white" }}
+        >
           <div
-            className="col"
+            className="col-sm"
             style={{
               height: "30vh",
               textAlign: "center",
@@ -48,7 +55,7 @@ const CharacterDetail = function () {
             송도나봉선
           </div>
           <div
-            className="col"
+            className="col-sm"
             style={{
               height: "40vh",
               display: "flex",
@@ -60,29 +67,31 @@ const CharacterDetail = function () {
             캐릭터 정보
           </div>
           <div className="row" style={{ border: "solid black 1px" }}>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               전투
             </button>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               내실
             </button>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               아바타
             </button>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               통계
             </button>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               캐릭터
             </button>
-            <button type="button" className="col-2 btn btn-secondary">
+            <button type="button" className="col-sm-2 btn btn-secondary">
               길드
             </button>
           </div>
         </div>
 
-        <div className="col-5" style={{ backgroundColor: "blue" }}>
-          <div className="col"></div>
+        <div className="col-lg-5 col-sm-12" style={{ backgroundColor: "blue" }}>
+          <div className="col" style={{ minHeight: "550px" }}>
+            dddd
+          </div>
         </div>
         <Outlet />
       </div>
