@@ -23,8 +23,8 @@ const Guild = function () {
       >
         <div className="row">
           <div
-            className="col-1 btn btn-secondary"
-            style={{ margin: "10px 10px 0 10px" }}
+            className="col-lg-1 col-sm-3 btn btn-secondary"
+            style={{ margin: "10px 10px 0 10px", whiteSpace: "nowrap" }}
           >
             캐릭터 검색
           </div>

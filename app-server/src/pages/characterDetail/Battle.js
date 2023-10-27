@@ -26,7 +26,11 @@ const Battle = function () {
         </div>
         <div
           className="col-6"
-          style={{ height: "35vh", backgroundColor: "white" }}
+          style={{
+            border: "solid 1px black",
+            height: "35vh",
+            backgroundColor: "white",
+          }}
         >
           어떤 사진
         </div>

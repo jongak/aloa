@@ -3,21 +3,6 @@ const Avatar = function () {
     <div className="container">
       <div className="row">
         <div
-          className="col-12"
-          style={{
-            height: "120vh",
-            backgroundColor: "white",
-            margin: "10px 0 0 0",
-            padding: "0",
-            border: "solid 1px black",
-          }}
-        >
-          아바타
-        </div>
-      </div>
-
-      <div className="row">
-        <div
           className="col"
           style={{
             height: "5vh",
