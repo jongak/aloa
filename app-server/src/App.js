@@ -9,7 +9,14 @@ import Product from "./pages/product";
 import Contact from "./pages/contact";
 import Search from "./pages/search";
 import Capture from "./pages/capture";
+
 import CharacterDetail from "./pages/characterDetail";
+import Battle from "./pages/characterDetail/Battle";
+import InternalStability from "./pages/characterDetail/InternalStability";
+import Avatar from "./pages/characterDetail/Avatar";
+import Statistics from "./pages/characterDetail/Statistics";
+import Character from "./pages/characterDetail/Character";
+import Guild from "./pages/characterDetail/Guild";
 
 function App() {
   return (
@@ -23,7 +30,14 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/capture" element={<Capture />} />
           <Route path="/character">
-            <Route path=":id" element={<CharacterDetail />} />
+            <Route path=":id" element={<CharacterDetail />}>
+              <Route index element={<Battle />} />
+              <Route path="internalStability" element={<InternalStability />} />
+              <Route path="avatar" element={<Avatar />} />
+              <Route path="statistics" element={<Statistics />} />
+              <Route path="character" element={<Character />} />
+              <Route path="guild" element={<Guild />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
