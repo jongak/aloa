@@ -5,7 +5,11 @@ import { useSelector } from "react-redux";
 
 const Button = function ({
   isRev = false,
-  toggle,
+  toggleRef = null,
+  defaltRefs = [],
+  defaltValues = [],
+  toggleChanged = null,
+  setToggleChanged = null,
   value,
   divStyle,
   href,
@@ -27,6 +31,13 @@ const Button = function ({
         onClick={(e) => {
           if (onClick) {
             onClick(e);
+          }
+          if (toggleRef) {
+            toggleRef.current = !toggleRef.current;
+            defaltRefs.forEach((defaltRef, i) => {
+              defaltRef.current = defaltValues[i];
+            });
+            setToggleChanged(!toggleChanged);
           }
         }}
       >

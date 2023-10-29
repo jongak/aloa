@@ -2,20 +2,20 @@ import React, { useMemo, useState, useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css";
 
-export default function LootCard({
-  rarityPreset = "custom", //홀로그램 디폴트
-  landscape = false, //90도 회전
-  img, //이미지
-  canvasRef = null, //이미지
-  animationOptions = null, // 애니메이션 관련 모르겠음
-  shineOptions = null, //고정빛 커스텀
-  holographicOptions = null, //홀로그램 커스텀
-  size = null, //카드 크기(canvasRef이용헀으면 둘다 줄여야됨)
-  shadowOptions = null, //그림자관련 default: 고정 그림자 색 hover는 안먹힘
-  className = "",
-  style = {}, //메인div관련 stlye
-}) {
-  console.log(holographicOptions);
+export default function LootCard(props) {
+  var {
+    rarityPreset = "custom", //홀로그램 디폴트
+    landscape = false, //90도 회전
+    img, //이미지
+    canvasRef = null, //이미지
+    animationOptions = null, // 애니메이션 관련 모르겠음
+    shineOptions = null, //고정빛 커스텀
+    holographicOptions = null, //홀로그램 커스텀
+    size = null, //카드 크기(canvasRef이용헀으면 둘다 줄여야됨)
+    shadowOptions = null, //그림자관련 default: 고정 그림자 색 hover는 안먹힘
+    className = "",
+    style = {}, //메인div관련 stlye
+  } = props;
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);

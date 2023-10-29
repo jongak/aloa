@@ -14,7 +14,6 @@ const CardImg = function ({
   divRef,
   bgImgSrc = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/a4bcb45671d44e938c2f7e0efccf7e54.jpg",
 }) {
-  console.log("렌더링");
   const imgRef = useRef([{}, {}, {}]);
   const getData = async function (url) {
     try {
