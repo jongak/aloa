@@ -29,9 +29,11 @@ export default function LootCard(props) {
   const cardRef = useRef();
 
   useEffect(() => {
-    if (canvasRef) {
+    console.log(canvasRef, cardRef.current);
+    if (canvasRef && cardRef.current) {
       cardRef.current.replaceChildren(canvasRef);
     }
+    console.log(canvasRef, cardRef.current);
   }, [canvasRef]);
 
   useEffect(() => {
