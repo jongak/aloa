@@ -212,29 +212,6 @@ const Makecard = function () {
       {cardImgMemo}
       {LootCardMemo}
 
-      <section>
-        <div
-          className="container"
-          style={{ width: "400px", borderRadius: "5px" }}
-        >
-          <div
-            className="row"
-            style={{
-              backgroundImage: "url('/assets/images/card_bg.png')",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="col">
-              <img src="/assets/images/card_frame.png" />
-            </div>
-            <div>
-              <img src="https://img.lostark.co.kr/armory/5/b2a54b9bfd283162ede6c950259ec45d9c3dfe440dbe5d6fd0cf57e786ef71de.png?v=20231029202224" />
-            </div>
-            {/* <img src="/assets/images/card_bg.png" /> */}
-          </div>
-        </div>
-      </section>
-
       <CardAvatar setIsLoading={setIsLoading} divRef={divRef} />
 
       <input
