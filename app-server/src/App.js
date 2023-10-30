@@ -20,6 +20,7 @@ import Avatar from "./pages/characterDetail/Avatar";
 import Statistics from "./pages/characterDetail/Statistics";
 import Character from "./pages/characterDetail/Character";
 import Guild from "./pages/characterDetail/Guild";
+import Makecard from "./pages/make";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<Search />} />
             <Route path="/capture" element={<Capture />} />
+            <Route path="/make" element={<Makecard />} />
             <Route path="/character">
               <Route path=":id" element={<CharacterDetail />}>
                 <Route index element={<Battle />} />
