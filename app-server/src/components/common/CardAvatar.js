@@ -24,14 +24,54 @@ const CardAvatar = function ({
       console.error(err);
     }
   };
+
+  const engraving = [
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_71.png",
+      Name: "원한 Lv. 3",
+      Description:
+        "보스 등급 이상 몬스터에게 주는 피해가 20% 증가하지만, 받는 피해가 20% 증가한다.",
+    },
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_237.png",
+      Name: "저주받은 인형 Lv. 3",
+      Description:
+        "공격력이 16% 증가하지만, 받는 생명력 회복 효과가 25% 감소한다. (자연 회복 제외)",
+    },
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_148.png",
+      Name: "기습의 대가 Lv. 3",
+      Description: "백어택 성공 시 피해량이 추가로 25% 증가한다.",
+    },
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_210.png",
+      Name: "돌격대장 Lv. 3",
+      Description:
+        "기본 이동 속도 증가량 % 의 45% 만큼 적에게 주는 피해량이 증가한다.",
+    },
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_207.png",
+      Name: "절정 Lv. 3",
+      Description:
+        "스탠스를 전환할 때 획득하는 난무/집중 효과에 추가로 반대 스탠스 효과의 100%를 획득한다.",
+    },
+    {
+      Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_235.png",
+      Name: "아드레날린 Lv. 1",
+      Description:
+        "이동기 및 기본공격을 제외한 스킬 사용 시 6초 동안 공격력이 0.3% 증가하며 (최대 6중첩) 해당 효과가 최대 중첩 도달 시 치명타 적중률이 추가로 5% 증가한다. 해당 효과는 스킬 취소에 따른 재사용 대기시간 감소가 적용되는 경우, 스킬 종료 후 적용된다.",
+    },
+  ];
   useEffect(() => {
     imgurl.map(async (url, i) => {
       const base64Data = await getData(url);
-      imgRef.current[i].src = base64Data;
-      // imgRef.current[i].src = url;
+      // imgRef.current[i].src = base64Data;
+      imgRef.current[i].src = url;
     });
     return setIsLoading(true);
   }, []);
+  var avater = imgRef.current[0].src;
+  console.log(avater);
   return (
     <div
       className="cardImg"
@@ -41,24 +81,37 @@ const CardAvatar = function ({
       <div
         className="cardBody"
         style={{
-          backgroundImage: `url(${bgImgSrc})`,
+          background: "#15181D",
           backgroundSize: "cover",
           display: "inline-block",
           width: "600px",
           height: "800px",
+          position: "relative",
         }}
       >
+        <img src={bgFrame} style={{ position: "absolute", zIndex: "10" }} />
+
         <div
           className="cardTop"
           style={{
-            backgroundColor: "yellow",
+            backgroundColor: "#80808038",
             width: "89px",
             height: "40px",
+            position: "absolute",
+            zIndex: "999",
+            borderRadius: "15px",
+            top: "46px",
+            right: "60px",
           }}
         >
           <span
             style={{
-              alignItems: "center",
+              opacity: "1",
+              fontSize: "20px",
+              fontWeight: "800",
+              padding: "14px",
+              lineHeight: "40px",
+              color: "#fff",
             }}
           >
             실리안
@@ -69,7 +122,7 @@ const CardAvatar = function ({
           style={{
             // backgroundColor: "yellow",
             width: "100%",
-            height: "50%",
+            height: "100%",
             position: "relative",
           }}
         >
@@ -84,11 +137,21 @@ const CardAvatar = function ({
               alignItems: "center",
             }}
           >
-            <img
+            <div
               className="cardCharacter"
               ref={(ref) => (imgRef.current[0] = ref)}
-              style={{}}
-            />
+              style={{
+                width: "100%",
+                height: "100%",
+                backgroundImage: `url(${avater})`,
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              <img
+                src="/assets/images/card_bg.png"
+                style={{ mixBlendMode: "screen", opacity: "0.4" }}
+              />
+            </div>
             {/* {[0, 1, 2].map((item) => (
               <div
                 className="imgCrop"
@@ -110,50 +173,75 @@ const CardAvatar = function ({
             ))} */}
           </div>
           <div
+            className="engraves"
+            style={{ position: "absolute", top: "120px", right: "60px" }}
+          >
+            <ul>
+              {engraving.map((item) => (
+                <li key={item._key} style={{ width: "40px" }}>
+                  <img
+                    src={item.Icon}
+                    style={{
+                      borderRadius: "50%",
+                      overflow: "hidden",
+                      marginBottom: "4px",
+                    }}
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div
             className="ImgTitles"
             style={{
-              backgroundColor: "#cccccc",
-              opacity: 0.5,
+              background:
+                "linear-gradient(0deg, rgba(70,69,69,0.7) 30%, rgba(70,69,69,0.0) 100%)",
               width: "100%",
-              height: "50%",
+              height: "300px",
               position: "absolute",
-              top: "80%",
+              bottom: "0",
               left: "0px",
-              display: "flex",
-              justifyContent: "center",
               alignItems: "center",
               textAlign: "center",
             }}
           >
-            <div
-              className="ImgTitle"
-              style={{
-                margin: "50px",
-              }}
-            >
-              <div>송도나봉선</div>
-              <div>1560</div>
-              <div>질병군단장</div>
+            <div className="row justify-content-center">
+              <div className="col-2 class_mark">
+                <img
+                  src="/assets/images/class_mark/mark-lancemaster-border.png"
+                  style={{ paddingLeft: "10px" }}
+                />
+              </div>
+              <div className="col-8 align-self-center d-flex">
+                <h3 style={{ color: "#fff", fontWeight: "800" }}>
+                  부먹펩시파인애플피자지코
+                </h3>
+              </div>
             </div>
             <div
-              className="ImgTitle"
-              style={{
-                margin: "50px",
-              }}
+              className="lvl"
+              style={{ display: "flex", justifyContent: "center" }}
             >
-              <div>송도나봉선</div>
-              <div>1560</div>
-              <div>질병군단장</div>
-            </div>
-            <div
-              className="ImgTitle"
-              style={{
-                margin: "50px",
-              }}
-            >
-              <div>송도나봉선</div>
-              <div>1560</div>
-              <div>질병군단장</div>
+              <div
+                className="ImgTitle"
+                style={{
+                  margin: "50px",
+                }}
+              >
+                <div>송도나봉선</div>
+                <div>1560</div>
+                <div>질병군단장</div>
+              </div>
+              <div
+                className="ImgTitle"
+                style={{
+                  margin: "50px",
+                }}
+              >
+                <div>송도나봉선</div>
+                <div>1560</div>
+                <div>질병군단장</div>
+              </div>
             </div>
           </div>
         </div>
