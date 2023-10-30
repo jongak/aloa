@@ -25,6 +25,12 @@ function Header() {
                   <Link to="/product-details">Product Details</Link>
                 </li>
                 <li>
+                  <Link to="/capture">capture</Link>
+                </li>
+                <li>
+                  <Link to="/make">만들기</Link>
+                </li>
+                <li>
                   <Link to="/contact">Contact Us</Link>
                 </li>
                 <li>
