@@ -8,7 +8,7 @@ const imgurl = [
   "https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png",
 ];
 
-const CardImg = function ({
+const CardImgP = function ({
   divRef,
   bgImgSrc = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/a4bcb45671d44e938c2f7e0efccf7e54.jpg",
 }) {
@@ -225,4 +225,4 @@ const CardImg = function ({
     </div>
   );
 };
-export default CardImg;
+export default CardImgP;

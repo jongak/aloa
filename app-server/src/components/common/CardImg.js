@@ -29,7 +29,7 @@ const CardImg = function ({
       imgRef.current[i].src = base64Data;
       // imgRef.current[i].src = url;
     });
-    return setIsLoading(true);
+    setIsLoading(true);
   }, []);
   return (
     <div
