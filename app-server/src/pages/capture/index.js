@@ -9,6 +9,15 @@ import img from "../../img/result_5.png";
 import CardC from "../../components/common/CardC";
 import ColorToggle from "../../components/common/ColorToggle";
 
+const getData = async function (url) {
+  try {
+    const res = await axios.get(`/?url=${url}`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const capture = function () {
   const divRef = useRef(null);
   const [canvasRef, setCanvasRef] = useState();
@@ -23,6 +32,17 @@ const capture = function () {
     value:
       "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png",
   });
+  const holoSrcRef = useRef({
+    value: "http://localhost:4400/api/images/wave.png",
+  });
+  // const holoSrc = useMemo(async () => {
+  //   async function aa() {
+  //     const data = await getData(holoSrcRef.current.value);
+  //     console.log(data);
+  //     return data;
+  //   }
+  //   return aa();
+  // }, [holoSrcRef]);
 
   const holographicOptionColors = useRef([
     "#0077be",
@@ -44,67 +64,112 @@ const capture = function () {
       <CardImg
         setIsLoading={setIsLoading}
         divRef={divRef}
-        style={{ position: "absolute", top: "-1000px" }}
+        // style={{ position: "absolute", top: "-1000px" }}
       />
     );
   }, [isLoading]);
-  const LootCardMemo = useMemo(
-    () => (
-      <LootCard
-        rarityPreset={rarityPresetRef.current}
-        img={imgSrcRef.current.value}
-        // canvasRef={canvasRef}
 
-        holographicOptions={
-          holoRef.current
-            ? {
-                glow: glowRef.current,
-                color1: holographicOptionColors.current[0],
-                color2: holographicOptionColors.current[1],
-                color3: holographicOptionColors.current[2],
-                color4: holographicOptionColors.current[3],
-                color5: holographicOptionColors.current[4],
-              }
-            : null
-        }
-        shineOptions={
-          shineRef.current
-            ? {
-                color1: shineOptionColors.current[0],
-                color2: shineOptionColors.current[1],
-              }
-            : null
-        }
-        shadowOptions={
-          shadowRef.current
-            ? {
-                default: {
-                  color1: shadowOptionColors.current[0],
-                  color2: shadowOptionColors.current[1],
-                },
-                hover: {
-                  color1: shadowOptionColors.current[2],
-                  color2: shadowOptionColors.current[3],
-                },
-              }
-            : null
-        }
-        size={{ height: 400, width: 300 }}
-      />
-    ),
-    [isChanged]
-  );
+  const LootCardMemo = useMemo(() => {
+    if (isLoading)
+      return (
+        <>
+          <LootCard
+            rarityPreset={rarityPresetRef.current}
+            // img={imgSrcRef.current.value}
+            holo={holoSrcRef.current.value}
+            canvasRef={canvasRef}
+            holographicOptions={
+              holoRef.current
+                ? {
+                    glow: glowRef.current,
+                    color1: holographicOptionColors.current[0],
+                    color2: holographicOptionColors.current[1],
+                    color3: holographicOptionColors.current[2],
+                    color4: holographicOptionColors.current[3],
+                    color5: holographicOptionColors.current[4],
+                  }
+                : null
+            }
+            shineOptions={
+              shineRef.current
+                ? {
+                    color1: shineOptionColors.current[0],
+                    color2: shineOptionColors.current[1],
+                  }
+                : null
+            }
+            shadowOptions={
+              shadowRef.current
+                ? {
+                    default: {
+                      color1: shadowOptionColors.current[0],
+                      color2: shadowOptionColors.current[1],
+                    },
+                    hover: {
+                      color1: shadowOptionColors.current[2],
+                      color2: shadowOptionColors.current[3],
+                    },
+                  }
+                : null
+            }
+            size={{ height: 800, width: 600 }}
+          />
+          <LootCard
+            rarityPreset={rarityPresetRef.current}
+            img={imgSrcRef.current.value}
+            // canvasRef={canvasRef}
+
+            holographicOptions={
+              holoRef.current
+                ? {
+                    glow: glowRef.current,
+                    color1: holographicOptionColors.current[0],
+                    color2: holographicOptionColors.current[1],
+                    color3: holographicOptionColors.current[2],
+                    color4: holographicOptionColors.current[3],
+                    color5: holographicOptionColors.current[4],
+                  }
+                : null
+            }
+            shineOptions={
+              shineRef.current
+                ? {
+                    color1: shineOptionColors.current[0],
+                    color2: shineOptionColors.current[1],
+                  }
+                : null
+            }
+            shadowOptions={
+              shadowRef.current
+                ? {
+                    default: {
+                      color1: shadowOptionColors.current[0],
+                      color2: shadowOptionColors.current[1],
+                    },
+                    hover: {
+                      color1: shadowOptionColors.current[2],
+                      color2: shadowOptionColors.current[3],
+                    },
+                  }
+                : null
+            }
+            size={{ height: 800, width: 600 }}
+          />
+        </>
+      );
+  }, [isChanged, isLoading]);
 
   useEffect(() => {
     const fetchData = async () => {
       const div = divRef.current;
+      console.log(div);
       const canvas = await html2canvas(div, {
         scale: 2,
         allowTaint: true,
         useCORS: true,
       });
       setCanvasRef(canvas);
-
+      console.log(canvasRef);
       // 여기서 canvas를 사용하거나 다른 작업을 수행할 수 있습니다.
     };
     if (isLoading) {
@@ -218,6 +283,15 @@ const capture = function () {
           setIsChanged(!isChanged);
         }}
         defaultValue={imgSrcRef.current.value}
+      />
+      <input
+        type="text"
+        className="form-control"
+        ref={holoSrcRef}
+        onBlur={async () => {
+          setIsChanged(!isChanged);
+        }}
+        defaultValue={holoSrcRef.current.value}
       />
     </div>
   );

@@ -1,12 +1,14 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css";
+import axios from "axios";
 
 export default function LootCard(props) {
   var {
     rarityPreset = "custom", //홀로그램 디폴트
     landscape = false, //90도 회전
     img, //이미지
+    holo,
     canvasRef = null, //이미지
     animationOptions = null, // 애니메이션 관련 모르겠음
     shineOptions = null, //고정빛 커스텀
@@ -16,6 +18,7 @@ export default function LootCard(props) {
     className = "",
     style = {}, //메인div관련 stlye
   } = props;
+  console.log(props);
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
@@ -100,9 +103,33 @@ export default function LootCard(props) {
           rareCards.some((c) => rarityPreset.includes(c)) ||
           holographicOptions?.glow
         ) {
-          style = `
+          if (holo) {
+            style = `
+            .card-holo-${id}.holo:hover:before { ${grad_pos} }  /* gradient */
+            .card-holo-${id}.holo:hover:after { ${sprk_pos} ${opc} }   /* sparkles */ 
+          `;
+          } else {
+            style = `
             .card-holo-${id}:hover:before { ${grad_pos} }  /* gradient */
             .card-holo-${id}:hover:after { ${sprk_pos} ${opc} }   /* sparkles */ 
+          `;
+          }
+        }
+
+        if (holo) {
+          style += `
+            .card-holo-${id}.holo:after {
+              opacity: 1;
+              background-image: url(${holo})
+              background-position: 50% 50%;
+              background-size: 160%;
+              background-blend-mode: overlay;
+              z-index: 2;
+              filter: brightness(1) contrast(1);
+              transition: all 0.33s ease;
+              mix-blend-mode: color-dodge;
+              opacity: 0.75;
+            }
           `;
         }
 

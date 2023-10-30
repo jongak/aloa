@@ -3,7 +3,7 @@ const axios = require("axios");
 const lostArk = axios.create({
   baseURL: "https://developer-lostark.game.onstove.com/",
 });
-const AuthModel = {
+const CharacterModel = {
   async getCharacter(characterName) {
     const url = "armories/characters/" + characterName + "/profiles";
     const headers = {
@@ -17,4 +17,4 @@ const AuthModel = {
   },
 };
 
-module.exports = AuthModel;
+module.exports = CharacterModel;

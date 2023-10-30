@@ -7,4 +7,7 @@ router.use("/user", userRouter);
 const characterRouter = require("./character");
 router.use("/character", characterRouter);
 
+const imageRouter = require("./images");
+router.use("/images", imageRouter);
+
 module.exports = router;
