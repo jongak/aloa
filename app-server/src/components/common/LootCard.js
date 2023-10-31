@@ -30,7 +30,6 @@ export default function LootCard(props) {
 
   useEffect(() => {
     if (canvasRef && cardRef.current) {
-      console.log(canvasRef);
       cardRef.current.replaceChildren(canvasRef);
     }
   }, [canvasRef]);

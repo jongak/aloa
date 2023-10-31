@@ -65,10 +65,12 @@ const CardAvatar = function ({
   useEffect(() => {
     imgurl.map(async (url, i) => {
       const base64Data = await getData(url);
-      // imgRef.current[i].src = base64Data;
-      imgRef.current[i].src = url;
+      imgRef.current[i].src = base64Data;
+      // imgRef.current[i].src = url;
     });
-    return setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(true);
+    }, 500);
   }, []);
   var avater = imgRef.current[0].src;
   console.log(avater);
@@ -409,7 +411,7 @@ const CardAvatar = function ({
             height: "15%",
           }}
         ></div>
-        <div
+        {/* <div
           className="cardBottom"
           style={{
             // backgroundColor: "blue",
@@ -460,7 +462,7 @@ const CardAvatar = function ({
             />
             <div>원정대 레벨</div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

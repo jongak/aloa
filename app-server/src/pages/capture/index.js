@@ -46,21 +46,21 @@ const capture = function () {
     "#2193b0",
   ]);
 
-  const cardImgMemo = useMemo(() => {
-    return (
-      <CardImg
-        divRef={divRef}
-        setIsLoading={setIsLoading}
-        style={{ position: "absolute", top: "-1000px" }}
-      />
+  // const cardImgMemo = useMemo(() => {
+  //   return (
+  //     // <CardImg
+  //     //   divRef={divRef}
+  //     //   setIsLoading={setIsLoading}
+  //     //   style={{ position: "absolute", top: "-1000px" }}
+  //     // />
 
-      // <CardAvatar
-      //   setIsLoading={setIsLoading}
-      //   divRef={divRef}
-      //   style={{ position: "absolute", top: "-1000px" }}
-      // />
-    );
-  }, []);
+  //     <CardAvatar
+  //       setIsLoading={setIsLoading}
+  //       divRef={divRef}
+  //       // style={{ position: "absolute", top: "-1000px" }}
+  //     />
+  //   );
+  // }, []);
 
   // const LootCardMemo = useMemo(() => {
   //   if (isCardReady) {
@@ -111,6 +111,11 @@ const capture = function () {
   //   }
   //   return null;
   // }, [isCardReady, isChanged]);
+  useEffect(() => {
+    if (canvasRef && cardRef.current) {
+      cardRef.current.replaceChildren(canvasRef);
+    }
+  }, [canvasRef]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -228,8 +233,8 @@ const capture = function () {
         setIsChanged={setIsChanged}
       />
 
-      {cardImgMemo}
-      {/* <CardImg divRef={divRef} setIsLoading={setIsLoading} /> */}
+      {/* {cardImgMemo} */}
+      <CardAvatar divRef={divRef} setIsLoading={setIsLoading} />
       <div ref={cardRef}>
         <div></div>
       </div>
