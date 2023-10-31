@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { useState } from "react";
 
 function Layout() {
-  const [thema, setThema] = useState("light");
+  const [thema, setThema] = useState("dark");
 
   return (
     <div className={`App ${thema}`}>

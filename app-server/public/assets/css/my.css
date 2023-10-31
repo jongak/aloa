@@ -1,25 +1,29 @@
 .App {
   --mygreen: #d1f19c;
+  --mydarkgreen: #829268;
   --mygray: #393c42;
   --mywhite: #f7f7f7;
 }
 
-.App.light {
-  --my--background: #f7f7f7;
-  --my--text: #393c42;
-  --my--heading: #d1f19c;
-}
-
 .App.dark {
   --my--background: #393c42;
+  --my--background-hover: #6c757d;
   --my--text: #f7f7f7;
   --my--heading: #d1f19c;
 }
 
+.App.light {
+  --my--background: #f7f7f7;
+  --my--background-hover: #d1f19c;
+  --my--text: #393c42;
+  --my--heading: #829268;
+}
+
 .App.mygreen {
   --my--background: #d1f19c;
+  --my--background-hover: #becea3;
   --my--text: #393c42;
-  --my--heading: #f7f7f7;
+  --my--heading: #aaaaaa;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,12 +52,18 @@ Header Style
 --------------------------------------------- 
 */
 
+/* 위에 있을때 */
 .header-area {
-  position: absolute;
   background-color: var(--my--background);
-  border-bottom: 2px solid var(--my--heading);
+  position: sticky;
+  top: 0;
   left: 0;
   right: 0;
+  height: 80px;
+
+  border-bottom: 1px solid var(--my--heading);
+  box-shadow: 0px 0px 10px var(--my--heading) !important;
+
   z-index: 100;
   -webkit-transition: all 0.5s ease 0s;
   -moz-transition: all 0.5s ease 0s;
@@ -62,7 +72,6 @@ Header Style
 }
 
 .header-area .main-nav {
-  background: transparent;
   display: flex;
 }
 
@@ -75,10 +84,10 @@ Header Style
 }
 
 .header-area .main-nav ul.nav {
-  border-radius: 0px 0px 25px 25px;
   flex-basis: 100%;
-  margin-top: 10px;
   justify-content: right;
+
+  margin-top: 10px;
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -87,24 +96,24 @@ Header Style
   z-index: 999;
 }
 
-.header-area .main-nav .nav li:last-child {
-  padding-right: 0px;
-}
-
 .header-area .main-nav .nav li {
-  padding-left: 10px;
-  padding-right: 10px;
   height: 40px;
   line-height: 40px;
+  border-right: 3px solid var(--my--heading);
+}
+
+.header-area .main-nav .nav li:last-child {
+  border-right: 0px;
 }
 
 .header-area .main-nav .nav li a {
   display: block;
-  padding-left: 20px;
-  padding-right: 20px;
-  border-radius: 20px;
-  font-weight: 300;
-  font-size: 15px;
+  /* 줄어들떄마다 이거 이용해서 간격조절 해보자 */
+  padding-left: 30px;
+  padding-right: 30px;
+  /* border-radius: 20px; */
+  font-weight: 400;
+  font-size: 18px;
   height: 40px;
   line-height: 40px;
   text-transform: capitalize;
@@ -117,24 +126,14 @@ Header Style
   letter-spacing: 0.25px;
 }
 
-.header-area .main-nav .nav li:last-child a {
-  background-color: #ee626b;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-
-.header-area .main-nav .nav li:last-child:hover a {
-  background-color: #ee626b;
-}
-
 .header-area .main-nav .nav li:hover a {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--my--background-hover);
 }
 
-.header-area .main-nav .nav li a.active {
+/* .header-area .main-nav .nav li a.active {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.1);
-}
+} */
 
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
@@ -155,7 +154,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #fff;
+  background-color: var(--my--heading);
   display: block;
   position: absolute;
   width: 30px;
@@ -169,7 +168,7 @@ Header Style
   -o-transition: all 0.4s;
   -webkit-transition: all 0.4s;
   transition: all 0.4s;
-  background-color: #fff;
+  background-color: var(--my--heading);
   display: block;
   position: absolute;
   width: 30px;
@@ -218,7 +217,7 @@ Header Style
   -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
   -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
   transform: translateY(6px) translateX(1px) rotate(45deg);
-  background-color: #fff;
+  background-color: var(--my--heading);
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -226,11 +225,11 @@ Header Style
   -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
   transform: translateY(-6px) translateX(1px) rotate(-45deg);
-  background-color: #fff;
+  background-color: var(--my--heading);
 }
 
 .header-area.header-sticky .nav li a.active {
-  color: #fff;
+  color: var(--my--heading);
 }
 
 .visible {
@@ -238,10 +237,95 @@ Header Style
 }
 
 @media (max-width: 1200px) {
-  .header-area .main-nav .nav li {
-    padding-left: 5px;
-    padding-right: 5px;
+  .header-area .main-nav .nav li a {
+    padding-left: 20px;
+    padding-right: 20px;
   }
+}
+@media (max-width: 992px) {
+  .header-area .main-nav .nav li a {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .header-area {
+    /* background-color: var(--my--background); */
+    /* padding: 0px 15px; */
+    /* box-shadow: none; */
+    /* text-align: center; */
+    /* bottom: 0; */
+    /* border-radius: 0; */
+    top: auto;
+    bottom: 0;
+    position: fixed;
+  }
+  .header-area .main-nav {
+    overflow: hidden;
+  }
+
+  .header-area .main-nav .nav {
+    height: auto;
+    flex-basis: 100%;
+  }
+  .header-area .main-nav .logo {
+    position: absolute;
+    left: 30px;
+    top: 0px;
+  }
+  /* .header-area .main-nav .border-button {
+    position: absolute;
+    top: 150px;
+    right: 70px;
+  } */
+  /* .header-area.header-sticky .nav li a:hover,
+  .header-area.header-sticky .nav li a.active {
+    color: #ee626b !important;
+    opacity: 1;
+  } */
+  /* .header-area.header-sticky .nav li.search-icon a {
+    width: 100%;
+  } */
+  /* .header-area .nav li:last-child a {
+    background-color: transparent !important;
+    font-weight: 300 !important;
+    text-transform: capitalize !important;
+  } */
+
+  /* .header-area .container {
+    padding: 0px;
+  } */
+  .header-area .logo {
+    margin-left: 0px;
+    /* margin-top: 30px; */
+  }
+  .header-area .menu-trigger {
+    display: block !important;
+  }
+
+  .header-area .main-nav .nav,
+  .header-area .main-nav .myToggleGroup {
+    float: none;
+    width: 100%;
+    display: none;
+    -webkit-transition: all 0s ease 0s;
+    -moz-transition: all 0s ease 0s;
+    -o-transition: all 0s ease 0s;
+    transition: all 0s ease 0s;
+    margin-left: 0px;
+  }
+  /* .header-area .main-nav .nav li:first-child {
+    border-top: 1px solid #eee;
+  }
+  .header-area.header-sticky .nav {
+    margin-top: 100px !important;
+  }
+  .header-area .main-nav .nav li {
+    width: 100%;
+    background: #fff;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  } */
 }
 
 /* 

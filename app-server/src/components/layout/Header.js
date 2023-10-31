@@ -19,12 +19,12 @@ function Header({ setThema }) {
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/shop">Our Shop</Link>
                 </li>
                 <li>
                   <Link to="/product-details">Product Details</Link>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/capture">capture</Link>
                 </li>

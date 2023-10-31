@@ -1164,16 +1164,6 @@ body {
 }
 
 @media (max-width: 992px) {
-  .header-area .main-nav .logo img {
-    max-width: 110px;
-  }
-  .header-area .main-nav .nav li a {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .header-area .main-nav ul.nav {
-    margin-top: 0px;
-  }
   .main-banner .caption {
     margin-bottom: 45px;
     text-align: center;
@@ -1232,11 +1222,4 @@ body {
 }
 
 @media (max-width: 1200px) {
-}
-
-@media (max-width: 767px) {
-  .header-area {
-    bottom: 0;
-    background-color: #5831a0;
-  }
 }
