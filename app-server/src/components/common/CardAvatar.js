@@ -147,6 +147,7 @@ const CardAvatar = function ({
                 height: "100%",
                 backgroundImage: `url(${avater})`,
                 backgroundRepeat: "no-repeat",
+                opacity: 1,
               }}
             >
               <img
@@ -197,14 +198,15 @@ const CardAvatar = function ({
             className="ImgTitles"
             style={{
               background:
-                "linear-gradient(0deg, rgba(70,69,69,0.7) 30%, rgba(70,69,69,0.0) 100%)",
+                "linear-gradient(0deg, rgba(70,69,69,0.7) 40%, rgba(70,69,69,0.0) 100%)",
               width: "100%",
-              height: "300px",
+              height: "400px",
               position: "absolute",
               bottom: "0",
               left: "0px",
               alignItems: "center",
               textAlign: "center",
+              paddingTop: "100px",
             }}
           >
             <div className="row justify-content-center">
@@ -215,20 +217,34 @@ const CardAvatar = function ({
                 />
               </div>
               <div className="col-8 align-self-center d-flex">
-                <h3 style={{ color: "#fff", fontWeight: "800" }}>
+                <h3
+                  style={{
+                    color: "#fff",
+                    fontWeight: "800",
+                    textShadow: "2px 3px 4px #15181D",
+                  }}
+                >
                   부먹펩시파인애플피자지코
                 </h3>
               </div>
             </div>
             <div
               className="lvl"
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "-21px",
+                textShadow: "2px 3px 4px #15181D",
+                fontSize: "20px",
+                fontWeight: "600",
+              }}
             >
               <div
                 className="ImgTitle"
                 style={{
                   color: "#fff",
                   display: "flex",
+                  padding: "0 10px",
                 }}
               >
                 <div>
@@ -241,6 +257,7 @@ const CardAvatar = function ({
                 style={{
                   color: "#fff",
                   display: "flex",
+                  padding: "0 10px",
                 }}
               >
                 <div>
@@ -250,37 +267,52 @@ const CardAvatar = function ({
               </div>
             </div>
 
-            <div className="container">
+            <div className="container" style={{ marginTop: "10px" }}>
               <div
                 className="row justify-content-center"
-                style={{ color: "#fff" }}
+                style={{
+                  color: "#fff",
+                  textShadow: "2px 3px 4px #15181D",
+                  fontSize: "18px",
+                  padding: "0 48px",
+                }}
               >
                 <div className="col-2">
                   <div>세트</div>
-                  <div>사멸</div>
+                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
+                    사멸
+                  </div>
                 </div>
                 <div className="col-2">
                   <div>보석</div>
-                  <div>Lv 9.7</div>
+                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
+                    Lv 9.7
+                  </div>
                 </div>
                 <div className="col-2">
                   <div>엘릭서</div>
-                  <div>달인</div>
+                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
+                    달인
+                  </div>
                 </div>
                 <div className="col-2">
                   <div>카드</div>
-                  <div>세구빛</div>
+                  <div style={{ fontSize: "20px", fontWeight: "600" }}>
+                    세구빛
+                  </div>
                 </div>
                 <div className="col-2">
                   <div>악추피</div>
-                  <div>6.78%</div>
+                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
+                    6.78%
+                  </div>
                 </div>
               </div>
             </div>
 
             <div
               className="container"
-              style={{ marginTop: "20px", width: "85%" }}
+              style={{ marginTop: "32px", width: "85%" }}
             >
               <div
                 className="row justify-content-center"
@@ -288,10 +320,7 @@ const CardAvatar = function ({
               >
                 <div className="col-2">
                   <div>
-                    <img
-                      src="https://cdn-lostark.game.onstove.com/efui_iconatlas/lm_item/lm_item_01_145.png"
-                      style={{ width: "80%" }}
-                    />
+                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/lm_item/lm_item_01_145.png" />
                   </div>
                   <span
                     style={{
@@ -300,7 +329,7 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
+                      top: "330px",
                     }}
                   >
                     +25
@@ -308,10 +337,7 @@ const CardAvatar = function ({
                 </div>
                 <div className="col-2">
                   <div>
-                    <img
-                      src="https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_257.png"
-                      style={{ width: "80%" }}
-                    />
+                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_257.png" />
                   </div>
                   <span
                     style={{
@@ -320,8 +346,8 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
-                      left: "195px",
+                      top: "330px",
+                      left: "230px",
                     }}
                   >
                     9
@@ -333,19 +359,17 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
-                      left: "217px",
+                      top: "330px",
+                      left: "254px",
                     }}
                   >
                     7
                   </span>
                 </div>
-                <div className="col-2">
+
+                <div className="col-2" style={{ marginLeft: "-16px" }}>
                   <div>
-                    <img
-                      src="/assets/images/exlixer.webp"
-                      style={{ width: "80%" }}
-                    />
+                    <img src="/assets/images/exlixer.webp" />
                   </div>
                   <span
                     style={{
@@ -354,18 +378,15 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
+                      top: "330px",
                     }}
                   >
                     40
                   </span>
                 </div>
-                <div className="col-2">
+                <div className="col-2" style={{ marginLeft: "-16px" }}>
                   <div>
-                    <img
-                      src="/assets/images/card.png"
-                      style={{ width: "80%" }}
-                    />
+                    <img src="/assets/images/card.png" />
                   </div>
                   <span
                     style={{
@@ -374,18 +395,15 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
+                      top: "330px",
                     }}
                   >
                     30
                   </span>
                 </div>
-                <div className="col-2">
+                <div className="col-2" style={{ marginLeft: "-16px" }}>
                   <div>
-                    <img
-                      src="/assets/images/cho.png"
-                      style={{ width: "80%" }}
-                    />
+                    <img src="/assets/images/cho.png" />
                   </div>
                   <span
                     style={{
@@ -394,7 +412,7 @@ const CardAvatar = function ({
                       padding: "2px 5px",
                       fontWeight: "700",
                       position: "absolute",
-                      top: "218px",
+                      top: "330px",
                     }}
                   >
                     40
@@ -411,58 +429,6 @@ const CardAvatar = function ({
             height: "15%",
           }}
         ></div>
-        {/* <div
-          className="cardBottom"
-          style={{
-            // backgroundColor: "blue",
-            width: "100%",
-            height: "25%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
-          <div className="cardBottomItem">
-            <img
-              className="cardLogo"
-              style={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "50px",
-                border: "3px solid white",
-              }}
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSylObVvIpNu_ftQLq2m5wxKpcmZJCej42XOoaXO-DbA8wEboSp"
-            />
-            <div>원정대 레벨</div>
-          </div>
-          <div className="cardBottomItem">
-            <img
-              className="cardLogo"
-              style={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "50px",
-                border: "3px solid white",
-              }}
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSylObVvIpNu_ftQLq2m5wxKpcmZJCej42XOoaXO-DbA8wEboSp"
-            />
-            <div>원정대 레벨</div>
-          </div>
-          <div className="cardBottomItem">
-            <img
-              className="cardLogo"
-              style={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "50px",
-                border: "3px solid white",
-              }}
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSylObVvIpNu_ftQLq2m5wxKpcmZJCej42XOoaXO-DbA8wEboSp"
-            />
-            <div>원정대 레벨</div>
-          </div>
-        </div> */}
       </div>
     </div>
   );
