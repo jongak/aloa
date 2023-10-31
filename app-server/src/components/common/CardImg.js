@@ -27,9 +27,7 @@ const CardImg = function ({
       const base64Data = await getData(url);
       imgRef.current[i].src = base64Data;
     });
-    setTimeout(() => {
-      setIsLoading(true);
-    }, 500);
+    setIsLoading(true);
   }, []);
   return (
     <div
