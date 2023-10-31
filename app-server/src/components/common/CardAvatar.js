@@ -225,22 +225,179 @@ const CardAvatar = function ({
               <div
                 className="ImgTitle"
                 style={{
-                  margin: "50px",
+                  color: "#fff",
+                  display: "flex",
                 }}
               >
-                <div>송도나봉선</div>
-                <div>1560</div>
-                <div>질병군단장</div>
+                <div>
+                  <img src="/assets/images/power.png" />
+                </div>
+                <div>1560.8</div>
               </div>
               <div
                 className="ImgTitle"
                 style={{
-                  margin: "50px",
+                  color: "#fff",
+                  display: "flex",
                 }}
               >
-                <div>송도나봉선</div>
-                <div>1560</div>
-                <div>질병군단장</div>
+                <div>
+                  <img src="/assets/images/team.png" />
+                </div>
+                <div>Lv 223</div>
+              </div>
+            </div>
+
+            <div className="container">
+              <div
+                className="row justify-content-center"
+                style={{ color: "#fff" }}
+              >
+                <div className="col-2">
+                  <div>세트</div>
+                  <div>사멸</div>
+                </div>
+                <div className="col-2">
+                  <div>보석</div>
+                  <div>Lv 9.7</div>
+                </div>
+                <div className="col-2">
+                  <div>엘릭서</div>
+                  <div>달인</div>
+                </div>
+                <div className="col-2">
+                  <div>카드</div>
+                  <div>세구빛</div>
+                </div>
+                <div className="col-2">
+                  <div>악추피</div>
+                  <div>6.78%</div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="container"
+              style={{ marginTop: "20px", width: "85%" }}
+            >
+              <div
+                className="row justify-content-center"
+                style={{ color: "#fff" }}
+              >
+                <div className="col-2">
+                  <div>
+                    <img
+                      src="https://cdn-lostark.game.onstove.com/efui_iconatlas/lm_item/lm_item_01_145.png"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                    }}
+                  >
+                    +25
+                  </span>
+                </div>
+                <div className="col-2">
+                  <div>
+                    <img
+                      src="https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_257.png"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                      left: "195px",
+                    }}
+                  >
+                    9
+                  </span>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                      left: "217px",
+                    }}
+                  >
+                    7
+                  </span>
+                </div>
+                <div className="col-2">
+                  <div>
+                    <img
+                      src="/assets/images/exlixer.webp"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                    }}
+                  >
+                    40
+                  </span>
+                </div>
+                <div className="col-2">
+                  <div>
+                    <img
+                      src="/assets/images/card.png"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                    }}
+                  >
+                    30
+                  </span>
+                </div>
+                <div className="col-2">
+                  <div>
+                    <img
+                      src="/assets/images/cho.png"
+                      style={{ width: "80%" }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      borderRadius: "10px",
+                      backgroundColor: "blue",
+                      padding: "2px 5px",
+                      fontWeight: "700",
+                      position: "absolute",
+                      top: "218px",
+                    }}
+                  >
+                    40
+                  </span>
+                </div>
               </div>
             </div>
           </div>
