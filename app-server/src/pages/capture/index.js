@@ -111,11 +111,11 @@ const capture = function () {
   //   }
   //   return null;
   // }, [isCardReady, isChanged]);
-  useEffect(() => {
-    if (canvasRef && cardRef.current) {
-      cardRef.current.replaceChildren(canvasRef);
-    }
-  }, [canvasRef]);
+  // useEffect(() => {
+  //   if (canvasRef && cardRef.current) {
+  //     cardRef.current.replaceChildren(canvasRef);
+  //   }
+  // }, [canvasRef]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -128,6 +128,9 @@ const capture = function () {
         allowTaint: true,
         useCORS: true,
       });
+      console.log(canvas.style.setProperty("width", "300px"));
+      console.log(canvas.style.setProperty("height", "400px"));
+
       setCanvasRef(canvas);
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
       setIsCardReady(true); // 카드 생성이 완료됨
@@ -279,7 +282,7 @@ const capture = function () {
               }
             : null
         }
-        size={{ height: 800, width: 600 }}
+        size={{ height: 400, width: 300 }}
       />
 
       <input
