@@ -18,7 +18,6 @@ export default function LootCard(props) {
     className = "",
     style = {}, //메인div관련 stlye
   } = props;
-  console.log(props);
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);

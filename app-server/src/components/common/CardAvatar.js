@@ -73,7 +73,6 @@ const CardAvatar = function ({
     }, 500);
   }, []);
   var avater = imgRef.current[0].src;
-  console.log(avater);
   return (
     <div
       className="cardImg"
