@@ -9,6 +9,7 @@ import img from "../../img/result_5.png";
 import CardC from "../../components/common/CardC";
 import ColorToggle from "../../components/common/ColorToggle";
 import CardAvatar from "../../components/common/CardAvatar";
+import CardImgP from "../../components/common/CardImgP";
 
 const capture = function () {
   const divRef = useRef(null);
@@ -21,6 +22,7 @@ const capture = function () {
   const glowRef = useRef(true);
   const shineRef = useRef(true);
   const shadowRef = useRef(true);
+  const cardRef = useRef();
   const imgSrcRef = useRef({
     value:
       "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png",
@@ -46,67 +48,74 @@ const capture = function () {
 
   const cardImgMemo = useMemo(() => {
     return (
-      <CardAvatar
-        setIsLoading={setIsLoading}
+      <CardImg
         divRef={divRef}
-        // style={{ position: "absolute", top: "-1000px" }}
+        setIsLoading={setIsLoading}
+        style={{ position: "absolute", top: "-1000px" }}
       />
+
+      // <CardAvatar
+      //   setIsLoading={setIsLoading}
+      //   divRef={divRef}
+      //   style={{ position: "absolute", top: "-1000px" }}
+      // />
     );
   }, []);
 
-  const LootCardMemo = useMemo(() => {
-    if (isCardReady) {
-      return (
-        <LootCard
-          rarityPreset={rarityPresetRef.current}
-          // img={imgSrcRef.current.value}
-          holo={holoSrcRef.current.value}
-          canvasRef={canvasRef}
-          holographicOptions={
-            holoRef.current
-              ? {
-                  glow: glowRef.current,
-                  color1: holographicOptionColors.current[0],
-                  color2: holographicOptionColors.current[1],
-                  color3: holographicOptionColors.current[2],
-                  color4: holographicOptionColors.current[3],
-                  color5: holographicOptionColors.current[4],
-                }
-              : null
-          }
-          shineOptions={
-            shineRef.current
-              ? {
-                  color1: shineOptionColors.current[0],
-                  color2: shineOptionColors.current[1],
-                }
-              : null
-          }
-          shadowOptions={
-            shadowRef.current
-              ? {
-                  default: {
-                    color1: shadowOptionColors.current[0],
-                    color2: shadowOptionColors.current[1],
-                  },
-                  hover: {
-                    color1: shadowOptionColors.current[2],
-                    color2: shadowOptionColors.current[3],
-                  },
-                }
-              : null
-          }
-          size={{ height: 800, width: 600 }}
-        />
-      );
-    }
-    return null;
-  }, [isCardReady, isChanged]);
+  // const LootCardMemo = useMemo(() => {
+  //   if (isCardReady) {
+  //     console.log(isCardReady);
+  //     return (
+  //       <LootCard
+  //         rarityPreset={rarityPresetRef.current}
+  //         // img={imgSrcRef.current.value}
+  //         holo={holoSrcRef.current.value}
+  //         canvasRef={canvasRef}
+  //         holographicOptions={
+  //           holoRef.current
+  //             ? {
+  //                 glow: glowRef.current,
+  //                 color1: holographicOptionColors.current[0],
+  //                 color2: holographicOptionColors.current[1],
+  //                 color3: holographicOptionColors.current[2],
+  //                 color4: holographicOptionColors.current[3],
+  //                 color5: holographicOptionColors.current[4],
+  //               }
+  //             : null
+  //         }
+  //         shineOptions={
+  //           shineRef.current
+  //             ? {
+  //                 color1: shineOptionColors.current[0],
+  //                 color2: shineOptionColors.current[1],
+  //               }
+  //             : null
+  //         }
+  //         shadowOptions={
+  //           shadowRef.current
+  //             ? {
+  //                 default: {
+  //                   color1: shadowOptionColors.current[0],
+  //                   color2: shadowOptionColors.current[1],
+  //                 },
+  //                 hover: {
+  //                   color1: shadowOptionColors.current[2],
+  //                   color2: shadowOptionColors.current[3],
+  //                 },
+  //               }
+  //             : null
+  //         }
+  //         size={{ height: 800, width: 600 }}
+  //       />
+  //     );
+  //   }
+  //   return null;
+  // }, [isCardReady, isChanged]);
 
   useEffect(() => {
     const fetchData = async () => {
+      if (!divRef.current) return;
       const div = divRef.current;
-      // 설정을 가져오는 네트워크 요청 또는 다른 준비 작업
 
       // 캔버스 생성 코드
       const canvas = await html2canvas(div, {
@@ -115,16 +124,15 @@ const capture = function () {
         useCORS: true,
       });
       setCanvasRef(canvas);
-      setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
+      // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
       setIsCardReady(true); // 카드 생성이 완료됨
 
-      canvas.toBlob((blob) => {
-        if (blob !== null) {
-          saveAs(blob, "result.png");
-        }
-      });
+      // canvas.toBlob((blob) => {
+      //   if (blob !== null) {
+      //     saveAs(blob, "result.png");
+      //   }
+      // });
     };
-
     if (isLoading) {
       fetchData();
     }
@@ -221,7 +229,54 @@ const capture = function () {
       />
 
       {cardImgMemo}
-      {LootCardMemo}
+      {/* <CardImg divRef={divRef} setIsLoading={setIsLoading} /> */}
+      <div ref={cardRef}>
+        <div></div>
+      </div>
+      {/* {LootCardMemo} */}
+
+      <LootCard
+        rarityPreset={rarityPresetRef.current}
+        // img={imgSrcRef.current.value}
+        holo={holoSrcRef.current.value}
+        canvasRef={canvasRef}
+        holographicOptions={
+          holoRef.current
+            ? {
+                glow: glowRef.current,
+                color1: holographicOptionColors.current[0],
+                color2: holographicOptionColors.current[1],
+                color3: holographicOptionColors.current[2],
+                color4: holographicOptionColors.current[3],
+                color5: holographicOptionColors.current[4],
+              }
+            : null
+        }
+        shineOptions={
+          shineRef.current
+            ? {
+                color1: shineOptionColors.current[0],
+                color2: shineOptionColors.current[1],
+              }
+            : null
+        }
+        shadowOptions={
+          shadowRef.current
+            ? {
+                default: {
+                  color1: shadowOptionColors.current[0],
+                  color2: shadowOptionColors.current[1],
+                },
+                hover: {
+                  color1: shadowOptionColors.current[2],
+                  color2: shadowOptionColors.current[3],
+                },
+              }
+            : null
+        }
+        size={{ height: 800, width: 600 }}
+      />
+
       <input
         type="text"
         className="form-control"

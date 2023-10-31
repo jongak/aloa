@@ -29,7 +29,8 @@ export default function LootCard(props) {
   const cardRef = useRef();
 
   useEffect(() => {
-    if (canvasRef) {
+    if (canvasRef && cardRef.current) {
+      console.log(canvasRef);
       cardRef.current.replaceChildren(canvasRef);
     }
   }, [canvasRef]);
@@ -255,7 +256,9 @@ export default function LootCard(props) {
           backgroundImage: `url(${img})`,
           ...style,
         }}
-      ></div>
+      >
+        <div></div>
+      </div>
       <style className="hover"></style>
     </section>
   );

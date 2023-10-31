@@ -9,6 +9,7 @@ const imgurl = [
 ];
 
 const CardImgP = function ({
+  setIsLoading,
   divRef,
   bgImgSrc = "https://cdn-lostark.game.onstove.com/uploadfiles/banner/a4bcb45671d44e938c2f7e0efccf7e54.jpg",
 }) {
@@ -27,6 +28,9 @@ const CardImgP = function ({
       imgRef.current[i].src = base64Data;
       // imgRef.current[i].src = url;
     });
+    setTimeout(() => {
+      setIsLoading(true);
+    }, 300);
   }, []);
   return (
     <div
