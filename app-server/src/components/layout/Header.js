@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import Toggle from "../common/Toggle";
 
-function Header() {
+function Header({ setThema }) {
   return (
     <header className="header-area header-sticky">
       <div className="container">
@@ -40,6 +41,11 @@ function Header() {
               <Link className="menu-trigger">
                 <span>Menu</span>
               </Link>
+
+              <Toggle
+                setValueRef={setThema}
+                options={["light", "dark", "mygreen"]}
+              />
             </nav>
           </div>
         </div>

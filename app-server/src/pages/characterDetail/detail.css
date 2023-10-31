@@ -1,0 +1,17 @@
+.hide {
+  height: 0px;
+  visibility: hidden;
+}
+.view {
+  background: aqua;
+  visibility: visible;
+  z-index: auto;
+  position: relative;
+}
+
+.big.view {
+  width: 80vw;
+}
+.small.view {
+  height: 100%;
+}
