@@ -3,6 +3,13 @@
   --mydarkgreen: #829268;
   --mygray: #393c42;
   --mywhite: #f7f7f7;
+  --my--button--background: #d1f19c;
+  --my--button--color: #393c42;
+  --my--button--border: #393c42;
+
+  --my--button--hover--background: #393c42;
+  --my--button--hover--color: #d1f19c;
+  --my--button--hover--border: #f7f7f7;
 }
 
 .App.dark {
@@ -335,36 +342,37 @@ Banner Style
 */
 
 .main-banner {
-  background-image: url(../images/banner-bg_2.png);
-  border-radius: 0px 0px 150px 150px;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 65px 0px;
+  /* background-image: url(../images/banner-bg_2.png); */
+  /* border-radius: 0px 0px 150px 150px; */
+  /* background-position: center bottom; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  /* padding: 65px 0px; */
+  margin-top: 100px;
 }
 
 .main-banner .caption img {
-  width: 50%;
+  width: 300px;
   margin-bottom: 24px;
 }
-.main-banner .caption h6 {
+/* .main-banner .caption h6 {
   font-size: 20px;
   text-transform: uppercase;
   color: #fff;
   font-weight: 500;
   letter-spacing: 0.5px;
-}
+} */
 
-.main-banner .caption h2 {
+/* .main-banner .caption h2 {
   font-size: 48px;
   color: #fff;
   margin-top: 20px;
   position: relative;
   padding-bottom: 5px;
   margin-bottom: 40px;
-}
+} */
 
-.main-banner .caption h2:after {
+/* .main-banner .caption h2:after {
   position: absolute;
   background-image: url(../images/caption-dec.png);
   width: 202px;
@@ -372,42 +380,43 @@ Banner Style
   content: "";
   left: 125px;
   bottom: 0;
-}
+} */
 
-.main-banner .caption p {
+/* .main-banner .caption p {
   color: #fff;
   margin-bottom: 70px;
-}
+} */
 
 .main-banner .caption form {
+  margin: 0 auto;
   position: relative;
-  max-width: 450px;
+  max-width: 600px;
 }
 
 .main-banner .caption form input {
-  max-width: 450px;
+  max-width: 600px;
   width: 100%;
   height: 50px;
   outline: none;
   border-radius: 25px;
-  background-color: #fff;
+  background-color: var(--my--text);
   border: none;
   padding: 0px 25px;
-  font-size: 14px;
-  color: #7a7a7a;
+  font-size: 20px;
+  color: var(--my--background);
 }
 
 .main-banner .caption form button {
   display: inline-block;
   height: 50px;
   line-height: 50px;
-  background-color: #ee626b;
-  color: #fff;
+  background-color: var(--my--button--background);
+  color: var(--my--button--color);
   font-size: 15px;
   text-transform: uppercase;
   font-weight: 500;
   padding: 0px 25px;
-  border: none;
+  border: 1px solid var(--my--button--border);
   border-radius: 25px;
   position: absolute;
   right: 0;
@@ -416,10 +425,12 @@ Banner Style
 }
 
 .main-banner .caption form button:hover {
-  background-color: #0071f8;
+  background-color: var(--my--button--hover--background);
+  color: var(--my--button--hover--color);
+  border: 1px solid var(--my--button--hover--border);
 }
 
-.main-banner .right-image {
+/* .main-banner .right-image {
   position: relative;
 }
 
@@ -455,4 +466,4 @@ Banner Style
   height: 100px;
   text-align: center;
   line-height: 100px;
-}
+} */

@@ -1148,14 +1148,6 @@ body {
 }
 
 @media (max-width: 767px) {
-  .header-area {
-    /* top: 0; */
-    bottom: 0;
-  }
-  .main-banner .right-image span.offer {
-    left: 20px;
-    bottom: 20px;
-  }
   .cta .subscribe form button {
     position: relative;
     width: 100%;
@@ -1164,14 +1156,6 @@ body {
 }
 
 @media (max-width: 992px) {
-  .main-banner .caption {
-    margin-bottom: 45px;
-    text-align: center;
-  }
-  .main-banner .caption form,
-  .main-banner .caption form input {
-    max-width: 100%;
-  }
   .features .item {
     margin-bottom: 30px;
   }

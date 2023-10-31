@@ -24,8 +24,9 @@ function Home() {
       <div className="main-banner">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6 align-self-center">
+            <div className="col-lg-12 align-self-center">
               <div className="caption header-text">
+                <img src="/assets/images/logo2.png" />
                 <div className="search-input">
                   <form>
                     <input
