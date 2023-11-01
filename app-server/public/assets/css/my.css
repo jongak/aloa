@@ -67,6 +67,7 @@ Header Style
   left: 0;
   right: 0;
   height: 80px;
+  opacity: 0.9;
 
   border-bottom: 1px solid var(--my--heading);
   box-shadow: 0px 0px 10px var(--my--heading) !important;
@@ -266,6 +267,7 @@ Header Style
     top: auto;
     bottom: 0;
     position: fixed;
+    opacity: 0.9;
   }
   .header-area .main-nav {
     overflow: hidden;
@@ -468,6 +470,12 @@ Banner Style
   line-height: 100px;
 } */
 
+@media (max-width: 768px) {
+  .main-banner {
+    margin-top: 50px;
+  }
+}
+
 /* 
 ---------------------------------------------
 Footer Style
@@ -480,13 +488,12 @@ footer {
   /* background-repeat: no-repeat;
   background-size: cover; */
   /* background-image: url(../images/footer-bg.jpg); */
-  min-height: 50px;
-  border-radius: 50px 50px 0px 0px;
+  min-height: 100px;
 }
 
 footer p {
   text-align: center;
-  line-height: 90px;
+  line-height: 70px;
   color: var(--my--background);
   font-size: 16px;
   font-weight: 400;
@@ -501,4 +508,14 @@ footer p a {
 
 footer p a:hover {
   opacity: 0.75;
+}
+
+/* 
+---------------------------------------------
+MyCards
+--------------------------------------------- 
+*/
+
+.myCards {
+  margin-top: 10%;
 }
