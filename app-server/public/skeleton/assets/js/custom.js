@@ -11,11 +11,11 @@
     var box = $(".header-text").height();
     var header = $("header").height();
 
-    if (scroll >= box - header) {
-      $("header").addClass("background-header");
-    } else {
-      $("header").removeClass("background-header");
-    }
+    // if (scroll >= box - header) {
+    //   $("header").addClass("background-header");
+    // } else {
+    //   $("header").removeClass("background-header");
+    // }
   });
 
   var width = $(window).width();
@@ -77,7 +77,7 @@
           {
             scrollTop: target.offset().top - 80,
           },
-          700,
+          700
         );
         return false;
       }
@@ -102,7 +102,7 @@
         setTimeout(function () {
           $("#preloader").css("visibility", "hidden").fadeOut();
         }, 300);
-      },
+      }
     );
   });
 })(window.jQuery);

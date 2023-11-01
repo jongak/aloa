@@ -128,8 +128,8 @@ const capture = function () {
         allowTaint: true,
         useCORS: true,
       });
-      console.log(canvas.style.setProperty("width", "300px"));
-      console.log(canvas.style.setProperty("height", "400px"));
+      canvas.style.setProperty("width", "300px");
+      canvas.style.setProperty("height", "400px");
 
       setCanvasRef(canvas);
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
@@ -237,8 +237,11 @@ const capture = function () {
       />
 
       {/* {cardImgMemo} */}
-
-      <CardAvatar divRef={divRef} setIsLoading={setIsLoading} />
+      <CardAvatar
+        divRef={divRef}
+        setIsLoading={setIsLoading}
+        style={{ position: "absolute", top: "-1000px" }}
+      />
       <div ref={cardRef}>
         <div></div>
       </div>

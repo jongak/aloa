@@ -1094,19 +1094,6 @@ TRAINER GALLERY V
 
 /********************************/
 
-html,
-body,
-iframe {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  background: #393c42;
-}
-
-/**********/
-
 p.scroll {
   position: fixed;
   font-size: 0.875rem;

@@ -1,0 +1,469 @@
+.App {
+  --mygreen: #d1f19c;
+  --mydarkgreen: #829268;
+  --mygray: #393c42;
+  --mywhite: #f7f7f7;
+  --my--button--background: #d1f19c;
+  --my--button--color: #393c42;
+  --my--button--border: #393c42;
+
+  --my--button--hover--background: #393c42;
+  --my--button--hover--color: #d1f19c;
+  --my--button--hover--border: #f7f7f7;
+}
+
+.App.dark {
+  --my--background: #393c42;
+  --my--background-hover: #6c757d;
+  --my--text: #f7f7f7;
+  --my--heading: #d1f19c;
+}
+
+.App.light {
+  --my--background: #f7f7f7;
+  --my--background-hover: #d1f19c;
+  --my--text: #393c42;
+  --my--heading: #829268;
+}
+
+.App.mygreen {
+  --my--background: #d1f19c;
+  --my--background-hover: #becea3;
+  --my--text: #393c42;
+  --my--heading: #aaaaaa;
+}
+
+@media (prefers-color-scheme: dark) {
+  .App {
+    --my--background: #393c42;
+    --my--text: #f7f7f7;
+    --my--heading: #d1f19c;
+  }
+}
+
+html,
+body,
+iframe,
+.App {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  background: var(--my--background);
+}
+
+/* 
+---------------------------------------------
+Header Style
+--------------------------------------------- 
+*/
+
+/* 위에 있을때 */
+.header-area {
+  background-color: var(--my--background);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+
+  border-bottom: 1px solid var(--my--heading);
+  box-shadow: 0px 0px 10px var(--my--heading) !important;
+
+  z-index: 100;
+  -webkit-transition: all 0.5s ease 0s;
+  -moz-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+}
+
+.header-area .main-nav {
+  display: flex;
+}
+
+.header-area .main-nav .logo {
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+}
+
+.header-area .main-nav ul.nav {
+  flex-basis: 100%;
+  justify-content: right;
+
+  margin-top: 10px;
+  -webkit-transition: all 0.3s ease 0s;
+  -moz-transition: all 0.3s ease 0s;
+  -o-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  position: relative;
+  z-index: 999;
+}
+
+.header-area .main-nav .nav li {
+  height: 40px;
+  line-height: 40px;
+  border-right: 3px solid var(--my--heading);
+}
+
+.header-area .main-nav .nav li:last-child {
+  border-right: 0px;
+}
+
+.header-area .main-nav .nav li a {
+  display: block;
+  /* 줄어들떄마다 이거 이용해서 간격조절 해보자 */
+  padding-left: 30px;
+  padding-right: 30px;
+  /* border-radius: 20px; */
+  font-weight: 400;
+  font-size: 18px;
+  height: 40px;
+  line-height: 40px;
+  text-transform: capitalize;
+  color: var(--my--text);
+  -webkit-transition: all 0.4s ease 0s;
+  -moz-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  border: transparent;
+  letter-spacing: 0.25px;
+}
+
+.header-area .main-nav .nav li:hover a {
+  background-color: var(--my--background-hover);
+}
+
+/* .header-area .main-nav .nav li a.active {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+} */
+
+.header-area .main-nav .menu-trigger {
+  cursor: pointer;
+  position: absolute;
+  top: 33px;
+  width: 32px;
+  height: 40px;
+  text-indent: -9999em;
+  z-index: 99;
+  right: 20px;
+  display: none;
+}
+
+.header-area .main-nav .menu-trigger span,
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background-color: var(--my--heading);
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 0;
+}
+
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  background-color: var(--my--heading);
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  left: 0;
+  width: 75%;
+}
+
+.header-area .main-nav .menu-trigger span:before,
+.header-area .main-nav .menu-trigger span:after {
+  content: "";
+}
+
+.header-area .main-nav .menu-trigger span {
+  top: 16px;
+}
+
+.header-area .main-nav .menu-trigger span:before {
+  -moz-transform-origin: 33% 100%;
+  -ms-transform-origin: 33% 100%;
+  -webkit-transform-origin: 33% 100%;
+  transform-origin: 33% 100%;
+  top: -10px;
+  z-index: 10;
+  width: 100%;
+}
+
+.header-area .main-nav .menu-trigger span:after {
+  -moz-transform-origin: 33% 0;
+  -ms-transform-origin: 33% 0;
+  -webkit-transform-origin: 33% 0;
+  transform-origin: 33% 0;
+  top: 10px;
+  width: 100%;
+}
+
+.header-area .main-nav .menu-trigger.active span,
+.header-area .main-nav .menu-trigger.active span:before,
+.header-area .main-nav .menu-trigger.active span:after {
+  background-color: transparent;
+  width: 100%;
+}
+
+.header-area .main-nav .menu-trigger.active span:before {
+  -moz-transform: translateY(6px) translateX(1px) rotate(45deg);
+  -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
+  -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
+  transform: translateY(6px) translateX(1px) rotate(45deg);
+  background-color: var(--my--heading);
+}
+
+.header-area .main-nav .menu-trigger.active span:after {
+  -moz-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  transform: translateY(-6px) translateX(1px) rotate(-45deg);
+  background-color: var(--my--heading);
+}
+
+.header-area.header-sticky .nav li a.active {
+  color: var(--my--heading);
+}
+
+.visible {
+  display: inline !important;
+}
+
+@media (max-width: 1200px) {
+  .header-area .main-nav .nav li a {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+@media (max-width: 992px) {
+  .header-area .main-nav .nav li a {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media (max-width: 768px) {
+  .header-area {
+    /* background-color: var(--my--background); */
+    /* padding: 0px 15px; */
+    /* box-shadow: none; */
+    /* text-align: center; */
+    /* bottom: 0; */
+    /* border-radius: 0; */
+    top: auto;
+    bottom: 0;
+    position: fixed;
+  }
+  .header-area .main-nav {
+    overflow: hidden;
+  }
+
+  .header-area .main-nav .nav {
+    height: auto;
+    flex-basis: 100%;
+  }
+  .header-area .main-nav .logo {
+    position: absolute;
+    left: 30px;
+    top: 0px;
+  }
+  /* .header-area .main-nav .border-button {
+    position: absolute;
+    top: 150px;
+    right: 70px;
+  } */
+  /* .header-area.header-sticky .nav li a:hover,
+  .header-area.header-sticky .nav li a.active {
+    color: #ee626b !important;
+    opacity: 1;
+  } */
+  /* .header-area.header-sticky .nav li.search-icon a {
+    width: 100%;
+  } */
+  /* .header-area .nav li:last-child a {
+    background-color: transparent !important;
+    font-weight: 300 !important;
+    text-transform: capitalize !important;
+  } */
+
+  /* .header-area .container {
+    padding: 0px;
+  } */
+  .header-area .logo {
+    margin-left: 0px;
+    /* margin-top: 30px; */
+  }
+  .header-area .menu-trigger {
+    display: block !important;
+  }
+
+  .header-area .main-nav .nav,
+  .header-area .main-nav .myToggleGroup {
+    float: none;
+    width: 100%;
+    display: none;
+    -webkit-transition: all 0s ease 0s;
+    -moz-transition: all 0s ease 0s;
+    -o-transition: all 0s ease 0s;
+    transition: all 0s ease 0s;
+    margin-left: 0px;
+  }
+  /* .header-area .main-nav .nav li:first-child {
+    border-top: 1px solid #eee;
+  }
+  .header-area.header-sticky .nav {
+    margin-top: 100px !important;
+  }
+  .header-area .main-nav .nav li {
+    width: 100%;
+    background: #fff;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  } */
+}
+
+/* 
+---------------------------------------------
+Banner Style
+--------------------------------------------- 
+*/
+
+.main-banner {
+  /* background-image: url(../images/banner-bg_2.png); */
+  /* border-radius: 0px 0px 150px 150px; */
+  /* background-position: center bottom; */
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  /* padding: 65px 0px; */
+  margin-top: 100px;
+}
+
+.main-banner .caption img {
+  width: 300px;
+  margin-bottom: 24px;
+}
+/* .main-banner .caption h6 {
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+} */
+
+/* .main-banner .caption h2 {
+  font-size: 48px;
+  color: #fff;
+  margin-top: 20px;
+  position: relative;
+  padding-bottom: 5px;
+  margin-bottom: 40px;
+} */
+
+/* .main-banner .caption h2:after {
+  position: absolute;
+  background-image: url(../images/caption-dec.png);
+  width: 202px;
+  height: 12px;
+  content: "";
+  left: 125px;
+  bottom: 0;
+} */
+
+/* .main-banner .caption p {
+  color: #fff;
+  margin-bottom: 70px;
+} */
+
+.main-banner .caption form {
+  margin: 0 auto;
+  position: relative;
+  max-width: 600px;
+}
+
+.main-banner .caption form input {
+  max-width: 600px;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border-radius: 25px;
+  background-color: var(--my--text);
+  border: none;
+  padding: 0px 25px;
+  font-size: 20px;
+  color: var(--my--background);
+}
+
+.main-banner .caption form button {
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  background-color: var(--my--button--background);
+  color: var(--my--button--color);
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0px 25px;
+  border: 1px solid var(--my--button--border);
+  border-radius: 25px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.3s;
+}
+
+.main-banner .caption form button:hover {
+  background-color: var(--my--button--hover--background);
+  color: var(--my--button--hover--color);
+  border: 1px solid var(--my--button--hover--border);
+}
+
+/* .main-banner .right-image {
+  position: relative;
+}
+
+.main-banner .right-image img {
+  border-radius: 25px;
+}
+
+.main-banner .right-image span.price {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border-radius: 25px;
+  background-color: #008af8;
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  padding: 4px 15px;
+}
+
+.main-banner .right-image span.offer {
+  position: absolute;
+  left: -25px;
+  bottom: -25px;
+  border-radius: 50%;
+  background-color: #ee626b;
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+} */

@@ -1,4 +1,8 @@
+import { useState } from "react";
+import "./detail.css";
+
 const Battle = function () {
+  const [isBig, setIsBig] = useState(true);
   return (
     <div className="container">
       <div className="row" style={{ marginTop: "10px" }}>
@@ -21,7 +25,32 @@ const Battle = function () {
               backgroundColor: "white",
             }}
           >
-            특화 치명 신속
+            <div
+              className={`small ${isBig ? "view" : "hide"}`}
+              onClick={() => {
+                console.log(isBig);
+                setIsBig(false);
+              }}
+            >
+              특화 치명 신속
+            </div>
+            <div
+              className={`big ${!isBig ? "view" : "hide"}`}
+              onClick={() => {
+                console.log(isBig);
+                setIsBig(true);
+              }}
+            >
+              s simply dummy text of the printing and typesetting industry
+              LoremIpsum has been the standard dummy text ever since the 1500s,
+              when an unknown printer took a galley of type and s simply dummy
+              text of the printing and typesetting industry LoremIpsum has been
+              the standard dummy text ever since the 1500s, when an unknown
+              printer took a galley of type and s simply dummy text of the
+              printing and typesetting industry LoremIpsum has been the standard
+              dummy text ever since the 1500s, when an unknown printer took a
+              galley of type and
+            </div>
           </div>
         </div>
         <div

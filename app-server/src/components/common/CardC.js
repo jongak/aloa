@@ -1,4 +1,4 @@
-import "./holofoil.css";
+// import "./holofoil.css";
 
 const CardC = function () {
   return (
