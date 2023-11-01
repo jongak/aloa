@@ -467,3 +467,38 @@ Banner Style
   text-align: center;
   line-height: 100px;
 } */
+
+/* 
+---------------------------------------------
+Footer Style
+--------------------------------------------- 
+*/
+
+footer {
+  margin-top: 150px;
+  background-color: var(--my--heading);
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  /* background-image: url(../images/footer-bg.jpg); */
+  min-height: 50px;
+  border-radius: 50px 50px 0px 0px;
+}
+
+footer p {
+  text-align: center;
+  line-height: 90px;
+  color: var(--my--background);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+footer p a {
+  color: var(--my--background);
+  transition: all 0.3s;
+  position: relative;
+  z-index: 3;
+}
+
+footer p a:hover {
+  opacity: 0.75;
+}
