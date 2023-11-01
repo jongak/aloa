@@ -10,8 +10,15 @@
 }
 
 .big.view {
-  width: 80vw;
+  height: 80vh;
+  width: 70vw;
 }
 .small.view {
   height: 100%;
+}
+
+.collapse {
+  &:not(.show) {
+    display: none;
+  }
 }

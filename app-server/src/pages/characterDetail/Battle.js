@@ -105,7 +105,11 @@ const Battle = function () {
           }}
         >
           <div
-            className="flex justify-between cursor-pointer select-none"
+            className="flex justify-between cursor-pointer select-none btn"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
             onClick={toggleTransform}
           >
             <span className="flex items-center gap-3">
@@ -122,6 +126,13 @@ const Battle = function () {
                 </span>
               </div>
             </span>
+            <div className="collapse" id="collapseExample">
+              <div className="card card-body">
+                Some placeholder content for the collapse component. This panel
+                is hidden by default but revealed when the user activates the
+                relevant trigger.
+              </div>
+            </div>
             <div className="flex items-center">
               <div style={{ transformStyle }}>
                 <svg
