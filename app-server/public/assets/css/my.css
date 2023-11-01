@@ -13,22 +13,31 @@
 }
 
 .App.dark {
+  --my--very-dark-background: #1d1e21;
+  --my--dark-background: #2b2d32;
   --my--background: #393c42;
-  --my--background-hover: #6c757d;
+  --my--background-hover: #717884;
+  --my--dark-text: #989a9d;
   --my--text: #f7f7f7;
   --my--heading: #d1f19c;
 }
 
 .App.light {
+  --my--very-dark-background: #aaea41;
+  --my--dark-background: #d1f19c;
   --my--background: #f7f7f7;
   --my--background-hover: #d1f19c;
+  --my--dark-text: #989a9d;
   --my--text: #393c42;
-  --my--heading: #829268;
+  --my--heading: #aaaaaa;
 }
 
 .App.mygreen {
+  --my--very-dark-background: #393c42;
+  --my--dark-background: #85976f;
   --my--background: #d1f19c;
   --my--background-hover: #becea3;
+  --my--dark-text: #85976f;
   --my--text: #393c42;
   --my--heading: #aaaaaa;
 }
@@ -512,10 +521,92 @@ footer p a:hover {
 
 /* 
 ---------------------------------------------
-MyCards
+main
 --------------------------------------------- 
 */
 
 .myCards {
   margin-top: 10%;
+}
+
+/* 
+---------------------------------------------
+capture
+--------------------------------------------- 
+*/
+
+.option-area {
+  background-color: var(--my--dark-background);
+  border-radius: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.option-area .progress {
+  --dot-default-color: #3b3e4a;
+  --dot-text-active-color: white;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  padding: 32px 0px;
+  height: 100px;
+  background: var(--my--very-dark-background);
+  border-radius: 12px 12px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.option-area .inner {
+  display: flex;
+  height: 36px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  align-items: start;
+  gap: 4px;
+  position: relative;
+}
+.option-area .inner .dot-wrapper {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 12px;
+  flex-basis: 74px;
+}
+.option-area .inner .dot-wrapper .dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: var(--my--background);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.option-area .inner .dot-wrapper .step-text {
+  text-align: center;
+  color: var(--my--dark-text);
+  width: auto;
+}
+
+.option-area .inner .dot-wrapper.active .dot {
+  background: var(--my--heading);
+}
+
+.option-area .inner .dot-wrapper.active .step-text {
+  color: var(--my--heading);
+}
+.option-area .inner .bar {
+  position: absolute;
+  top: 4px;
+  width: 366px;
+  background-color: var(--my--background);
+  height: 2px;
+}
+@media (min-width: 768px) {
+  .option-area .inner {
+    gap: 22px;
+  }
+  .option-area .inner .dot-wrapper {
+    flex-basis: 100px;
+  }
 }
