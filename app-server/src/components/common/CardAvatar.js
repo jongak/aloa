@@ -90,7 +90,10 @@ const CardAvatar = function ({
           position: "relative",
         }}
       >
-        <img src={bgFrame} style={{ position: "absolute", zIndex: "10" }} />
+        <img
+          src={bgFrame}
+          style={{ position: "absolute", zIndex: "10", right: 0 }}
+        />
 
         <div
           className="cardTop"
@@ -148,12 +151,7 @@ const CardAvatar = function ({
                 backgroundRepeat: "no-repeat",
                 opacity: 1,
               }}
-            >
-              <img
-                src="/assets/images/card_bg.png"
-                style={{ mixBlendMode: "screen", opacity: "0.4" }}
-              />
-            </div>
+            ></div>
             {/* {[0, 1, 2].map((item) => (
               <div
                 className="imgCrop"
