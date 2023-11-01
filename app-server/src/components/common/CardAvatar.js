@@ -90,7 +90,10 @@ const CardAvatar = function ({
           position: "relative",
         }}
       >
-        <img src={bgFrame} style={{ position: "absolute", zIndex: "10" }} />
+        <img
+          src={bgFrame}
+          style={{ position: "absolute", zIndex: "10", right: 0 }}
+        />
 
         <div
           className="cardTop"
