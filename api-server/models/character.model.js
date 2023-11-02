@@ -24,22 +24,54 @@ const CharacterModel = {
 
     const res = await lostArk.get(url, { headers: headers });
     const data = {
-      서버: "",
-      루페온: [],
-      카단: [],
-      카마인: [],
-      실리안: [],
-      아만: [],
-      카제로스: [],
-      아브렐슈드: [],
-      니나브: [],
+      server: "",
+      Lupeon: [],
+      Kadan: [],
+      Karmian: [],
+      Silian: [],
+      Aman: [],
+      Kazeros: [],
+      Avrelsud: [],
+      Ninave: [],
+    };
+
+    const ServerName = {
+      루페온: "Lupeon",
+      카단: "Kadan",
+      카마인: "Karmian",
+      실리안: "Silian",
+      아만: "Aman",
+      카제로스: "Kazeros",
+      아브렐슈드: "Avrelsud",
+      니나브: "Ninave",
     };
     res.data.forEach((element) => {
       if (element["CharacterName"] == characterName) {
-        data["서버"] = element["ServerName"];
+        data["server"] = ServerName[element["ServerName"]];
       }
-      data[element["ServerName"]].push(element);
+      data[ServerName[element["ServerName"]]].push(element);
     });
+
+    Object.keys(data).forEach((server) => {
+      if (server == "server") return;
+
+      data[server].sort((a, b) => {
+        if (a["ItemMaxLevel"] < b["ItemMaxLevel"]) return 1;
+        if (a["ItemMaxLevel"] > b["ItemMaxLevel"]) return -1;
+        if (a["CharacterName"] > b["CharacterName"]) return 1;
+        return -1;
+      });
+    });
+
+    var my;
+    data[data["server"]].forEach((element, i) => {
+      if (element["CharacterName"] == characterName) {
+        my = element;
+        data[data["server"]].splice(i, 1);
+      }
+    });
+
+    data[data["server"]].unshift(my);
     return data;
   },
 };

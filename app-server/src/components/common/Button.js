@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import "./Button.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -18,9 +17,7 @@ const Button = function ({
   title,
 }) {
   // 버튼 스타일을 결정하는 클래스 이름
-  const buttonClassName = isRev
-    ? "explore_list_button_rev"
-    : "explore_list_button";
+  const buttonClassName = isRev ? "my_button_rev" : "my_button";
 
   return (
     <div className={buttonClassName} value={value} style={divStyle}>

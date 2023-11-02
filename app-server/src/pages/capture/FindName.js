@@ -5,15 +5,26 @@ import axios from "axios";
 import UserItem from "./UserItem";
 
 const serverList = [
-  "루페온",
-  "카단",
-  "카마인",
-  "실리안",
-  "아만",
-  " 카제로스",
-  "아브렐슈드",
-  "니나브",
+  "Lupeon",
+  "Kadan",
+  "Karmian",
+  "Silian",
+  "Aman",
+  "Kazeros",
+  "Avrelsud",
+  "Ninave",
 ];
+
+const serverKor = {
+  Lupeon: "루페온",
+  Kadan: "카단",
+  Karmian: "카마인",
+  Silian: "실리안",
+  Aman: "아만",
+  Kazeros: "카제로스",
+  Avrelsud: "아브렐슈드",
+  Ninave: "니나브",
+};
 
 const getData = async function (id) {
   try {
@@ -59,18 +70,28 @@ const FindName = function () {
 
   return (
     <div className="option-body">
-      <h2>01. 캐릭터 고르기</h2>
-      <input ref={userName}></input>
-      <Button title={"검색"} onClick={onClickButtonChange} />
+      <h3>01. 캐릭터 고르기</h3>
+      <div className="find-input">
+        <input className="form-control" ref={userName}></input>
+        <Button title={"검색"} onClick={onClickButtonChange} />
+      </div>
+
       <div className="userList">
-        <div className={`userRow ${userList["서버"]}`}>
-          {AllListCom[userList["서버"]]}
+        <div
+          key={userList["server"]}
+          className={`userRow ${userList["server"]}`}
+        >
+          <span>{serverKor[userList["server"]]}</span>
+          {AllListCom[userList["server"]]}
         </div>
 
         {serverList.map((server) => {
-          if (AllListCom[server] && server != userList["서버"])
+          if (AllListCom[server] && server != userList["server"])
             return (
-              <div className={`userRow ${server}`}> {AllListCom[server]}</div>
+              <div key={server} className={`userRow ${server}`}>
+                <span>{serverKor[server]}</span>
+                {AllListCom[server]}
+              </div>
             );
         })}
       </div>

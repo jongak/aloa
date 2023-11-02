@@ -6,6 +6,7 @@ import { Tilt } from "react-next-tilt";
 // import "./cards.css";
 import { useRef } from "react";
 import LootCardItem from "../../components/common/LootCardItem";
+import Button from "../../components/common/Button";
 
 function Home() {
   const queryRef = useRef("");
@@ -36,9 +37,10 @@ function Home() {
                       ref={queryRef}
                       onKeyPress={handleOnKeyPress}
                     />
-                    <button onClick={handleButtonClick}>
-                      <i className="fa fa-search"></i>
-                    </button>
+                    <Button
+                      onClick={handleButtonClick}
+                      title={<i className="fa fa-search"></i>}
+                    />
                   </form>
                 </div>
               </div>

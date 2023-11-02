@@ -59,7 +59,7 @@ const SetOption = function () {
   });
 
   return (
-    <>
+    <div className="option-body">
       {rarityPresetsList}
       <Button
         isRev={holoRef.current}
@@ -134,7 +134,7 @@ const SetOption = function () {
       />
       <Button href="../select" title={"이전"} />
       <Button href="../share" title={"이후"} />
-    </>
+    </div>
   );
 };
 export default SetOption;

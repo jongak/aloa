@@ -160,7 +160,6 @@ const capture = function () {
     holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
-  const findNameStates = { characterName };
   return (
     <div className="main-banner container">
       <div className="row">
@@ -169,13 +168,13 @@ const capture = function () {
             <div className="inner">
               <div className={`dot-wrapper ${page == "find" ? "active" : ""}`}>
                 <div className="dot"></div>
-                <span className="step-text">내 계정 확인</span>
+                <span className="step-text">캐릭터 고르기</span>
               </div>
               <div
                 className={`dot-wrapper ${page == "select" ? "active" : ""}`}
               >
                 <div className="dot"></div>
-                <span className="step-text">전적 꾸미기</span>
+                <span className="step-text">내용 정하기</span>
               </div>
               <div className={`dot-wrapper ${page == "set" ? "active" : ""}`}>
                 <div className="dot"></div>
@@ -191,7 +190,7 @@ const capture = function () {
           <Outlet
             context={{
               setPage,
-              ...findNameStates,
+              characterName,
               ...setOptionActions,
               ...setOptionStates,
             }}
