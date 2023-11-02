@@ -4,7 +4,7 @@ import CardImg from "../../components/common/CardImg";
 import Button from "../../components/common/Button";
 import LootCard from "../../components/common/LootCard";
 import ColorToggle from "../../components/common/ColorToggle";
-import CardAvatar from "../../components/common/CardAvatar";
+import CardFront from "../../components/common/CardFront";
 import CardBack from "../../components/common/CardBack";
 
 const Makecard = function () {
@@ -209,7 +209,7 @@ const Makecard = function () {
       {cardImgMemo}
       {LootCardMemo}
 
-      <CardAvatar setIsLoading={setIsLoading} divRef={divRef} />
+      <CardFront setIsLoading={setIsLoading} divRef={divRef} />
       <CardBack />
 
       <input
