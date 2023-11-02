@@ -20,6 +20,7 @@ const capture = function () {
   const [isChanged, setIsChanged] = useState(true);
   const [isCardReady, setIsCardReady] = useState(false);
   const rarityPresetRef = useRef("custom");
+  const characterName = useRef();
   const holoRef = useRef(true);
   const glowRef = useRef(true);
   const shineRef = useRef(true);
@@ -159,6 +160,7 @@ const capture = function () {
     holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
+  const findNameStates = { characterName };
   return (
     <div className="main-banner container">
       <div className="row">
@@ -187,7 +189,12 @@ const capture = function () {
             </div>
           </div>
           <Outlet
-            context={{ setPage, ...setOptionActions, ...setOptionStates }}
+            context={{
+              setPage,
+              ...findNameStates,
+              ...setOptionActions,
+              ...setOptionStates,
+            }}
           />
         </div>
 

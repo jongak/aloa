@@ -13,4 +13,14 @@ router.get("/:name", async (req, res, next) => {
   }
 });
 
+router.get("/characters/:name", async (req, res, next) => {
+  const characterName = req.params.name;
+  try {
+    const result = await CharacterService.getCharacters(characterName);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
