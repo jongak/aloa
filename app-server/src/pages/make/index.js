@@ -9,6 +9,7 @@ import img from "../../img/result_5.png";
 import CardC from "../../components/common/CardC";
 import ColorToggle from "../../components/common/ColorToggle";
 import CardAvatar from "../../components/common/CardAvatar";
+import CardBack from "../../components/common/CardBack";
 
 const Makecard = function () {
   const divRef = useRef(null);
@@ -213,6 +214,7 @@ const Makecard = function () {
       {LootCardMemo}
 
       <CardAvatar setIsLoading={setIsLoading} divRef={divRef} />
+      <CardBack />
 
       <input
         type="text"
