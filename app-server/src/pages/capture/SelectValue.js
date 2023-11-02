@@ -1,10 +1,13 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
+import { useEffect } from "react";
 
 const SelectValue = function () {
   const { setPage } = useOutletContext();
 
-  setPage("select");
+  useEffect(() => {
+    setPage("select");
+  }, []);
   return (
     <>
       <Button href="../" title={"이전"} />

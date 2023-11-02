@@ -25,13 +25,10 @@ const capture = function () {
   const shineRef = useRef(true);
   const shadowRef = useRef(true);
   const cardRef = useRef();
-  const imgSrcRef = useRef({
-    value:
-      "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png",
-  });
-  const holoSrcRef = useRef({
-    value: "http://localhost:4400/api/images/wave.png",
-  });
+  const imgSrcRef = useRef(
+    "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
+  );
+  const holoSrcRef = useRef("http://localhost:4400/api/images/wave.png");
 
   const holographicOptionColors = useRef([
     "#0077be",
@@ -219,8 +216,8 @@ const capture = function () {
 
           <LootCard
             rarityPreset={rarityPresetRef.current}
-            // img={imgSrcRef.current.value}
-            holo={holoSrcRef.current.value}
+            img={imgSrcRef.current}
+            holo={holoSrcRef.current}
             canvasRef={canvasRef}
             holographicOptions={
               holoRef.current
@@ -261,8 +258,8 @@ const capture = function () {
 
           <LootCard
             rarityPreset={rarityPresetRef.current}
-            // img={imgSrcRef.current.value}
-            holo={holoSrcRef.current.value}
+            img={imgSrcRef.current}
+            holo={holoSrcRef.current}
             canvasRef={canvasRef}
             holographicOptions={
               holoRef.current

@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import ColorToggle from "../../components/common/ColorToggle";
+import { useEffect } from "react";
 
 const SetOption = function () {
   const {
@@ -19,7 +20,9 @@ const SetOption = function () {
     setPage,
   } = useOutletContext();
 
-  setPage("set");
+  useEffect(() => {
+    setPage("set");
+  }, []);
   const onChangeToggleRarityPreset = (event) => {
     rarityPresetRef.current = event.target.dataset.value;
     if (rarityPresetRef.current != "custom") {
@@ -112,20 +115,22 @@ const SetOption = function () {
       <input
         type="text"
         className="form-control"
-        ref={imgSrcRef}
-        onBlur={() => {
+        // ref={imgSrcRef}
+        onBlur={(e) => {
+          imgSrcRef.current = e.target.value;
           setIsChanged(!isChanged);
         }}
-        defaultValue={imgSrcRef.current.value}
+        defaultValue={imgSrcRef.current}
       />
       <input
         type="text"
         className="form-control"
-        ref={holoSrcRef}
-        onBlur={async () => {
+        // ref={holoSrcRef}
+        onBlur={async (e) => {
+          holoSrcRef.current = e.target.value;
           setIsChanged(!isChanged);
         }}
-        defaultValue={holoSrcRef.current.value}
+        defaultValue={holoSrcRef.current}
       />
       <Button href="../select" title={"이전"} />
       <Button href="../share" title={"이후"} />

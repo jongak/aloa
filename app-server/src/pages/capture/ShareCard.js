@@ -1,10 +1,13 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
+import { useEffect } from "react";
 
 const ShareCard = function () {
   const { setPage } = useOutletContext();
 
-  setPage("share");
+  useEffect(() => {
+    setPage("share");
+  }, []);
   return (
     <>
       <Button href="../set" title={"이전"} />
