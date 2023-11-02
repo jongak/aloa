@@ -3,34 +3,76 @@
   --mydarkgreen: #829268;
   --mygray: #393c42;
   --mywhite: #f7f7f7;
-  --my--button--background: #d1f19c;
-  --my--button--color: #393c42;
-  --my--button--border: #393c42;
-
-  --my--button--hover--background: #393c42;
-  --my--button--hover--color: #d1f19c;
-  --my--button--hover--border: #f7f7f7;
+  --my--shadow: #1d1e21;
 }
 
 .App.dark {
+  --my--very-dark-background: #1d1e21;
+  --my--dark-background: #2b2d32;
   --my--background: #393c42;
-  --my--background-hover: #6c757d;
+  --my--background-hover: #717884;
+  --my--dark-text: #989a9d;
   --my--text: #f7f7f7;
   --my--heading: #d1f19c;
+
+  --my--button--background: #393c42;
+  --my--button--color: #f7f7f7;
+  --my--button--border: #d1f19c;
+
+  --my--button--hover--background: #717884;
+  --my--button--hover--color: #d1f19c;
+  --my--button--hover--border: #d1f19c;
+
+  --my--card--background: #393c42;
+  --my--card--heading: #f7f7f7;
+  --my--card--color: #989a9d;
+  --my--card--border: #f7f7f7;
 }
 
 .App.light {
+  --my--very-dark-background: #aaea41;
+  --my--dark-background: #d1f19c;
   --my--background: #f7f7f7;
   --my--background-hover: #d1f19c;
+  --my--dark-text: #989a9d;
   --my--text: #393c42;
-  --my--heading: #829268;
+  --my--heading: #aaaaaa;
+
+  --my--button--background: #393c42;
+  --my--button--color: #f7f7f7;
+  --my--button--border: #d1f19c;
+
+  --my--button--hover--background: #717884;
+  --my--button--hover--color: #d1f19c;
+  --my--button--hover--border: #d1f19c;
+
+  --my--card--background: #393c42;
+  --my--card--heading: #f7f7f7;
+  --my--card--color: #989a9d;
+  --my--card--border: #f7f7f7;
 }
 
 .App.mygreen {
+  --my--very-dark-background: #393c42;
+  --my--dark-background: #85976f;
   --my--background: #d1f19c;
   --my--background-hover: #becea3;
+  --my--dark-text: #85976f;
   --my--text: #393c42;
   --my--heading: #aaaaaa;
+
+  --my--button--background: #393c42;
+  --my--button--color: #f7f7f7;
+  --my--button--border: #d1f19c;
+
+  --my--button--hover--background: #717884;
+  --my--button--hover--color: #d1f19c;
+  --my--button--hover--border: #d1f19c;
+
+  --my--card--background: #393c42;
+  --my--card--heading: #f7f7f7;
+  --my--card--color: #989a9d;
+  --my--card--border: #f7f7f7;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -67,6 +109,7 @@ Header Style
   left: 0;
   right: 0;
   height: 80px;
+  opacity: 0.9;
 
   border-bottom: 1px solid var(--my--heading);
   box-shadow: 0px 0px 10px var(--my--heading) !important;
@@ -266,6 +309,7 @@ Header Style
     top: auto;
     bottom: 0;
     position: fixed;
+    opacity: 0.9;
   }
   .header-area .main-nav {
     overflow: hidden;
@@ -406,64 +450,356 @@ Banner Style
   color: var(--my--background);
 }
 
-.main-banner .caption form button {
-  display: inline-block;
-  height: 50px;
-  line-height: 50px;
-  background-color: var(--my--button--background);
-  color: var(--my--button--color);
-  font-size: 15px;
-  text-transform: uppercase;
-  font-weight: 500;
-  padding: 0px 25px;
-  border: 1px solid var(--my--button--border);
-  border-radius: 25px;
+.main-banner .caption form .my_button {
   position: absolute;
+  margin: 0;
   right: 0;
   top: 0;
   transition: all 0.3s;
 }
+.main-banner .caption form .my_button a {
+  width: 80px;
+  height: 50px;
+  line-height: 50px;
 
-.main-banner .caption form button:hover {
-  background-color: var(--my--button--hover--background);
-  color: var(--my--button--hover--color);
-  border: 1px solid var(--my--button--hover--border);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0px 25px;
+
+  border-radius: 0px 25px 25px 0px;
+  display: block;
 }
 
-/* .main-banner .right-image {
+@media (max-width: 768px) {
+  .main-banner {
+    margin-top: 50px;
+  }
+}
+
+/* 
+---------------------------------------------
+Footer Style
+--------------------------------------------- 
+*/
+
+footer {
+  margin-top: 150px;
+  background-color: var(--my--heading);
+  /* background-repeat: no-repeat;
+  background-size: cover; */
+  /* background-image: url(../images/footer-bg.jpg); */
+  min-height: 100px;
+}
+
+footer p {
+  text-align: center;
+  line-height: 70px;
+  color: var(--my--background);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+footer p a {
+  color: var(--my--background);
+  transition: all 0.3s;
+  position: relative;
+  z-index: 3;
+}
+
+footer p a:hover {
+  opacity: 0.75;
+}
+
+/* 
+---------------------------------------------
+main
+--------------------------------------------- 
+*/
+
+.myCards {
+  margin-top: 10%;
+}
+
+/* 
+---------------------------------------------
+capture
+--------------------------------------------- 
+*/
+
+.option-area {
+  background-color: var(--my--dark-background);
+  border-radius: 12px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.option-area .progress {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  padding: 32px 0px;
+  height: 100px;
+  background: var(--my--very-dark-background);
+  border-radius: 12px 12px 0px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.option-area .inner {
+  display: flex;
+  height: 36px;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  align-items: start;
+  gap: 4px;
+  position: relative;
+}
+.option-area .inner .dot-wrapper {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 12px;
+  flex-basis: 74px;
+}
+.option-area .inner .dot-wrapper .dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  background: var(--my--background);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.option-area .inner .dot-wrapper .step-text {
+  text-align: center;
+  color: var(--my--dark-text);
+  width: auto;
+}
+
+.option-area .inner .dot-wrapper.active .dot {
+  background: var(--my--heading);
+}
+
+.option-area .inner .dot-wrapper.active .step-text {
+  color: var(--my--heading);
+}
+.option-area .inner .bar {
+  position: absolute;
+  top: 4px;
+  width: 366px;
+  background-color: var(--my--background);
+  height: 2px;
+}
+.option-area .option-body h3 {
+  padding-top: 50px;
+  color: var(--my--heading);
+  text-align: center;
+}
+.option-area .option-body .find-input {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.option-area .find-input input {
+  margin-right: 10px;
+}
+
+.option-area .option-body input {
+  color: var(--my--text);
+  background-color: var(--my--background);
+  border-color: var(--my--background);
+  width: 250px;
+  display: inline-block;
+}
+.option-area .option-body input:focus {
+  background-color: var(--my--background);
+  border-color: var(--my--heading);
+  box-shadow: var(--my--heading);
+}
+
+.option-area .userRow {
+  background-color: var(--my--background);
+  text-align: center;
+  margin: 2rem 1rem;
+  box-shadow: 3px 4px 20px 10px var(--my--shadow);
+  padding-top: 60px;
+  padding-bottom: 20px;
   position: relative;
 }
 
-.main-banner .right-image img {
-  border-radius: 25px;
+.option-area .userRow.undefined {
+  box-shadow: none;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.main-banner .right-image span.price {
+.option-area .userRow span {
+  color: var(--my--background);
   position: absolute;
-  right: 20px;
-  top: 20px;
-  border-radius: 25px;
-  background-color: #008af8;
-  font-size: 22px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #fff;
-  padding: 4px 15px;
+  background-color: var(--my--heading);
+  top: 15px;
+  right: 15px;
+  padding: 0.5rem 1rem;
+  border-radius: 1.5rem;
+  font-weight: 600;
 }
 
-.main-banner .right-image span.offer {
-  position: absolute;
-  left: -25px;
-  bottom: -25px;
-  border-radius: 50%;
-  background-color: #ee626b;
-  font-size: 28px;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: #fff;
-  display: inline-block;
-  width: 100px;
-  height: 100px;
+.option-area .userRow.undefined span {
+  box-shadow: none;
+  border: none;
+  padding: 0;
+}
+
+.option-area .userRow .userItem {
+  width: 80%;
+  margin: 2%;
+}
+
+@media (min-width: 768px) {
+  .option-area .inner {
+    gap: 22px;
+  }
+  .option-area .inner .dot-wrapper {
+    flex-basis: 100px;
+  }
+}
+@media (min-width: 992px) {
+  .option-area .userRow {
+    margin: 2rem;
+  }
+  .option-area .option-body h3 {
+    padding-top: 50px;
+    padding-left: 50px;
+    text-align: left;
+  }
+  .option-area .option-body input {
+    width: 300px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .option-area .userRow {
+    margin: 2rem;
+    text-align: left;
+  }
+  .option-area .userRow .userItem {
+    width: 45%;
+    margin: 2.5%;
+  }
+}
+
+/* 
+---------------------------------------------
+button
+--------------------------------------------- 
+*/
+
+.my_button,
+.my_button_rev {
   text-align: center;
-  line-height: 100px;
-} */
+  justify-content: center;
+  display: inline-block;
+
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my_button a,
+.my_button_rev a {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  background-clip: padding-box;
+
+  border-radius: 0.375rem;
+  text-transform: capitalize;
+  /* letter-spacing: 0.5px; */
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.my_button a,
+.my_button_rev a:hover {
+  color: var(--my--text);
+  background-color: var(--my--button--background);
+  border: 0.12rem solid var(--my--button--border);
+}
+
+.my_button a:hover,
+.my_button_rev a {
+  background-color: var(--my--button--hover--background);
+  color: var(--my--button--hover--color);
+}
+
+.my_button a i.fa,
+.my_button_rev a:hover i.fa {
+  color: var(--my--button--color);
+}
+
+.my_button_rev a i.fa,
+.my_button a:hover i.fa {
+  color: var(--my--button--hover--color);
+}
+
+/* 
+---------------------------------------------
+card
+--------------------------------------------- 
+*/
+
+.my-card {
+  /* border: 1px solid var(--my--heading); */
+  margin: 1%;
+  cursor: pointer;
+  /* width: 25%; */
+  display: inline-block;
+  position: relative;
+}
+.my-card img {
+  width: 3rem;
+  position: absolute;
+  left: 0.5rem;
+  top: 1rem;
+}
+.my-card-body {
+  padding: 1.5rem 0rem 1rem 2rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--my--card--border);
+  background-color: var(--my--card--background);
+  text-align: left;
+  box-shadow: 3px 4px 20px 0px var(--my--shadow);
+}
+.my-card-body .my-card-title {
+  font-size: 1rem;
+  margin-left: 2rem;
+  letter-spacing: -0.05rem;
+  font-weight: 600;
+  color: var(--my--card--heading);
+  line-height: 1rem;
+}
+.my-card-body p:nth-child(2) {
+  margin-left: 2rem;
+}
+.my-card-body .my-card-text {
+  color: var(--my--card--color);
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+@media (min-width: 992px) {
+  .my-card-body {
+    padding: 1.5rem 1rem 1rem 3rem;
+  }
+  .my-card img {
+    left: 1.5rem;
+  }
+  .my-card-body .my-card-title {
+    font-size: 1.1rem;
+  }
+}

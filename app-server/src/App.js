@@ -21,6 +21,10 @@ import Statistics from "./pages/characterDetail/Statistics";
 import Character from "./pages/characterDetail/Character";
 import Guild from "./pages/characterDetail/Guild";
 import Makecard from "./pages/make";
+import FindName from "./pages/capture/FindName";
+import SelectValue from "./pages/capture/SelectValue";
+import ShareCard from "./pages/capture/ShareCard";
+import SetOption from "./pages/capture/SetOption";
 
 function App() {
   return (
@@ -33,7 +37,12 @@ function App() {
             <Route path="/product-details" element={<Product />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/capture" element={<Capture />} />
+            <Route path="/capture" element={<Capture />}>
+              <Route index element={<FindName />} />
+              <Route path="select" element={<SelectValue />} />
+              <Route path="set" element={<SetOption />} />
+              <Route path="share" element={<ShareCard />} />
+            </Route>
             <Route path="/make" element={<Makecard />} />
             <Route path="/character">
               <Route path=":id" element={<CharacterDetail />}>

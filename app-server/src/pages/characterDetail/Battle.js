@@ -2,7 +2,25 @@ import { useState } from "react";
 import "./detail.css";
 
 const Battle = function () {
+  const [expanded, setExpanded] = useState(false); // expanded 상태와 setter 함수
   const [isBig, setIsBig] = useState(true);
+  const toggleAccordion = () => {
+    setExpanded(!expanded); // 상태를 토글하는 함수
+  };
+  const accordionHeight = expanded ? "80vh" : "25vh";
+
+  ///
+
+  const [isTransformed, setIsTransformed] = useState(false);
+
+  const toggleTransform = () => {
+    setIsTransformed(!isTransformed);
+    console.log(isTransformed);
+  };
+
+  const transformStyle = isTransformed
+    ? { transform: "rotate(180deg) translateZ(0px)" }
+    : { transform: "none" };
   return (
     <div className="container">
       <div className="row" style={{ marginTop: "10px" }}>
@@ -18,10 +36,12 @@ const Battle = function () {
             아이템 레벨, 전투
           </div>
           <div
-            className="col"
+            className="col accordion accordion-flush"
+            id="accordionFlushExample"
+            data-bs-parent="#accordionFlushExample"
             style={{
               border: "solid 1px black",
-              height: "25vh",
+              height: accordionHeight,
               backgroundColor: "white",
             }}
           >
@@ -76,7 +96,7 @@ const Battle = function () {
           현재 착용 장비
         </div>
         <div
-          className="col-12"
+          className="col-12 flex flex-col gap-3 mt-1 bg-negative px-3.5 pt-3 pb-3 rounded-md shadow-md"
           style={{
             border: "solid 1px red",
             height: "30vh",
@@ -84,7 +104,57 @@ const Battle = function () {
             marginTop: "10px",
           }}
         >
-          보석
+          <div
+            className="flex justify-between cursor-pointer select-none btn"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseExample"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+            onClick={toggleTransform}
+          >
+            <span className="flex items-center gap-3">
+              <span className="text-base">보석</span>
+              <div className="flex items-center gap-2">
+                <span className="bg-negative-less text-sm rounded px-2 py-0.5 inline-flex items-center gap-1 text-positive-less whitespace-nowrap">
+                  7멸
+                </span>
+                <span className="bg-negative-less text-sm rounded px-2 py-0.5 inline-flex items-center gap-1 text-positive-less whitespace-nowrap">
+                  4홍
+                </span>
+                <span className="bg-negative-less text-sm rounded px-2 py-0.5 inline-flex items-center gap-1 text-positive-less whitespace-nowrap">
+                  레벨 10
+                </span>
+              </div>
+            </span>
+            <div className="collapse" id="collapseExample">
+              <div className="card card-body">
+                Some placeholder content for the collapse component. This panel
+                is hidden by default but revealed when the user activates the
+                relevant trigger.
+              </div>
+            </div>
+            <div className="flex items-center">
+              <div style={{ transformStyle }}>
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 24 24"
+                  height="1.25em"
+                  width="1.25em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    verticalAlign: "middle",
+                    display: "inline-flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <path fill="none" d="M24 24H0V0h24v24z" opacity=".87"></path>
+                  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
         </div>
         <div
           className="col-12"
