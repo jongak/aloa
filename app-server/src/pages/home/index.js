@@ -1,9 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import Card from "../../components/common/Card";
-// import Tilt from "react-parallax-tilt";
-import { Tilt } from "react-next-tilt";
-// import "./holofoil.css";
-// import "./cards.css";
+import { useNavigate } from "react-router-dom";
+
 import { useRef } from "react";
 import LootCardItem from "../../components/common/LootCardItem";
 import Button from "../../components/common/Button";

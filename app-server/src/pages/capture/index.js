@@ -1,15 +1,7 @@
 import html2canvas from "html2canvas";
-import saveAs from "file-saver";
 import { useEffect, useMemo, useRef, useState } from "react";
-import CardImg from "../../components/common/CardImg";
-import axios from "axios";
-import Button from "../../components/common/Button";
 import LootCard from "../../components/common/LootCard";
-import img from "../../img/result_5.png";
-import CardC from "../../components/common/CardC";
-import ColorToggle from "../../components/common/ColorToggle";
-import CardAvatar from "../../components/common/CardAvatar";
-import CardImgP from "../../components/common/CardImgP";
+import CardAvatar from "../../components/common/CardFront";
 import { Outlet } from "react-router";
 
 const capture = function () {
@@ -266,7 +258,7 @@ const capture = function () {
             rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
-            canvasRef={canvasRef}
+            // canvasRef={canvasRef}
             holographicOptions={
               holoRef.current
                 ? {

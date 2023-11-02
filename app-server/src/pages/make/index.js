@@ -1,14 +1,9 @@
 import html2canvas from "html2canvas";
-import saveAs from "file-saver";
 import { useEffect, useMemo, useRef, useState } from "react";
 import CardImg from "../../components/common/CardImg";
-import axios from "axios";
 import Button from "../../components/common/Button";
 import LootCard from "../../components/common/LootCard";
-import img from "../../img/result_5.png";
-import CardC from "../../components/common/CardC";
 import ColorToggle from "../../components/common/ColorToggle";
-import CardAvatar from "../../components/common/CardAvatar";
 
 const Makecard = function () {
   const divRef = useRef(null);
@@ -212,7 +207,7 @@ const Makecard = function () {
       {cardImgMemo}
       {LootCardMemo}
 
-      <CardAvatar setIsLoading={setIsLoading} divRef={divRef} />
+      {/* <CardAvatar setIsLoading={setIsLoading} divRef={divRef} /> */}
 
       <input
         type="text"

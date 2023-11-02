@@ -1,5 +1,4 @@
 import axios from "axios";
-// import "./holofoil.css";
 import { useEffect, useRef } from "react";
 
 const imgurl = [
