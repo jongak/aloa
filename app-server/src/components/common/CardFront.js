@@ -382,7 +382,15 @@ const CardAvatar = function ({
                 </div>
                 <div className="col-2" style={{ marginLeft: "-16px" }}>
                   <div>
-                    <img src="/assets/images/card.png" />
+                    <img
+                      src="/assets/images/card2.png"
+                      style={{
+                        width: "40px",
+                        height: "58px",
+                        boxShadow:
+                          "#FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 44px -38px 17px 50px rgba(0,0,0,0)",
+                      }}
+                    />
                   </div>
                   <span
                     style={{

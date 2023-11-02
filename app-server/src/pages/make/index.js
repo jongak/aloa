@@ -4,6 +4,8 @@ import CardImg from "../../components/common/CardImg";
 import Button from "../../components/common/Button";
 import LootCard from "../../components/common/LootCard";
 import ColorToggle from "../../components/common/ColorToggle";
+import CardAvatar from "../../components/common/CardAvatar";
+import CardBack from "../../components/common/CardBack";
 
 const Makecard = function () {
   const divRef = useRef(null);
@@ -207,7 +209,8 @@ const Makecard = function () {
       {cardImgMemo}
       {LootCardMemo}
 
-      {/* <CardAvatar setIsLoading={setIsLoading} divRef={divRef} /> */}
+      <CardAvatar setIsLoading={setIsLoading} divRef={divRef} />
+      <CardBack />
 
       <input
         type="text"
