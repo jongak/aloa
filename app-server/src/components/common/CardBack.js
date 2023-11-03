@@ -160,7 +160,7 @@ const CardBack = function ({
     },
   ];
   const equip1 = equipments.slice(0, 6);
-  const equip2 = equipments.slice(6, 13);
+  const equip2 = equipments.slice(6, 12);
   const cards = [
     {
       Slot: 0,
@@ -251,7 +251,7 @@ const CardBack = function ({
           <div className="row justify-content-start">
             <div className="col-2 class_mark">
               <img
-                src="/assets/images/class_mark/mark-lancemaster-border.png"
+                src="/assets/images/logo_back3.png"
                 style={{ paddingLeft: "10px" }}
               />
             </div>
@@ -262,6 +262,7 @@ const CardBack = function ({
                   fontWeight: "800",
                   textShadow: "2px 3px 4px #15181D",
                   letterSpacing: "-2.3px",
+                  marginLeft: "-12px",
                 }}
               >
                 부먹펩시파인애플피자지코
@@ -297,7 +298,7 @@ const CardBack = function ({
             width: "100%",
             height: "100%",
             position: "relative",
-            paddingTop: "100px",
+            paddingTop: "104px",
             color: "#fff",
           }}
         >
@@ -305,59 +306,154 @@ const CardBack = function ({
             <div className="row">
               <div className="col-7">
                 <div className="row elixNcho">
-                  <div className="col-2">
-                    <img src="/assets/images/exlixer.webp" />
+                  <div
+                    className="col-7 align-items-center"
+                    style={{
+                      display: "inline-flex",
+                      margin: "8px 0",
+                    }}
+                  >
+                    <img
+                      src="/assets/images/exlixer.webp"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                      }}
+                    />
+                    <div style={{ paddingLeft: "8px", fontWeight: "650" }}>
+                      Lv 47 (27.68%)
+                    </div>
                   </div>
-                  <div className="col-5 align-self-center">Lv 47(27.68%)</div>
-                  <div className="col-2">
-                    <img src="/assets/images/cho.png" />
+                  <div
+                    className="col-4 align-items-center"
+                    style={{
+                      display: "inline-flex",
+                    }}
+                  >
+                    <img
+                      src="/assets/images/cho.png"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                      }}
+                    />
+                    <div style={{ paddingLeft: "8px", fontWeight: "650" }}>
+                      75
+                    </div>
                   </div>
-                  <div className="col-3 align-self-center">75</div>
                 </div>
                 <div className="row gems">
-                  <div className="col-3">
-                    <img src="/assets/images/gem.webp" />
+                  <div className="col-8">
+                    <img
+                      src="/assets/images/gem.webp"
+                      style={{ width: "32px" }}
+                    />
+                    <span style={{ fontWeight: "650", marginLeft: "10px" }}>
+                      {" "}
+                      5멸 6홍 평균Lv 10
+                    </span>
                   </div>
-                  <div className="col-6 align-self-center">5멸 6홍 Lv 10</div>
                 </div>
-                <div className="row plusDamage">
-                  <div className="col-2">😈</div>
+                <div
+                  className="row plusDamage"
+                  style={{
+                    background: "#80808038",
+                    borderRadius: "6px",
+                    padding: "10px 0",
+                    margin: "12px 0",
+                  }}
+                >
+                  <div className="col-3">악마</div>
                   <div className="col-3">6.98%</div>
-                  <div className="col-2">🧍‍♂️</div>
+                  <div className="col-3">인간</div>
                   <div className="col-3">5.32%</div>
-                  <div className="col-2"></div>
-                  <div className="col-2">🐯</div>
+                  <div className="col-3">야수</div>
                   <div className="col-3">3.47%</div>
-                  <div className="col-2">🌱</div>
+                  <div className="col-3">식물</div>
                   <div className="col-3">4.67%</div>
-                  <div className="col-2"></div>
-                  <div className="col-2">💀</div>
+                  <div className="col-3">불사</div>
                   <div className="col-3">4.23%</div>
                 </div>
 
                 <div
                   className="row stat"
-                  style={{ fontSize: "24px", fontWeight: "700" }}
+                  style={{ fontSize: "22px", fontWeight: "700" }}
                 >
                   <div
                     className="col-10 align-self-center"
                     style={{
                       backgroundImage:
                         "url('/assets/images/card_back_stat_bg.png')",
-                      backgroundSize: "cover",
-                      height: "50px",
-                      lineHeight: "50px",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      height: "40px",
+                      width: "100%",
+                      lineHeight: "38px",
+                      marginBottom: "4px",
+                      marginLeft: "12px",
+                      padding: "0 44px",
                     }}
                   >
-                    디스트로이어
+                    <span style={{ float: "left" }}>직업</span>
+                    <span>디스트로이어</span>
                   </div>
-                  <div className="col-10">추가</div>
-                  <div className="col-10">치명 698</div>
-                  <div className="col-10">특화 1673</div>
+                  <div
+                    className="col-10"
+                    style={{
+                      backgroundImage:
+                        "url('/assets/images/card_back_stat_bg.png')",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      height: "40px",
+                      width: "100%",
+                      lineHeight: "38px",
+                      marginBottom: "4px",
+                      marginLeft: "12px",
+                      padding: "0 44px",
+                    }}
+                  >
+                    <span style={{ float: "left" }}>추가</span>
+                  </div>
+                  <div
+                    className="col-10"
+                    style={{
+                      backgroundImage:
+                        "url('/assets/images/card_back_stat_bg.png')",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      height: "40px",
+                      width: "100%",
+                      lineHeight: "38px",
+                      marginBottom: "4px",
+                      marginLeft: "12px",
+                      padding: "0 44px",
+                    }}
+                  >
+                    <span style={{ float: "left" }}>치명</span>
+                    <span>698</span>
+                  </div>
+                  <div
+                    className="col-10"
+                    style={{
+                      backgroundImage:
+                        "url('/assets/images/card_back_stat_bg.png')",
+                      backgroundSize: "contain",
+                      backgroundRepeat: "no-repeat",
+                      height: "40px",
+                      width: "100%",
+                      lineHeight: "38px",
+                      marginBottom: "4px",
+                      marginLeft: "12px",
+                      padding: "0 44px",
+                    }}
+                  >
+                    <span style={{ float: "left" }}>특화</span>
+                    <span>1673</span>
+                  </div>
                 </div>
 
                 <div className="engraves">
-                  <ul style={{ display: "inline-flex" }}>
+                  <ul style={{ display: "inline-flex", marginTop: "12px" }}>
                     {engraving.map((item) => (
                       <li
                         key={item._key}
@@ -380,8 +476,48 @@ const CardBack = function ({
                 <div className="equipments">
                   <ul>
                     {equip1.map((item) => (
-                      <li key={item._key}>
+                      <li
+                        key={item._key}
+                        style={{ marginBottom: "8px", position: "relative" }}
+                      >
+                        <span
+                          style={{
+                            background: "#f3ba26",
+                            borderRadius: "8px",
+                            padding: "0 4px",
+                            position: "absolute",
+                            right: "-20%",
+                            fontWeight: "700",
+                          }}
+                        >
+                          +25
+                        </span>
+                        <img
+                          src="/assets/images/cho/cho_5.png"
+                          style={{
+                            width: "32px",
+                            height: "28px",
+                            position: "absolute",
+                            top: "36px",
+                            left: "40px",
+                          }}
+                        />
                         <img src={item.Icon} />
+                        <div
+                          style={{
+                            background: "#82786E",
+                            width: "100%",
+                            height: "8px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              background: "orange",
+                              width: "80%",
+                              height: "8px",
+                            }}
+                          ></div>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -391,8 +527,36 @@ const CardBack = function ({
                 <div className="equipments">
                   <ul>
                     {equip2.map((item) => (
-                      <li key={item._key}>
+                      <li key={item._key} style={{ marginBottom: "8px" }}>
+                        <span
+                          style={{
+                            background: "#f3ba26",
+                            borderRadius: "8px",
+                            padding: "0 4px",
+                            position: "absolute",
+                            right: "5%",
+                            fontWeight: "700",
+                          }}
+                        >
+                          +25
+                        </span>
+
                         <img src={item.Icon} />
+                        <div
+                          style={{
+                            background: "#82786E",
+                            width: "100%",
+                            height: "8px",
+                          }}
+                        >
+                          <div
+                            style={{
+                              background: "orange",
+                              width: "80%",
+                              height: "8px",
+                            }}
+                          ></div>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -403,12 +567,12 @@ const CardBack = function ({
           <div
             className="col"
             style={{
-              padding: "10px 20px",
+              padding: "8px 16px",
               background: "#80808038",
               borderRadius: "12px",
               position: "absolute",
               left: "5%",
-              bottom: "200px",
+              bottom: "172px",
               fontWeight: "800",
               fontSize: "18px",
             }}
@@ -425,7 +589,7 @@ const CardBack = function ({
               borderRadius: "8px",
               position: "absolute",
               left: "5%",
-              bottom: "50px",
+              bottom: "32px",
             }}
           >
             <div className="row align-items-end">
