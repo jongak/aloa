@@ -7,7 +7,16 @@ const imgurl = [
   "https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png",
 ];
 
-const CardAvatar = function ({
+const getData = async function (url) {
+  try {
+    const res = await axios.get(`/?url=${url}`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const CardFront = function ({
   setIsLoading,
   style,
   divRef,
@@ -15,14 +24,6 @@ const CardAvatar = function ({
   bgFrame = "/assets/images/card_frame.png",
 }) {
   const imgRef = useRef([{}, {}, {}]);
-  const getData = async function (url) {
-    try {
-      const res = await axios.get(`/?url=${url}`);
-      return res.data;
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   const engraving = [
     {
@@ -437,4 +438,4 @@ const CardAvatar = function ({
     </div>
   );
 };
-export default CardAvatar;
+export default CardFront;
