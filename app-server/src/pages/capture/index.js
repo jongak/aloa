@@ -1,7 +1,7 @@
 import html2canvas from "html2canvas";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LootCard from "../../components/common/LootCard";
-import CardAvatar from "../../components/common/CardFront";
+import CardFront from "../../components/common/CardFront";
 import { Outlet } from "react-router";
 
 const capture = function () {
@@ -46,7 +46,7 @@ const capture = function () {
   //     //   style={{ position: "absolute", top: "-1000px" }}
   //     // />
 
-  //     <CardAvatar
+  //     <CardFront
   //       setIsLoading={setIsLoading}
   //       divRef={divRef}
   //       // style={{ position: "absolute", top: "-1000px" }}
@@ -192,7 +192,7 @@ const capture = function () {
         <div className="card-area col-lg-5 col-md-6">
           {/* {cardImgMemo} */}
 
-          <CardAvatar
+          <CardFront
             divRef={divRef}
             setIsLoading={setIsLoading}
             style={{
