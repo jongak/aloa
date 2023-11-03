@@ -115,21 +115,228 @@ const CharacterService = {
       await conn.beginTransaction();
       const res = await CharacterModel.getCharacter(characterName);
 
-      // const data = {
-      //   ...res["AromoryProfile"],
-      //   ...res["ArmoryEquipment"],
-      //   ...res["ArmoryAvatars"],
-      //   ...res["ArmorySkills"],
-      //   ...res["ArmoryEngraving"],
-      //   ...res["ArmoryCard"],
-      //   ...res["ArmoryGem"],
-      //   ...res["ColosseumInfo"],
-      //   ...res["Collectibles"],
-      // };
+      const data = {
+        ArmoryProfile: {
+          CharacterImage: "",
+          ExpeditionLevel: "",
+          PvpGradeName: "",
+          TownLevel: "",
+          TownName: "",
+          Title: "",
+          GuildMemberGrade: "",
+          GuildName: "",
+          UsingSkillPoint: "",
+          TotalSkillPoint: "",
+          Stats: {
+            치명: "",
+            특화: "",
+            제압: "",
+            신속: "",
+            인내: "",
+            숙련: "",
+            "최대 생명력": "",
+            공격력: "",
+          },
+          Tendencies: { 지성: "", 담력: "", 매력: "", 친절: "" },
+          ServerName: "",
+          CharacterName: "",
+          CharacterLevel: "",
+          CharacterClassName: "",
+          ItemAvgLevel: "",
+          ItemMaxLevel: "",
+        },
+        ArmoryEquipment: {
+          무기: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          투구: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          상의: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          하의: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          장갑: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          어깨: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          목걸이: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            ItemGrade: "", //아이템강화단계
+            ItemLevel: "", //아이템레벨
+            qualityValue: "", //품질
+            MainPower: {}, //기본효과
+            PlusPower: {}, //추가효과
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            IsCommon01: "", //공용엘릭서
+            Option01: "", //엘릭서옵션
+            Level01: "", //엘릭서레벨
+            IsCommon02: "", //공용엘릭서
+            Option02: "", //엘릭서옵션
+            Level02: "", //엘릭서레벨
+            IsCommon03: "", //공용엘릭서
+            Option03: "", //엘릭서옵션
+            Level03: "", //엘릭서레벨
+            SetOption: "", //세트옵션
+            SetOptionLevel: "", //옵션레벨
+          },
+          팔찌: {
+            Name: "", //이름
+            Icon: "", //아이콘
+            Grade: "", //등급(고대)
+            Stats: {
+              치명: "",
+              특화: "",
+              제압: "",
+              신속: "",
+              인내: "",
+              숙련: "",
+              "최대 생명력": "",
+              공격력: "",
+            },
+            OptionName1: "",
+            OptionName2: "",
+            OptionName3: "",
+            OptionName4: "",
+          },
+        },
+      };
+
+      // Object.keys(data).forEach((sub) => {
+      //   Object.keys(data[sub]).forEach((key) => {
+      //     if (typeof data[sub][key] == "object") {
+      //       res[sub][key].forEach((element) => {
+      //         data[sub][key][element["Type"]] = element["Value"]
+      //           ? element["Value"]
+      //           : element["Point"];
+      //       });
+      //     } else {
+      //       data[sub][key] = res[sub][key];
+      //     }
+      //   });
+      // });
+
+      // const dat = JSON.parse(res["ArmoryEquipment"][0]);
+      console.log(res["ArmoryEquipment"][12]["Tooltip"]);
 
       // DB에 작업 반영
       await conn.commit();
-      // return { ...data, ok: true };
       return { ok: true, data: res };
     } catch (err) {
       // DB 작업 취소
