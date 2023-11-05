@@ -211,7 +211,7 @@ const Battle = function () {
             <div className={isFold ? "detail" : "summary"}>
               {gems.Gems.map((item) => (
                 <div
-                  key={item._key}
+                  key={item.GemSlot}
                   className={isFold ? "col-1 list" : "col-1 detail"}
                 >
                   <div
@@ -222,6 +222,16 @@ const Battle = function () {
                     }}
                   >
                     <img src={item.Icon}></img>
+                  </div>
+                  <div
+                    className={isFold ? "" : "none"}
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      backgroundColor: "#15181d",
+                    }}
+                  >
+                    <img src={item} />
                   </div>
                   <div
                     style={{
