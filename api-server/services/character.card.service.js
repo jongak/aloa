@@ -33,7 +33,9 @@ const CharacterCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
       const res = await CharacterModel.getCharacter(characterName);
-
+      var elixirLevel = 0;
+      var transLevel = 0;
+      var transGrade = 0;
       const data = {
         ArmoryProfile: {
           CharacterImage: "",
@@ -214,6 +216,12 @@ const CharacterCardService = {
             Icon: "", //아이콘
             Grade: "", //등급(고대)
           },
+          option: {
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            ElixirName: "",
+            ElixirLevel: "",
+          },
         },
       };
 
@@ -305,6 +313,8 @@ const CharacterCardService = {
                 data[sub][Type]["TransLevel"] = Number(
                   TransTooltip.substr(TransTooltip.indexOf("</img>") + 6)
                 );
+                transGrade += data[sub][Type]["TransGrade"];
+                transLevel += data[sub][Type]["TransLevel"];
               }
               if (isElixir) {
                 const Elixir00Tooltip =
@@ -335,7 +345,23 @@ const CharacterCardService = {
                     1
                   )
                 );
+                elixirLevel +=
+                  data[sub][Type]["Elixir00"]["level"] +
+                  data[sub][Type]["Elixir01"]["level"];
               }
+            }
+
+            if (Type == "투구" && isElixir) {
+              var myElixir = "";
+              if (isTrans) {
+                myElixir = dat["Element_010"]["value"]["Element_000"]["topStr"];
+              } else {
+                myElixir = dat["Element_009"]["value"]["Element_000"]["topStr"];
+              }
+              data[sub]["option"]["ElixirName"] = myElixir.substring(
+                myElixir.indexOf("><FONT SIZE='12' color='#91FE02'>") + 33,
+                myElixir.indexOf(")</FONT>") - 5
+              );
             }
 
             if (Type == "목걸이") {
@@ -407,7 +433,9 @@ const CharacterCardService = {
           });
         }
       });
-
+      data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
+      data["ArmoryEquipment"]["option"]["TransLevel"] = transLevel;
+      data["ArmoryEquipment"]["option"]["ElixirLevel"] = elixirLevel;
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };
