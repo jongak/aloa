@@ -74,6 +74,7 @@ const CardFront = function ({
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
         setUserData(res);
+        console.log(res);
       });
     }
   }, [characterNameRef.current]);
