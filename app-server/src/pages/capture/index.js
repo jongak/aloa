@@ -12,7 +12,7 @@ const capture = function () {
   const [isChanged, setIsChanged] = useState(true);
   const [isCardReady, setIsCardReady] = useState(false);
   const rarityPresetRef = useRef("custom");
-  const characterName = useRef();
+  const characterNameRef = useRef();
   const holoRef = useRef(true);
   const glowRef = useRef(true);
   const shineRef = useRef(true);
@@ -182,7 +182,7 @@ const capture = function () {
           <Outlet
             context={{
               setPage,
-              characterName,
+              characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
             }}
@@ -193,6 +193,7 @@ const capture = function () {
           {/* {cardImgMemo} */}
 
           <CardFront
+            characterNameRef={characterNameRef}
             divRef={divRef}
             setIsLoading={setIsLoading}
             style={{

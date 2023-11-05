@@ -39,7 +39,7 @@ const getData = async function (id) {
 };
 
 const FindName = function () {
-  const { setPage, characterName } = useOutletContext();
+  const { setPage, characterNameRef } = useOutletContext();
   const userName = useRef();
   const [userList, setUserList] = useState([]);
 
@@ -60,7 +60,7 @@ const FindName = function () {
           <UserItem
             key={character["CharacterName"]}
             character={character}
-            characterName={characterName}
+            characterNameRef={characterNameRef}
           />
         );
       });

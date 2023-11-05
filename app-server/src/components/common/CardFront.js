@@ -1,11 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef } from "react";
-
-const imgurl = [
-  "https://img.lostark.co.kr/armory/7/20b6dbe15f97e00ed8a1e38bc65661f7ae6ba10d06e6071852f25ca6d3c6b05d.png",
-  "https://img.lostark.co.kr/armory/7/eb6148f94d92abe15db50db40380bd9e1c9fd93e5fa874002df5a11dae9713cb.png",
-  "https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png",
-];
+import { useEffect, useRef, useState } from "react";
 
 const getData = async function (url) {
   try {
@@ -16,15 +10,28 @@ const getData = async function (url) {
   }
 };
 
+const getDataCard = async function (id) {
+  try {
+    const res = await axios.get(`/character/carddata/${id}`);
+    if (res.data.ok) {
+      return res.data.data;
+    }
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const CardFront = function ({
+  characterNameRef,
   setIsLoading,
   style,
   divRef,
   bgImgSrc = "/assets/images/card_bg.png",
   bgFrame = "/assets/images/card_frame.png",
 }) {
-  const imgRef = useRef([{}, {}, {}]);
-
+  const imgRef = useRef();
+  const [userData, setUserData] = useState();
   const engraving = [
     {
       Icon: "https://cdn-lostark.game.onstove.com/efui_iconatlas/buff/buff_71.png",
@@ -62,17 +69,26 @@ const CardFront = function ({
         "이동기 및 기본공격을 제외한 스킬 사용 시 6초 동안 공격력이 0.3% 증가하며 (최대 6중첩) 해당 효과가 최대 중첩 도달 시 치명타 적중률이 추가로 5% 증가한다. 해당 효과는 스킬 취소에 따른 재사용 대기시간 감소가 적용되는 경우, 스킬 종료 후 적용된다.",
     },
   ];
+
   useEffect(() => {
-    imgurl.map(async (url, i) => {
-      const base64Data = await getData(url);
-      imgRef.current[i].src = base64Data;
-      // imgRef.current[i].src = url;
-    });
-    setTimeout(() => {
-      setIsLoading(true);
-    }, 500);
-  }, []);
-  var avater = imgRef.current[0].src;
+    if (characterNameRef.current) {
+      getDataCard(characterNameRef.current).then((res) => {
+        setUserData(res);
+      });
+    }
+  }, [characterNameRef.current]);
+
+  useEffect(() => {
+    if (characterNameRef.current) {
+      getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
+        imgRef.current = res;
+      });
+      setTimeout(() => {
+        setIsLoading(true);
+      }, 500);
+    }
+  }, [userData]);
+
   return (
     <div
       className="cardImg"
@@ -143,34 +159,14 @@ const CardFront = function ({
           >
             <div
               className="cardCharacter"
-              ref={(ref) => (imgRef.current[0] = ref)}
               style={{
                 width: "100%",
                 height: "100%",
-                backgroundImage: `url(${avater})`,
+                backgroundImage: `url(${imgRef.current})`,
                 backgroundRepeat: "no-repeat",
                 opacity: 1,
               }}
             ></div>
-            {/* {[0, 1, 2].map((item) => (
-              <div
-                className="imgCrop"
-                key={item}
-                style={{
-                  width: "30%",
-                  height: "90%",
-                  overflow: "hidden",
-                }}
-              >
-                <img
-                  className="cardCharacter"
-                  ref={(ref) => (imgRef.current[item] = ref)}
-                  style={{
-                    transform: "scale(2,2) translate(-0%,30%)",
-                  }}
-                />
-              </div>
-            ))} */}
           </div>
           <div
             className="engraves"
@@ -178,7 +174,7 @@ const CardFront = function ({
           >
             <ul>
               {engraving.map((item) => (
-                <li key={item._key} style={{ width: "40px" }}>
+                <li key={item.Icon} style={{ width: "40px" }}>
                   <img
                     src={item.Icon}
                     style={{
