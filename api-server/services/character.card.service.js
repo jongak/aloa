@@ -223,7 +223,17 @@ const CharacterCardService = {
             ElixirLevel: "",
           },
         },
+        ArmoryEngraving: {
+          fullEffects: [],
+          Level: "",
+          JobEffects: [],
+          Effects: [],
+        },
       };
+
+      Object.keys(res).forEach((sub) => {
+        console.log(sub);
+      });
 
       Object.keys(data).forEach((sub) => {
         if (sub == "ArmoryProfile") {
@@ -431,11 +441,33 @@ const CharacterCardService = {
                 dat["Element_004"]["value"]["Element_001"];
             }
           });
+        } else if (sub == "ArmoryEngraving") {
+          res[sub]["Effects"].forEach((element) => {
+            const tmp = {};
+            tmp["Icon"] = element["Icon"];
+            const nameSplice = element["Name"].split(" Lv. ");
+            tmp["Name"] = nameSplice[0];
+            tmp["Level"] = Number(nameSplice[1]);
+            if (tmp["Level"] == 3) {
+              data[sub]["fullEffects"].push(tmp);
+            } else {
+              data[sub]["Effects"].push(tmp);
+            }
+          });
         }
       });
       data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
       data["ArmoryEquipment"]["option"]["TransLevel"] = transLevel;
       data["ArmoryEquipment"]["option"]["ElixirLevel"] = elixirLevel;
+
+      var engravingLevel = "";
+      data["ArmoryEngraving"]["fullEffects"].forEach(() => {
+        engravingLevel += "3";
+      });
+      data["ArmoryEngraving"]["Effects"].forEach((element) => {
+        engravingLevel += String(element["Level"]);
+      });
+      data["ArmoryEngraving"]["Level"] = engravingLevel;
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };
