@@ -9,14 +9,14 @@ const CharacterModel = {
       "armories/characters/" +
       characterName +
       "?filters=profiles%2B" +
-      "equipment%2B" +
-      "avatars%2B" +
-      "combat-skills%2B" +
-      "engravings%2B" +
-      "cards%2B" +
-      "gems%2B" +
-      "colosseums%2B" +
-      "collectibles";
+      "equipment%2B";
+    // "avatars%2B" +
+    // "combat-skills%2B" +
+    // "engravings%2B" +
+    // "cards%2B" +
+    // "gems%2B" +
+    // "colosseums%2B" +
+    // "collectibles";
     const headers = {
       accept: "application/json",
       authorization: "bearer " + process.env.REACT_APP_LOSTARK_API_KEY,
