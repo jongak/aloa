@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./detail.css";
+import gems from "../../data/gem.json";
 
 const Battle = function () {
   const [expanded, setExpanded] = useState(false); // expanded 상태와 setter 함수
@@ -8,8 +9,6 @@ const Battle = function () {
     setExpanded(!expanded); // 상태를 토글하는 함수
   };
   const accordionHeight = expanded ? "80vh" : "25vh";
-
-  ///
 
   const [isTransformed, setIsTransformed] = useState(false);
 
@@ -21,6 +20,12 @@ const Battle = function () {
   const transformStyle = isTransformed
     ? { transform: "rotate(180deg) translateZ(0px)" }
     : { transform: "none" };
+
+  const [isFold, setFold] = useState(false);
+  const foldToggle = function () {
+    setFold(!isFold);
+  };
+
   return (
     <div className="container">
       <div className="row" style={{ marginTop: "10px" }}>
@@ -156,6 +161,84 @@ const Battle = function () {
             </div>
           </div>
         </div>
+
+        <div
+          className="container"
+          style={{
+            border: "solid 1px red",
+            backgroundColor: "white",
+            marginTop: "10px",
+            padding: "20px",
+          }}
+        >
+          <div
+            className="row justify-content-between"
+            onClick={foldToggle}
+            style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}
+          >
+            <span className="col-6 d-flex">
+              <span className="">보석</span>
+              <div className="">
+                <span>7멸</span>
+                <span>4홍</span>
+                <span>레벨 10</span>
+              </div>
+            </span>
+            <div className="col-1 align-self-center">
+              <div style={{ transformStyle }}>
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 24 24"
+                  height="1.25em"
+                  width="1.25em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{
+                    verticalAlign: "middle",
+                    display: "inline-flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <path fill="none" d="M24 24H0V0h24v24z" opacity=".87"></path>
+                  <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6-1.41-1.41z"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className={isFold ? "detail" : "summary"}>
+              {gems.Gems.map((item) => (
+                <div
+                  key={item._key}
+                  className={isFold ? "col-1 list" : "col-1 detail"}
+                >
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "36px",
+                      backgroundColor: "#15181d",
+                    }}
+                  >
+                    <img src={item.Icon}></img>
+                  </div>
+                  <div
+                    style={{
+                      width: "36px",
+                      height: "20px",
+                      backgroundColor: "gray",
+                      lineHeight: "18px",
+                    }}
+                  >
+                    {item.Level}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
         <div
           className="col-12"
           style={{
