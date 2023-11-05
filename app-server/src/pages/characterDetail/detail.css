@@ -22,3 +22,14 @@
     display: none;
   }
 }
+.summary {
+  display: flex;
+}
+.detail {
+  display: block;
+}
+.list {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
