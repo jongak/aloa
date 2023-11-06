@@ -233,6 +233,9 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             ElixirName: "",
             ElixirLevel: "",
+            SetNames: {},
+            SetOption: "",
+            SetLevel: "지원안함",
           },
         },
         ArmoryEngraving: {
@@ -280,36 +283,6 @@ const CharacterCardService = {
             data[sub][Type]["Icon"] = res[sub][element]["Icon"];
             data[sub][Type]["Grade"] = res[sub][element]["Grade"];
             const dat = JSON.parse(res[sub][i]["Tooltip"]);
-
-            // if (Type == "무기") {
-            //   console.log(res[sub][i]["Tooltip"]);
-            // }
-            // if (Type == "무기") {
-
-            //   data[sub][Type]["SetName"] = dat["Element_008"]["value"][
-            //     "Element_001"
-            //   ].split(" <FONT COLOR='#FFD200'>Lv.")[0];
-            //   data[sub][Type]["SetLevel"] = Number(
-            //     dat["Element_008"]["value"]["Element_001"].split(
-            //       " <FONT COLOR='#FFD200'>Lv."
-            //     )[1][0]
-            //   );
-            // }
-
-            if (
-              ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
-            ) {
-              data[sub][Type]["ItemGrade"] = parseInt(
-                res[sub][element]["Name"].replace(NumberRegex, "")
-              );
-              data[sub][Type]["qualityValue"] =
-                dat["Element_001"]["value"]["qualityValue"];
-              data[sub][Type]["SetName"] =
-                dat["Element_008"]["value"]["Element_001"];
-            } else if (Type == "목걸이") {
-              data[sub][Type]["qualityValue"] =
-                dat["Element_001"]["value"]["qualityValue"];
-            }
 
             var isTrans = true;
             var isElixir = true;
@@ -412,9 +385,65 @@ const CharacterCardService = {
                 myElixir = dat["Element_009"]["value"]["Element_000"]["topStr"];
               }
               data[sub]["option"]["ElixirName"] = myElixir.substring(
-                myElixir.indexOf("><FONT SIZE='12' color='#91FE02'>") + 33,
+                myElixir.indexOf("><FONT SIZE='12'") + 33,
                 myElixir.indexOf(")</FONT>") - 5
               );
+            }
+
+            if (
+              ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
+            ) {
+              data[sub][Type]["ItemGrade"] = parseInt(
+                res[sub][element]["Name"].replace(NumberRegex, "")
+              );
+              data[sub][Type]["qualityValue"] =
+                dat["Element_001"]["value"]["qualityValue"];
+
+              var whereSet = 8;
+              if (data[sub][Type]["ItemGrade"] == 25) {
+                whereSet -= 1;
+              }
+              if (Type != "무기") {
+                if (isElixir) {
+                  whereSet += 1;
+                }
+                if (isTrans) {
+                  whereSet += 1;
+                }
+              }
+              if (
+                ["투구", "장갑"].includes(Type) &&
+                data[sub]["option"]["ElixirName"]
+              ) {
+                whereSet += 1;
+              }
+
+              var mySetOption =
+                dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["value"][
+                  "Element_001"
+                ];
+
+              console.log(whereSet);
+              console.log(mySetOption);
+              console.log("+++++++++++++++++");
+
+              data[sub][Type]["SetName"] = mySetOption.split(
+                " <FONT COLOR='#FFD200'>Lv."
+              )[0];
+              data[sub][Type]["SetLevel"] = Number(
+                mySetOption.split(" <FONT COLOR='#FFD200'>Lv.")[1][0]
+              );
+
+              if (data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]]) {
+                data[sub]["option"]["SetNames"][
+                  data[sub][Type]["SetName"]
+                ] += 1;
+              } else {
+                data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]] = 1;
+              }
+            } else if (Type == "목걸이") {
+              data[sub][Type]["qualityValue"] =
+                dat["Element_001"]["value"]["qualityValue"];
             }
 
             if (Type == "목걸이") {
@@ -533,6 +562,23 @@ const CharacterCardService = {
       data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
       data["ArmoryEquipment"]["option"]["TransLevel"] = transLevel;
       data["ArmoryEquipment"]["option"]["ElixirLevel"] = elixirLevel;
+      if (data["ArmoryEquipment"]["option"]["ElixirName"].includes("<FONT")) {
+        data["ArmoryEquipment"]["option"]["ElixirName"] = "";
+      }
+      Object.keys(data["ArmoryEquipment"]["option"]["SetNames"]).forEach(
+        (option) => {
+          if (
+            Object.keys(data["ArmoryEquipment"]["option"]["SetNames"]).length >
+            1
+          ) {
+            data["ArmoryEquipment"]["option"]["SetOption"] +=
+              data["ArmoryEquipment"]["option"]["SetNames"][option] + option[0];
+          } else {
+            data["ArmoryEquipment"]["option"]["SetOption"] +=
+              data["ArmoryEquipment"]["option"]["SetNames"][option] + option;
+          }
+        }
+      );
 
       var engravingLevel = "";
       data["ArmoryEngraving"]["fullEffects"].forEach(() => {
