@@ -225,12 +225,12 @@ const CardBack = function ({
   ];
   return (
     <div
-      className="cardImg"
+      className="cardImg_b"
       ref={divRef}
       style={{ ...style, margin: "100px", width: "600px", height: "800px" }}
     >
       <div
-        className="cardBody"
+        className="cardBody_b"
         style={{
           backgroundImage: `url(${bgImgSrc})`,
           backgroundSize: "cover",
@@ -241,7 +241,7 @@ const CardBack = function ({
         }}
       >
         <div
-          className="cardTop container"
+          className="cardTop_b container"
           style={{
             // backgroundColor: "#80808038",
             position: "absolute",
@@ -412,7 +412,8 @@ const CardBack = function ({
                       padding: "0 44px",
                     }}
                   >
-                    <span style={{ float: "left" }}>추가</span>
+                    <span style={{ float: "left" }}>특화</span>
+                    <span>1673</span>
                   </div>
                   <div
                     className="col-10"
@@ -447,12 +448,12 @@ const CardBack = function ({
                       padding: "0 44px",
                     }}
                   >
-                    <span style={{ float: "left" }}>특화</span>
-                    <span>1673</span>
+                    <span style={{ float: "left" }}>길드</span>
+                    <span>혈석</span>
                   </div>
                 </div>
 
-                <div className="engraves">
+                <div className="engraves2">
                   <ul style={{ display: "inline-flex", marginTop: "12px" }}>
                     {engraving.map((item) => (
                       <li

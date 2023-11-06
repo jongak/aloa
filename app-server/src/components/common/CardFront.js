@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import "./card.css";
 
 const getData = async function (url) {
   try {
@@ -91,348 +92,167 @@ const CardFront = function ({
   }, [userData]);
   // console.log(userData.ArmoryProfile.CharacterName);
   return (
-    <div
-      className="cardImg"
-      ref={divRef}
-      style={{ ...style, margin: "100px", width: "600px", height: "800px" }}
-    >
-      <div
-        className="cardBody"
-        style={{
-          background: "#15181D",
-          backgroundSize: "cover",
-          display: "inline-block",
-          width: "600px",
-          height: "800px",
-          position: "relative",
-        }}
-      >
-        <img
-          src={bgFrame}
-          style={{ position: "absolute", zIndex: "10", right: 0 }}
-        />
+    <div className="cardImg" ref={divRef} style={{ ...style }}>
+      <div className="cardBody">
+        <img id="cardFrame" src={bgFrame} />
 
-        <div
-          className="cardTop"
-          style={{
-            // width: "89px",
-            height: "40px",
-            position: "absolute",
-            zIndex: "999",
-            top: "46px",
-            right: "60px",
-            marginTop: "10px",
-          }}
-        >
-          <span
-            style={{
-              backgroundColor: "#80808038",
-              borderRadius: "15px",
-
-              opacity: "1",
-              fontSize: "20px",
-              fontWeight: "800",
-              padding: "14px",
-              lineHeight: "40px",
-              color: "#fff",
-            }}
-          >
+        <div className="cardTop">
+          <span className="card_front_servername">
             {userData ? userData.ArmoryProfile.ServerName : "서버명"}
           </span>
         </div>
-        <div
-          className="cardMiddle"
-          style={{
-            // backgroundColor: "yellow",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-          }}
-        >
-          <div
-            className="cardImgs"
-            style={{
-              // backgroundColor: "green",
-              width: "100%",
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
+        <div className="cardMiddle">
+          <div className="cardImgs">
             <div
               className="cardCharacter"
               style={{
-                width: "100%",
-                height: "100%",
                 backgroundImage: `url(${imgRef.current})`,
-                backgroundRepeat: "no-repeat",
-                opacity: 1,
-                backgroundPositionY: "40px",
               }}
             ></div>
           </div>
-          <div
-            className="engraves"
-            style={{ position: "absolute", top: "120px", right: "60px" }}
-          >
+          <div className="engraves" style={{}}>
             <ul>
-              {engraving.map((item) => (
-                <li key={item.Icon} style={{ width: "40px" }}>
-                  <img
-                    src={item.Icon}
-                    style={{
-                      borderRadius: "50%",
-                      overflow: "hidden",
-                      marginBottom: "4px",
-                    }}
-                  />
+              {userData ? (
+                userData.ArmoryEngraving.fullEffects.map((item) => (
+                  <li key={item.Icon} style={{}}>
+                    <img className="card_front_engraves" src={item.Icon} />
+                  </li>
+                ))
+              ) : (
+                <li className="empty_engraving">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
                 </li>
-              ))}
+              )}
+              {userData
+                ? userData.ArmoryEngraving.Effects.map((item) => (
+                    <li key={item.Icon} style={{}}>
+                      <img
+                        className="card_front_engraves"
+                        src={item.Icon}
+                        style={{}}
+                      />
+                    </li>
+                  ))
+                : ""}
             </ul>
           </div>
-          <div
-            className="ImgTitles"
-            style={{
-              background:
-                "linear-gradient(0deg, rgba(70,69,69,0.7) 40%, rgba(70,69,69,0.0) 100%)",
-              width: "100%",
-              height: "400px",
-              position: "absolute",
-              bottom: "0",
-              left: "0px",
-              alignItems: "center",
-              textAlign: "center",
-              paddingTop: "116px",
-            }}
-          >
+          <div className="card_front_title">
             <div className="class_mark">
               <img
+                id="class_mark"
                 src="/assets/images/class_mark/mark-lancemaster-border.png"
-                style={{
-                  paddingLeft: "10px",
-                  width: "88px",
-                  position: "absolute",
-                  top: "32px",
-                  left: "56px",
-                }}
+                style={{}}
               />
             </div>
 
             <div className="row justify-content-center">
-              <div className="col align-self-center">
-                <h3
-                  style={{
-                    color: "#fff",
-                    fontWeight: "800",
-                    textShadow: "2px 3px 4px #15181D",
-                    marginBottom: "20px",
-                    paddingRight: "16px",
-                  }}
-                >
-                  {userData ? userData.ArmoryProfile.CharacterName : "닉네임"}
+              <div className="col align-self-center nickname">
+                <h3 style={{}}>
+                  {userData
+                    ? userData.ArmoryProfile.CharacterName
+                    : "열두자까지가능한닉네임임"}
                 </h3>
               </div>
             </div>
-            <div
-              className="lvl"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "-21px",
-                textShadow: "2px 3px 4px #15181D",
-                fontSize: "20px",
-                fontWeight: "600",
-              }}
-            >
-              <div
-                className="ImgTitle"
-                style={{
-                  color: "#fff",
-                  display: "flex",
-                  padding: "0 10px",
-                }}
-              >
+            <div className="lvl" style={{}}>
+              <div className="card_front_equipments_lvl" style={{}}>
                 <div>
                   <img src="/assets/images/power.png" />
                 </div>
                 <div>
-                  {userData ? userData.ArmoryProfile.ItemAvgLevel : "-"}
+                  {userData
+                    ? userData.ArmoryProfile.ItemAvgLevel.substring(0, 6)
+                    : " -"}
+                </div>
+                <div id="card_front_equipments_lvl_decimal">
+                  {userData
+                    ? userData.ArmoryProfile.ItemAvgLevel.substring(6, 8)
+                    : " "}
                 </div>
               </div>
-              <div
-                className="ImgTitle"
-                style={{
-                  color: "#fff",
-                  display: "flex",
-                  padding: "0 10px",
-                }}
-              >
+              <div className="card_front_expedition_lvl" style={{}}>
                 <div>
                   <img src="/assets/images/team.png" />
                 </div>
                 <div>
-                  Lv {userData ? userData.ArmoryProfile.ExpeditionLevel : "-"}
+                  Lv {userData ? userData.ArmoryProfile.ExpeditionLevel : " -"}
                 </div>
               </div>
             </div>
 
-            <div className="container" style={{ marginTop: "10px" }}>
+            <div className="container card_front_info">
               <div
-                className="row justify-content-center"
-                style={{
-                  color: "#fff",
-                  textShadow: "2px 3px 4px #15181D",
-                  fontSize: "18px",
-                  padding: "0 48px",
-                }}
+                className="row justify-content-center card_front_info_table"
+                style={{}}
               >
-                <div className="col-2">
-                  <div>세트</div>
-                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
-                    사멸
-                  </div>
+                <div className="col-2 card_front_info_table_tr">
+                  <div className="card_front_info_table_th">세트</div>
+                  <div className="card_front_info_table_td">사멸</div>
                 </div>
-                <div className="col-2">
-                  <div>보석</div>
-                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
-                    Lv 9.7
-                  </div>
+                <div className="col-2 card_front_info_table_tr">
+                  <div className="card_front_info_table_th">보석</div>
+                  <div className="card_front_info_table_td">Lv 9.7</div>
                 </div>
-                <div className="col-2">
-                  <div>엘릭서</div>
-                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
-                    달인
-                  </div>
+                <div className="col-2 card_front_info_table_tr">
+                  <div className="card_front_info_table_th">엘릭서</div>
+                  <div className="card_front_info_table_td">달인</div>
                 </div>
-                <div className="col-2">
-                  <div>카드</div>
-                  <div style={{ fontSize: "20px", fontWeight: "600" }}>
-                    세구빛
-                  </div>
+                <div className="col-2 card_front_info_table_tr">
+                  <div className="card_front_info_table_th">카드</div>
+                  <div className="card_front_info_table_td">세구빛</div>
                 </div>
-                <div className="col-2">
-                  <div>악추피</div>
-                  <div style={{ fontSize: "22px", fontWeight: "600" }}>
-                    6.78%
-                  </div>
+                <div className="col-2 card_front_info_table_tr">
+                  <div className="card_front_info_table_th">악추피</div>
+                  <div className="card_front_info_table_td">6.78%</div>
                 </div>
               </div>
             </div>
 
-            <div
-              className="container"
-              style={{ marginTop: "32px", width: "85%" }}
-            >
-              <div
-                className="row justify-content-center"
-                style={{ color: "#fff" }}
-              >
-                <div className="col-2">
+            <div className="container card_front_icons">
+              <div className="row justify-content-center card_front_icons_table">
+                <div className="col-2 card_front_icons_table_tr">
                   <div>
                     <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/lm_item/lm_item_01_145.png" />
                   </div>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                    }}
-                  >
-                    +25
-                  </span>
+                  <span className="card_front_icons_table_badge">+25</span>
                 </div>
-                <div className="col-2">
+                <div className="col-2 card_front_icons_table_tr">
                   <div>
                     <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/ability/ability_257.png" />
                   </div>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                      left: "230px",
-                    }}
-                  >
-                    9
-                  </span>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                      left: "254px",
-                    }}
-                  >
-                    7
-                  </span>
+                  <span className="card_front_icons_table_badge">9</span>
+                  <span className="card_front_icons_table_badge">7</span>
                 </div>
 
-                <div className="col-2" style={{ marginLeft: "-16px" }}>
+                <div className="col-2 card_front_icons_table_tr2">
                   <div>
                     <img src="/assets/images/exlixer.webp" />
                   </div>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                    }}
-                  >
+                  <span className="card_front_icons_table_badge" style={{}}>
                     40
                   </span>
                 </div>
-                <div className="col-2" style={{ marginLeft: "-16px" }}>
+                <div className="col-2 card_front_icons_table_tr2">
                   <div>
                     <img
-                      src="/assets/images/card2.png"
-                      style={{
-                        width: "40px",
-                        height: "58px",
-                        boxShadow:
-                          "#FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, 44px -38px 17px 50px rgba(0,0,0,0)",
-                      }}
+                      id="card_front_icons_card"
+                      src="/assets/images/card.png"
                     />
                   </div>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                    }}
-                  >
+                  <span className="card_front_icons_table_badge" style={{}}>
                     30
                   </span>
                 </div>
-                <div className="col-2" style={{ marginLeft: "-16px" }}>
+                <div className="col-2 card_front_icons_table_tr2">
                   <div>
                     <img src="/assets/images/cho.png" />
                   </div>
-                  <span
-                    style={{
-                      borderRadius: "10px",
-                      backgroundColor: "blue",
-                      padding: "2px 5px",
-                      fontWeight: "700",
-                      position: "absolute",
-                      top: "330px",
-                    }}
-                  >
+                  <span className="card_front_icons_table_badge" style={{}}>
                     40
                   </span>
                 </div>
@@ -440,13 +260,6 @@ const CardFront = function ({
             </div>
           </div>
         </div>
-        <div
-          className="cardBlank"
-          style={{
-            width: "100%",
-            height: "15%",
-          }}
-        ></div>
       </div>
     </div>
   );
