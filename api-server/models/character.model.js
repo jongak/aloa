@@ -12,9 +12,9 @@ const CharacterModel = {
       "equipment%2B" +
       // "avatars%2B" +
       // "combat-skills%2B" +
-      "engravings%2B";
-    // "cards%2B" +
-    // "gems%2B" +
+      "engravings%2B" +
+      // "cards%2B" +
+      "gems%2B";
     // "colosseums%2B" +
     // "collectibles";
     const headers = {

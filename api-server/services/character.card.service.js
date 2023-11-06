@@ -229,6 +229,17 @@ const CharacterCardService = {
           JobEffects: [],
           Effects: [],
         },
+        ArmoryGem: {
+          option: {
+            MeulLevel: 0,
+            MeulNum: 0,
+            HongLevel: 0,
+            HongNum: 0,
+            Level: 0,
+            Num: 0,
+          },
+          Gems: [],
+        },
       };
 
       Object.keys(res).forEach((sub) => {
@@ -331,10 +342,7 @@ const CharacterCardService = {
                   ElixirTooltip["contentStr"]["Element_000"][
                     "contentStr"
                   ].substring(4);
-                const Elixir01Tooltip =
-                  ElixirTooltip["contentStr"]["Element_001"][
-                    "contentStr"
-                  ].substring(4);
+
                 data[sub][Type]["Elixir00"]["name"] = Elixir00Tooltip.substring(
                   Elixir00Tooltip.indexOf("</FONT>") + 8,
                   Elixir00Tooltip.indexOf(" <FONT color='#FFD200'>")
@@ -345,6 +353,13 @@ const CharacterCardService = {
                     1
                   )
                 );
+                elixirLevel += data[sub][Type]["Elixir00"]["level"];
+              }
+              if (isElixir && ElixirTooltip["contentStr"]["Element_001"]) {
+                const Elixir01Tooltip =
+                  ElixirTooltip["contentStr"]["Element_001"][
+                    "contentStr"
+                  ].substring(4);
                 data[sub][Type]["Elixir01"]["name"] = Elixir01Tooltip.substring(
                   Elixir01Tooltip.indexOf("</FONT>") + 8,
                   Elixir01Tooltip.indexOf(" <FONT color='#FFD200'>")
@@ -355,9 +370,7 @@ const CharacterCardService = {
                     1
                   )
                 );
-                elixirLevel +=
-                  data[sub][Type]["Elixir00"]["level"] +
-                  data[sub][Type]["Elixir01"]["level"];
+                elixirLevel += data[sub][Type]["Elixir01"]["level"];
               }
             }
 
@@ -454,6 +467,31 @@ const CharacterCardService = {
               data[sub]["Effects"].push(tmp);
             }
           });
+        } else if (sub == "ArmoryGem" && res[sub]) {
+          res[sub]["Gems"].forEach((element) => {
+            const dat = JSON.parse(element["Tooltip"]);
+            const tmp = {};
+            tmp["Level"] = element["Level"];
+            tmp["Name"] = element["Name"].substring(
+              element["Name"].indexOf("<FONT COLOR='#FA5D00'>") + 22,
+              element["Name"].indexOf("</FONT>")
+            );
+            tmp["isMeul"] = tmp["Name"].includes("멸화");
+            if (
+              dat["Element_004"]["value"]["Element_001"].includes(
+                data["ArmoryProfile"]["CharacterClassName"]
+              )
+            ) {
+              data[sub]["Gems"].push(tmp);
+              if (tmp["isMeul"]) {
+                data[sub]["option"]["MeulLevel"] += tmp["Level"];
+                data[sub]["option"]["MeulNum"] += 1;
+              } else {
+                data[sub]["option"]["HongLevel"] += tmp["Level"];
+                data[sub]["option"]["HongNum"] += 1;
+              }
+            }
+          });
         }
       });
       data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
@@ -468,6 +506,21 @@ const CharacterCardService = {
         engravingLevel += String(element["Level"]);
       });
       data["ArmoryEngraving"]["Level"] = engravingLevel;
+      data["ArmoryGem"]["option"]["Level"] =
+        data["ArmoryGem"]["option"]["HongLevel"] +
+        data["ArmoryGem"]["option"]["MeulLevel"];
+      data["ArmoryGem"]["option"]["Num"] =
+        data["ArmoryGem"]["option"]["HongNum"] +
+        data["ArmoryGem"]["option"]["MeulNum"];
+      data["ArmoryGem"]["option"]["HongLevel"] =
+        data["ArmoryGem"]["option"]["HongLevel"] /
+        data["ArmoryGem"]["option"]["HongNum"];
+      data["ArmoryGem"]["option"]["MeulLevel"] =
+        data["ArmoryGem"]["option"]["MeulLevel"] /
+        data["ArmoryGem"]["option"]["MeulNum"];
+      data["ArmoryGem"]["option"]["Level"] =
+        data["ArmoryGem"]["option"]["Level"] /
+        data["ArmoryGem"]["option"]["Num"];
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };
