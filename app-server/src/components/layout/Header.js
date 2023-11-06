@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import Toggle from "../common/Toggle";
+import { useDispatch } from "react-redux";
+import { setIsDark } from "../../store/mainSlice";
 
-function Header({ setThema, setIsDark }) {
+function Header({ setThema }) {
+  const dispatch = useDispatch();
   return (
     <header className="header-area header-sticky">
       <div className="container">
@@ -42,7 +45,12 @@ function Header({ setThema, setIsDark }) {
                 <span>Menu</span>
               </Link>
 
-              <Toggle setValueRef={setIsDark} options={["dark", "light"]} />
+              <Toggle
+                setValueRef={(e) => {
+                  dispatch(setIsDark({ newIsDark: e }));
+                }}
+                options={["light", "dark"]}
+              />
               <Toggle
                 setValueRef={setThema}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}

@@ -3,19 +3,19 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Button = function ({
-  isFixed = false,
-  isRev = false,
-  toggleRef = null,
-  defaltRefs = [],
-  defaltValues = [],
-  toggleChanged = null,
-  setToggleChanged = null,
-  value,
-  divStyle,
-  href,
-  style,
+  isFixed = false, //모드에 관계없이 css적용
+  isRev = false, //반전모드
+  toggleRef = null, //값
+  defaltRefs = [], //버튼누르면 초기화할값
+  defaltValues = [], //버튼누르면 초기화할값
+  toggleChanged = null, //onClick끝나고 변경됨을알리는 값
+  setToggleChanged = null, //onClick끝나고 변경됨을알리는 값
+  value, //값
+  divStyle, //겉 css
+  href, //링크
+  style, //Link css
   onClick,
-  title,
+  title, //내부들어갈것
 }) {
   // 버튼 스타일을 결정하는 클래스 이름
   var buttonClassName = isRev ? "my_button_rev" : "my_button";

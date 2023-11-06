@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import UserItem from "./UserItem";
+import UserItem from "../../components/common/UserItem";
 
 const serverList = [
   "Lupeon",
