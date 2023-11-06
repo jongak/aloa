@@ -33,7 +33,9 @@ const CharacterCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
       const res = await CharacterModel.getCharacter(characterName);
-
+      var elixirLevel = 0;
+      var transLevel = 0;
+      var transGrade = 0;
       const data = {
         ArmoryProfile: {
           CharacterImage: "",
@@ -214,8 +216,24 @@ const CharacterCardService = {
             Icon: "", //아이콘
             Grade: "", //등급(고대)
           },
+          option: {
+            TransGrade: "", //초월단계
+            TransLevel: "", //초월레벨
+            ElixirName: "",
+            ElixirLevel: "",
+          },
+        },
+        ArmoryEngraving: {
+          fullEffects: [],
+          Level: "",
+          JobEffects: [],
+          Effects: [],
         },
       };
+
+      Object.keys(res).forEach((sub) => {
+        console.log(sub);
+      });
 
       Object.keys(data).forEach((sub) => {
         if (sub == "ArmoryProfile") {
@@ -305,6 +323,8 @@ const CharacterCardService = {
                 data[sub][Type]["TransLevel"] = Number(
                   TransTooltip.substr(TransTooltip.indexOf("</img>") + 6)
                 );
+                transGrade += data[sub][Type]["TransGrade"];
+                transLevel += data[sub][Type]["TransLevel"];
               }
               if (isElixir) {
                 const Elixir00Tooltip =
@@ -335,7 +355,23 @@ const CharacterCardService = {
                     1
                   )
                 );
+                elixirLevel +=
+                  data[sub][Type]["Elixir00"]["level"] +
+                  data[sub][Type]["Elixir01"]["level"];
               }
+            }
+
+            if (Type == "투구" && isElixir) {
+              var myElixir = "";
+              if (isTrans) {
+                myElixir = dat["Element_010"]["value"]["Element_000"]["topStr"];
+              } else {
+                myElixir = dat["Element_009"]["value"]["Element_000"]["topStr"];
+              }
+              data[sub]["option"]["ElixirName"] = myElixir.substring(
+                myElixir.indexOf("><FONT SIZE='12' color='#91FE02'>") + 33,
+                myElixir.indexOf(")</FONT>") - 5
+              );
             }
 
             if (Type == "목걸이") {
@@ -405,9 +441,33 @@ const CharacterCardService = {
                 dat["Element_004"]["value"]["Element_001"];
             }
           });
+        } else if (sub == "ArmoryEngraving") {
+          res[sub]["Effects"].forEach((element) => {
+            const tmp = {};
+            tmp["Icon"] = element["Icon"];
+            const nameSplice = element["Name"].split(" Lv. ");
+            tmp["Name"] = nameSplice[0];
+            tmp["Level"] = Number(nameSplice[1]);
+            if (tmp["Level"] == 3) {
+              data[sub]["fullEffects"].push(tmp);
+            } else {
+              data[sub]["Effects"].push(tmp);
+            }
+          });
         }
       });
+      data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
+      data["ArmoryEquipment"]["option"]["TransLevel"] = transLevel;
+      data["ArmoryEquipment"]["option"]["ElixirLevel"] = elixirLevel;
 
+      var engravingLevel = "";
+      data["ArmoryEngraving"]["fullEffects"].forEach(() => {
+        engravingLevel += "3";
+      });
+      data["ArmoryEngraving"]["Effects"].forEach((element) => {
+        engravingLevel += String(element["Level"]);
+      });
+      data["ArmoryEngraving"]["Level"] = engravingLevel;
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };

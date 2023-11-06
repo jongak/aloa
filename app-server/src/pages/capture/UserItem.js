@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 
 const change = {
   기상술사: "aeromancer",
-  아르카나: "mark-arcana'-border.png",
+  아르카나: "arcana",
   도화가: "artist",
   바드: "bard",
   배틀마스터: "battlemaster",
@@ -26,6 +26,15 @@ const change = {
   스트라이커: "striker",
   서머너: "summoner",
   워로드: "warlord",
+  어쌔신: "assassin",
+  "무도가(여)": "fighter_female",
+  "무도가(남)": "fighter-male",
+  "헌터(남)": "hunter_male",
+  "헌터(여)": " mark-hunter-female",
+  마법사: "magician",
+  스페셜리스트: "specialist",
+  "전사(여)": "warrior-female",
+  "전사(남)": "warrior-male",
 };
 
 const UserItem = function (props) {

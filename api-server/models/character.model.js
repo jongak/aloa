@@ -9,10 +9,10 @@ const CharacterModel = {
       "armories/characters/" +
       characterName +
       "?filters=profiles%2B" +
-      "equipment%2B";
-    // "avatars%2B" +
-    // "combat-skills%2B" +
-    // "engravings%2B" +
+      "equipment%2B" +
+      // "avatars%2B" +
+      // "combat-skills%2B" +
+      "engravings%2B";
     // "cards%2B" +
     // "gems%2B" +
     // "colosseums%2B" +
