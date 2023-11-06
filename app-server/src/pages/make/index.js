@@ -16,6 +16,7 @@ const Makecard = function () {
   const holoRef = useRef(true);
   const glowRef = useRef(true);
   const shineRef = useRef(true);
+  const characterNameRef = useRef();
   const shadowRef = useRef(true);
   const imgSrcRef = useRef({
     value:
@@ -209,7 +210,11 @@ const Makecard = function () {
       {cardImgMemo}
       {LootCardMemo}
 
-      <CardFront setIsLoading={setIsLoading} divRef={divRef} />
+      <CardFront
+        characterNameRef={characterNameRef}
+        setIsLoading={setIsLoading}
+        divRef={divRef}
+      />
       <CardBack />
 
       <input
