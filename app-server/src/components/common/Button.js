@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 
 const Button = function ({
+  isFixed = false,
   isRev = false,
   toggleRef = null,
   defaltRefs = [],
@@ -17,7 +18,10 @@ const Button = function ({
   title,
 }) {
   // 버튼 스타일을 결정하는 클래스 이름
-  const buttonClassName = isRev ? "my_button_rev" : "my_button";
+  var buttonClassName = isRev ? "my_button_rev" : "my_button";
+  if (isFixed) {
+    buttonClassName += " fixed";
+  }
 
   return (
     <div className={buttonClassName} value={value} style={divStyle}>

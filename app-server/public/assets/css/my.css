@@ -1,86 +1,107 @@
 .App {
-  --mygreen: #d1f19c;
-  --mydarkgreen: #829268;
-  --mygray: #393c42;
-  --mywhite: #f7f7f7;
+  --my--green: #d1f19c;
+  --my--white: #f7f7f7;
   --my--shadow: #1d1e21;
+  --dark--1: #1d1e21;
+  --dark--2: #2b2d32;
+  --dark--3: #393c42;
+  --dark--4: #474a51;
+  --dark--5: #55595f;
+  --dark--6: #63686c;
+  --dark--7: #717779;
+  --dark--8: #7f8685;
+  --dark--9: #8c9591;
+  --my--thema: #d1f19c;
+}
+.App.a1 {
+  --my--thema: #d1f19c;
+}
+.App.a2 {
+  --my--thema: #f79d9c;
+}
+.App.a3 {
+  --my--thema: #fad637;
+}
+.App.a4 {
+  --my--thema: #f9c58a;
+}
+.App.a5 {
+  --my--thema: #41a0e0;
+}
+.App.a6 {
+  --my--thema: #a8ffff;
+}
+.App.a7 {
+  --my--thema: #fdeeb1;
+}
+.App.a8 {
+  --my--thema: #e7bbfc;
+}
+.App.a9 {
+  --my--thema: #d371d3;
+}
+.App.a10 {
+  --my--thema: #bfdafd;
 }
 
 .App.dark {
-  --my--very-dark-background: #1d1e21;
-  --my--dark-background: #2b2d32;
-  --my--background: #393c42;
-  --my--background-hover: #717884;
-  --my--dark-text: #989a9d;
+  --my--very--dark--background: var(--dark--1);
+  --my--dark--background: var(--dark--2);
+  --my--dark--background--hover: var(--dark--3);
+  --my--dark-text: #cecece;
+  --my--dark-heading: var(--my--thema);
+
+  --my--light--background: #f7f7f7;
+  --my--light--text: var(--dark--3);
+
+  --my--background: var(--dark--3);
+  --my--background-hover: var(--dark--7);
   --my--text: #f7f7f7;
-  --my--heading: #d1f19c;
+  --my--heading: var(--my--thema);
 
-  --my--button--background: #393c42;
+  --my--button--background: var(--dark--3);
   --my--button--color: #f7f7f7;
-  --my--button--border: #d1f19c;
+  --my--button--border: var(--my--thema);
 
-  --my--button--hover--background: #717884;
-  --my--button--hover--color: #d1f19c;
-  --my--button--hover--border: #d1f19c;
+  --my--input--focus--background: var(--dark--3);
+  --my--button--hover--background: var(--dark--7);
+  --my--button--hover--color: var(--my--thema);
+  --my--button--hover--border: var(--my--thema);
 
-  --my--card--background: #393c42;
+  --my--card--background: var(--dark--3);
   --my--card--heading: #f7f7f7;
-  --my--card--color: #989a9d;
+  --my--card--color: var(--dark--9);
   --my--card--border: #f7f7f7;
 }
 
 .App.light {
-  --my--very-dark-background: #aaea41;
-  --my--dark-background: #d1f19c;
+  --my--very--dark--background: var(--dark--5);
+  --my--dark--background: #cecece;
+  --my--dark--background--hover: var(--dark--3);
+  --my--dark-text: #bebebe;
+  --my--dark-heading: var(--my--thema);
+
+  --my--light--background: #f7f7f7;
+  --my--light--text: var(--dark--3);
+
   --my--background: #f7f7f7;
-  --my--background-hover: #d1f19c;
-  --my--dark-text: #989a9d;
-  --my--text: #393c42;
-  --my--heading: #aaaaaa;
+  --my--background-hover: var(--my--thema);
+  --my--text: var(--dark--3);
+  --my--heading: #393c42;
 
-  --my--button--background: #393c42;
-  --my--button--color: #f7f7f7;
-  --my--button--border: #d1f19c;
+  --my--button--background: #f7f7f7;
+  --my--button--color: var(--dark--3);
+  --my--button--border: var(--dark--3);
 
-  --my--button--hover--background: #717884;
-  --my--button--hover--color: #d1f19c;
-  --my--button--hover--border: #d1f19c;
+  --my--input--focus--background: #eaeaea;
+  --my--button--hover--background: #eaeaea;
+  --my--button--hover--color: var(--dark--3);
+  --my--button--hover--border: var(--dark--3);
 
-  --my--card--background: #393c42;
-  --my--card--heading: #f7f7f7;
-  --my--card--color: #989a9d;
-  --my--card--border: #f7f7f7;
-}
-
-.App.mygreen {
-  --my--very-dark-background: #393c42;
-  --my--dark-background: #85976f;
-  --my--background: #d1f19c;
-  --my--background-hover: #becea3;
-  --my--dark-text: #85976f;
-  --my--text: #393c42;
-  --my--heading: #aaaaaa;
-
-  --my--button--background: #393c42;
-  --my--button--color: #f7f7f7;
-  --my--button--border: #d1f19c;
-
-  --my--button--hover--background: #717884;
-  --my--button--hover--color: #d1f19c;
-  --my--button--hover--border: #d1f19c;
-
-  --my--card--background: #393c42;
-  --my--card--heading: #f7f7f7;
-  --my--card--color: #989a9d;
-  --my--card--border: #f7f7f7;
-}
-
-@media (prefers-color-scheme: dark) {
-  .App {
-    --my--background: #393c42;
-    --my--text: #f7f7f7;
-    --my--heading: #d1f19c;
-  }
+  --my--card--background: #f7f7f7;
+  --my--card--heading: var(--dark--3);
+  --my--card--color: var(--dark--7);
+  --my--card--border: var(--dark--3);
 }
 
 html,
@@ -443,21 +464,21 @@ Banner Style
   height: 50px;
   outline: none;
   border-radius: 25px;
-  background-color: var(--my--text);
-  border: none;
+  background-color: var(--my--light--background);
+  border: var(--my--heading) 1px solid;
   padding: 0px 25px;
   font-size: 20px;
-  color: var(--my--background);
+  color: var(--my--light--text);
 }
 
-.main-banner .caption form .my_button {
+.main-banner .caption form .my_button_rev {
   position: absolute;
   margin: 0;
   right: 0;
   top: 0;
   transition: all 0.3s;
 }
-.main-banner .caption form .my_button a {
+.main-banner .caption form .my_button_rev a {
   width: 80px;
   height: 50px;
   line-height: 50px;
@@ -467,8 +488,13 @@ Banner Style
   font-weight: 500;
   padding: 0px 25px;
 
+  /* background-color: var(--dark--3); */
+  border-color: var(--my--heading);
   border-radius: 0px 25px 25px 0px;
   display: block;
+}
+.main-banner .caption form .my_button a i.fa {
+  /* color: var(--my--white); */
 }
 
 @media (max-width: 768px) {
@@ -485,23 +511,25 @@ Footer Style
 
 footer {
   margin-top: 150px;
-  background-color: var(--my--heading);
+  background-color: var(--my--very--dark--background);
   /* background-repeat: no-repeat;
   background-size: cover; */
   /* background-image: url(../images/footer-bg.jpg); */
+
   min-height: 100px;
+  box-shadow: 0px -1px 9px 2px var(--my--very--dark--background);
 }
 
 footer p {
   text-align: center;
   line-height: 70px;
-  color: var(--my--background);
+  color: var(--my--dark-text);
   font-size: 16px;
   font-weight: 400;
 }
 
 footer p a {
-  color: var(--my--background);
+  color: var(--my--dark-heading);
   transition: all 0.3s;
   position: relative;
   z-index: 3;
@@ -528,7 +556,7 @@ capture
 */
 
 .option-area {
-  background-color: var(--my--dark-background);
+  background-color: var(--my--dark--background);
   border-radius: 12px;
   padding-left: 0px;
   padding-right: 0px;
@@ -540,7 +568,7 @@ capture
   line-height: 100%;
   padding: 32px 0px;
   height: 100px;
-  background: var(--my--very-dark-background);
+  background: var(--my--very--dark--background);
   border-radius: 12px 12px 0px 0px;
   display: flex;
   flex-direction: column;
@@ -568,7 +596,7 @@ capture
   position: relative;
   width: 10px;
   height: 10px;
-  background: var(--my--background);
+  background: var(--my--dark--background--hover);
   border-radius: 50%;
   z-index: 1;
 }
@@ -580,17 +608,17 @@ capture
 }
 
 .option-area .inner .dot-wrapper.active .dot {
-  background: var(--my--heading);
+  background: var(--my--dark-heading);
 }
 
 .option-area .inner .dot-wrapper.active .step-text {
-  color: var(--my--heading);
+  color: var(--my--dark-heading);
 }
 .option-area .inner .bar {
   position: absolute;
   top: 4px;
   width: 366px;
-  background-color: var(--my--background);
+  background-color: var(--my--dark--background--hover);
   height: 2px;
 }
 .option-area .option-body h3 {
@@ -610,12 +638,12 @@ capture
 .option-area .option-body input {
   color: var(--my--text);
   background-color: var(--my--background);
-  border-color: var(--my--background);
+  border-color: var(--my--text);
   width: 250px;
   display: inline-block;
 }
 .option-area .option-body input:focus {
-  background-color: var(--my--background);
+  background-color: var(--my--input--focus--background);
   border-color: var(--my--heading);
   box-shadow: var(--my--heading);
 }
@@ -638,9 +666,10 @@ capture
 }
 
 .option-area .userRow span {
-  color: var(--my--background);
+  color: var(--dark--1);
   position: absolute;
-  background-color: var(--my--heading);
+  background-color: var(--my--dark-heading);
+  border: 1px solid var(--dark--1);
   top: 15px;
   right: 15px;
   padding: 0.5rem 1rem;
@@ -736,15 +765,16 @@ button
 
 .my_button a,
 .my_button_rev a:hover {
-  color: var(--my--text);
+  color: var(--my--button--color);
   background-color: var(--my--button--background);
-  border: 0.12rem solid var(--my--button--border);
+  border: 1px solid var(--my--button--border);
 }
 
 .my_button a:hover,
 .my_button_rev a {
   background-color: var(--my--button--hover--background);
   color: var(--my--button--hover--color);
+  border-color: var(--my--button--hover--border);
 }
 
 .my_button a i.fa,
@@ -755,6 +785,30 @@ button
 .my_button_rev a i.fa,
 .my_button a:hover i.fa {
   color: var(--my--button--hover--color);
+}
+
+.my_button.fixed a,
+.my_button_rev.fixed a:hover {
+  color: var(--my--green);
+  background-color: var(--dark--5);
+  border: 1px solid var(--dark--3);
+}
+
+.my_button_rev.fixed a,
+.my_button.fixed a:hover {
+  color: var(--my--white);
+  background-color: var(--dark--3);
+  border: 1px solid var(--my--white);
+}
+
+.my_button.fixed a i.fa,
+.my_button_rev.fixed a:hover i.fa {
+  color: var(--my--green);
+}
+
+.my_button_rev.fixed a i.fa,
+.my_button.fixed a:hover i.fa {
+  color: var(--my--white);
 }
 
 /* 

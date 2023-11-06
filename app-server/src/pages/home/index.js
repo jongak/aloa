@@ -35,6 +35,8 @@ function Home() {
                     />
                     <Button
                       onClick={handleButtonClick}
+                      isFixed={true}
+                      isRev={true}
                       title={<i className="fa fa-search"></i>}
                     />
                   </form>

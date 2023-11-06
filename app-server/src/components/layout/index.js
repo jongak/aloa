@@ -4,11 +4,12 @@ import Footer from "./Footer";
 import { useState } from "react";
 
 function Layout() {
-  const [thema, setThema] = useState("dark");
+  const [isDark, setIsDark] = useState("dark");
+  const [thema, setThema] = useState("1");
 
   return (
-    <div className={`App ${thema}`}>
-      <Header setThema={setThema} />
+    <div className={`App ${isDark} a${thema}`}>
+      <Header setThema={setThema} setIsDark={setIsDark} />
 
       <Outlet />
 
