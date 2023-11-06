@@ -89,7 +89,7 @@ const CardFront = function ({
       }, 500);
     }
   }, [userData]);
-
+  // console.log(userData.ArmoryProfile.CharacterName);
   return (
     <div
       className="cardImg"
@@ -135,7 +135,7 @@ const CardFront = function ({
               color: "#fff",
             }}
           >
-            실리안
+            {userData ? userData.ArmoryProfile.ServerName : "서버명"}
           </span>
         </div>
         <div
@@ -166,6 +166,7 @@ const CardFront = function ({
                 backgroundImage: `url(${imgRef.current})`,
                 backgroundRepeat: "no-repeat",
                 opacity: 1,
+                backgroundPositionY: "40px",
               }}
             ></div>
           </div>
@@ -200,25 +201,34 @@ const CardFront = function ({
               left: "0px",
               alignItems: "center",
               textAlign: "center",
-              paddingTop: "100px",
+              paddingTop: "116px",
             }}
           >
+            <div className="class_mark">
+              <img
+                src="/assets/images/class_mark/mark-lancemaster-border.png"
+                style={{
+                  paddingLeft: "10px",
+                  width: "88px",
+                  position: "absolute",
+                  top: "32px",
+                  left: "56px",
+                }}
+              />
+            </div>
+
             <div className="row justify-content-center">
-              <div className="col-2 class_mark">
-                <img
-                  src="/assets/images/class_mark/mark-lancemaster-border.png"
-                  style={{ paddingLeft: "10px" }}
-                />
-              </div>
-              <div className="col-8 align-self-center d-flex">
+              <div className="col align-self-center">
                 <h3
                   style={{
                     color: "#fff",
                     fontWeight: "800",
                     textShadow: "2px 3px 4px #15181D",
+                    marginBottom: "20px",
+                    paddingRight: "16px",
                   }}
                 >
-                  부먹펩시파인애플피자지코
+                  {userData ? userData.ArmoryProfile.CharacterName : "닉네임"}
                 </h3>
               </div>
             </div>
@@ -244,7 +254,9 @@ const CardFront = function ({
                 <div>
                   <img src="/assets/images/power.png" />
                 </div>
-                <div>1560.8</div>
+                <div>
+                  {userData ? userData.ArmoryProfile.ItemAvgLevel : "-"}
+                </div>
               </div>
               <div
                 className="ImgTitle"
@@ -257,7 +269,9 @@ const CardFront = function ({
                 <div>
                   <img src="/assets/images/team.png" />
                 </div>
-                <div>Lv 223</div>
+                <div>
+                  Lv {userData ? userData.ArmoryProfile.ExpeditionLevel : "-"}
+                </div>
               </div>
             </div>
 
