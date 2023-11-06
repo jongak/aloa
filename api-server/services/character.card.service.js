@@ -255,6 +255,7 @@ const CharacterCardService = {
           },
           Gems: [],
         },
+        ArmoryCard: {},
       };
 
       Object.keys(res).forEach((sub) => {
@@ -275,7 +276,6 @@ const CharacterCardService = {
             }
           });
         } else if (sub == "ArmoryEquipment") {
-          data[sub]["aa"] = res[sub];
           Object.keys(res[sub]).forEach((element, i) => {
             const Type = res[sub][element]["Type"];
 
@@ -423,10 +423,6 @@ const CharacterCardService = {
                   "Element_001"
                 ];
 
-              console.log(whereSet);
-              console.log(mySetOption);
-              console.log("+++++++++++++++++");
-
               data[sub][Type]["SetName"] = mySetOption.split(
                 " <FONT COLOR='#FFD200'>Lv."
               )[0];
@@ -514,10 +510,10 @@ const CharacterCardService = {
                 );
               });
             }
-            if (Type == "팔찌") {
-              data[sub][Type]["ss"] =
-                dat["Element_004"]["value"]["Element_001"];
-            }
+            // if (Type == "팔찌") {
+            //   data[sub][Type]["ss"] =
+            //     dat["Element_004"]["value"]["Element_001"];
+            // }
           });
         } else if (sub == "ArmoryEngraving") {
           res[sub]["Effects"].forEach((element) => {
@@ -557,6 +553,46 @@ const CharacterCardService = {
               }
             }
           });
+        } else if (sub == "ArmoryCard") {
+          var AwakeCount = 0;
+          var AwakeName = "지원안함";
+
+          res[sub]["Cards"].forEach((element) => {
+            AwakeCount += element["AwakeCount"];
+          });
+
+          if (res[sub]["Effects"][0]["Items"][2]["Name"].includes("빛 6세트")) {
+            AwakeName = "세구빛";
+          } else if (
+            res[sub]["Effects"][0]["Items"][2]["Name"].includes("장 6세트")
+          ) {
+            AwakeName = "암구빛";
+          } else if (
+            res[sub]["Effects"][0]["Items"][2]["Name"].includes("벽 6세트")
+          ) {
+            AwakeName = "남바절";
+          } else if (
+            res[sub]["Effects"][0]["Items"][2]["Name"].includes("인 6세트")
+          ) {
+            AwakeName = "창달";
+          }
+          if (AwakeName == "남바절") {
+            if (AwakeCount < 12) {
+              AwakeCount = 0;
+            } else if (AwakeCount < 18) {
+              AwakeCount = 12;
+            } else if (AwakeCount < 30) {
+              AwakeCount = 18;
+            }
+          } else {
+            if (AwakeCount < 18) {
+              AwakeCount = 0;
+            } else if (AwakeCount < 30) {
+              AwakeCount = 18;
+            }
+          }
+
+          data[sub] = { ...res[sub], AwakeCount, AwakeName };
         }
       });
       data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
