@@ -258,9 +258,9 @@ const CharacterCardService = {
         ArmoryCard: {},
       };
 
-      Object.keys(res).forEach((sub) => {
-        console.log(sub);
-      });
+      // Object.keys(res).forEach((sub) => {
+      //   console.log(sub);
+      // });
 
       Object.keys(data).forEach((sub) => {
         if (sub == "ArmoryProfile") {
@@ -473,17 +473,17 @@ const CharacterCardService = {
                 )
               ] = Number(ringTooltip.substr(ringTooltip.indexOf("+")));
 
-              [0, 1, 2].forEach((i) => {
+              [0, 1, 2].forEach((j) => {
                 const myEngraving =
                   dat["Element_006"]["value"]["Element_000"]["contentStr"][
-                    `Element_00${i}`
+                    `Element_00${j}`
                   ]["contentStr"];
-                data[sub][Type][isExisted][`engravings0${i}`]["name"] =
+                data[sub][Type][isExisted][`engravings0${j}`]["name"] =
                   myEngraving.substring(
                     myEngraving.indexOf("<FONT COLOR") + 22,
                     myEngraving.indexOf("</FONT>")
                   );
-                data[sub][Type][isExisted][`engravings0${i}`]["level"] = Number(
+                data[sub][Type][isExisted][`engravings0${j}`]["level"] = Number(
                   myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
                 );
               });
@@ -497,15 +497,15 @@ const CharacterCardService = {
                 myEngravingList =
                   dat["Element_005"]["value"]["Element_000"]["contentStr"];
               }
-              [(0, 1, 2)].forEach((i) => {
+              [0, 1, 2].forEach((j) => {
                 const myEngraving =
-                  myEngravingList[`Element_00${i}`]["contentStr"];
-                data[sub][Type][`engravings0${i}`]["name"] =
+                  myEngravingList[`Element_00${j}`]["contentStr"];
+                data[sub][Type][`engravings0${j}`]["name"] =
                   myEngraving.substring(
                     myEngraving.indexOf("<FONT COLOR") + 22,
                     myEngraving.indexOf("</FONT>")
                   );
-                data[sub][Type][`engravings0${i}`]["level"] = Number(
+                data[sub][Type][`engravings0${j}`]["level"] = Number(
                   myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
                 );
               });
