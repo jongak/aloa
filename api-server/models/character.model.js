@@ -13,7 +13,7 @@ const CharacterModel = {
       // "avatars%2B" +
       // "combat-skills%2B" +
       "engravings%2B" +
-      // "cards%2B" +
+      "cards%2B" +
       "gems%2B";
     // "colosseums%2B" +
     // "collectibles";
