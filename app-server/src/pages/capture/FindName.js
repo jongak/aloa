@@ -68,11 +68,21 @@ const FindName = function () {
     AllListCom[server] = ServerListCom;
   });
 
+  const keyHandler = function (e) {
+    if (e.key === "Enter") {
+      onClickButtonChange();
+    }
+  };
+
   return (
     <div className="option-body">
       <h3>01. 캐릭터 고르기</h3>
       <div className="find-input">
-        <input className="form-control" ref={userName}></input>
+        <input
+          className="form-control"
+          ref={userName}
+          onKeyUp={keyHandler}
+        ></input>
         <Button title={"검색"} onClick={onClickButtonChange} />
       </div>
 

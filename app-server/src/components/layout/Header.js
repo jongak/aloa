@@ -32,7 +32,7 @@ function Header({ setThema, setIsDark }) {
                   <Link to="/make">만들기</Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact Us</Link>
+                  <Link to="/character/송도나봉선">Contact Us</Link>
                 </li>
                 <li>
                   <Link to="#">Sign In</Link>
