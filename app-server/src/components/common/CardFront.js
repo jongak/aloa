@@ -192,7 +192,9 @@ const CardFront = function ({
               >
                 <div className="col-2 card_front_info_table_tr">
                   <div className="card_front_info_table_th">세트</div>
-                  <div className="card_front_info_table_td">사멸</div>
+                  <div className="card_front_info_table_td">
+                    {userData ? userData.ArmoryEquipment.SetOption : "-"}
+                  </div>
                 </div>
                 <div className="col-2 card_front_info_table_tr">
                   <div className="card_front_info_table_th">보석</div>
@@ -200,11 +202,15 @@ const CardFront = function ({
                 </div>
                 <div className="col-2 card_front_info_table_tr">
                   <div className="card_front_info_table_th">엘릭서</div>
-                  <div className="card_front_info_table_td">달인</div>
+                  <div className="card_front_info_table_td">
+                    {userData ? userData.ArmoryEquipment.ElixirName : "-"}
+                  </div>
                 </div>
                 <div className="col-2 card_front_info_table_tr">
                   <div className="card_front_info_table_th">카드</div>
-                  <div className="card_front_info_table_td">세구빛</div>
+                  <div className="card_front_info_table_td">
+                    {userData ? userData.ArmoryCard.AwakeName : "-"}
+                  </div>
                 </div>
                 <div className="col-2 card_front_info_table_tr">
                   <div className="card_front_info_table_th">악추피</div>
@@ -217,7 +223,9 @@ const CardFront = function ({
               <div className="row justify-content-center card_front_icons_table">
                 <div className="col-2 card_front_icons_table_tr">
                   <div>
-                    <img src="https://cdn-lostark.game.onstove.com/efui_iconatlas/lm_item/lm_item_01_145.png" />
+                    <img
+                      src={userData ? userData.ArmoryEquipment.무기.Icon : ""}
+                    />
                   </div>
                   <span className="card_front_icons_table_badge">+25</span>
                 </div>
