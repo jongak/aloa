@@ -115,18 +115,20 @@ const CardFront = function ({
         <div
           className="cardTop"
           style={{
-            backgroundColor: "#80808038",
-            width: "89px",
+            // width: "89px",
             height: "40px",
             position: "absolute",
             zIndex: "999",
-            borderRadius: "15px",
             top: "46px",
             right: "60px",
+            marginTop: "10px",
           }}
         >
           <span
             style={{
+              backgroundColor: "#80808038",
+              borderRadius: "15px",
+
               opacity: "1",
               fontSize: "20px",
               fontWeight: "800",
