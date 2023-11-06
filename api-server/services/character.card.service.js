@@ -73,6 +73,8 @@ const CharacterCardService = {
             Grade: "", //등급(고대)
             ItemGrade: "", //아이템강화단계
             qualityValue: "", //품질
+            SetName: "",
+            SetLevel: "",
           },
           투구: {
             Name: "", //이름
@@ -84,6 +86,8 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             Elixir00: { name: "", level: "" },
             Elixir01: { name: "", level: "" },
+            SetName: "",
+            SetLevel: "",
           },
           상의: {
             Name: "", //이름
@@ -95,6 +99,8 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             Elixir00: { name: "", level: "" },
             Elixir01: { name: "", level: "" },
+            SetName: "",
+            SetLevel: "",
           },
           하의: {
             Name: "", //이름
@@ -106,6 +112,8 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             Elixir00: { name: "", level: "" },
             Elixir01: { name: "", level: "" },
+            SetName: "",
+            SetLevel: "",
           },
           장갑: {
             Name: "", //이름
@@ -117,6 +125,8 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             Elixir00: { name: "", level: "" },
             Elixir01: { name: "", level: "" },
+            SetName: "",
+            SetLevel: "",
           },
           어깨: {
             Name: "", //이름
@@ -128,6 +138,8 @@ const CharacterCardService = {
             TransLevel: "", //초월레벨
             Elixir00: { name: "", level: "" },
             Elixir01: { name: "", level: "" },
+            SetName: "",
+            SetLevel: "",
           },
           목걸이: {
             Name: "", //이름
@@ -260,6 +272,7 @@ const CharacterCardService = {
             }
           });
         } else if (sub == "ArmoryEquipment") {
+          data[sub]["aa"] = res[sub];
           Object.keys(res[sub]).forEach((element, i) => {
             const Type = res[sub][element]["Type"];
 
@@ -267,6 +280,21 @@ const CharacterCardService = {
             data[sub][Type]["Icon"] = res[sub][element]["Icon"];
             data[sub][Type]["Grade"] = res[sub][element]["Grade"];
             const dat = JSON.parse(res[sub][i]["Tooltip"]);
+
+            // if (Type == "무기") {
+            //   console.log(res[sub][i]["Tooltip"]);
+            // }
+            // if (Type == "무기") {
+
+            //   data[sub][Type]["SetName"] = dat["Element_008"]["value"][
+            //     "Element_001"
+            //   ].split(" <FONT COLOR='#FFD200'>Lv.")[0];
+            //   data[sub][Type]["SetLevel"] = Number(
+            //     dat["Element_008"]["value"]["Element_001"].split(
+            //       " <FONT COLOR='#FFD200'>Lv."
+            //     )[1][0]
+            //   );
+            // }
 
             if (
               ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
@@ -276,6 +304,8 @@ const CharacterCardService = {
               );
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
+              data[sub][Type]["SetName"] =
+                dat["Element_008"]["value"]["Element_001"];
             } else if (Type == "목걸이") {
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
@@ -337,7 +367,7 @@ const CharacterCardService = {
                 transGrade += data[sub][Type]["TransGrade"];
                 transLevel += data[sub][Type]["TransLevel"];
               }
-              if (isElixir) {
+              if (isElixir && ElixirTooltip["contentStr"]["Element_000"]) {
                 const Elixir00Tooltip =
                   ElixirTooltip["contentStr"]["Element_000"][
                     "contentStr"
@@ -434,11 +464,17 @@ const CharacterCardService = {
               });
             }
             if (["목걸이", "어빌리티 스톤"].includes(Type)) {
-              [0, 1, 2].forEach((i) => {
+              var myEngravingList;
+              if (dat["Element_006"]["value"]["Element_000"]) {
+                myEngravingList =
+                  dat["Element_006"]["value"]["Element_000"]["contentStr"];
+              } else {
+                myEngravingList =
+                  dat["Element_005"]["value"]["Element_000"]["contentStr"];
+              }
+              [(0, 1, 2)].forEach((i) => {
                 const myEngraving =
-                  dat["Element_006"]["value"]["Element_000"]["contentStr"][
-                    `Element_00${i}`
-                  ]["contentStr"];
+                  myEngravingList[`Element_00${i}`]["contentStr"];
                 data[sub][Type][`engravings0${i}`]["name"] =
                   myEngraving.substring(
                     myEngraving.indexOf("<FONT COLOR") + 22,
@@ -473,7 +509,7 @@ const CharacterCardService = {
             const tmp = {};
             tmp["Level"] = element["Level"];
             tmp["Name"] = element["Name"].substring(
-              element["Name"].indexOf("<FONT COLOR='#FA5D00'>") + 22,
+              element["Name"].indexOf("<FONT CO") + 22,
               element["Name"].indexOf("</FONT>")
             );
             tmp["isMeul"] = tmp["Name"].includes("멸화");
