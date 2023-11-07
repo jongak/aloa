@@ -867,10 +867,11 @@ card
   }
 }
 
-.myToggleGroup {
-  display: inline-flex;
+.myDarkToggle {
+  cursor: pointer;
+  height: 42px;
+  margin-top: 10px;
 }
-
 .myDarkToggle i {
   font-size: 2em;
   padding: 5px;
@@ -892,7 +893,6 @@ card
   border-radius: 50%;
   height: 42px;
   width: 42px;
-  margin-top: 10px;
 }
 
 .myDarkToggle .myDarkButton:hover {
@@ -910,6 +910,7 @@ card
 .myThemaButton {
   padding: 12px;
   box-sizing: border-box;
+  cursor: pointer;
 }
 .myThemaButton.clicked {
   transition: 0s;
