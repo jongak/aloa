@@ -10,7 +10,7 @@ function Layout() {
 
   return (
     <div className={`App ${isDark} a${thema}`}>
-      <Header setThema={setThema} />
+      <Header setThema={setThema} thema={thema} />
 
       <Outlet />
 
