@@ -173,10 +173,11 @@
   .card_front_icons_table_badge {
   border-radius: 10px;
   background-color: #d73737;
-  padding: 0 5px;
+  padding: 0 5px 2px;
   font-weight: 800;
   position: absolute;
   top: 330px;
+  line-height: 22px;
 }
 .cardMiddle
   .card_front_title
@@ -209,10 +210,11 @@
   .card_front_icons_table_badge {
   border-radius: 10px;
   background-color: #d73737;
-  padding: 0 5px;
+  padding: 0 5px 2px;
   font-weight: 800;
   position: absolute;
   top: 330px;
+  line-height: 22px;
 }
 .cardMiddle
   .card_front_title
