@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect } from "react";
-import UserItem from "./UserItem";
+import UserItem from "../../components/common/UserItem";
 
 const ShareCard = function () {
   const { setPage } = useOutletContext();

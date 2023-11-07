@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 const change = {
@@ -41,16 +43,24 @@ const UserItem = function (props) {
   const { characterNameRef, character } = props;
   const { CharacterClassName, CharacterLevel, CharacterName, ItemMaxLevel } =
     character;
+  const isDark = useSelector((state) => state.mainSlice.isDark);
   const navigate = useNavigate();
   const onClickButtonChange = () => {
     characterNameRef.current = CharacterName;
     navigate("./select");
   };
+
   return (
     <div className="my-card userItem" onClick={onClickButtonChange}>
-      <img
-        src={`/assets/images/class_mark/mark-${change[CharacterClassName]}-border.png`}
+      <div
+        className="my-card-img class"
+        style={{
+          backgroundImage: `url(/assets/images/class_mark/mark-${
+            change[CharacterClassName]
+          }-border${isDark == "dark" ? "" : "2"}.png)`,
+        }}
       />
+
       <div className="my-card-body">
         <p className="my-card-title">{CharacterName}</p>
         <p className="my-card-text">{CharacterClassName}</p>
