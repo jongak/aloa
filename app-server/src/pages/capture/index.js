@@ -2,12 +2,15 @@ import html2canvas from "html2canvas";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import CardFront from "../../components/common/CardFront";
+import CardBack from "../../components/common/CardBack";
 import { Outlet } from "react-router";
 
 const capture = function () {
-  const divRef = useRef(null);
+  const frontRef = useRef(null);
+  const backRef = useRef(null);
   const [page, setPage] = useState("find");
-  const [canvasRef, setCanvasRef] = useState();
+  const [frontCanvasRef, setFrontCanvasRef] = useState();
+  const [backCanvasRef, setBackCanvasRef] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
   const [isCardReady, setIsCardReady] = useState(false);
@@ -17,7 +20,6 @@ const capture = function () {
   const glowRef = useRef(true);
   const shineRef = useRef(true);
   const shadowRef = useRef(true);
-  const cardRef = useRef();
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
   );
@@ -38,92 +40,33 @@ const capture = function () {
     "#2193b0",
   ]);
 
-  // const cardImgMemo = useMemo(() => {
-  //   return (
-  //     // <CardImg
-  //     //   divRef={divRef}
-  //     //   setIsLoading={setIsLoading}
-  //     //   style={{ position: "absolute", top: "-1000px" }}
-  //     // />
-
-  //     <CardFront
-  //       setIsLoading={setIsLoading}
-  //       divRef={divRef}
-  //       // style={{ position: "absolute", top: "-1000px" }}
-  //     />
-  //   );
-  // }, []);
-
-  // const LootCardMemo = useMemo(() => {
-  //   if (isCardReady) {
-  //     console.log(isCardReady);
-  //     return (
-  //       <LootCard
-  //         rarityPreset={rarityPresetRef.current}
-  //         // img={imgSrcRef.current.value}
-  //         holo={holoSrcRef.current.value}
-  //         canvasRef={canvasRef}
-  //         holographicOptions={
-  //           holoRef.current
-  //             ? {
-  //                 glow: glowRef.current,
-  //                 color1: holographicOptionColors.current[0],
-  //                 color2: holographicOptionColors.current[1],
-  //                 color3: holographicOptionColors.current[2],
-  //                 color4: holographicOptionColors.current[3],
-  //                 color5: holographicOptionColors.current[4],
-  //               }
-  //             : null
-  //         }
-  //         shineOptions={
-  //           shineRef.current
-  //             ? {
-  //                 color1: shineOptionColors.current[0],
-  //                 color2: shineOptionColors.current[1],
-  //               }
-  //             : null
-  //         }
-  //         shadowOptions={
-  //           shadowRef.current
-  //             ? {
-  //                 default: {
-  //                   color1: shadowOptionColors.current[0],
-  //                   color2: shadowOptionColors.current[1],
-  //                 },
-  //                 hover: {
-  //                   color1: shadowOptionColors.current[2],
-  //                   color2: shadowOptionColors.current[3],
-  //                 },
-  //               }
-  //             : null
-  //         }
-  //         size={{ height: 800, width: 600 }}
-  //       />
-  //     );
-  //   }
-  //   return null;
-  // }, [isCardReady, isChanged]);
-  // useEffect(() => {
-  //   if (canvasRef && cardRef.current) {
-  //     cardRef.current.replaceChildren(canvasRef);
-  //   }
-  // }, [canvasRef]);
-
   useEffect(() => {
     const fetchData = async () => {
-      if (!divRef.current) return;
-      const div = divRef.current;
+      if (!frontRef.current) return;
+      const front = frontRef.current;
 
       // 캔버스 생성 코드
-      const canvas = await html2canvas(div, {
+      const frontCanvas = await html2canvas(front, {
         scale: 2,
         allowTaint: true,
         useCORS: true,
       });
-      canvas.style.setProperty("width", "300px");
-      canvas.style.setProperty("height", "400px");
+      frontCanvas.style.setProperty("width", "300px");
+      frontCanvas.style.setProperty("height", "400px");
 
-      setCanvasRef(canvas);
+      if (!backRef.current) return;
+      const back = backRef.current;
+      // 캔버스 생성 코드
+      const backCanvas = await html2canvas(back, {
+        scale: 2,
+        allowTaint: true,
+        useCORS: true,
+      });
+      backCanvas.style.setProperty("width", "300px");
+      backCanvas.style.setProperty("height", "400px");
+
+      setFrontCanvasRef(frontCanvas);
+      setBackCanvasRef(backCanvas);
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
       setIsCardReady(true); // 카드 생성이 완료됨
 
@@ -194,30 +137,28 @@ const capture = function () {
 
           <CardFront
             characterNameRef={characterNameRef}
-            divRef={divRef}
+            divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
               left: "-1000px",
-
-              // width: 0,
-              // height: 0,
-              // transform: "scale(0)",
-              // opacity: 0,
-              // display: "none",
-              // visibility: "hidden",
             }}
           />
-          <div ref={cardRef}>
-            <div></div>
-          </div>
-          {/* {LootCardMemo} */}
+          <CardBack
+            characterNameRef={characterNameRef}
+            divRef={backRef}
+            setIsLoading={setIsLoading}
+            style={{
+              position: "absolute",
+              left: "-1000px",
+            }}
+          />
 
           <LootCard
             rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
-            canvasRef={canvasRef}
+            canvasRef={frontCanvasRef}
             holographicOptions={
               holoRef.current
                 ? {
@@ -259,7 +200,7 @@ const capture = function () {
             rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
-            // canvasRef={canvasRef}
+            canvasRef={backCanvasRef}
             holographicOptions={
               holoRef.current
                 ? {
