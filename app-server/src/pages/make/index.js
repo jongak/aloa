@@ -215,7 +215,11 @@ const Makecard = function () {
         setIsLoading={setIsLoading}
         divRef={divRef}
       />
-      <CardBack />
+      <CardBack
+        characterNameRef={characterNameRef}
+        setIsLoading={setIsLoading}
+        divRef={divRef}
+      />
 
       <input
         type="text"

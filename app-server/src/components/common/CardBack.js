@@ -1,6 +1,6 @@
 import axios from "axios";
-// import "./holofoil.css";
-import { useEffect, useRef } from "react";
+import "./cardBack.css";
+import { useEffect, useRef, useState } from "react";
 
 const imgurl = [
   "https://img.lostark.co.kr/armory/7/20b6dbe15f97e00ed8a1e38bc65661f7ae6ba10d06e6071852f25ca6d3c6b05d.png",
@@ -8,21 +8,57 @@ const imgurl = [
   "https://img.lostark.co.kr/armory/0/ab436ac6397b67e6a5f48651c2dc8de9b416ee00d328bbfa6744f348ae55c773.png",
 ];
 
+const getData = async function (url) {
+  try {
+    const res = await axios.get(`/?url=${url}`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getDataCard = async function (id) {
+  try {
+    const res = await axios.get(`/character/carddata/${id}`);
+    if (res.data.ok) {
+      return res.data.data;
+    }
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const CardBack = function ({
+  characterNameRef,
   setIsLoading,
   style,
   divRef,
   bgImgSrc = "/assets/images/card_back.png",
   bgFrame = "/assets/images/card_frame.png",
 }) {
-  const getData = async function (url) {
-    try {
-      const res = await axios.get(`/?url=${url}`);
-      return res.data;
-    } catch (err) {
-      console.error(err);
+  const imgRef = useRef();
+  const [userData, setUserData] = useState();
+
+  useEffect(() => {
+    if (characterNameRef.current) {
+      getDataCard(characterNameRef.current).then((res) => {
+        setUserData(res);
+        console.log(res);
+      });
     }
-  };
+  }, [characterNameRef.current]);
+
+  useEffect(() => {
+    if (characterNameRef.current) {
+      getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
+        imgRef.current = res;
+      });
+      setTimeout(() => {
+        setIsLoading(true);
+      }, 500);
+    }
+  }, [userData]);
 
   const engraving = [
     {
@@ -224,299 +260,165 @@ const CardBack = function ({
     },
   ];
   return (
-    <div
-      className="cardImg_b"
-      ref={divRef}
-      style={{ ...style, margin: "100px", width: "600px", height: "800px" }}
-    >
+    <div className="cardImg_b" ref={divRef} style={{ ...style }}>
       <div
-        className="cardBody_b"
+        className="cardBody"
         style={{
           backgroundImage: `url(${bgImgSrc})`,
-          backgroundSize: "cover",
-          display: "inline-block",
-          width: "600px",
-          height: "800px",
-          position: "relative",
         }}
       >
-        <div
-          className="cardTop_b container"
-          style={{
-            // backgroundColor: "#80808038",
-            position: "absolute",
-            padding: "30px 20px",
-          }}
-        >
+        <div className="cardTop container">
           <div className="row justify-content-start">
             <div className="col-2 class_mark">
-              <img
-                src="/assets/images/logo_back3.png"
-                style={{ paddingLeft: "10px" }}
-              />
+              <img id="back_logo" src="/assets/images/logo_back3.png" />
             </div>
-            <div className="col-8 align-self-center d-flex">
-              <h3
-                style={{
-                  color: "#fff",
-                  fontWeight: "800",
-                  textShadow: "2px 3px 4px #15181D",
-                  letterSpacing: "-2.3px",
-                  marginLeft: "-12px",
-                }}
-              >
-                부먹펩시파인애플피자지코
+            <div className="col-7 back_nickname align-self-center d-flex">
+              <h3>
+                {userData && userData["ArmoryProfile"]["CharacterName"]
+                  ? userData["ArmoryProfile"]["CharacterName"]
+                  : "열두자까지가능한닉네임임"}
               </h3>
             </div>
 
-            <div
-              className="col-2 align-self-center"
-              style={{
-                backgroundColor: "#80808038",
-                borderRadius: "15px",
-                marginLeft: "-24px",
-              }}
-            >
-              <span
-                style={{
-                  opacity: "1",
-                  fontSize: "20px",
-                  fontWeight: "800",
-                  lineHeight: "40px",
-                  color: "#fff",
-                }}
-              >
-                실리안
+            <div className="col-3 align-self-center back_servername">
+              <span>
+                {userData && userData["ArmoryProfile"]["ServerName"]
+                  ? userData["ArmoryProfile"]["ServerName"]
+                  : "서버명여기"}
               </span>
             </div>
           </div>
         </div>
-        <div
-          className="cardMiddle"
-          style={{
-            // backgroundColor: "yellow",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            paddingTop: "104px",
-            color: "#fff",
-          }}
-        >
-          <div className="container" style={{ padding: "0 40px" }}>
+        <div className="cardMiddle">
+          <div className="container back_options">
             <div className="row">
-              <div className="col-7">
+              <div className="col-7 back_options_left">
                 <div className="row elixNcho">
-                  <div
-                    className="col-7 align-items-center"
-                    style={{
-                      display: "inline-flex",
-                      margin: "8px 0",
-                    }}
-                  >
-                    <img
-                      src="/assets/images/exlixer.webp"
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                      }}
-                    />
-                    <div style={{ paddingLeft: "8px", fontWeight: "650" }}>
-                      Lv 47 (27.68%)
+                  <div className="col-7 align-items-center elixir">
+                    <img src="/assets/images/exlixer.webp" />
+                    <div>
+                      {userData &&
+                      userData["ArmoryEquipment"]["option"]["ElixirLevel"]
+                        ? "Lv" +
+                          userData["ArmoryEquipment"]["option"]["ElixirLevel"]
+                        : "-"}
+                      {/* Lv 47 (27.68%) */}
                     </div>
                   </div>
-                  <div
-                    className="col-4 align-items-center"
-                    style={{
-                      display: "inline-flex",
-                    }}
-                  >
-                    <img
-                      src="/assets/images/cho.png"
-                      style={{
-                        width: "40px",
-                        height: "40px",
-                      }}
-                    />
-                    <div style={{ paddingLeft: "8px", fontWeight: "650" }}>
-                      75
+                  <div className="col-4 align-items-center trans">
+                    <img src="/assets/images/cho.png" />
+                    <div>
+                      {userData &&
+                      userData["ArmoryEquipment"]["option"]["TransLevel"]
+                        ? userData["ArmoryEquipment"]["option"]["TransLevel"]
+                        : "-"}
                     </div>
                   </div>
                 </div>
                 <div className="row gems">
-                  <div className="col-8">
-                    <img
-                      src="/assets/images/gem.webp"
-                      style={{ width: "32px" }}
-                    />
-                    <span style={{ fontWeight: "650", marginLeft: "10px" }}>
+                  <div className="col-8 gem">
+                    <img src="/assets/images/gem.webp" />
+                    <span>
                       {" "}
-                      5멸 6홍 평균Lv 10
+                      {userData && userData["ArmoryGem"]["option"]["MeulNum"]
+                        ? userData["ArmoryGem"]["option"]["MeulNum"] + "멸"
+                        : "-"}{" "}
+                      {userData && userData["ArmoryGem"]["option"]["HongNum"]
+                        ? userData["ArmoryGem"]["option"]["HongNum"] + "홍"
+                        : ""}
+                      {"  "}
+                      {userData && userData["ArmoryGem"]["option"]["Level"]
+                        ? "Lv " + userData["ArmoryGem"]["option"]["Level"]
+                        : ""}
+                      {/* 5멸 6홍 평균Lv 10 */}
                     </span>
                   </div>
                 </div>
-                <div
-                  className="row plusDamage"
-                  style={{
-                    background: "#80808038",
-                    borderRadius: "6px",
-                    padding: "10px 0",
-                    margin: "12px 0",
-                  }}
-                >
+                <div className="row plusDamage">
                   <div className="col-3">악마</div>
-                  <div className="col-3">6.98%</div>
+                  <div className="col-3 plusDamage_td">6.98%</div>
                   <div className="col-3">인간</div>
-                  <div className="col-3">5.32%</div>
+                  <div className="col-3 plusDamage_td">5.32%</div>
                   <div className="col-3">야수</div>
-                  <div className="col-3">3.47%</div>
+                  <div className="col-3 plusDamage_td">3.47%</div>
                   <div className="col-3">식물</div>
-                  <div className="col-3">4.67%</div>
+                  <div className="col-3 plusDamage_td">4.67%</div>
                   <div className="col-3">불사</div>
-                  <div className="col-3">4.23%</div>
+                  <div className="col-3 plusDamage_td">4.23%</div>
                 </div>
 
-                <div
-                  className="row stat"
-                  style={{ fontSize: "22px", fontWeight: "700" }}
-                >
-                  <div
-                    className="col-10 align-self-center"
-                    style={{
-                      backgroundImage:
-                        "url('/assets/images/card_back_stat_bg.png')",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      height: "40px",
-                      width: "100%",
-                      lineHeight: "38px",
-                      marginBottom: "4px",
-                      marginLeft: "12px",
-                      padding: "0 44px",
-                    }}
-                  >
-                    <span style={{ float: "left" }}>직업</span>
-                    <span>디스트로이어</span>
+                <div className="row stats">
+                  <div className="col-10 back_stats_bg">
+                    <span id="back_characterlevel">
+                      {userData && userData["ArmoryProfile"]["CharacterLevel"]
+                        ? "Lv " + userData["ArmoryProfile"]["CharacterLevel"]
+                        : "Lv 60"}
+                    </span>
+                    <span>
+                      {userData &&
+                      userData["ArmoryProfile"]["CharacterClassName"]
+                        ? userData["ArmoryProfile"]["CharacterClassName"]
+                        : "디스트로이어"}
+                    </span>
                   </div>
-                  <div
-                    className="col-10"
-                    style={{
-                      backgroundImage:
-                        "url('/assets/images/card_back_stat_bg.png')",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      height: "40px",
-                      width: "100%",
-                      lineHeight: "38px",
-                      marginBottom: "4px",
-                      marginLeft: "12px",
-                      padding: "0 44px",
-                    }}
-                  >
-                    <span style={{ float: "left" }}>특화</span>
-                    <span>1673</span>
+                  <div className="col-10 back_stats_bg">
+                    <span>특화</span>
+                    <span>
+                      {userData && userData["ArmoryProfile"]["Stats"]["특화"]
+                        ? userData["ArmoryProfile"]["Stats"]["특화"]
+                        : "1673"}
+                    </span>
                   </div>
-                  <div
-                    className="col-10"
-                    style={{
-                      backgroundImage:
-                        "url('/assets/images/card_back_stat_bg.png')",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      height: "40px",
-                      width: "100%",
-                      lineHeight: "38px",
-                      marginBottom: "4px",
-                      marginLeft: "12px",
-                      padding: "0 44px",
-                    }}
-                  >
-                    <span style={{ float: "left" }}>치명</span>
-                    <span>698</span>
+                  <div className="col-10 back_stats_bg">
+                    <span>치명</span>
+                    <span>
+                      {userData && userData["ArmoryProfile"]["Stats"]["치명"]
+                        ? userData["ArmoryProfile"]["Stats"]["치명"]
+                        : "675"}
+                    </span>
                   </div>
-                  <div
-                    className="col-10"
-                    style={{
-                      backgroundImage:
-                        "url('/assets/images/card_back_stat_bg.png')",
-                      backgroundSize: "contain",
-                      backgroundRepeat: "no-repeat",
-                      height: "40px",
-                      width: "100%",
-                      lineHeight: "38px",
-                      marginBottom: "4px",
-                      marginLeft: "12px",
-                      padding: "0 44px",
-                    }}
-                  >
-                    <span style={{ float: "left" }}>길드</span>
-                    <span>혈석</span>
+                  <div className="col-10 back_stats_bg">
+                    <span>길드</span>
+                    <span className="back_guildname">
+                      {userData && userData["ArmoryProfile"]["GuildName"]
+                        ? userData["ArmoryProfile"]["GuildName"]
+                        : "길드명도열두자까지가능함"}
+                    </span>
                   </div>
                 </div>
 
-                <div className="engraves2">
-                  <ul style={{ display: "inline-flex", marginTop: "12px" }}>
+                <div className="back_engraves">
+                  <ul>
                     {engraving.map((item) => (
-                      <li
-                        key={item._key}
-                        style={{ width: "50px", marginRight: "4px" }}
-                      >
-                        <img
-                          src={item.Icon}
-                          style={{
-                            borderRadius: "50%",
-                            overflow: "hidden",
-                          }}
-                        />
+                      <li key={item._key}>
+                        <img src={item.Icon} />
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
               <div className="col-1"></div>
-              <div className="col-2">
+              <div className="col-2 back_options_right">
                 <div className="equipments">
                   <ul>
                     {equip1.map((item) => (
-                      <li
-                        key={item._key}
-                        style={{ marginBottom: "8px", position: "relative" }}
-                      >
-                        <span
-                          style={{
-                            background: "#f3ba26",
-                            borderRadius: "8px",
-                            padding: "0 4px",
-                            position: "absolute",
-                            right: "-20%",
-                            fontWeight: "700",
-                          }}
-                        >
-                          +25
-                        </span>
+                      <li key={item._key}>
+                        <span className="equipments_badge">+25</span>
                         <img
+                          id="back_equipment_trans"
                           src="/assets/images/cho/cho_5.png"
-                          style={{
-                            width: "32px",
-                            height: "28px",
-                            position: "absolute",
-                            top: "36px",
-                            left: "40px",
-                          }}
                         />
                         <img src={item.Icon} />
-                        <div
-                          style={{
-                            background: "#82786E",
-                            width: "100%",
-                            height: "8px",
-                          }}
-                        >
+                        <div>
                           <div
-                            style={{
-                              background: "orange",
-                              width: "80%",
-                              height: "8px",
-                            }}
+                            className="back_equipment_quality"
+                            style={
+                              {
+                                // background: "orange",
+                                // width: "80%",
+                                // height: "8px",
+                              }
+                            }
                           ></div>
                         </div>
                       </li>
@@ -524,38 +426,24 @@ const CardBack = function ({
                   </ul>
                 </div>
               </div>
-              <div className="col-2">
-                <div className="equipments">
+              <div className="col-2 back_options_right">
+                <div className="accessory">
                   <ul>
                     {equip2.map((item) => (
                       <li key={item._key} style={{ marginBottom: "8px" }}>
-                        <span
-                          style={{
-                            background: "#f3ba26",
-                            borderRadius: "8px",
-                            padding: "0 4px",
-                            position: "absolute",
-                            right: "5%",
-                            fontWeight: "700",
-                          }}
-                        >
-                          +25
-                        </span>
+                        <span className="accessory_badge">+25</span>
 
                         <img src={item.Icon} />
-                        <div
-                          style={{
-                            background: "#82786E",
-                            width: "100%",
-                            height: "8px",
-                          }}
-                        >
+                        <div>
                           <div
-                            style={{
-                              background: "orange",
-                              width: "80%",
-                              height: "8px",
-                            }}
+                            className="back_accessory_quality"
+                            style={
+                              {
+                                // background: "orange",
+                                // width: "80%",
+                                // height: "8px",
+                              }
+                            }
                           ></div>
                         </div>
                       </li>
@@ -565,21 +453,9 @@ const CardBack = function ({
               </div>
             </div>
           </div>
-          <div
-            className="col"
-            style={{
-              padding: "8px 16px",
-              background: "#80808038",
-              borderRadius: "12px",
-              position: "absolute",
-              left: "5%",
-              bottom: "172px",
-              fontWeight: "800",
-              fontSize: "18px",
-            }}
-          >
-            세구빛 30
-          </div>
+        </div>
+        <div className="cardBottom">
+          <div className="col back_card_awakename">세구빛 30</div>
 
           <div
             className="container"
@@ -594,13 +470,14 @@ const CardBack = function ({
             }}
           >
             <div className="row align-items-end">
-              {cards.map((item) => (
+              {/* {cards.map((item) => (
                 <div
                   key={item._key}
                   className="col-2"
                   style={{ padding: "0 4px", position: "relative" }}
                 >
                   <img
+                    id="back_card_grade"
                     src="/assets/images/card/card_grade_6.png"
                     style={{
                       position: "absolute",
@@ -609,28 +486,53 @@ const CardBack = function ({
                     }}
                   />
                   <img
+                    id="back_card_awake"
                     src="/assets/images/card/card_awake_5.png"
                     style={{
                       position: "absolute",
                       width: "80%",
-                      left: "12%",
+                      left: "10%",
                       bottom: "6%",
                     }}
                   />
 
                   <img src={item.Icon} />
                 </div>
-              ))}
+              ))} */}
+              {userData && userData["ArmoryCard"]["Cards"]
+                ? userData["ArmoryCard"]["Cards"].map((item) => (
+                    <div
+                      key={item._key}
+                      className="col-2"
+                      style={{ padding: "0 4px", position: "relative" }}
+                    >
+                      <img
+                        id="back_card_grade"
+                        src="/assets/images/card/card_grade_6.png"
+                        style={{
+                          position: "absolute",
+                          width: "91%",
+                          height: "100%",
+                        }}
+                      />
+                      <img
+                        id="back_card_awake"
+                        src="/assets/images/card/card_awake_5.png"
+                        style={{
+                          position: "absolute",
+                          width: "80%",
+                          left: "10%",
+                          bottom: "6%",
+                        }}
+                      />
+
+                      <img src={item.Icon} />
+                    </div>
+                  ))
+                : ""}
             </div>
           </div>
         </div>
-        <div
-          className="cardBlank"
-          style={{
-            width: "100%",
-            height: "15%",
-          }}
-        ></div>
       </div>
     </div>
   );
