@@ -66,12 +66,13 @@
   --my--dark-text: #cecece;
   --my--dark-heading: var(--my--thema);
 
-  --my--light--background: #f7f7f7;
+  --my--light--background: #cecece;
   --my--light--text: #393c42;
 
   --my--background: #393c42;
   --my--background-hover: #717779;
   --my--text: #f7f7f7;
+  --my--no--text: #8c9591;
   --my--heading: var(--my--thema);
   --my--shadow: #1d1e21;
 
@@ -98,11 +99,12 @@
   --my--dark-heading: var(--my--thema);
 
   --my--light--background: #f7f7f7;
-  --my--light--text: #393c42;
+  --my--light--text: #717779;
 
   --my--background: #f7f7f7;
   --my--background-hover: var(--my--thema);
   --my--text: #393c42;
+  --my--no--text: #63686c;
   --my--heading: #393c42;
   --my--shadow: #bebebe;
 
@@ -782,6 +784,7 @@ capture
   padding-top: 60px;
   padding-bottom: 20px;
   position: relative;
+  width: auto;
 }
 
 .option-area .userRow.undefined {
@@ -791,7 +794,7 @@ capture
   padding-bottom: 0;
 }
 
-.option-area .userRow span {
+.option-area .userRow span.server {
   color: var(--dark--1);
   position: absolute;
   background-color: var(--my--dark-heading);
@@ -994,4 +997,91 @@ card
   .my-card-body .my-card-title {
     font-size: 1.1rem;
   }
+}
+
+.myToggle {
+  margin-top: 20px;
+}
+
+.myToggle .switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 26px;
+  align-self: flex-end;
+}
+
+/* Hide default HTML checkbox */
+.myToggle .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+/* 배경 */
+.myToggle .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--my--light--background);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border: 1px solid var(--my--light--text);
+}
+
+/* 원 */
+.myToggle .slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3.3px;
+  bottom: 3.4px;
+  background-color: var(--my--light--text);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.myToggle input:checked + .slider {
+  background-color: var(--my--thema);
+}
+
+.myToggle input:focus + .slider {
+  box-shadow: 0 0 1px var(--my--thema);
+}
+
+.myToggle input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.myToggle .slider.round {
+  border-radius: 34px;
+}
+
+.myToggle .slider.round:before {
+  border-radius: 50%;
+}
+
+.myToggle .toggleTitle {
+  color: var(--my--text);
+  text-align: right;
+  font-size: 20px;
+  width: auto;
+}
+.myToggle .toggleTitle.no {
+  color: var(--my--no--text);
+}
+
+.myToggle .toggleBody {
+  color: var(--my--no--text);
+  font-size: 16px;
+  text-align: left;
+  margin-top: 10px;
 }

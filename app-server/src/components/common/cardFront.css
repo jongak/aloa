@@ -100,7 +100,7 @@
   left: 0px;
   align-items: center;
   text-align: center;
-  padding-top: 60px;
+  padding-top: 120px;
 }
 
 .cardMiddle .title .class_mark {
@@ -171,7 +171,7 @@
   letter-spacing: -2.3px;
 }
 .cardMiddle .title .icons {
-  margin-top: 32px;
+  margin-top: 12px;
   width: 85%;
 }
 .cardMiddle .title .icons .icons_table {
@@ -191,7 +191,7 @@
   position: absolute;
   border-radius: 20px;
   padding: 0px 10px 2px 12px;
-  top: 300px;
+  bottom: 40px;
   line-height: 022px;
 
   background-color: #d73737;
