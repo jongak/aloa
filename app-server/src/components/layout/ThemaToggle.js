@@ -1,5 +1,10 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setIsThemaOpen } from "../../store/mainSlice";
+
 const ThemaToggle = function (props) {
   const { setValueRef, options, valueRef } = props;
+  const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
+
   const handleOnClickChange = (event) => {
     setValueRef(event.target.dataset.value);
   };
@@ -15,7 +20,11 @@ const ThemaToggle = function (props) {
       />
     );
   });
-  return <div className="myThemaToggle">{OptionsList}</div>;
+  return (
+    <div className={`myThemaToggle ${isThemaOpen ? "closed" : "open"}`}>
+      {OptionsList}
+    </div>
+  );
 };
 
 export default ThemaToggle;

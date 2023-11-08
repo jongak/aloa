@@ -140,8 +140,9 @@ const capture = function () {
             divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
-              position: "absolute",
-              left: "-1000px",
+              // position: "absolute",
+              // left: "-1000px",
+              marginLeft: "-100px",
             }}
           />
           <CardBack
