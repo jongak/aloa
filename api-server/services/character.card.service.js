@@ -261,6 +261,7 @@ const CharacterCardService = {
       // Object.keys(res).forEach((sub) => {
       //   console.log(sub);
       // });
+      var isEsdo = false;
 
       Object.keys(data).forEach((sub) => {
         if (sub == "ArmoryProfile") {
@@ -284,26 +285,25 @@ const CharacterCardService = {
             data[sub][Type]["Grade"] = res[sub][element]["Grade"];
             const dat = JSON.parse(res[sub][i]["Tooltip"]);
 
-            var isTrans = true;
-            var isElixir = true;
+            if (
+              ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
+            ) {
+              data[sub][Type]["ItemGrade"] = parseInt(
+                res[sub][element]["Name"].replace(NumberRegex, "")
+              );
+            }
 
             if (["투구", "상의", "하의", "장갑", "어깨"].includes(Type)) {
-              var TransTooltip = dat["Element_008"]["value"]["Element_000"]
-                ? dat["Element_008"]["value"]["Element_000"]
-                : undefined;
-              var ElixirTooltip = dat["Element_009"]["value"]["Element_000"]
-                ? dat["Element_009"]["value"]["Element_000"]
-                : undefined;
-
-              if (!ElixirTooltip) {
-                isTrans = false;
-                if (!TransTooltip) {
-                  isElixir = false;
-                } else {
-                  ElixirTooltip = TransTooltip;
-                  TransTooltip = undefined;
-                }
+              var isTrans = true;
+              var isElixir = true;
+              var whereElixir = 9;
+              if (data[sub][Type]["ItemGrade"] == 25) {
+                whereElixir -= 1;
               }
+              var TransTooltip =
+                dat[`Element_00${whereElixir - 1}`]["value"]["Element_000"];
+              var ElixirTooltip =
+                dat[`Element_00${whereElixir}`]["value"]["Element_000"];
 
               if (
                 isTrans &&
@@ -312,6 +312,7 @@ const CharacterCardService = {
                     TransTooltip["topStr"].indexOf("초월") == -1))
               ) {
                 isTrans = false;
+                whereElixir -= 1;
                 ElixirTooltip = TransTooltip;
                 TransTooltip = undefined;
               }
@@ -323,6 +324,7 @@ const CharacterCardService = {
                     ElixirTooltip["topStr"].indexOf("엘릭서") == -1))
               ) {
                 isElixir = false;
+                whereElixir -= 1;
                 ElixirTooltip = undefined;
               }
               if (isTrans) TransTooltip = TransTooltip["topStr"];
@@ -379,11 +381,12 @@ const CharacterCardService = {
 
             if (Type == "투구" && isElixir) {
               var myElixir = "";
-              if (isTrans) {
-                myElixir = dat["Element_010"]["value"]["Element_000"]["topStr"];
-              } else {
-                myElixir = dat["Element_009"]["value"]["Element_000"]["topStr"];
-              }
+
+              myElixir =
+                dat[
+                  `Element_0${whereElixir + 1 > 9 ? "" : "0"}${whereElixir + 1}`
+                ]["value"]["Element_000"]["topStr"];
+
               data[sub]["option"]["ElixirName"] = myElixir.substring(
                 myElixir.indexOf("><FONT SIZE='12'") + 33,
                 myElixir.indexOf(")</FONT>") - 5
@@ -393,9 +396,6 @@ const CharacterCardService = {
             if (
               ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
             ) {
-              data[sub][Type]["ItemGrade"] = parseInt(
-                res[sub][element]["Name"].replace(NumberRegex, "")
-              );
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
 
@@ -422,20 +422,27 @@ const CharacterCardService = {
                 dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["value"][
                   "Element_001"
                 ];
-
-              data[sub][Type]["SetName"] = mySetOption.split(
-                " <FONT COLOR='#FFD200'>Lv."
-              )[0];
-              data[sub][Type]["SetLevel"] = Number(
-                mySetOption.split(" <FONT COLOR='#FFD200'>Lv.")[1][0]
-              );
-
-              if (data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]]) {
-                data[sub]["option"]["SetNames"][
-                  data[sub][Type]["SetName"]
-                ] += 1;
+              if (Type == "무기" && mySetOption.indexOf("장갑") != -1) {
+                //에스더면
+                isEsdo = true;
               } else {
-                data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]] = 1;
+                data[sub][Type]["SetName"] = mySetOption.split(
+                  " <FONT COLOR='#FFD200'>Lv."
+                )[0];
+                data[sub][Type]["SetLevel"] = Number(
+                  mySetOption.split(" <FONT COLOR='#FFD200'>Lv.")[1][0]
+                );
+                if (
+                  data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]]
+                ) {
+                  data[sub]["option"]["SetNames"][
+                    data[sub][Type]["SetName"]
+                  ] += 1;
+                } else {
+                  data[sub]["option"]["SetNames"][
+                    data[sub][Type]["SetName"]
+                  ] = 1;
+                }
               }
             } else if (Type == "목걸이") {
               data[sub][Type]["qualityValue"] =
@@ -601,6 +608,17 @@ const CharacterCardService = {
       if (data["ArmoryEquipment"]["option"]["ElixirName"].includes("<FONT")) {
         data["ArmoryEquipment"]["option"]["ElixirName"] = "";
       }
+
+      if (isEsdo) {
+        data["ArmoryEquipment"]["무기"]["SetName"] =
+          data["ArmoryEquipment"]["장갑"]["SetName"];
+        data["ArmoryEquipment"]["무기"]["SetLevel"] =
+          data["ArmoryEquipment"]["장갑"]["SetLevel"];
+
+        data["ArmoryEquipment"]["option"]["SetNames"][
+          data["ArmoryEquipment"]["무기"]["SetName"]
+        ] += 1;
+      }
       Object.keys(data["ArmoryEquipment"]["option"]["SetNames"]).forEach(
         (option) => {
           if (
@@ -624,6 +642,7 @@ const CharacterCardService = {
         engravingLevel += String(element["Level"]);
       });
       data["ArmoryEngraving"]["Level"] = engravingLevel;
+
       data["ArmoryGem"]["option"]["Level"] =
         data["ArmoryGem"]["option"]["HongLevel"] +
         data["ArmoryGem"]["option"]["MeulLevel"];
