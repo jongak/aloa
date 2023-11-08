@@ -166,6 +166,13 @@ const CardFront = function ({
             </div>
 
             <div className="row justify-content-center">
+              <div className="col align-self-center titlename">
+                <h2>
+                  {userData ? userData["ArmoryProfile"]["Title"] : "칭호"}
+                </h2>
+              </div>
+            </div>
+            <div className="row justify-content-center">
               <div className="col align-self-center nickname">
                 <h2>
                   {userData

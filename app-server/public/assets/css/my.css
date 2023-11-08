@@ -1001,14 +1001,17 @@ card
 
 .myToggle {
   margin-top: 20px;
+  margin-left: -30px;
+  position: relative;
 }
 
 .myToggle .switch {
-  position: relative;
+  position: absolute;
   display: inline-block;
   width: 52px;
   height: 26px;
-  align-self: flex-end;
+  top: 5px;
+  left: 250px;
 }
 
 /* Hide default HTML checkbox */
@@ -1073,7 +1076,7 @@ card
   color: var(--my--text);
   text-align: right;
   font-size: 20px;
-  width: auto;
+  width: 180px;
 }
 .myToggle .toggleTitle.no {
   color: var(--my--no--text);
@@ -1084,4 +1087,22 @@ card
   font-size: 16px;
   text-align: left;
   margin-top: 10px;
+  margin-left: 128px;
+}
+
+@media (max-width: 992px) {
+  .myToggle {
+    margin-left: -10px;
+  }
+  .myToggle .toggleTitle {
+    text-align: left;
+    margin-left: 40px;
+  }
+  .myToggle .switch {
+    left: auto;
+    right: 40px;
+  }
+  .myToggle .toggleBody {
+    margin-left: 65px;
+  }
 }

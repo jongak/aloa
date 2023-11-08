@@ -100,7 +100,7 @@
   left: 0px;
   align-items: center;
   text-align: center;
-  padding-top: 120px;
+  padding-top: 90px;
 }
 
 .cardMiddle .title .class_mark {
@@ -119,14 +119,23 @@
 .cardMiddle .title .class_mark img {
   width: 72px;
 }
-.cardMiddle .title .nickname h2 {
+.cardMiddle .title h2 {
   color: #f7f7f7;
   font-weight: 800;
   text-shadow: 2px 3px 4px #15181d;
-  margin-bottom: 20px;
+
   font-size: 40px;
   letter-spacing: -2px;
   /* padding-right: 16px; */
+}
+.cardMiddle .title .titlename h2 {
+  font-size: 24px;
+}
+.cardMiddle .title .nickname {
+  margin-bottom: 20px;
+}
+.cardMiddle .title .nickname h2 {
+  font-size: 40px;
 }
 .cardMiddle .title .lvl {
   display: flex;
