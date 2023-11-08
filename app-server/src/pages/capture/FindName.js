@@ -48,25 +48,30 @@ const FindName = function () {
   }, []);
 
   const onClickButtonChange = async () => {
-    setUserList(await getData(userName.current.value));
+    var tmp = await getData(userName.current.value);
+    if (tmp) {
+      setUserList(tmp);
+    }
   };
 
   const AllListCom = {};
-  serverList.forEach((server) => {
-    var ServerListCom;
-    if (userList[server]) {
-      ServerListCom = userList[server].map((character) => {
-        return (
-          <UserItem
-            key={character["CharacterName"]}
-            character={character}
-            characterNameRef={characterNameRef}
-          />
-        );
-      });
-    }
-    AllListCom[server] = ServerListCom;
-  });
+  if (userList) {
+    serverList.forEach((server) => {
+      var ServerListCom;
+      if (userList[server]) {
+        ServerListCom = userList[server].map((character) => {
+          return (
+            <UserItem
+              key={character["CharacterName"]}
+              character={character}
+              characterNameRef={characterNameRef}
+            />
+          );
+        });
+      }
+      AllListCom[server] = ServerListCom;
+    });
+  }
 
   const keyHandler = function (e) {
     if (e.key === "Enter") {

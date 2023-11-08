@@ -1,0 +1,202 @@
+.cardImg {
+  margin: 100px;
+  width: 600px;
+  height: 800px;
+}
+.cardImg .cardBody {
+  background: #15181d;
+  background-size: cover;
+  display: inline-block;
+  width: 600px;
+  height: 800px;
+  position: relative;
+}
+.cardImg .cardBody #cardFrame {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+}
+.cardImg .cardBody .cardTop {
+  /* width:  89px ; */
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+  top: 80px;
+  right: 72px;
+}
+.cardImg .cardBody .cardTop .servername {
+  background-color: #80808038;
+  border-radius: 60px;
+  opacity: 1;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 12px 20px;
+  line-height: 36px;
+  color: #fcfcfc;
+  letter-spacing: -2px;
+}
+.cardMiddle {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.cardMiddle .cardImgs {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardMiddle .cardImgs .cardCharacter {
+  width: 100%;
+  height: 100%;
+  /* background-image: url(${imgRef.current}); */
+  background-repeat: no-repeat;
+  opacity: 1;
+  background-position-y: 40px;
+}
+
+.cardMiddle .cardImgs .cardCharacter.aeromancer,
+.cardMiddle .cardImgs .cardCharacter.artist {
+  background-position-y: -40px;
+}
+.cardMiddle .cardImgs .cardCharacter.soulEater {
+  background-position-x: 40px;
+  background-position-y: 45px;
+}
+.cardMiddle .cardImgs .cardCharacter.slayer {
+  background-position-x: 15px;
+}
+.cardMiddle .engravings {
+  position: absolute;
+  top: 144px;
+  right: 60px;
+}
+.cardMiddle .engravings li {
+  width: 48px;
+}
+.cardMiddle .engravings .engraving {
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.cardMiddle .engravings .engraving.empty {
+  width: 48px;
+  height: 48px;
+  background-color: rgb(18, 18, 20);
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+.cardMiddle .title {
+  background: linear-gradient(
+    0deg,
+    rgba(71, 67, 67, 0.7) 40%,
+    rgba(70, 69, 69, 0) 100%
+  );
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  align-items: center;
+  text-align: center;
+  padding-top: 60px;
+}
+
+.cardMiddle .title .class_mark {
+  background: radial-gradient(
+    circle,
+    rgba(21, 24, 29, 0.1) 0%,
+    rgba(21, 24, 29, 0) 100%
+  );
+  padding: 8px 15px 8px 15px;
+  border-radius: 50%;
+
+  position: absolute;
+  top: -288px;
+  left: 48px;
+}
+.cardMiddle .title .class_mark img {
+  width: 72px;
+}
+.cardMiddle .title .nickname h2 {
+  color: #f7f7f7;
+  font-weight: 800;
+  text-shadow: 2px 3px 4px #15181d;
+  margin-bottom: 20px;
+  font-size: 40px;
+  letter-spacing: -2px;
+  /* padding-right: 16px; */
+}
+.cardMiddle .title .lvl {
+  display: flex;
+  justify-content: center;
+  margin-top: -21px;
+  text-shadow: 2px 3px 4px #15181d;
+  font-size: 24px;
+  font-weight: 600;
+  margin-right: -12px;
+}
+.cardMiddle .title .lvl .equipments_lvl {
+  color: #fff;
+  display: flex;
+  padding: 0 10px;
+  margin-left: -16px;
+}
+.cardMiddle .title .lvl .equipments_lvl sub {
+  /* font-size: 12px; */
+  line-height: 32px;
+}
+.cardMiddle .title .lvl .expedition_lvl {
+  color: #fff;
+  display: flex;
+  padding: 0 10px;
+  margin-left: -8px;
+}
+.cardMiddle .title .info {
+  margin-top: 10px;
+}
+/* .cardMiddle .info_table_th {
+  font-size: 20px;
+} */
+.cardMiddle .title .info .info_table {
+  color: #fff;
+  text-shadow: 2px 3px 4px #15181d;
+  font-size: 20px;
+  padding: 0 48px;
+}
+.cardMiddle .title .info .info_table .info_table_tr .info_table_td {
+  font-size: 24px;
+  font-weight: 550;
+  letter-spacing: -2.3px;
+}
+.cardMiddle .title .icons {
+  margin-top: 32px;
+  width: 85%;
+}
+.cardMiddle .title .icons .icons_table {
+  color: #fff;
+}
+
+.cardMiddle .title .icons .icons_table .icons_table_tr {
+  border-radius: 30%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 99, 29, 1) 50%,
+    rgba(21, 24, 29, 0) 100%
+  );
+}
+
+.cardMiddle .title .icons .icons_table .icons_table_tr .icons_table_badge {
+  position: absolute;
+  border-radius: 20px;
+  padding: 0px 10px 2px 12px;
+  top: 300px;
+  line-height: 022px;
+
+  background-color: #d73737;
+
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+}

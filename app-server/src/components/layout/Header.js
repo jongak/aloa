@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsDark } from "../../store/mainSlice";
+import { setIsDark, setIsThemaOpen } from "../../store/mainSlice";
 import ThemaToggle from "./ThemaToggle";
 import DarkToggle from "./DarkToggle";
+import { useState } from "react";
 
 function Header({ setThema, thema }) {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.mainSlice.isDark);
+  const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
+
   return (
     <header className="header-area header-sticky">
       <div className="container">
@@ -54,6 +57,17 @@ function Header({ setThema, thema }) {
                 }}
                 options={["light", "dark"]}
               />
+              <div
+                className={`myThema ${
+                  isThemaOpen ? "open" : "closed"
+                } a${thema}`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  dispatch(setIsThemaOpen({ newIsThemaOpen: false }));
+                }}
+              >
+                <div className="myThemaIn"></div>
+              </div>
               <ThemaToggle
                 setValueRef={setThema}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}

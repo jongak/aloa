@@ -310,6 +310,135 @@ Header Style
   display: inline !important;
 }
 
+.myDarkToggle {
+  cursor: pointer;
+  height: 42px;
+  margin-top: 12px;
+}
+.myDarkToggle i {
+  font-size: 2em;
+  padding: 5px;
+}
+.App.dark .myDarkToggle i {
+  color: var(--my--thema);
+}
+.App.light .myDarkToggle i {
+  font-size: 2em;
+  color: #ff4500;
+}
+
+.myDarkToggle .myDarkButton.rev {
+  display: none;
+}
+
+.myDarkToggle .myDarkButton {
+  transition: all 0.35s ease-in-out;
+  border-radius: 50%;
+  height: 42px;
+  width: 42px;
+}
+
+.myDarkToggle .myDarkButton:hover {
+  background-color: var(--my--background-hover);
+}
+
+.myThema {
+  cursor: pointer;
+  height: 42px;
+  margin-top: 12px;
+  padding: 7px;
+  transition: all 0s;
+  border-radius: 50%;
+  /* transition: all 0.35s ease-in-out; */
+  box-sizing: border-box;
+  margin-left: 12px;
+}
+
+.myThema:hover {
+  /* transition: all 0s; */
+  padding: 6px;
+  background-color: var(--my--background-hover);
+  border: 1px solid var(--dark--7);
+}
+
+.myThema:hover .myThemaIn {
+  /* transition: all 0s; */
+  border: none;
+}
+
+.myThemaIn {
+  /* transition: all 0.35s ease-in-out; */
+  box-sizing: border-box;
+  height: 28px;
+  width: 28px;
+
+  border-radius: 50%;
+  background-color: var(--my--thema);
+  border: 1px solid var(--dark--7);
+}
+
+.myThema.closed {
+  display: none;
+}
+
+.myThemaToggle {
+  margin-top: 12px;
+  margin-left: 0px;
+  margin-right: -18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  /* position: absolute; */
+  right: 200px;
+}
+
+.myThemaToggle.closed {
+  display: none;
+}
+
+.myThemaButton {
+  padding: 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.myThemaButton.clicked {
+  transition: 0s;
+  box-shadow: 0 0 0 3px #4872f4 inset;
+}
+
+.myThemaToggle #color1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  background-color: var(--my--color--1);
+}
+.myThemaToggle #color2 {
+  background-color: var(--my--color--2);
+}
+.myThemaToggle #color3 {
+  background-color: var(--my--color--3);
+}
+.myThemaToggle #color4 {
+  background-color: var(--my--color--4);
+}
+.myThemaToggle #color5 {
+  background-color: var(--my--color--5);
+}
+.myThemaToggle #color6 {
+  background-color: var(--my--color--6);
+}
+.myThemaToggle #color7 {
+  background-color: var(--my--color--7);
+}
+.myThemaToggle #color8 {
+  background-color: var(--my--color--8);
+}
+.myThemaToggle #color9 {
+  background-color: var(--my--color--9);
+}
+.myThemaToggle #color10 {
+  background-color: var(--my--color--10);
+}
+
 @media (max-width: 1200px) {
   .header-area .main-nav .nav li a {
     padding-left: 20px;
@@ -663,7 +792,7 @@ capture
 }
 
 .option-area .userRow span {
-  color: #1d1e21;
+  color: var(--dark--1);
   position: absolute;
   background-color: var(--my--dark-heading);
   border: 1px solid var(--my--dark--background--hover);
@@ -865,87 +994,4 @@ card
   .my-card-body .my-card-title {
     font-size: 1.1rem;
   }
-}
-
-.myDarkToggle {
-  cursor: pointer;
-  height: 42px;
-  margin-top: 10px;
-}
-.myDarkToggle i {
-  font-size: 2em;
-  padding: 5px;
-}
-.App.dark .myDarkToggle i {
-  color: var(--my--thema);
-}
-.App.light .myDarkToggle i {
-  font-size: 2em;
-  color: #ff4500;
-}
-
-.myDarkToggle .myDarkButton.rev {
-  display: none;
-}
-
-.myDarkToggle .myDarkButton {
-  transition: all 0.35s ease-in-out;
-  border-radius: 50%;
-  height: 42px;
-  width: 42px;
-}
-
-.myDarkToggle .myDarkButton:hover {
-  background-color: var(--my--background-hover);
-}
-
-.myThemaToggle {
-  margin-top: 4px;
-  margin-left: 10px;
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.myThemaButton {
-  padding: 12px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-.myThemaButton.clicked {
-  transition: 0s;
-  box-shadow: 0 0 0 3px #4872f4 inset;
-}
-
-.myThemaToggle #color1 {
-  grid-row-start: 1;
-  grid-row-end: 4;
-  background-color: var(--my--color--1);
-}
-.myThemaToggle #color2 {
-  background-color: var(--my--color--2);
-}
-.myThemaToggle #color3 {
-  background-color: var(--my--color--3);
-}
-.myThemaToggle #color4 {
-  background-color: var(--my--color--4);
-}
-.myThemaToggle #color5 {
-  background-color: var(--my--color--5);
-}
-.myThemaToggle #color6 {
-  background-color: var(--my--color--6);
-}
-.myThemaToggle #color7 {
-  background-color: var(--my--color--7);
-}
-.myThemaToggle #color8 {
-  background-color: var(--my--color--8);
-}
-.myThemaToggle #color9 {
-  background-color: var(--my--color--9);
-}
-.myThemaToggle #color10 {
-  background-color: var(--my--color--10);
 }
