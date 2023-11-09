@@ -26,13 +26,15 @@
 }
 .cardImg_b .cardBody .cardTop .back_servername span {
   background-color: #80808038;
-  border-radius: 20px;
-  margin-left: -24px;
-  font-size: 20px;
-  font-weight: 800;
-  line-height: 40px;
-  color: #fff;
-  padding: 8px 12px;
+  border-radius: 60px;
+  /* opacity: 1; */
+  font-size: 24px;
+  font-weight: 900;
+  padding: 12px 20px;
+  line-height: 36px;
+  color: #fcfcfc;
+  letter-spacing: -2px;
+  margin-left: -40px;
 }
 
 .cardImg_b .cardBody .cardMiddle {
@@ -242,10 +244,19 @@
   .back_options_right
   .equipments
   ul
+  li,
+.cardImg_b
+  .cardBody
+  .cardMiddle
+  .back_options
+  .back_options_right
+  .accessory
+  ul
   li {
   margin-bottom: 8px;
   position: relative;
 }
+
 .cardImg_b
   .cardBody
   .cardMiddle
@@ -267,9 +278,32 @@
   background-color: #f3ba26;
   border-radius: 12px;
   position: absolute;
-  line-height: 24px;
+  line-height: 20px;
   font-weight: 800;
-  padding: 0 4px;
+  padding: 0 4px 2px;
+}
+.cardImg_b
+  .cardBody
+  .cardMiddle
+  .back_options
+  .back_options_right
+  .accessory
+  ul
+  li
+  span:nth-child(2) {
+  top: 24px;
+}
+.cardImg_b
+  .cardBody
+  .cardMiddle
+  .back_options
+  .back_options_right
+  .accessory
+  ul
+  li
+  span:nth-child(3) {
+  top: 48px;
+  background-color: #a64e44;
 }
 .cardImg_b
   .cardBody
@@ -350,8 +384,8 @@
   li
   div
   .back_accessory_quality {
-  background-color: orange;
-  width: 80%;
+  /* background-color: orange; */
+  /* width: 80%; */
   height: 8px;
 }
 
@@ -364,5 +398,53 @@
   bottom: 176px;
   background: #80808038;
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 7px 16px;
+}
+.cardImg_b .cardBody .cardBottom .back_card_container {
+  width: 90%;
+  padding: 10px 20px;
+  background: #80808038;
+  border-radius: 8px;
+  position: absolute;
+  left: 5%;
+  bottom: 32px;
+}
+.cardImg_b .cardBody .cardBottom .back_card_container .back_card_slot {
+  padding: 0 4px;
+  position: relative;
+}
+.cardImg_b
+  .cardBody
+  .cardBottom
+  .back_card_container
+  .back_card_slot
+  .back_card_grade {
+  position: absolute;
+  width: 93%;
+  height: 100%;
+}
+.cardImg_b
+  .cardBody
+  .cardBottom
+  .back_card_container
+  .back_card_slot
+  .back_card_awake {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 6%;
+}
+.cardImg_b
+  .cardBody
+  .cardBottom
+  .back_card_container
+  .back_card_slot
+  img:nth-child(3) {
+  padding: 4px 1px 4px 2px;
+}
+
+#back_card_none {
+  width: 79px;
+  height: 116px;
+  border: 1px #fff;
 }

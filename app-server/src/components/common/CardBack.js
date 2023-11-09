@@ -259,6 +259,125 @@ const CardBack = function ({
         '{\r\n  "Element_000": {\r\n    "type": "NameTagBox",\r\n    "value": "<FONT COLOR=\'#F99200\'>웨이</FONT>"\r\n  },\r\n  "Element_001": {\r\n    "type": "Card",\r\n    "value": {\r\n      "awakeCount": 3,\r\n      "awakeTotal": 5,\r\n      "cardStack": "",\r\n      "iconData": {\r\n        "iconPath": "https://cdn-lostark.game.onstove.com/efui_iconatlas/card_legend/card_legend_01_0.png"\r\n      },\r\n      "isBookMark": false,\r\n      "tierGrade": 5\r\n    }\r\n  },\r\n  "Element_002": {\r\n    "type": "SingleTextBox",\r\n    "value": "에스더의 이름을 이어받은 무인. 스승을 죽인 불사귀 도철을 제압하여, 세상을 구하기 위해 나선다."\r\n  },\r\n  "Element_003": {\r\n    "type": "SingleTextBox",\r\n    "value": "<Font color=\'#5FD3F1\'>[물물교환] 애니츠 - 떠돌이 상인</font><BR><Font color=\'#5FD3F1\'>[업적] 모험 - 보스 헌터 : 고급</font><BR>"\r\n  }\r\n}',
     },
   ];
+  const cardGrade = {
+    일반: 1,
+    고급: 2,
+    희귀: 3,
+    영웅: 4,
+    전설: 5,
+  };
+  const equipQuality = {
+    100: "orange",
+    99: "hotpink",
+    98: "hotpink",
+    97: "hotpink",
+    96: "hotpink",
+    95: "hotpink",
+    94: "hotpink",
+    93: "hotpink",
+    92: "hotpink",
+    91: "hotpink",
+    90: "hotpink",
+    89: "blue",
+    88: "blue",
+    87: "blue",
+    86: "blue",
+    85: "blue",
+    84: "blue",
+    83: "blue",
+    82: "blue",
+    81: "blue",
+    80: "blue",
+    79: "blue",
+    78: "blue",
+    77: "blue",
+    76: "blue",
+    75: "blue",
+    74: "blue",
+    73: "blue",
+    72: "blue",
+    71: "blue",
+    70: "blue",
+    69: "green",
+    68: "green",
+    67: "green",
+    66: "green",
+    65: "green",
+    64: "green",
+    63: "green",
+    62: "green",
+    61: "green",
+    60: "green",
+    59: "green",
+    58: "green",
+    57: "green",
+    56: "green",
+    55: "green",
+    54: "green",
+    53: "green",
+    52: "green",
+    51: "green",
+    50: "green",
+    49: "green",
+    48: "green",
+    47: "green",
+    46: "green",
+    45: "green",
+    44: "green",
+    43: "green",
+    42: "green",
+    41: "green",
+    40: "green",
+    39: "green",
+    38: "green",
+    37: "green",
+    36: "green",
+    35: "green",
+    34: "green",
+    33: "green",
+    32: "green",
+    31: "green",
+    30: "green",
+    29: "yellow",
+    28: "yellow",
+    27: "yellow",
+    26: "yellow",
+    25: "yellow",
+    24: "yellow",
+    23: "yellow",
+    22: "yellow",
+    21: "yellow",
+    20: "yellow",
+    19: "yellow",
+    18: "yellow",
+    17: "yellow",
+    16: "yellow",
+    15: "yellow",
+    14: "yellow",
+    13: "yellow",
+    12: "yellow",
+    11: "yellow",
+    10: "yellow",
+    9: "red",
+    8: "red",
+    7: "red",
+    6: "red",
+    5: "red",
+    4: "red",
+    3: "red",
+    2: "red",
+    1: "red",
+    0: "red",
+  };
+  const equipGrade = {
+    고대: "#bca37d",
+    유물: "#e25041",
+    전설: "#fba026",
+    영웅: "#7504fb",
+    희귀: "#2d82c9",
+    고급: "#60db6d",
+    일반: "#475577",
+  };
   return (
     <div className="cardImg_b" ref={divRef} style={{ ...style }}>
       <div
@@ -401,53 +520,115 @@ const CardBack = function ({
               <div className="col-2 back_options_right">
                 <div className="equipments">
                   <ul>
-                    {equip1.map((item) => (
-                      <li key={item._key}>
-                        <span className="equipments_badge">+25</span>
-                        <img
-                          id="back_equipment_trans"
-                          src="/assets/images/cho/cho_5.png"
-                        />
-                        <img src={item.Icon} />
-                        <div>
-                          <div
-                            className="back_equipment_quality"
-                            style={
-                              {
-                                // background: "orange",
-                                // width: "80%",
-                                // height: "8px",
+                    {userData && userData["ArmoryEquipment"]
+                      ? [
+                          userData["ArmoryEquipment"]["무기"],
+                          userData["ArmoryEquipment"]["투구"],
+                          userData["ArmoryEquipment"]["상의"],
+                          userData["ArmoryEquipment"]["하의"],
+                          userData["ArmoryEquipment"]["어깨"],
+                          userData["ArmoryEquipment"]["장갑"],
+                        ].map((item) => (
+                          <li key={item._key}>
+                            <span
+                              className="equipments_badge"
+                              style={{
+                                backgroundColor: `${equipGrade[item["Grade"]]}`,
+                              }}
+                            >
+                              +{item["ItemGrade"]}
+                            </span>
+                            <img
+                              id="back_equipment_trans"
+                              src={
+                                `/assets/images/cho/cho_${item["TransGrade"]}.png` ||
+                                ""
                               }
-                            }
-                          ></div>
-                        </div>
-                      </li>
-                    ))}
+                            />
+                            <img src={item["Icon"]} />
+                            <div>
+                              <div
+                                className="back_equipment_quality"
+                                style={{
+                                  width: `${item["qualityValue"]}%`,
+                                  backgroundColor: `${
+                                    equipQuality[item["qualityValue"]]
+                                  }`,
+                                }}
+                              ></div>
+                            </div>
+                          </li>
+                        ))
+                      : ""}
                   </ul>
                 </div>
               </div>
               <div className="col-2 back_options_right">
                 <div className="accessory">
                   <ul>
-                    {equip2.map((item) => (
-                      <li key={item._key} style={{ marginBottom: "8px" }}>
-                        <span className="accessory_badge">+25</span>
+                    {userData && userData["ArmoryEquipment"]
+                      ? [
+                          userData["ArmoryEquipment"]["목걸이"],
+                          userData["ArmoryEquipment"]["귀걸이"][0],
+                          userData["ArmoryEquipment"]["귀걸이"][1],
+                          userData["ArmoryEquipment"]["반지"][0],
+                          userData["ArmoryEquipment"]["반지"][1],
+                        ].map((item) => (
+                          <li key={item._key}>
+                            {/* <span className="accessory_badge">+25</span> */}
 
-                        <img src={item.Icon} />
-                        <div>
-                          <div
-                            className="back_accessory_quality"
-                            style={
-                              {
-                                // background: "orange",
-                                // width: "80%",
-                                // height: "8px",
-                              }
-                            }
-                          ></div>
-                        </div>
-                      </li>
-                    ))}
+                            <img src={item["Icon"]} />
+                            <div>
+                              <div
+                                className="back_accessory_quality"
+                                style={{
+                                  width: `${item["qualityValue"]}%`,
+                                  backgroundColor: `${
+                                    equipQuality[item["qualityValue"]]
+                                  }`,
+                                }}
+                              ></div>
+                            </div>
+                          </li>
+                        ))
+                      : ""}
+                    <li>
+                      <span className="accessory_badge">
+                        {userData &&
+                        userData["ArmoryEquipment"]["어빌리티 스톤"]
+                          ? userData["ArmoryEquipment"]["어빌리티 스톤"][
+                              "engravings00"
+                            ]["level"]
+                          : ""}
+                      </span>
+                      <span className="accessory_badge">
+                        {userData &&
+                        userData["ArmoryEquipment"]["어빌리티 스톤"]
+                          ? userData["ArmoryEquipment"]["어빌리티 스톤"][
+                              "engravings01"
+                            ]["level"]
+                          : ""}
+                      </span>
+                      <span className="accessory_badge">
+                        {userData &&
+                        userData["ArmoryEquipment"]["어빌리티 스톤"]
+                          ? userData["ArmoryEquipment"]["어빌리티 스톤"][
+                              "engravings02"
+                            ]["level"]
+                          : ""}
+                      </span>
+
+                      <img
+                        src={
+                          userData &&
+                          userData["ArmoryEquipment"]["어빌리티 스톤"]
+                            ? userData["ArmoryEquipment"]["어빌리티 스톤"][
+                                "Icon"
+                              ]
+                            : ""
+                        }
+                      />
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -457,79 +638,44 @@ const CardBack = function ({
         <div className="cardBottom">
           <div className="col back_card_awakename">세구빛 30</div>
 
-          <div
-            className="container"
-            style={{
-              width: "90%",
-              padding: "10px 20px",
-              background: "#80808038",
-              borderRadius: "8px",
-              position: "absolute",
-              left: "5%",
-              bottom: "32px",
-            }}
-          >
+          <div className="container back_card_container">
             <div className="row align-items-end">
               {/* {cards.map((item) => (
-                <div
-                  key={item._key}
-                  className="col-2"
-                  style={{ padding: "0 4px", position: "relative" }}
-                >
+                <div key={item._key} className="col-2 back_card_slot">
                   <img
-                    id="back_card_grade"
-                    src="/assets/images/card/card_grade_6.png"
-                    style={{
-                      position: "absolute",
-                      width: "91%",
-                      height: "100%",
-                    }}
+                    className="back_card_grade"
+                    src="/assets/images/card/card_grade_3.png"
                   />
                   <img
-                    id="back_card_awake"
+                    className="back_card_awake"
                     src="/assets/images/card/card_awake_5.png"
-                    style={{
-                      position: "absolute",
-                      width: "80%",
-                      left: "10%",
-                      bottom: "6%",
-                    }}
                   />
 
                   <img src={item.Icon} />
                 </div>
               ))} */}
-              {userData && userData["ArmoryCard"]["Cards"]
-                ? userData["ArmoryCard"]["Cards"].map((item) => (
-                    <div
-                      key={item._key}
-                      className="col-2"
-                      style={{ padding: "0 4px", position: "relative" }}
-                    >
-                      <img
-                        id="back_card_grade"
-                        src="/assets/images/card/card_grade_6.png"
-                        style={{
-                          position: "absolute",
-                          width: "91%",
-                          height: "100%",
-                        }}
-                      />
-                      <img
-                        id="back_card_awake"
-                        src="/assets/images/card/card_awake_5.png"
-                        style={{
-                          position: "absolute",
-                          width: "80%",
-                          left: "10%",
-                          bottom: "6%",
-                        }}
-                      />
+              {userData && userData["ArmoryCard"]["Cards"] ? (
+                userData["ArmoryCard"]["Cards"].map((item) => (
+                  <div key={item.slot} className="col-2 back_card_slot">
+                    <img
+                      className="back_card_grade"
+                      src={`/assets/images/card/card_grade_${
+                        cardGrade[item.Grade]
+                      }.png`}
+                    />
+                    <img
+                      className="back_card_awake"
+                      src={`/assets/images/card/card_awake_${item.AwakeCount}.png`}
+                    />
 
-                      <img src={item.Icon} />
-                    </div>
-                  ))
-                : ""}
+                    <img src={item.Icon} />
+                  </div>
+                ))
+              ) : (
+                <div className="col-2 back_card_slot">
+                  <div id="back_card_none"></div>
+                </div>
+              )}
             </div>
           </div>
         </div>
