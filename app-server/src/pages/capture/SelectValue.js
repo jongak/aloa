@@ -30,7 +30,7 @@ const SelectValue = function () {
     todo: [...Array(6)].map((_, i) => ({
       id: `${i}${i}${i}`,
       title: `Title ${i + 1}000`,
-      status: "todo",
+      status: "doing",
     })),
     doing: [],
   });
@@ -69,7 +69,17 @@ const SelectValue = function () {
       <h3>02. 내용 정하기</h3>
       <div className="userRow">
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className="grid flex-1 select-none grid-cols-2 gap-4 rounded-lg">
+          <div
+            className="items"
+            style={{
+              display: "grid",
+              flex: 1,
+              userSelect: "none",
+              gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+              gap: "1rem",
+              borderRadius: "0.5rem",
+            }}
+          >
             {Object.keys(items).map((key) => (
               <Droppable key={key} droppableId={key}>
                 {(provided, snapshot) => (
