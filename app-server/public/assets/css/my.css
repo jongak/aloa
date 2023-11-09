@@ -1,5 +1,6 @@
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
 .App {
   --dark--1: #1d1e21;
