@@ -2,6 +2,12 @@ import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from "react-beautiful-dnd";
 
 import styles from "./Main.module.css";
 import ToggleButton from "../../components/common/ToggleButton";
@@ -20,117 +26,101 @@ const SelectValue = function () {
     setPage("select");
   }, []);
 
-  const [draggingSectionId, setDraggingSectionId] = useState(null); // 지금드래고 하고있는 요소가 있는 섹션
-  const draggingItemIndex = useRef(); //지금 드래그하고있는 요소
-  const draggingOverItemIndex = useRef(); //지금 드래그 하고있는 요소가 지나간 요소
-  const [availableOptionsArr, setAvailableOptionsArr] = useState([
-    "0",
-    "1",
-    "2",
-  ]);
-  const [selectedOptionsArr, setSelectedOptionsArr] = useState(["a", "b", "c"]);
+  const [items, setItems] = useState({
+    todo: [...Array(6)].map((_, i) => ({
+      id: `${i}${i}${i}`,
+      title: `Title ${i + 1}000`,
+      status: "todo",
+    })),
+    doing: [],
+  });
+  const onDragEnd = (DropResult) => {
+    const { source, destination } = DropResult;
+    if (!destination) return;
 
-  //잡았을때 잡은요소 저장
-  const onDragStart = (e, index, id) => {
-    draggingItemIndex.current = index;
-    e.target.classList.add("grabbing");
-    console.log(index);
-    setDraggingSectionId(id); // 2
+    const scourceKey = source.droppableId;
+    const destinationKey = destination.droppableId;
+
+    const _items = JSON.parse(JSON.stringify(items));
+    const [targetItem] = _items[scourceKey].splice(source.index, 1);
+    _items[destinationKey].splice(destination.index, 0, targetItem);
+    setItems(_items);
   };
 
-  // 드래그중일때 실행
-  const onLeftItemDragEnter = (e, index) => {
-    // 3-1
-    if (draggingSectionId === 0) {
-      // 3-1
-      draggingOverItemIndex.current = index; //드래그중일때 지나간것 저장
-      const copyListItems = [...availableOptionsArr];
-      const dragItemContent = copyListItems[draggingItemIndex.current];
-      // 얕은 복사로 만든 카피 배열에서 드래깅되는 아이템을 하나 제거해주고
-      copyListItems.splice(draggingItemIndex.current, 1);
-      // 카피 리스트 배열에서 드레깅되는 아이템이 지나간 아이템의 인덱스에 드레그된 아이템을 추가해준다.
-      copyListItems.splice(draggingOverItemIndex.current, 0, dragItemContent);
-      // 드래깅된 아이템의 장소를 드래그 오버된 아이템의 인덱스로 바꾸어준다.
-      draggingItemIndex.current = draggingOverItemIndex.current;
-      // 드래그 오버 아이템의 useRef객체의 current 값을 초기화해준다.
-      draggingOverItemIndex.current = null;
-      // 리스트를 새롭게 랜더링할 수 있도록 상태를 업데이트해준다.
-      setAvailableOptionsArr(copyListItems);
-    }
-  };
+  // --- requestAnimationFrame 초기화
+  const [enabled, setEnabled] = useState(false);
 
-  const onRightItemDragEnter = (e, index) => {
-    // 3-2
-    if (draggingSectionId === 1) {
-      // 3-2
-      draggingOverItemIndex.current = index;
-      const copyListItems = [...selectedOptionsArr];
-      const dragItemContent = copyListItems[draggingItemIndex.current];
-      // 얕은 복사로 만든 카피 배열에서 드래깅되는 아이템을 하나 제거해주고
-      copyListItems.splice(draggingItemIndex.current, 1);
-      // 카피 리스트 배열에서 드레깅되는 아이템이 지나간 아이템의 인덱스에 드레그된 아이템을 추가해준다.
-      copyListItems.splice(draggingOverItemIndex.current, 0, dragItemContent);
-      // 드래깅된 아이템의 장소를 드래그 오버된 아이템의 인덱스로 바꾸어준다.
-      draggingItemIndex.current = draggingOverItemIndex.current;
-      // 드래그 오버 아이템의 useRef객체의 current 값을 초기화해준다.
-      draggingOverItemIndex.current = null;
-      // 리스트를 새롭게 랜더링할 수 있도록 상태를 업데이트해준다.
-      setSelectedOptionsArr(copyListItems);
-    }
-  };
+  useEffect(() => {
+    const animation = requestAnimationFrame(() => setEnabled(true));
 
-  const onDragOver = (e) => {
-    e.preventDefault();
-  };
+    return () => {
+      cancelAnimationFrame(animation);
+      setEnabled(false);
+    };
+  }, []);
 
-  const onDragEnd = (e) => {
-    e.target.classList.remove("grabbing");
-  };
+  if (!enabled) {
+    return null;
+  }
+  // --- requestAnimationFrame 초기화 END
 
   return (
-    <div className="option-body">
+    <div className="option-body" style={{ position: "relative" }}>
       <h3>02. 내용 정하기</h3>
       <div className="userRow">
-        {availableOptionsArr.map((item, index) => (
-          <div
-            key={`a{index}`}
-            style={{
-              backgroundColor: "lightblue",
-              margin: "20px 25%",
-              textAlign: "center",
-              fontSize: "40px",
-            }}
-            // onClick={(e) => onClickHandler(e, idx)}
-            onDragStart={(e) => onDragStart(e, index, 0)}
-            onDragEnter={(e) => onLeftItemDragEnter(e, index)}
-            onDragOver={(e) => onDragOver(e)}
-            onDragEnd={(e) => onDragEnd(e)}
-            draggable
-          >
-            {item}
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="grid flex-1 select-none grid-cols-2 gap-4 rounded-lg">
+            {Object.keys(items).map((key) => (
+              <Droppable key={key} droppableId={key}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className={`
+                      "flex flex-col gap-3 rounded-xl bg-gray-200 p-4 ring-1 ring-gray-300 transition-shadow dark:bg-[#000000]",
+                      ${snapshot.isDraggingOver ? "shadow-lg" : "shadow"}
+                    `}
+                  >
+                    <span className="text-xs font-semibold">
+                      {key.toLocaleUpperCase()}
+                    </span>
+                    {items[key].map((item, index) => (
+                      <Draggable
+                        key={item.id}
+                        draggableId={item.id}
+                        index={index}
+                      >
+                        {(provided, snapshot) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className={`
+                              "rounded-lg bg-white p-4 transition-shadow dark:bg-[#121212]",
+                              ${
+                                snapshot.isDragging
+                                  ? "bg-opacity-90 shadow-2xl shadow-gray-400"
+                                  : "shadow"
+                              }
+                            `}
+                          >
+                            <h5 className="font-semibold">{item.title}</h5>
+                            <span className="text-sm text-gray-500">
+                              Make the world beatiful
+                            </span>
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            ))}
           </div>
-        ))}
-
-        {selectedOptionsArr.map((item, index) => (
-          <div
-            key={`a{index}`}
-            style={{
-              backgroundColor: "lightblue",
-              margin: "20px 25%",
-              textAlign: "center",
-              fontSize: "40px",
-            }}
-            // onClick={(e) => onClickHandler(e, idx)}
-            onDragStart={(e) => onDragStart(e, index, 1)}
-            onDragEnter={(e) => onRightItemDragEnter(e, index)}
-            onDragOver={(e) => onDragOver(e)}
-            onDragEnd={(e) => onDragEnd(e)}
-            draggable
-          >
-            {item}
-          </div>
-        ))}
+        </DragDropContext>
       </div>
+
       <div className="userRow">
         <ToggleButton
           valueRef={isName}
