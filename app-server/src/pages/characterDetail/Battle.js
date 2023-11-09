@@ -5,6 +5,7 @@ import cards from "../../data/cards.json";
 
 const Battle = function () {
   const [expanded, setExpanded] = useState(false); // expanded 상태와 setter 함수
+
   const [isBig, setIsBig] = useState(true);
   const toggleAccordion = () => {
     setExpanded(!expanded); // 상태를 토글하는 함수
@@ -22,9 +23,14 @@ const Battle = function () {
     ? { transform: "rotate(180deg) translateZ(0px)" }
     : { transform: "none" };
 
-  const [isFold, setFold] = useState(false);
-  const foldToggle = function () {
-    setFold(!isFold);
+  const [isFoldGems, setFoldGems] = useState(false);
+  const foldToggleGems = function () {
+    setFoldGems(!isFoldGems);
+  };
+
+  const [isFoldCards, setIsFoldCards] = useState(false);
+  const foldToggleCards = function () {
+    setIsFoldCards(!isFoldCards);
   };
 
   return (
@@ -174,7 +180,7 @@ const Battle = function () {
         >
           <div
             className="row justify-content-between"
-            onClick={foldToggle}
+            onClick={foldToggleGems}
             style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}
           >
             <span className="col-6 d-flex">
@@ -209,11 +215,11 @@ const Battle = function () {
           </div>
 
           <div className="row">
-            <div className={isFold ? "detail" : "summary"}>
+            <div className={isFoldGems ? "detail" : "summary"}>
               {gems.Gems.map((item) => (
                 <div
                   key={item.CardsSlot}
-                  className={isFold ? "col-1 list" : "col-1 detail"}
+                  className={isFoldGems ? "col-1 list" : "col-1 detail"}
                 >
                   <div
                     style={{
@@ -225,7 +231,7 @@ const Battle = function () {
                     <img src={item.Icon}></img>
                   </div>
                   <div
-                    className={isFold ? "" : "none"}
+                    className={isFoldGems ? "" : "none"}
                     style={{
                       width: "36px",
                       height: "36px",
@@ -268,17 +274,17 @@ const Battle = function () {
             border: "solid 1px red",
             backgroundColor: "green",
             marginTop: "10px",
-            padding: "20px",
+            //padding: "20px",
           }}
         >
           <div
             className="row justify-content-between"
-            onClick={foldToggle}
+            onClick={foldToggleCards}
             style={{ display: "flex", marginBottom: "10px", cursor: "pointer" }}
           >
-            <span className="col-6 d-flex">
+            <span className="col-6 d-flex items-center gap-3">
               <span className="">카드</span>
-              <div className="">
+              <div className="flex items-center gap-2">
                 <span className="bg-negative-less text-sm rounded px-2 py-0.5 inline-flex items-center gap-1 text-positive-less whitespace-nowrap">
                   세구빛 30
                 </span>
@@ -308,20 +314,39 @@ const Battle = function () {
           </div>
 
           <div className="row">
-            <div className={isFold ? "detail" : "summary"}>
+            <div className={isFoldCards ? "detail" : "summary"}>
               {cards.Cards.map((item) => (
                 <div
                   key={item.GemSlot}
-                  className={isFold ? "col-2 list" : "col-2 detail"}
+                  className={isFoldCards ? "col-2 list" : "col-2 detail"}
                 >
                   <div
+                    className="aspect-[248/362] -m-0.5 relative flex overflow-hidden rounded-md "
                     style={{
-                      width: "36px",
-                      height: "36px",
+                      width: "107px",
+                      height: "157px",
                       backgroundColor: "#15181d",
                     }}
                   >
-                    <img src={item.Icon}></img>
+                    <div
+                      className="aspect-[248/362] -m-0.5 relative flex overflow-hidden rounded-md "
+                      style={{
+                        width: "107px",
+                        height: "157px",
+                        backgroundColor: "rgb(21, 24, 29)",
+                      }}
+                    >
+                      <img src={item.Icon}></img>
+                    </div>
+                    <div className="absolute bottom-0 w-full p-[10%]">
+                      <div className="drop-shadow-xl">
+                        <div className="relative aspect-[10/3] bg-[url(https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/profile/img_profile_awake.png)] bg-cover overflow-hidden">
+                          <div className="absolute overflow-hidden w-full -left-[0%] h-full bg-[0_100%] bg-[url(https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/profile/img_profile_awake.png)] bg-cover"></div>
+                        </div>
+                      </div>
+                      <div className="w-full h-full absolute bg-[80.15%_0] bg-[url(https://cdn-lostark.iloa.gg/2018/obt/assets/images/pc/profile/img_card_grade.png)] bg-cover"></div>
+                    </div>
+                    <p className="mt-2 text-2xs">{item.Name}</p>
                   </div>
                 </div>
               ))}
