@@ -96,7 +96,7 @@ const FindName = function () {
           key={userList["server"]}
           className={`userRow ${userList["server"]}`}
         >
-          <span>{serverKor[userList["server"]]}</span>
+          <span className="server">{serverKor[userList["server"]]}</span>
           {AllListCom[userList["server"]]}
         </div>
 
@@ -104,7 +104,7 @@ const FindName = function () {
           if (AllListCom[server] && server != userList["server"])
             return (
               <div key={server} className={`userRow ${server}`}>
-                <span>{serverKor[server]}</span>
+                <span className="server">{serverKor[server]}</span>
                 {AllListCom[server]}
               </div>
             );
