@@ -448,3 +448,33 @@
   height: 116px;
   border: 1px #fff;
 }
+
+.test {
+}
+.test .show {
+  display: block;
+}
+.test .hover {
+  display: none;
+}
+.test:hover {
+  .show {
+    animation-duration: 1.8s;
+    animation-name: temp;
+  }
+  /* .hover {
+    display: block;
+    opacity: 1;
+  } */
+}
+@keyframes temp {
+  100% {
+    transform: rotate(-0deg);
+  }
+  50% {
+    transform: rotate(-25deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+}

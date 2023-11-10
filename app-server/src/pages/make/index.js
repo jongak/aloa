@@ -221,6 +221,18 @@ const Makecard = function () {
         divRef={divRef}
       />
 
+      <div
+        className="test"
+        style={{ width: "200px", display: "flex", cursor: "pointer" }}
+      >
+        <img className="show" src="/assets/images/asset 1.png" />
+        <img className="hover" src="/assets/images/asset 3.png" />
+        <img
+          style={{ width: "300px", height: "100%", marginLeft: "20px" }}
+          src="/assets/images/asset 4.png"
+        />
+      </div>
+
       <input
         type="text"
         className="form-control"
