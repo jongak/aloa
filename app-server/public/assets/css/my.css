@@ -70,7 +70,7 @@
   --my--dark-text: #cecece;
   --my--dark-heading: var(--my--thema);
 
-  --my--light--background: #cecece;
+  --my--light--background: #eaeaea;
   --my--light--text: #393c42;
 
   --my--background: #393c42;
@@ -1111,6 +1111,40 @@ card
   }
 }
 
-*.absolute {
-  position: absolute;
+.drag-cover {
+  display: grid;
+  flex: 1;
+  padding: 5px;
+}
+.drag-cover * {
+  transition: none;
+}
+.drag-cover #todo {
+  background-color: yellow;
+}
+
+.drag-cover .drag-body {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.drag-cover .drag-body.todo {
+  border-right: 2px solid var(--my--dark--background);
+}
+
+.drag-cover .drag-body.drag {
+  outline: 2px solid var(--my--heading);
+  border-color: var(--my--background);
+}
+
+.drag-cover .drag-title {
+  color: var(--my--text);
+  font-size: 20px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.drag-cover .drag-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--my--heading);
+  color: var(--my--text);
 }

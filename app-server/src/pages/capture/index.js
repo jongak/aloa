@@ -4,6 +4,21 @@ import LootCard from "../../components/common/LootCard";
 import CardFront from "../../components/common/CardFront";
 import CardBack from "../../components/common/CardBack";
 import { Outlet } from "react-router";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData } from "../../store/captureSlice";
+
+const getDataCard = async function (id) {
+  try {
+    const res = await axios.get(`/character/carddata/${id}`);
+    if (res.data.ok) {
+      return res.data.data;
+    }
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const capture = function () {
   const frontRef = useRef(null);
@@ -20,6 +35,10 @@ const capture = function () {
   const glowRef = useRef(true);
   const shineRef = useRef(true);
   const shadowRef = useRef(true);
+
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.captureSlice.userData);
+
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
   );
@@ -39,6 +58,14 @@ const capture = function () {
     "#6dd5ed",
     "#2193b0",
   ]);
+  useEffect(() => {
+    if (characterNameRef.current) {
+      getDataCard(characterNameRef.current).then((res) => {
+        dispatch(setUserData({ newUserData: res }));
+        console.log(res);
+      });
+    }
+  }, [characterNameRef.current]);
 
   useEffect(() => {
     const fetchData = async () => {

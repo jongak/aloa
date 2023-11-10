@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./cardFront.css";
+import { useSelector } from "react-redux";
 
 const change = {
   기상술사: "aeromancer",
@@ -48,18 +49,6 @@ const getData = async function (url) {
   }
 };
 
-const getDataCard = async function (id) {
-  try {
-    const res = await axios.get(`/character/carddata/${id}`);
-    if (res.data.ok) {
-      return res.data.data;
-    }
-    return;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 const CardFront = function ({
   characterNameRef,
   setIsLoading,
@@ -69,16 +58,7 @@ const CardFront = function ({
   bgFrame = "/assets/images/card_frame.png",
 }) {
   const imgRef = useRef();
-  const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    if (characterNameRef.current) {
-      getDataCard(characterNameRef.current).then((res) => {
-        setUserData(res);
-        console.log(res);
-      });
-    }
-  }, [characterNameRef.current]);
+  const userData = useSelector((state) => state.captureSlice.userData);
 
   useEffect(() => {
     if (characterNameRef.current) {
