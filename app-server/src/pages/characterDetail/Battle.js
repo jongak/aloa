@@ -320,22 +320,8 @@ const Battle = function () {
                   key={item.GemSlot}
                   className={isFoldCards ? "col-2 list" : "col-2 detail"}
                 >
-                  <div
-                    className="aspect-[248/362] -m-0.5 relative flex overflow-hidden rounded-md "
-                    style={{
-                      width: "107px",
-                      height: "157px",
-                      backgroundColor: "#15181d",
-                    }}
-                  >
-                    <div
-                      className="aspect-[248/362] -m-0.5 relative flex overflow-hidden rounded-md "
-                      style={{
-                        width: "107px",
-                        height: "157px",
-                        backgroundColor: "rgb(21, 24, 29)",
-                      }}
-                    >
+                  <div className="aspect-[248/362] -m-0.5 relative flex overflow-hidden rounded-md ">
+                    <div className="py-1.5 px-[0.2rem]">
                       <img src={item.Icon}></img>
                     </div>
                     <div className="absolute bottom-0 w-full p-[10%]">
@@ -344,7 +330,9 @@ const Battle = function () {
                           <div className="absolute overflow-hidden w-full -left-[0%] h-full bg-[0_100%] bg-[url(https://cdn-lostark.game.onstove.com/2018/obt/assets/images/pc/profile/img_profile_awake.png)] bg-cover"></div>
                         </div>
                       </div>
-                      <div className="w-full h-full absolute bg-[80.15%_0] bg-[url(https://cdn-lostark.iloa.gg/2018/obt/assets/images/pc/profile/img_card_grade.png)] bg-cover"></div>
+                    </div>
+                    <div className="w-full h-full absolute bg-[80.15%_0] bg-[url(https://cdn-lostark.iloa.gg/2018/obt/assets/images/pc/profile/img_card_grade.png)] bg-cover">
+                      <img></img>
                     </div>
                     <p className="mt-2 text-2xs">{item.Name}</p>
                   </div>
