@@ -18,9 +18,19 @@ function Header({ setThema, thema }) {
             <nav className="main-nav">
               <Link to="/" className="logo">
                 <img
-                  src="/assets/images/logo2.png"
+                  className="logo_mark"
+                  src={`/assets/images/logo/logo_mark_mycolor${thema}.png`}
                   alt=""
-                  style={{ width: "158px" }}
+                />
+                <img
+                  className="logo_name logo_off"
+                  src={`/assets/images/logo/logo_name_mycolor${thema}-hover.png`}
+                  alt=""
+                />
+                <img
+                  className="logo_hover logo_on"
+                  src={`/assets/images/logo/logo_name_mycolor${thema}.png`}
+                  alt=""
                 />
               </Link>
               <ul className="nav">

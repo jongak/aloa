@@ -176,14 +176,55 @@ Header Style
   z-index: 100;
   transition: all 1s ease 0s;
 }
-
+.header-area .container {
+  padding-top: 8px;
+}
 .header-area .main-nav {
   display: flex;
 }
 
 .header-area .main-nav .logo {
+  height: 60px;
   transition: all 0.3s ease 0s;
-  display: inline-block;
+  display: flex;
+}
+
+.header-area .main-nav .logo .logo_mark {
+  width: 100%;
+  height: 100%;
+}
+.header-area .main-nav .logo:hover {
+  .logo_mark {
+    animation: rote 1.4s;
+  }
+  .logo_off {
+    display: none;
+  }
+  .logo_on {
+    display: block;
+  }
+}
+@keyframes rote {
+  100% {
+    transform: rotate(-0deg);
+  }
+  50% {
+    transform: rotate(-25deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+}
+.header-area .main-nav .logo .logo_name {
+  height: 40%;
+  align-self: center;
+  margin-left: 10px;
+}
+.header-area .main-nav .logo .logo_hover {
+  height: 40%;
+  align-self: center;
+  margin-left: 10px;
+  display: none;
 }
 
 .header-area .main-nav ul.nav {
@@ -235,7 +276,7 @@ Header Style
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
-  top: 33px;
+  top: 22px;
   width: 32px;
   height: 40px;
   text-indent: -9999em;
@@ -315,12 +356,15 @@ Header Style
 
 .myDarkToggle {
   cursor: pointer;
+  width: 50px;
   height: 42px;
   margin-top: 12px;
+  position: relative;
 }
 .myDarkToggle i {
   font-size: 2em;
   padding: 5px;
+  position: absolute;
 }
 .App.dark .myDarkToggle i {
   color: var(--my--thema);
@@ -331,18 +375,92 @@ Header Style
 }
 
 .myDarkToggle .myDarkButton.rev {
-  display: none;
+  /* display: none; */
 }
 
 .myDarkToggle .myDarkButton {
-  transition: all 0.35s ease-in-out;
+  transition: all 1s ease-in-out;
   border-radius: 50%;
   height: 42px;
   width: 42px;
+  position: absolute;
 }
 
 .myDarkToggle .myDarkButton:hover {
   background-color: var(--my--background-hover);
+}
+.myDarkButton .fa-sun {
+  z-index: 1;
+  left: 0;
+  animation: sunrise 1s;
+}
+.rev .fa-sun {
+  left: 0;
+  animation: sundown 1s forwards;
+}
+@keyframes sunrise {
+  0% {
+    left: 25px;
+    top: 20px;
+    opacity: 0;
+  }
+  50% {
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+@keyframes sundown {
+  100% {
+    left: -25px;
+    top: 20px;
+    opacity: 0;
+  }
+  50% {
+  }
+  0% {
+    left: 0;
+    top: 0;
+  }
+}
+
+.myDarkButton .fa-moon {
+  left: 0;
+  top: 0;
+  animation: moonrise 1s;
+}
+.rev .fa-moon {
+  left: 0;
+  top: 0;
+  animation: moondown 1s forwards;
+}
+
+@keyframes moonrise {
+  0% {
+    left: 25px;
+    top: 20px;
+    opacity: 0;
+  }
+  50% {
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
+}
+@keyframes moondown {
+  100% {
+    left: -25px;
+    top: 20px;
+    opacity: 0;
+  }
+  50% {
+  }
+  0% {
+    left: 0;
+    top: 0;
+  }
 }
 
 .myThema {
@@ -478,8 +596,9 @@ Header Style
   .header-area .main-nav .logo {
     position: absolute;
     left: 30px;
-    top: 0px;
+    top: 10px;
   }
+
   /* .header-area .main-nav .border-button {
     position: absolute;
     top: 150px;
@@ -505,6 +624,13 @@ Header Style
   .header-area .logo {
     margin-left: 0px;
     /* margin-top: 30px; */
+  }
+  .myDarkToggle {
+    right: -360px;
+  }
+  .myThema {
+    position: fixed;
+    right: 90px;
   }
   .header-area .menu-trigger {
     display: block !important;
