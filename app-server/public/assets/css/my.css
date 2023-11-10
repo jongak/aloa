@@ -65,8 +65,9 @@
 
 .App.dark {
   --my--very--dark--background: #1d1e21;
+  --my--very--dark--background--hover: #393c42;
+
   --my--dark--background: #2b2d32;
-  --my--dark--background--hover: #393c42;
   --my--dark-text: #cecece;
   --my--dark-heading: var(--my--thema);
 
@@ -76,29 +77,34 @@
   --my--background: #393c42;
   --my--background-hover: #717779;
   --my--text: #f7f7f7;
-  --my--no--text: #8c9591;
   --my--heading: var(--my--thema);
   --my--shadow: #1d1e21;
+
+  --my--no--background: #393c42;
+  --my--no--text: #8c9591;
+  --my--no--heading: #cecece;
+  --my--no--border: #f7f7f7;
+
+  --my--yes--background: #393c42;
+  --my--yes--heading: #f7f7f7;
+  --my--yes--border: var(--my--thema);
+
+  --my--input--focus--background: #393c42;
 
   --my--button--background: #393c42;
   --my--button--color: #f7f7f7;
   --my--button--border: var(--my--thema);
 
-  --my--input--focus--background: #393c42;
   --my--button--hover--background: #717779;
   --my--button--hover--color: var(--my--thema);
   --my--button--hover--border: var(--my--thema);
-
-  --my--card--background: #393c42;
-  --my--card--heading: #f7f7f7;
-  --my--card--color: #8c9591;
-  --my--card--border: #f7f7f7;
 }
 
 .App.light {
   --my--very--dark--background: #55595f;
+  --my--very--dark--background--hover: #2b2d32;
+
   --my--dark--background: #cecece;
-  --my--dark--background--hover: #2b2d32;
   --my--dark-text: #bebebe;
   --my--dark-heading: var(--my--thema);
 
@@ -108,23 +114,28 @@
   --my--background: #f7f7f7;
   --my--background-hover: var(--my--thema);
   --my--text: #393c42;
-  --my--no--text: #63686c;
   --my--heading: #393c42;
   --my--shadow: #bebebe;
 
-  --my--button--background: #f7f7f7;
+  --my--no--background: #eaeaea;
+  --my--no--text: #63686c;
+  --my--no--heading: #63686c;
+  --my--no--border: #393c42;
+
+  --my--yes--background: #f7f7f7;
+  --my--yes--heading: #393c42;
+  --my--yes--text: #717779;
+  --my--yes--border: #393c42;
+
+  --my--input--focus--background: #eaeaea;
+
+  --my--button--background: #eaeaea;
   --my--button--color: #393c42;
   --my--button--border: #393c42;
 
-  --my--input--focus--background: #eaeaea;
-  --my--button--hover--background: #eaeaea;
+  --my--button--hover--background: #f7f7f7;
   --my--button--hover--color: #393c42;
   --my--button--hover--border: #393c42;
-
-  --my--card--background: #f7f7f7;
-  --my--card--heading: #393c42;
-  --my--card--color: #717779;
-  --my--card--border: #393c42;
 }
 
 html,
@@ -247,18 +258,6 @@ Header Style
 
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
-  transition: all 0.4s;
-  background-color: var(--my--heading);
-  display: block;
-  position: absolute;
-  width: 30px;
-  height: 2px;
-  left: 0;
-  width: 75%;
-}
-
-.header-area .main-nav .menu-trigger span:before,
-.header-area .main-nav .menu-trigger span:after {
   content: "";
 }
 
@@ -273,7 +272,6 @@ Header Style
   transform-origin: 33% 100%;
   top: -10px;
   z-index: 10;
-  width: 100%;
 }
 
 .header-area .main-nav .menu-trigger span:after {
@@ -282,7 +280,6 @@ Header Style
   -webkit-transform-origin: 33% 0;
   transform-origin: 33% 0;
   top: 10px;
-  width: 100%;
 }
 
 .header-area .main-nav .menu-trigger.active span,
@@ -645,10 +642,6 @@ Footer Style
 footer {
   margin-top: 150px;
   background-color: var(--my--very--dark--background);
-  /* background-repeat: no-repeat;
-  background-size: cover; */
-  /* background-image: url(../images/footer-bg.jpg); */
-
   min-height: 100px;
   box-shadow: 0px -1px 9px 2px var(--my--very--dark--background);
 }
@@ -728,7 +721,7 @@ capture
   position: relative;
   width: 10px;
   height: 10px;
-  background: var(--my--dark--background--hover);
+  background: var(--my--very--dark--background--hover);
   border-radius: 50%;
   z-index: 1;
 }
@@ -750,7 +743,7 @@ capture
   position: absolute;
   top: 4px;
   width: 366px;
-  background-color: var(--my--dark--background--hover);
+  background-color: var(--my--very--dark--background--hover);
   height: 2px;
 }
 .option-area .option-body h3 {
@@ -768,15 +761,16 @@ capture
 }
 
 .option-area .option-body input {
+  background-color: var(--my--no--background);
+  border-color: var(--my--no--border);
+
   color: var(--my--text);
-  background-color: var(--my--background);
-  border-color: var(--my--text);
   width: 250px;
   display: inline-block;
 }
 .option-area .option-body input:focus {
-  background-color: var(--my--input--focus--background);
-  border-color: var(--my--heading);
+  background-color: var(--my--yes--background);
+  border-color: var(--my--yes--border);
   box-shadow: var(--my--heading);
 }
 
@@ -802,7 +796,7 @@ capture
   color: var(--dark--1);
   position: absolute;
   background-color: var(--my--dark-heading);
-  border: 1px solid var(--my--dark--background--hover);
+  border: 1px solid var(--my--very--dark--background--hover);
   top: 15px;
   right: 15px;
   padding: 0.5rem 1rem;
@@ -969,8 +963,8 @@ card
 .my-card-body {
   padding: 1.5rem 0rem 1rem 2rem;
   border-radius: 0.375rem;
-  border: 1px solid var(--my--card--border);
-  background-color: var(--my--card--background);
+  border: 1px solid var(--my--no--border);
+  background-color: var(--my--yes--background);
   text-align: left;
   box-shadow: 3px 4px 5px -1px var(--my--shadow);
 }
@@ -979,14 +973,14 @@ card
   margin-left: 2rem;
   letter-spacing: -0.05rem;
   font-weight: 600;
-  color: var(--my--card--heading);
+  color: var(--my--yes--heading);
   line-height: 1rem;
 }
 .my-card-body p:nth-child(2) {
   margin-left: 2rem;
 }
 .my-card-body .my-card-text {
-  color: var(--my--card--color);
+  color: var(--my--no--text);
   display: inline-block;
   margin-left: 0.5rem;
 }
@@ -1115,6 +1109,7 @@ card
   display: grid;
   flex: 1;
   padding: 5px;
+  text-align: left;
 }
 .drag-cover * {
   transition: none;
@@ -1128,11 +1123,11 @@ card
   box-sizing: border-box;
 }
 .drag-cover .drag-body.todo {
-  border-right: 2px solid var(--my--dark--background);
+  border-right: 2px solid var(--my--very--dark--background);
 }
 
 .drag-cover .drag-body.drag {
-  outline: 2px solid var(--my--heading);
+  outline: 2px solid var(--my--yes--border);
   border-color: var(--my--background);
 }
 
@@ -1144,7 +1139,44 @@ card
 }
 
 .drag-cover .drag-item {
-  padding: 1rem;
-  border-bottom: 1px solid var(--my--heading);
+  padding: 12px;
+  position: relative;
+
+  border-radius: 0.375rem;
+  border: 1px solid var(--my--no--border);
+  background-color: var(--my--no--background);
+  box-shadow: 3px 4px 5px -1px var(--my--shadow);
+  margin-bottom: 10px;
+}
+
+.drag-cover .drag-item .item-title {
+  color: var(--my--no--heading);
+  font-size: 18px;
+}
+.drag-cover .drag-item .item-value {
   color: var(--my--text);
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+.drag-cover .drag-item .item-body {
+  color: var(--my--no--text);
+  font-size: 14px;
+}
+
+.drag-body.done .drag-item {
+  border: 1px solid var(--my--yes--border);
+  background-color: var(--my--yes--background);
+}
+.drag-body.done .item-title {
+  color: var(--my--yes--heading);
+}
+
+@media (max-width: 1200px) {
+  .drag-cover .drag-item {
+    padding-top: 30px;
+  }
+  .drag-cover .drag-item .item-value {
+    top: 6px;
+  }
 }

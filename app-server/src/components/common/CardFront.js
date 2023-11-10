@@ -70,6 +70,10 @@ const CardFront = function ({
       }, 500);
     }
   }, [userData]);
+
+  if (!userData["ArmoryProfile"]) {
+    return;
+  }
   return (
     <div className="cardImg" ref={divRef} style={{ ...style }}>
       <div className="cardBody">

@@ -16,13 +16,16 @@
 }
 .cardImg_b .cardBody .cardTop .class_mark #back_logo {
   padding-left: 10px;
+  margin-left: -10px;
 }
 .cardImg_b .cardBody .cardTop .back_nickname h3 {
   color: #fff;
   font-weight: 800;
   text-shadow: 2px 3px 4px #15181d;
-  letter-spacing: -2.3px;
-  margin-left: -16px;
+  margin-left: -30px;
+
+  font-size: 30px;
+  letter-spacing: -2px;
 }
 .cardImg_b .cardBody .cardTop .back_servername span {
   background-color: #80808038;

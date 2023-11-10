@@ -62,17 +62,20 @@ const MyDnd = function ({ items, setItems }) {
                 </div>
                 {items[key].map((item, index) => (
                   <Draggable key={item.id} draggableId={item.id} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className="drag-item"
-                      >
-                        <div>{item.title}</div>
-                        <span>Make the world beatiful</span>
-                      </div>
-                    )}
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          className="drag-item"
+                        >
+                          <div className="item-title">{item.title}</div>
+                          <div className="item-value">{item.value}</div>
+                          <div className="item-body">{item.body}</div>
+                        </div>
+                      );
+                    }}
                   </Draggable>
                 ))}
                 {provided.placeholder}

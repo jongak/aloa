@@ -177,8 +177,9 @@ const capture = function () {
             divRef={backRef}
             setIsLoading={setIsLoading}
             style={{
-              position: "absolute",
-              left: "-1000px",
+              // position: "absolute",
+              // left: "-1000px",
+              marginLeft: "-100px",
             }}
           />
 

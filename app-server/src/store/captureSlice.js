@@ -8,7 +8,7 @@ const captureSlice = createSlice({
       state.rarityPreset = action.payload.newRarityPreset;
     },
     setUserData(state, action) {
-      state.rarityPreset = action.payload.newUserData;
+      state.userData = action.payload.newUserData;
     },
   },
 });
