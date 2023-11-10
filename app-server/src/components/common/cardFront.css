@@ -1,9 +1,10 @@
-.cardImg {
+.cardCover {
   margin: 100px;
   width: 600px;
   height: 800px;
 }
-.cardImg .cardBody {
+
+.cardCover .cardBody {
   background: #15181d;
   background-size: cover;
   display: inline-block;
@@ -11,20 +12,17 @@
   height: 800px;
   position: relative;
 }
-.cardImg .cardBody #cardFrame {
+.cardCover .cardBody #cardFrame {
   position: absolute;
   right: 0;
   z-index: 10;
 }
-.cardImg .cardBody .cardTop {
-  /* width:  89px ; */
-  height: 40px;
+
+.cardCover .cardBody .cardTop span {
   position: absolute;
   z-index: 10;
-  top: 80px;
-  right: 72px;
 }
-.cardImg .cardBody .cardTop .servername {
+.cardCover .cardBody .cardTop .servername {
   background-color: #80808038;
   border-radius: 60px;
   opacity: 1;
@@ -34,12 +32,63 @@
   line-height: 36px;
   color: #fcfcfc;
   letter-spacing: -2px;
+  top: 48px;
+  right: 60px;
 }
+
+.cardCover.front .cardTop .class_mark {
+  background: radial-gradient(
+    circle,
+    rgba(21, 24, 29, 0.1) 0%,
+    rgba(21, 24, 29, 0) 100%
+  );
+  padding: 8px 15px 8px 15px;
+  border-radius: 50%;
+  width: 60px;
+
+  z-index: 10;
+  position: absolute;
+  top: 100px;
+  left: 48px;
+}
+.cardCover.front .cardTop .class_mark img {
+  width: 72px;
+}
+
+.cardCover.back .cardBody .cardTop span {
+  top: 36px;
+  right: 36px;
+}
+.cardCover.back .cardBody .cardTop #back_logo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 60px;
+}
+.cardCover.back .cardBody .cardTop h3 {
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 2px 3px 4px #15181d;
+
+  font-size: 30px;
+  letter-spacing: -2px;
+  text-align: left;
+  margin-top: 32px;
+  margin-left: 88px;
+}
+
 .cardMiddle {
   width: 100%;
   height: 100%;
   position: relative;
+  color: #fff;
+  padding: 0 40px;
 }
+
+.cardCover.back .cardMiddle {
+  padding-top: 40px;
+}
+
 .cardMiddle .cardImgs {
   width: 100%;
   height: 100%;
@@ -53,6 +102,7 @@
   /* background-image: url(${imgRef.current}); */
   background-repeat: no-repeat;
   opacity: 1;
+  background-position-x: -40px;
   background-position-y: 40px;
 }
 
@@ -61,13 +111,13 @@
   background-position-y: -40px;
 }
 .cardMiddle .cardImgs .cardCharacter.soulEater {
-  background-position-x: 40px;
+  background-position-x: 0px;
   background-position-y: 45px;
 }
 .cardMiddle .cardImgs .cardCharacter.slayer {
-  background-position-x: 15px;
+  background-position-x: -25px;
 }
-.cardMiddle .engravings {
+.cardCover .cardMiddle .engravings {
   position: absolute;
   top: 144px;
   right: 60px;
@@ -87,6 +137,79 @@
   border-radius: 50%;
   margin-bottom: 8px;
 }
+
+.cardCover.back .cardMiddle .options_left .option_item {
+  float: left;
+  /* display: contents; */
+}
+.cardCover.back .cardMiddle .options_left .option_item img {
+  width: 50px;
+}
+.cardCover.back .cardMiddle .options_left .option_item div {
+  display: inline-block;
+}
+
+.cardCover.back .cardMiddle .options_left .option_box {
+  background-color: #80808038;
+  border-radius: 6px;
+  padding: 10px;
+  padding-right: 0;
+  margin: 12px 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.cardCover.back .cardMiddle .options_left .option_box .plusDamage_td {
+  margin-left: -16px;
+}
+
+.cardCover.back .cardMiddle .options_left .stats {
+  font-size: 22px;
+  font-weight: 700;
+}
+.cardCover.back .cardMiddle .options_left .stats .back_stats_bg {
+  background-image: url("../../../public/assets/images/card_back_stat_bg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 100%;
+  line-height: 38px;
+  margin-bottom: 4px;
+  margin-left: 12px;
+  padding: 0 44px;
+}
+
+.cardCover.back .cardMiddle .options_left .stats #back_characterlevel {
+  font-size: 20px;
+}
+.cardCover.back
+  .cardMiddle
+  .options_left
+  .stats
+  .back_stats_bg
+  span:first-child {
+  float: left;
+}
+.cardCover.back
+  .cardMiddle
+  .options_left
+  .stats
+  .back_stats_bg
+  .back_guildname {
+  letter-spacing: -1.8px;
+}
+
+.cardCover.back .cardMiddle .options_left .engravings {
+  position: static;
+  margin-top: 10px;
+}
+
+.cardCover.back .cardMiddle .options_left .engravings ul {
+  display: inline-flex;
+}
+.cardCover.back .cardMiddle .options_left .engravings ul li {
+  margin-right: 4px;
+}
+
 .cardMiddle .title {
   background: linear-gradient(
     0deg,
@@ -103,22 +226,6 @@
   padding-top: 90px;
 }
 
-.cardMiddle .title .class_mark {
-  background: radial-gradient(
-    circle,
-    rgba(21, 24, 29, 0.1) 0%,
-    rgba(21, 24, 29, 0) 100%
-  );
-  padding: 8px 15px 8px 15px;
-  border-radius: 50%;
-
-  position: absolute;
-  top: -288px;
-  left: 48px;
-}
-.cardMiddle .title .class_mark img {
-  width: 72px;
-}
 .cardMiddle .title h2 {
   color: #f7f7f7;
   font-weight: 800;
@@ -179,15 +286,15 @@
   font-weight: 550;
   letter-spacing: -2.3px;
 }
-.cardMiddle .title .icons {
+.cardMiddle .title .info_icons {
   margin-top: 12px;
   width: 85%;
 }
-.cardMiddle .title .icons .icons_table {
+.cardMiddle .title .info_icons .icons_table {
   color: #fff;
 }
 
-.cardMiddle .title .icons .icons_table .icons_table_tr {
+.cardMiddle .title .info_icons .icons_table .icons_table_tr {
   border-radius: 30%;
   background: radial-gradient(
     circle,
@@ -196,7 +303,7 @@
   );
 }
 
-.cardMiddle .title .icons .icons_table .icons_table_tr .icons_table_badge {
+.cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
   position: absolute;
   border-radius: 20px;
   padding: 0px 10px 2px 12px;
@@ -208,4 +315,53 @@
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.8px;
+}
+
+.cardCover.back .cardBottom .card_awakename {
+  color: #fff;
+  background: #80808038;
+
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -2px;
+
+  position: absolute;
+  left: 5%;
+  bottom: 176px;
+
+  border-radius: 8px;
+  padding: 7px 16px;
+}
+.cardCover.back .cardBottom .card_container {
+  width: 90%;
+  padding: 10px 20px;
+  background: #80808038;
+  border-radius: 8px;
+  position: absolute;
+  left: 5%;
+  bottom: 32px;
+}
+.cardCover.back .cardBottom .card_container .card_slot {
+  padding: 0 4px;
+  position: relative;
+}
+.cardCover.back .cardBottom .card_container .card_slot .card_grade {
+  position: absolute;
+  width: 93%;
+  height: 100%;
+}
+.cardCover.back .cardBottom .card_container .card_slot .card_awake {
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 6%;
+}
+.cardCover.back .cardBottom .card_container .card_slot img:nth-child(3) {
+  padding: 4px 1px 4px 2px;
+}
+
+#card_none {
+  width: 79px;
+  height: 116px;
+  border: 1px #fff;
 }

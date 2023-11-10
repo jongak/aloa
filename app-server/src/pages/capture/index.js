@@ -162,16 +162,6 @@ const capture = function () {
         <div className="card-area col-lg-5 col-md-6">
           {/* {cardImgMemo} */}
 
-          <CardFront
-            characterNameRef={characterNameRef}
-            divRef={frontRef}
-            setIsLoading={setIsLoading}
-            style={{
-              position: "absolute",
-              left: "-1000px",
-              // marginLeft: "-100px",
-            }}
-          />
           <CardBack
             characterNameRef={characterNameRef}
             divRef={backRef}
@@ -182,7 +172,16 @@ const capture = function () {
               marginLeft: "-100px",
             }}
           />
-
+          <CardFront
+            characterNameRef={characterNameRef}
+            divRef={frontRef}
+            setIsLoading={setIsLoading}
+            style={{
+              // position: "absolute",
+              // left: "-1000px",
+              marginLeft: "-100px",
+            }}
+          />
           <LootCard
             rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}

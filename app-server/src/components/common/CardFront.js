@@ -75,22 +75,31 @@ const CardFront = function ({
     return;
   }
   return (
-    <div className="cardImg" ref={divRef} style={{ ...style }}>
+    <div className="cardCover front" ref={divRef} style={{ ...style }}>
       <div className="cardBody">
         <img id="cardFrame" src={bgFrame} />
 
         <div className="cardTop">
           <span className="servername">
-            {userData ? userData["ArmoryProfile"]["ServerName"] : "서버명"}
+            {userData["ArmoryProfile"]["ServerName"]}
           </span>
+          <div className="class_mark">
+            <img
+              src={
+                userData
+                  ? `/assets/images/class_mark/mark-${
+                      change[userData["ArmoryProfile"]["CharacterClassName"]]
+                    }-border.png`
+                  : ""
+              }
+            />
+          </div>
         </div>
         <div className="cardMiddle">
           <div className="cardImgs">
             <div
               className={`cardCharacter ${
-                userData
-                  ? change[userData["ArmoryProfile"]["CharacterClassName"]]
-                  : ""
+                change[userData["ArmoryProfile"]["CharacterClassName"]]
               }`}
               style={{
                 backgroundImage: `url(${imgRef.current})`,
@@ -137,27 +146,15 @@ const CardFront = function ({
             </ul>
           </div>
           <div className="title">
-            <div className="class_mark">
-              <img
-                src={
-                  userData
-                    ? `/assets/images/class_mark/mark-${
-                        change[userData["ArmoryProfile"]["CharacterClassName"]]
-                      }-border.png`
-                    : ""
-                }
-              />
-            </div>
-
             <div className="row justify-content-center">
-              <div className="col align-self-center titlename">
+              <div className="titlename col align-self-center">
                 <h2>
                   {userData ? userData["ArmoryProfile"]["Title"] : "칭호"}
                 </h2>
               </div>
             </div>
             <div className="row justify-content-center">
-              <div className="col align-self-center nickname">
+              <div className="nickname col align-self-center">
                 <h2>
                   {userData
                     ? userData["ArmoryProfile"]["CharacterName"]
@@ -194,9 +191,9 @@ const CardFront = function ({
               </div>
             </div>
 
-            <div className="container info">
-              <div className="row justify-content-center info_table">
-                <div className="col-2 info_table_tr">
+            <div className="info container">
+              <div className="info_table row justify-content-center">
+                <div className="info_table_tr col-2">
                   <div className="info_table_th">세트</div>
                   <div className="info_table_td">
                     {userData &&
@@ -205,7 +202,7 @@ const CardFront = function ({
                       : "-"}
                   </div>
                 </div>
-                <div className="col-2 info_table_tr">
+                <div className="info_table_tr col-2">
                   <div className="info_table_th">보석</div>
                   <div className="info_table_td">
                     <span style={{ letterSpacing: 0 }}>
@@ -218,7 +215,7 @@ const CardFront = function ({
                     </span>
                   </div>
                 </div>
-                <div className="col-2 info_table_tr">
+                <div className="info_table_tr col-2">
                   <div className="info_table_th">엘릭서</div>
                   <div className="info_table_td">
                     {userData &&
@@ -227,7 +224,7 @@ const CardFront = function ({
                       : "-"}
                   </div>
                 </div>
-                <div className="col-3 info_table_tr">
+                <div className="info_table_tr col-3">
                   <div className="info_table_th">카드</div>
                   <div className="info_table_td">
                     {userData && userData["ArmoryCard"]["AwakeName"]
@@ -235,16 +232,16 @@ const CardFront = function ({
                       : "-"}
                   </div>
                 </div>
-                <div className="col-2 info_table_tr">
+                <div className="info_table_tr col-2">
                   <div className="info_table_th">악추피</div>
                   <div className="info_table_td">6.78%</div>
                 </div>
               </div>
             </div>
 
-            <div className="container icons">
-              <div className="row justify-content-center icons_table">
-                <div className="col-2 icons_table_tr">
+            <div className="info_icons container">
+              <div className="icons_table row justify-content-center">
+                <div className="icons_table_tr col-2">
                   <div>
                     <img
                       src={
@@ -260,7 +257,7 @@ const CardFront = function ({
                       : ""}
                   </span>
                 </div>
-                <div className="col-2 icons_table_tr">
+                <div className="icons_table_tr col-2">
                   <div>
                     <img
                       src={
@@ -297,7 +294,7 @@ const CardFront = function ({
                   </span>
                 </div>
 
-                <div className="col-2 icons_table_tr">
+                <div className="icons_table_tr col-2">
                   <div>
                     <img src="/assets/images/exlixer.webp" />
                   </div>
@@ -308,7 +305,7 @@ const CardFront = function ({
                       : "-"}
                   </span>
                 </div>
-                <div className="col-2 icons_table_tr">
+                <div className="icons_table_tr col-2">
                   <div>
                     <img id="icons_card" src="/assets/images/card.png" />
                   </div>
@@ -318,7 +315,7 @@ const CardFront = function ({
                       : ""}
                   </span>
                 </div>
-                <div className="col-2 icons_table_tr">
+                <div className="icons_table_tr col-2">
                   <div>
                     <img src="/assets/images/cho.png" />
                   </div>

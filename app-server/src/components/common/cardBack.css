@@ -1,283 +1,11 @@
-.cardImg_b {
-  margin: 100px;
-  width: 600px;
-  height: 800px;
-}
-.cardImg_b .cardBody {
-  background-size: cover;
-  display: inline-block;
-  width: 600px;
-  height: 800px;
-  position: relative;
-}
-.cardImg_b .cardBody .cardTop {
-  position: absolute;
-  padding: 30px 20px;
-}
-.cardImg_b .cardBody .cardTop .class_mark #back_logo {
-  padding-left: 10px;
-  margin-left: -10px;
-}
-.cardImg_b .cardBody .cardTop .back_nickname h3 {
-  color: #fff;
-  font-weight: 800;
-  text-shadow: 2px 3px 4px #15181d;
-  margin-left: -30px;
-
-  font-size: 30px;
-  letter-spacing: -2px;
-}
-.cardImg_b .cardBody .cardTop .back_servername span {
-  background-color: #80808038;
-  border-radius: 60px;
-  /* opacity: 1; */
-  font-size: 24px;
-  font-weight: 900;
-  padding: 12px 20px;
-  line-height: 36px;
-  color: #fcfcfc;
-  letter-spacing: -2px;
-  margin-left: -40px;
-}
-
-.cardImg_b .cardBody .cardMiddle {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  padding-top: 104px;
-  color: #fff;
-}
-.cardImg_b .cardBody .cardMiddle .back_options {
-  padding: 0 40px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .elixir {
-  display: inline-flex;
-  margin: 8px 0;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .elixir
-  img {
-  width: 40px;
-  height: 40px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .elixir
-  div {
-  padding-left: 8px;
-  font-weight: 650;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .trans {
-  display: inline-flex;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .trans
-  img {
-  width: 40px;
-  height: 40px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .elixNcho
-  .trans
-  .div {
-  padding-left: 8px;
-  font-weight: 650;
-}
-.cardImg_b .cardBody .cardMiddle .back_options .back_options_left .gems .gem {
-  text-align: left;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .gems
-  .gem
-  img {
-  width: 32px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .gems
-  .gem
-  span {
-  font-weight: 650;
-  margin-left: 10px;
-}
-.cardImg_b .cardBody .cardMiddle .back_options .back_options_left .plusDamage {
-  background-color: #80808038;
-  border-radius: 6px;
-  padding: 10px;
-  padding-right: 0;
-  margin: 12px 0;
-  font-size: 16px;
-  font-weight: 700;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .plusDamage
-  .plusDamage_td {
-  margin-left: -16px;
-}
-.cardImg_b .cardBody .cardMiddle .back_options .back_options_left .stats {
-  font-size: 22px;
-  font-weight: 700;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .stats
-  .back_stats_bg {
-  background-image: url("../../../public/assets/images/card_back_stat_bg.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 40px;
-  width: 100%;
-  line-height: 38px;
-  margin-bottom: 4px;
-  margin-left: 12px;
-  padding: 0 44px;
-}
-#back_characterlevel {
-  font-size: 20px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .stats
-  .back_stats_bg
-  span:first-child {
-  float: left;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .stats
-  .back_stats_bg
-  .back_guildname {
-  letter-spacing: -1.8px;
-}
-
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .back_engraves {
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .back_engraves
-  ul {
-  display: inline-flex;
-  margin-top: 12px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .back_engraves
-  ul
-  li {
-  width: 50px;
-  margin-right: 4px;
-}
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_left
-  .back_engraves
-  ul
-  li
-  img {
-  border-radius: 50%;
-}
-
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .equipments
-  ul
-  li,
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li {
+.cardCover.back .cardMiddle .options_right .equipments ul li,
+.cardCover.back .cardMiddle .options_right .accessory ul li {
   margin-bottom: 8px;
   position: relative;
 }
 
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .equipments
-  ul
-  li
-  span,
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li
-  span {
+.cardCover.back .cardMiddle .options_right .equipments ul li span,
+.cardCover.back .cardMiddle .options_right .accessory ul li span {
   background-color: #f3ba26;
   border-radius: 12px;
   position: absolute;
@@ -285,56 +13,22 @@
   font-weight: 800;
   padding: 0 4px 2px;
 }
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li
-  span:nth-child(2) {
+.cardCover.back .cardMiddle .options_right .accessory ul li span:nth-child(2) {
   top: 24px;
 }
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li
-  span:nth-child(3) {
+.cardCover.back .cardMiddle .options_right .accessory ul li span:nth-child(3) {
   top: 48px;
   background-color: #a64e44;
 }
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .equipments
-  ul
-  li
-  .equipments_badge {
+.cardCover.back .cardMiddle .options_right .equipments ul li .equipments_badge {
   right: -20%;
 }
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li
-  .accessory_badge {
+.cardCover.back .cardMiddle .options_right .accessory ul li .accessory_badge {
   right: 5%;
 }
-.cardImg_b
-  .cardBody
+.cardCover.back
   .cardMiddle
-  .back_options
-  .back_options_right
+  .options_right
   .equipments
   ul
   li
@@ -345,43 +39,23 @@
   top: 36px;
   left: 40px;
 }
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .equipments
-  ul
-  li
-  div,
-.cardImg_b
-  .cardBody
-  .cardMiddle
-  .back_options
-  .back_options_right
-  .accessory
-  ul
-  li
-  div {
+.cardCover.back .cardMiddle .options_right .equipments ul li div,
+.cardCover.back .cardMiddle .options_right .accessory ul li div {
   background-color: #82786e;
   width: 100%;
   height: 8px;
 }
-.cardImg_b
-  .cardBody
+.cardCover.back
   .cardMiddle
-  .back_options
-  .back_options_right
+  .options_right
   .equipments
   ul
   li
   div
   .back_equipment_quality,
-.cardImg_b
-  .cardBody
+.cardCover.back
   .cardMiddle
-  .back_options
-  .back_options_right
+  .options_right
   .accessory
   ul
   li
@@ -390,66 +64,6 @@
   /* background-color: orange; */
   /* width: 80%; */
   height: 8px;
-}
-
-.cardImg_b .cardBody .cardBottom .back_card_awakename {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 800;
-  position: absolute;
-  left: 5%;
-  bottom: 176px;
-  background: #80808038;
-  border-radius: 8px;
-  padding: 7px 16px;
-}
-.cardImg_b .cardBody .cardBottom .back_card_container {
-  width: 90%;
-  padding: 10px 20px;
-  background: #80808038;
-  border-radius: 8px;
-  position: absolute;
-  left: 5%;
-  bottom: 32px;
-}
-.cardImg_b .cardBody .cardBottom .back_card_container .back_card_slot {
-  padding: 0 4px;
-  position: relative;
-}
-.cardImg_b
-  .cardBody
-  .cardBottom
-  .back_card_container
-  .back_card_slot
-  .back_card_grade {
-  position: absolute;
-  width: 93%;
-  height: 100%;
-}
-.cardImg_b
-  .cardBody
-  .cardBottom
-  .back_card_container
-  .back_card_slot
-  .back_card_awake {
-  position: absolute;
-  width: 80%;
-  left: 10%;
-  bottom: 6%;
-}
-.cardImg_b
-  .cardBody
-  .cardBottom
-  .back_card_container
-  .back_card_slot
-  img:nth-child(3) {
-  padding: 4px 1px 4px 2px;
-}
-
-#back_card_none {
-  width: 79px;
-  height: 116px;
-  border: 1px #fff;
 }
 
 .test {
