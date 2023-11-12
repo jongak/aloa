@@ -1,29 +1,60 @@
 const pool = require("../models/pool");
 const CharacterModel = require("../models/character.model");
 
-// {
-//   Name: "", //이름
-//   Icon: "", //아이콘
-//   Grade: "", //등급(고대)
-//   ItemGrade: "", //아이템강화단계
-//   ItemLevel: "", //아이템레벨
-//   qualityValue: "", //품질
-//   MainPower: {}, //기본효과
-//   PlusPower: {}, //추가효과
-//   TransGrade: "", //초월단계
-//   TransLevel: "", //초월레벨
-//   IsCommon01: "", //공용엘릭서
-//   Option01: "", //엘릭서옵션
-//   Level01: "", //엘릭서레벨
-//   IsCommon02: "", //공용엘릭서
-//   Option02: "", //엘릭서옵션
-//   Level02: "", //엘릭서레벨
-//   IsCommon03: "", //공용엘릭서
-//   Option03: "", //엘릭서옵션
-//   Level03: "", //엘릭서레벨
-//   SetOption: "", //세트옵션
-//   SetOptionLevel: "", //옵션레벨
-// },
+const isJob = function (value) {
+  const il = [
+    "각성",
+    "강령술",
+    "강화 방패",
+    "결투의 대가",
+    "공격력 감소",
+    "공격속도 감소",
+    "구슬동자",
+    "굳은 의지",
+    "급소 타격",
+    "기습의 대가",
+    "긴급구조",
+    "달인의 저력",
+    "돌격대장",
+    "마나 효율 증가",
+    "마나의 흐름",
+    "바리게이트",
+    "방어력 감소",
+    "번개의 분노",
+    "부러진 뼈",
+    "분쇄의 주먹",
+    "불굴",
+    "선수필승",
+    "속전속결",
+    "슈퍼 차지",
+    "승부사",
+    "시선 집중",
+    "쉴드 관통",
+    "아드레날린",
+    "안정된 상태",
+    "약자 무시",
+    "에테르 포식자",
+    "여신의 가호",
+    "예리한 둔기",
+    "원한",
+    "위기 모면",
+    "이동속도 감소",
+    "저주받은 인형",
+    "전문의",
+    "정기 흡수",
+    "정밀 단도",
+    "중갑 착용",
+    "질량 증가",
+    "최대 마나 증가",
+    "추진력",
+    "타격의 대가",
+    "탈출의 명수",
+    "폭발물 전문가",
+  ];
+
+  if (il.includes(value)) return false;
+  return true;
+};
 
 const NumberRegex = /[^0-9]/g;
 const CharacterCardService = {
@@ -236,6 +267,8 @@ const CharacterCardService = {
             SetNames: {},
             SetOption: "",
             SetLevel: "지원안함",
+            ArmourAvg: 0,
+            AccAvg: 0,
           },
         },
         ArmoryEngraving: {
@@ -256,6 +289,10 @@ const CharacterCardService = {
           Gems: [],
         },
         ArmoryCard: {},
+        MainStat: {
+          statName: "",
+          statValue: 0,
+        },
       };
 
       // Object.keys(res).forEach((sub) => {
@@ -398,6 +435,10 @@ const CharacterCardService = {
             ) {
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
+              if (Type != "무기") {
+                data[sub]["option"]["ArmourAvg"] +=
+                  dat["Element_001"]["value"]["qualityValue"];
+              }
 
               var whereSet = 8;
               if (data[sub][Type]["ItemGrade"] == 25) {
@@ -447,6 +488,8 @@ const CharacterCardService = {
             } else if (Type == "목걸이") {
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
+              data[sub]["option"]["AccAvg"] +=
+                dat["Element_001"]["value"]["qualityValue"];
             }
 
             if (Type == "목걸이") {
@@ -470,6 +513,8 @@ const CharacterCardService = {
               data[sub][Type][isExisted]["Icon"] = res[sub][element]["Icon"];
               data[sub][Type][isExisted]["Grade"] = res[sub][element]["Grade"];
               data[sub][Type][isExisted]["qualityValue"] =
+                dat["Element_001"]["value"]["qualityValue"];
+              data[sub]["option"]["AccAvg"] +=
                 dat["Element_001"]["value"]["qualityValue"];
 
               const ringTooltip = dat["Element_005"]["value"]["Element_001"];
@@ -529,7 +574,9 @@ const CharacterCardService = {
             const nameSplice = element["Name"].split(" Lv. ");
             tmp["Name"] = nameSplice[0];
             tmp["Level"] = Number(nameSplice[1]);
-            if (tmp["Level"] == 3) {
+            if (isJob(tmp["Name"])) {
+              data[sub]["JobEffects"].push(tmp);
+            } else if (tmp["Level"] == 3) {
               data[sub]["fullEffects"].push(tmp);
             } else {
               data[sub]["Effects"].push(tmp);
@@ -602,6 +649,20 @@ const CharacterCardService = {
           data[sub] = { ...res[sub], AwakeCount, AwakeName };
         }
       });
+      Object.keys(data["ArmoryProfile"]["Stats"]).forEach((key) => {
+        if (key != "공격력" && key != "최대 생명력") {
+          if (
+            data["MainStat"]["statValue"] <
+            Number(data["ArmoryProfile"]["Stats"][key])
+          ) {
+            data["MainStat"]["statValue"] = Number(
+              data["ArmoryProfile"]["Stats"][key]
+            );
+            data["MainStat"]["statName"] = key;
+          }
+        }
+      });
+
       data["ArmoryEquipment"]["option"]["TransGrade"] = transGrade / 5;
       data["ArmoryEquipment"]["option"]["TransLevel"] = transLevel;
       data["ArmoryEquipment"]["option"]["ElixirLevel"] = elixirLevel;
@@ -633,6 +694,8 @@ const CharacterCardService = {
           }
         }
       );
+      data["ArmoryEquipment"]["option"]["ArmourAvg"] /= 5;
+      data["ArmoryEquipment"]["option"]["AccAvg"] /= 5;
 
       var engravingLevel = "";
       data["ArmoryEngraving"]["fullEffects"].forEach(() => {
