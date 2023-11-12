@@ -272,7 +272,40 @@ Header Style
   color: #fff;
   background-color: rgba(255, 255, 255, 0.1);
 } */
-
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 80px);
+}
+.isMenu {
+  display: none;
+}
+.menu .menu_bg {
+  /* position: fixed;
+  top: 0;
+  left: 0; */
+  background-color: var(--my--background);
+  width: 100vw;
+  height: calc(100vh - 80px);
+  opacity: 0.66;
+}
+.menu ul {
+  position: fixed;
+  bottom: 80px;
+  right: 0;
+  background-color: #22b3c1;
+  width: 70vw;
+  padding: 20px;
+}
+.menu ul li {
+}
+.menu ul li a {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 650;
+}
 .header-area .main-nav .menu-trigger {
   cursor: pointer;
   position: absolute;
@@ -598,7 +631,14 @@ Header Style
     left: 30px;
     top: 10px;
   }
-
+  .header-area .main-nav .logo .logo_mark {
+    width: 80%;
+  }
+  .header-area .main-nav .logo:hover {
+    .logo_mark {
+      animation: none;
+    }
+  }
   /* .header-area .main-nav .border-button {
     position: absolute;
     top: 150px;
@@ -626,12 +666,28 @@ Header Style
     /* margin-top: 30px; */
   }
   .myDarkToggle {
-    right: -360px;
+    position: fixed;
+    right: 160px;
   }
   .myThema {
     position: fixed;
     right: 90px;
   }
+  .myThemaToggle #color1 {
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    background-color: var(--my--color--1);
+  }
+  .myThemaToggle {
+    position: fixed;
+    right: 90px;
+    bottom: 4px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
   .header-area .menu-trigger {
     display: block !important;
   }
@@ -709,6 +765,22 @@ Banner Style
   margin-bottom: 70px;
 } */
 
+.main-banner .caption .logo {
+  display: flex;
+  width: 400px;
+  margin: 0 auto;
+}
+.main-banner .caption .logo img:first-child {
+  width: 30%;
+  height: 100%;
+}
+.main-banner .caption .logo img:nth-child(2) {
+  width: 70%;
+  height: 100%;
+  margin-left: 18px;
+  margin-top: 12%;
+}
+
 .main-banner .caption form {
   margin: 0 auto;
   position: relative;
@@ -756,6 +828,9 @@ Banner Style
 @media (max-width: 768px) {
   .main-banner {
     margin-top: 50px;
+  }
+  .main-banner .caption .logo {
+    width: 200px;
   }
 }
 

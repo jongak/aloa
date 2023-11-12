@@ -9,6 +9,14 @@ function Header({ setThema, thema }) {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.mainSlice.isDark);
   const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
+  const [isMenu, setMenu] = useState();
+
+  const menuToggle = () => {
+    setMenu(!isMenu);
+  };
+  const closeMenu = () => {
+    setMenu(false);
+  };
 
   return (
     <header className="header-area header-sticky">
@@ -56,7 +64,39 @@ function Header({ setThema, thema }) {
                   <Link to="#">Sign In</Link>
                 </li>
               </ul>
-              <Link className="menu-trigger">
+              <div>
+                <div className={isMenu ? "menu" : "menu isMenu"}>
+                  <div className="menu_bg" onClick={closeMenu}></div>
+                  <ul className="nav_mobile">
+                    <li>
+                      <Link to="/" onClick={closeMenu}>
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/capture" onClick={closeMenu}>
+                        capture
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/make" onClick={closeMenu}>
+                        만들기
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/character/송도나봉선" onClick={closeMenu}>
+                        Contact Us
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#" onClick={closeMenu}>
+                        Sign In
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <Link className="menu-trigger" onClick={menuToggle}>
                 <span>Menu</span>
               </Link>
 
