@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import "./cardFront.css";
 import { useSelector } from "react-redux";
+import InfoTableItem from "../item/InfoTableItem";
+import InfoIconItem from "../item/InfoIconItem";
 
 const change = {
   기상술사: "aeromancer",
@@ -59,6 +61,8 @@ const CardFront = function ({
 }) {
   const imgRef = useRef();
   const userData = useSelector((state) => state.captureSlice.userData);
+  const frontItems = useSelector((state) => state.captureSlice.frontItems);
+  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
 
   useEffect(() => {
     if (characterNameRef.current) {
@@ -108,6 +112,13 @@ const CardFront = function ({
           </div>
           <div className="engravings">
             <ul>
+              {userData
+                ? userData["ArmoryEngraving"]["JobEffects"].map((item) => (
+                    <li key={item.Icon}>
+                      <img className="engraving" src={item.Icon} />
+                    </li>
+                  ))
+                : ""}
               {userData ? (
                 userData["ArmoryEngraving"]["fullEffects"].map((item) => (
                   <li key={item.Icon}>
@@ -193,139 +204,17 @@ const CardFront = function ({
 
             <div className="info container">
               <div className="info_table row justify-content-center">
-                <div className="info_table_tr col-2">
-                  <div className="info_table_th">세트</div>
-                  <div className="info_table_td">
-                    {userData &&
-                    userData["ArmoryEquipment"]["option"]["SetOption"]
-                      ? userData["ArmoryEquipment"]["option"]["SetOption"]
-                      : "-"}
-                  </div>
-                </div>
-                <div className="info_table_tr col-2">
-                  <div className="info_table_th">보석</div>
-                  <div className="info_table_td">
-                    <span style={{ letterSpacing: 0 }}>
-                      {userData && userData["ArmoryGem"]["option"]["Level"]
-                        ? "Lv" +
-                          userData["ArmoryGem"]["option"]["Level"].toPrecision(
-                            2
-                          )
-                        : "-"}
-                    </span>
-                  </div>
-                </div>
-                <div className="info_table_tr col-2">
-                  <div className="info_table_th">엘릭서</div>
-                  <div className="info_table_td">
-                    {userData &&
-                    userData["ArmoryEquipment"]["option"]["ElixirName"]
-                      ? userData["ArmoryEquipment"]["option"]["ElixirName"]
-                      : "-"}
-                  </div>
-                </div>
-                <div className="info_table_tr col-3">
-                  <div className="info_table_th">카드</div>
-                  <div className="info_table_td">
-                    {userData && userData["ArmoryCard"]["AwakeName"]
-                      ? userData["ArmoryCard"]["AwakeName"]
-                      : "-"}
-                  </div>
-                </div>
-                <div className="info_table_tr col-2">
-                  <div className="info_table_th">악추피</div>
-                  <div className="info_table_td">6.78%</div>
-                </div>
+                {frontItems["done"].map((element) => (
+                  <InfoTableItem key={element.id} element={element} />
+                ))}
               </div>
             </div>
 
             <div className="info_icons container">
               <div className="icons_table row justify-content-center">
-                <div className="icons_table_tr col-2">
-                  <div>
-                    <img
-                      src={
-                        userData
-                          ? userData.ArmoryEquipment.무기.Icon
-                          : "/assets/images/default_slot/weapon.png"
-                      }
-                    />
-                  </div>
-                  <span className="icons_table_badge">
-                    {userData
-                      ? "+" + userData.ArmoryEquipment.무기.ItemGrade
-                      : ""}
-                  </span>
-                </div>
-                <div className="icons_table_tr col-2">
-                  <div>
-                    <img
-                      src={
-                        userData &&
-                        userData["ArmoryEquipment"]["어빌리티 스톤"]["Icon"]
-                          ? userData["ArmoryEquipment"]["어빌리티 스톤"]["Icon"]
-                          : "/assets/images/default_slot/stone.png"
-                      }
-                    />
-                  </div>
-                  <span className="icons_table_badge">
-                    {userData &&
-                    userData["ArmoryEquipment"]["어빌리티 스톤"][
-                      "engravings00"
-                    ]["level"] &&
-                    userData["ArmoryEquipment"]["어빌리티 스톤"][
-                      "engravings01"
-                    ]["level"] &&
-                    userData["ArmoryEquipment"]["어빌리티 스톤"][
-                      "engravings02"
-                    ]["level"]
-                      ? userData["ArmoryEquipment"]["어빌리티 스톤"][
-                          "engravings00"
-                        ]["level"] +
-                        " " +
-                        userData["ArmoryEquipment"]["어빌리티 스톤"][
-                          "engravings01"
-                        ]["level"] +
-                        " " +
-                        userData["ArmoryEquipment"]["어빌리티 스톤"][
-                          "engravings02"
-                        ]["level"]
-                      : ""}
-                  </span>
-                </div>
-
-                <div className="icons_table_tr col-2">
-                  <div>
-                    <img src="/assets/images/exlixer.webp" />
-                  </div>
-                  <span className="icons_table_badge">
-                    {userData &&
-                    userData["ArmoryEquipment"]["option"]["ElixirLevel"]
-                      ? userData["ArmoryEquipment"]["option"]["ElixirLevel"]
-                      : "-"}
-                  </span>
-                </div>
-                <div className="icons_table_tr col-2">
-                  <div>
-                    <img id="icons_card" src="/assets/images/card.png" />
-                  </div>
-                  <span className="icons_table_badge">
-                    {userData && userData["ArmoryCard"]["AwakeCount"]
-                      ? userData["ArmoryCard"]["AwakeCount"]
-                      : ""}
-                  </span>
-                </div>
-                <div className="icons_table_tr col-2">
-                  <div>
-                    <img src="/assets/images/cho.png" />
-                  </div>
-                  <span className="icons_table_badge">
-                    {userData &&
-                    userData["ArmoryEquipment"]["option"]["TransLevel"]
-                      ? userData["ArmoryEquipment"]["option"]["TransLevel"]
-                      : "-"}
-                  </span>
-                </div>
+                {frontIcons["done"].map((element) => (
+                  <InfoIconItem key={element.id} element={element} />
+                ))}
               </div>
             </div>
           </div>

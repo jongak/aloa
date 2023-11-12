@@ -5,8 +5,33 @@ import {
   Draggable,
   DropResult,
 } from "react-beautiful-dnd";
+import { useDispatch, useSelector } from "react-redux";
+import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
 
-const MyDnd = function ({ items, setItems }) {
+const MyDnd = function ({ title }) {
+  const dispatch = useDispatch();
+  var items = [];
+  if (title == "frontItems") {
+    items = useSelector((state) => state.captureSlice.frontItems);
+  } else if (title == "frontIcons") {
+    items = useSelector((state) => state.captureSlice.frontIcons);
+  }
+
+  const setItem = function (item) {
+    if (title == "frontItems") {
+      dispatch(
+        setFrontItems({
+          newFrontItems: item,
+        })
+      );
+    } else if (title == "frontIcons") {
+      dispatch(
+        setFrontIcons({
+          newFrontIcons: item,
+        })
+      );
+    }
+  };
   const onDragEnd = (DropResult) => {
     const { source, destination } = DropResult;
     if (!destination) return;
@@ -17,7 +42,8 @@ const MyDnd = function ({ items, setItems }) {
     const _items = JSON.parse(JSON.stringify(items));
     const [targetItem] = _items[scourceKey].splice(source.index, 1);
     _items[destinationKey].splice(destination.index, 0, targetItem);
-    setItems(_items);
+
+    setItem(_items);
   };
 
   // --- requestAnimationFrame 초기화
@@ -71,7 +97,9 @@ const MyDnd = function ({ items, setItems }) {
                           className="drag-item"
                         >
                           <div className="item-title">{item.title}</div>
-                          <div className="item-value">{item.value}</div>
+                          <div className="item-value">
+                            {item.value ? item.value : "없음"}
+                          </div>
                           <div className="item-body">{item.body}</div>
                         </div>
                       );

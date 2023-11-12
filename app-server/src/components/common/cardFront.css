@@ -281,6 +281,10 @@
   font-size: 20px;
   padding: 0 48px;
 }
+.cardMiddle .title .info .info_table .info_table_tr.todo {
+  display: none;
+}
+
 .cardMiddle .title .info .info_table .info_table_tr .info_table_td {
   font-size: 24px;
   font-weight: 550;
@@ -301,17 +305,19 @@
     rgba(99, 99, 29, 1) 50%,
     rgba(21, 24, 29, 0) 100%
   );
+  position: relative;
 }
 
 .cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
   position: absolute;
   border-radius: 20px;
   padding: 0px 10px 2px 12px;
-  bottom: 40px;
+  bottom: -5px;
+  right: 0px;
   line-height: 022px;
 
   background-color: #d73737;
-
+  overflow: hidden;
   font-weight: 600;
   font-size: 20px;
   letter-spacing: -0.8px;
