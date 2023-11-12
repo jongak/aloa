@@ -73,7 +73,7 @@ const CardBack = function ({
                   </div>
                 </div>
                 <div className="option_item col-4">
-                  <img src="/assets/images/cho.png" />
+                  {/* <img src="/assets/images/cho.png" /> */}
                   <div>
                     {userData["ArmoryEquipment"]["option"]["TransLevel"]}
                   </div>
@@ -196,7 +196,7 @@ const CardBack = function ({
                         userData["ArmoryEquipment"]["어깨"],
                         userData["ArmoryEquipment"]["장갑"],
                       ].map((item) => (
-                        <li key={item._key}>
+                        <li key={item.Icon}>
                           <span
                             className="equipments_badge"
                             style={{
@@ -205,13 +205,13 @@ const CardBack = function ({
                           >
                             +{item["ItemGrade"]}
                           </span>
-                          <img
+                          {/* <img
                             id="back_equipment_trans"
                             src={
                               `/assets/images/cho/cho_${item["TransGrade"]}.png` ||
                               ""
                             }
-                          />
+                          /> */}
                           <img src={item["Icon"]} />
                           <div>
                             <div
@@ -241,7 +241,7 @@ const CardBack = function ({
                         userData["ArmoryEquipment"]["반지"][0],
                         userData["ArmoryEquipment"]["반지"][1],
                       ].map((item) => (
-                        <li key={item._key}>
+                        <li key={item.Icon}>
                           {/* <span className="accessory_badge">+25</span> */}
 
                           <img src={item["Icon"]} />
@@ -306,7 +306,7 @@ const CardBack = function ({
             <div className="row align-items-end">
               {userData && userData["ArmoryCard"]["Cards"] ? (
                 userData["ArmoryCard"]["Cards"].map((item) => (
-                  <div key={item.slot} className="card_slot col-2">
+                  <div key={item.Icon} className="card_slot col-2">
                     <img
                       className="card_grade"
                       src={`/assets/images/card/card_grade_${

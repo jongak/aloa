@@ -7,9 +7,11 @@ import {
 } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
+import PopUp from "../../components/common/PopUp";
 
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
+  const [isActive, setIsActive] = useState();
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.captureSlice.frontItems);
@@ -43,6 +45,10 @@ const MyDnd = function ({ title }) {
     const [targetItem] = _items[scourceKey].splice(source.index, 1);
     _items[destinationKey].splice(destination.index, 0, targetItem);
 
+    setIsActive(true);
+    setTimeout(() => {
+      setIsActive(false);
+    }, 3000);
     setItem(_items);
   };
 
@@ -65,6 +71,8 @@ const MyDnd = function ({ title }) {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <PopUp body={"두둥탁"} isActive={isActive} />
+
       <div
         className="drag-cover"
         style={{

@@ -66,9 +66,10 @@
 .App.dark {
   --my--very--dark--background: #1d1e21;
   --my--very--dark--background--hover: #393c42;
+  --my--very--dark--text: #f7f7f7;
 
   --my--dark--background: #2b2d32;
-  --my--dark-text: #cecece;
+  --my--dark-text: #cececece;
   --my--dark-heading: var(--my--thema);
 
   --my--light--background: #eaeaea;
@@ -103,6 +104,7 @@
 .App.light {
   --my--very--dark--background: #55595f;
   --my--very--dark--background--hover: #2b2d32;
+  --my--very--dark--text: #f7f7f7;
 
   --my--dark--background: #cecece;
   --my--dark-text: #bebebe;
@@ -162,7 +164,7 @@ Header Style
 
 /* 위에 있을때 */
 .header-area {
-  background-color: var(--my--background);
+  background-color: var(--my--very--dark--background);
   position: sticky;
   top: 0;
   left: 0;
@@ -240,7 +242,7 @@ Header Style
 .header-area .main-nav .nav li {
   height: 40px;
   line-height: 40px;
-  border-right: 3px solid var(--my--heading);
+  border-right: 3px solid var(--my--dark-heading);
 }
 
 .header-area .main-nav .nav li:last-child {
@@ -258,14 +260,14 @@ Header Style
   height: 40px;
   line-height: 40px;
   text-transform: capitalize;
-  color: var(--my--text);
+  color: var(--my--very--dark--text);
   transition: all 0.4s ease 0s;
   border: transparent;
   letter-spacing: 0.25px;
 }
 
 .header-area .main-nav .nav li:hover a {
-  background-color: var(--my--background-hover);
+  background-color: var(--my--very--dark--background--hover);
 }
 
 /* .header-area .main-nav .nav li a.active {
@@ -399,12 +401,11 @@ Header Style
   padding: 5px;
   position: absolute;
 }
-.App.dark .myDarkToggle i {
+.myDarkToggle i {
   color: var(--my--thema);
 }
 .App.light .myDarkToggle i {
   font-size: 2em;
-  color: #ff4500;
 }
 
 .myDarkToggle .myDarkButton.rev {
@@ -412,7 +413,7 @@ Header Style
 }
 
 .myDarkToggle .myDarkButton {
-  transition: all 1s ease-in-out;
+  /* transition: all 1s ease-in-out; */
   border-radius: 50%;
   height: 42px;
   width: 42px;
@@ -420,7 +421,7 @@ Header Style
 }
 
 .myDarkToggle .myDarkButton:hover {
-  background-color: var(--my--background-hover);
+  background-color: var(--my--very--dark--background--hover);
 }
 .myDarkButton .fa-sun {
   z-index: 1;
@@ -501,7 +502,6 @@ Header Style
   height: 42px;
   margin-top: 12px;
   padding: 7px;
-  transition: all 0s;
   border-radius: 50%;
   /* transition: all 0.35s ease-in-out; */
   box-sizing: border-box;
@@ -510,14 +510,8 @@ Header Style
 
 .myThema:hover {
   /* transition: all 0s; */
-  padding: 6px;
-  background-color: var(--my--background-hover);
-  border: 1px solid var(--dark--7);
-}
-
-.myThema:hover .myThemaIn {
-  /* transition: all 0s; */
-  border: none;
+  /* padding: 6px; */
+  background-color: var(--my--very--dark--background--hover);
 }
 
 .myThemaIn {
@@ -528,7 +522,6 @@ Header Style
 
   border-radius: 50%;
   background-color: var(--my--thema);
-  border: 1px solid var(--dark--7);
 }
 
 .myThema.closed {
@@ -1380,4 +1373,15 @@ card
   .drag-cover .drag-item .item-value {
     top: 6px;
   }
+}
+
+.toastPosition {
+  position: absolute;
+  top: 25%;
+  right: 30%;
+  z-index: 200;
+}
+
+.logoStyle {
+  width: 150px;
 }
