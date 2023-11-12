@@ -190,12 +190,12 @@ Header Style
 }
 
 .header-area .main-nav .logo .logo_mark {
-  width: 100%;
-  height: 100%;
+  width: 54px;
+  height: 60px;
 }
 .header-area .main-nav .logo:hover {
   .logo_mark {
-    animation: rote 1.4s;
+    animation: rote 1.2s;
   }
   .logo_off {
     display: none;
@@ -209,21 +209,24 @@ Header Style
     transform: rotate(-0deg);
   }
   50% {
-    transform: rotate(-25deg);
+    transform: rotate(-22deg);
   }
   0% {
     transform: rotate(0deg);
   }
 }
 .header-area .main-nav .logo .logo_name {
-  height: 40%;
-  align-self: center;
+  width: 110px;
+  height: 31px;
   margin-left: 10px;
+  margin-top: 12%;
 }
 .header-area .main-nav .logo .logo_hover {
-  height: 40%;
-  align-self: center;
+  width: 110px;
+  height: 31px;
   margin-left: 10px;
+  margin-top: 12%;
+
   display: none;
 }
 
@@ -632,7 +635,7 @@ Header Style
     top: 10px;
   }
   .header-area .main-nav .logo .logo_mark {
-    width: 80%;
+    width: 54px;
   }
   .header-area .main-nav .logo:hover {
     .logo_mark {
