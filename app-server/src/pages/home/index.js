@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import LootCardItem from "../../components/common/LootCardItem";
 import Button from "../../components/common/Button";
+import { useSelector } from "react-redux";
 
 function Home() {
   const queryRef = useRef("");
   const navigate = useNavigate();
+  const isDark = useSelector((state) => state.mainSlice.isDark);
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -24,7 +26,10 @@ function Home() {
           <div className="row">
             <div className="col-lg-12 align-self-center">
               <div className="caption header-text">
-                <img src="/assets/images/logo2.png" />
+                <div className="logo" style={{ display: "flex" }}>
+                  <img src={`/assets/images/logo/logo_mark_${isDark}.png`} />
+                  <img src={`/assets/images/logo/logo_name_${isDark}.png`} />
+                </div>
                 <div className="search-input">
                   <form>
                     <input
