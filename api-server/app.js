@@ -14,6 +14,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 
+// 이미지 서버 사용 위해서 추가
+var bodyParser = require("body-parser");
+var fileUpload = require("express-fileupload");
+var morgan = require("morgan");
+var _ = require("lodash");
+
 var indexRouter = require("./routes/index");
 
 var app = express();
@@ -29,6 +35,48 @@ app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 // 서버가 다르면 추가
 app.use(cors());
 app.use("/api", indexRouter);
+
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+
+// 현재 포트 설정 몇번으로?
+
+// app.listen(port, () => {
+//   console.log(`server is on port ${port}`);
+// })
+
+app.post("/upload", async (req, res) => {
+  try {
+    if (!req.files) {
+      console.log(req.files);
+      res.send({
+        status: false,
+        message: "파일 업로드 실패",
+      });
+    } else {
+      let f = req.files.uploadFile;
+      f.mv("./public/upload/" + f.name);
+      res.send({
+        status: true,
+        message: "파일이 업로드 되었습니다.",
+        data: {
+          name: f.name,
+          minetype: f.minetype,
+          size: f.size,
+        },
+      });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 const url = require("url");
 var proxy = require("html2canvas-proxy");
