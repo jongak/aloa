@@ -47,7 +47,8 @@ const FindName = function () {
     setPage("find");
   }, []);
 
-  const onClickButtonChange = async () => {
+  const onClickButtonChange = async (e) => {
+    e.preventDefault();
     var tmp = await getData(userName.current.value);
     if (tmp) {
       setUserList(tmp);
