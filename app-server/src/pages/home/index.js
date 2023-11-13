@@ -16,7 +16,8 @@ function Home() {
     }
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (e) => {
+    e.preventDefault();
     navigate(`/character/${queryRef.current.value}`);
   };
   return (
