@@ -1,50 +1,50 @@
-const pool = require("../models/pool");
+// const pool = require("../models/pool");
 const CharacterModel = require("../models/character.model");
 
 const CharacterService = {
   async getCharacter(characterName) {
-    const conn = await pool.getConnection();
+    // const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
-      await conn.beginTransaction();
+      // await conn.beginTransaction();
       const data = await CharacterModel.getCharacter(characterName);
       // DB에 작업 반영
-      await conn.commit();
+      // await conn.commit();
       // return { ...data, ok: true };
       return { ok: true, data: data };
     } catch (err) {
       // DB 작업 취소
-      await conn.rollback();
+      // await conn.rollback();
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      pool.releaseConnection(conn);
+      // pool.releaseConnection(conn);
     }
   },
   async capture(characterName) {
-    const conn = await pool.getConnection();
+    // const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
-      await conn.beginTransaction();
+      // await conn.beginTransaction();
       const data = await CharacterModel.getCharacter(characterName);
       // DB에 작업 반영
-      await conn.commit();
+      // await conn.commit();
       // return { ...data, ok: true };
       return { ok: true, data: data };
     } catch (err) {
       // DB 작업 취소
-      await conn.rollback();
+      // await conn.rollback();
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      pool.releaseConnection(conn);
+      // pool.releaseConnection(conn);
     }
   },
   async getCharacters(characterName) {
-    const conn = await pool.getConnection();
+    // const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
-      await conn.beginTransaction();
+      // await conn.beginTransaction();
       const res = await CharacterModel.getCharacters(characterName);
       const data = {
         server: "",
@@ -96,23 +96,23 @@ const CharacterService = {
 
       data[data["server"]].unshift(my);
       // DB에 작업 반영
-      await conn.commit();
+      // await conn.commit();
       // return { ...data, ok: true };
       return { ok: true, data: data };
     } catch (err) {
       // DB 작업 취소
-      await conn.rollback();
+      // await conn.rollback();
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      pool.releaseConnection(conn);
+      // pool.releaseConnection(conn);
     }
   },
   async getCardData(characterName) {
-    const conn = await pool.getConnection();
+    // const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
-      await conn.beginTransaction();
+      // await conn.beginTransaction();
       const res = await CharacterModel.getCharacter(characterName);
 
       const data = {
@@ -336,15 +336,15 @@ const CharacterService = {
       console.log(res["ArmoryEquipment"][12]["Tooltip"]);
 
       // DB에 작업 반영
-      await conn.commit();
+      // await conn.commit();
       return { ok: true, data: res };
     } catch (err) {
       // DB 작업 취소
-      await conn.rollback();
+      // await conn.rollback();
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      pool.releaseConnection(conn);
+      // pool.releaseConnection(conn);
     }
   },
 };
