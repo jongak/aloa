@@ -830,6 +830,27 @@ Banner Style
   }
 }
 
+@media (min-width: 768px) {
+  .main-banner {
+    max-width: 990px;
+  }
+}
+@media (min-width: 992px) {
+  .main-banner {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-banner {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .main-banner {
+    max-width: 1320px;
+  }
+}
+
 /* 
 ---------------------------------------------
 Footer Style
@@ -882,6 +903,7 @@ capture
   border-radius: 12px;
   padding-left: 0px;
   padding-right: 0px;
+  margin-left: 20px;
 }
 
 .option-area .progress {
@@ -903,8 +925,9 @@ capture
   justify-content: center;
   -webkit-box-align: start;
   align-items: start;
-  gap: 4px;
   position: relative;
+
+  gap: 22px;
 }
 .option-area .inner .dot-wrapper {
   display: flex;
@@ -912,7 +935,7 @@ capture
   -webkit-box-align: center;
   align-items: center;
   gap: 12px;
-  flex-basis: 74px;
+  flex-basis: 100px;
 }
 .option-area .inner .dot-wrapper .dot {
   position: relative;
@@ -939,7 +962,7 @@ capture
 .option-area .inner .bar {
   position: absolute;
   top: 4px;
-  width: 366px;
+  width: 360px;
   background-color: var(--my--very--dark--background--hover);
   height: 2px;
 }
@@ -1012,12 +1035,12 @@ capture
   margin: 2%;
 }
 
-@media (min-width: 768px) {
-  .option-area .inner {
-    gap: 22px;
+@media (max-width: 768px) {
+  .option-area {
+    margin-left: 0px;
   }
-  .option-area .inner .dot-wrapper {
-    flex-basis: 100px;
+  .option-area .inner {
+    gap: 16px;
   }
 }
 @media (min-width: 992px) {
@@ -1053,6 +1076,13 @@ card-area
 
 .card-area {
   /* position: sticky; */
+  margin-left: -20px;
+}
+@media (max-width: 768px) {
+  .card-area {
+    /* position: sticky; */
+    margin-left: 0px;
+  }
 }
 
 /* 
@@ -1387,4 +1417,101 @@ card
 
 .logoStyle {
   width: 150px;
+}
+
+.mycol-1 {
+  flex: 0 0 auto;
+  width: 4.167%;
+}
+.mycol-2 {
+  flex: 0 0 auto;
+  width: 8.333%;
+}
+.mycol-3 {
+  flex: 0 0 auto;
+  width: 12.5%;
+}
+.mycol-4 {
+  flex: 0 0 auto;
+  width: 16.667%;
+}
+.mycol-5 {
+  flex: 0 0 auto;
+  width: 20.833%;
+}
+.mycol-6 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.mycol-7 {
+  flex: 0 0 auto;
+  width: 29.167%;
+}
+.mycol-8 {
+  flex: 0 0 auto;
+  width: 33.333%;
+}
+.mycol-9 {
+  flex: 0 0 auto;
+  width: 37.5%;
+}
+.mycol-10 {
+  flex: 0 0 auto;
+  width: 41.667%;
+}
+.mycol-11 {
+  flex: 0 0 auto;
+  width: 45.833%;
+}
+.mycol-12 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.mycol-13 {
+  flex: 0 0 auto;
+  width: 54.167%;
+}
+.mycol-14 {
+  flex: 0 0 auto;
+  width: 58.333%;
+}
+.mycol-15 {
+  flex: 0 0 auto;
+  width: 62.5%;
+}
+.mycol-16 {
+  flex: 0 0 auto;
+  width: 66.667%;
+}
+.mycol-17 {
+  flex: 0 0 auto;
+  width: 70.833%;
+}
+.mycol-18 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+.mycol-19 {
+  flex: 0 0 auto;
+  width: 79.167%;
+}
+.mycol-20 {
+  flex: 0 0 auto;
+  width: 83.333%;
+}
+.mycol-21 {
+  flex: 0 0 auto;
+  width: 87.5%;
+}
+.mycol-22 {
+  flex: 0 0 auto;
+  width: 91.667%;
+}
+.mycol-23 {
+  flex: 0 0 auto;
+  width: 95.833%;
+}
+.mycol-24 {
+  flex: 0 0 auto;
+  width: 100%;
 }

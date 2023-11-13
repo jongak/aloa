@@ -76,7 +76,7 @@ const FindName = function () {
 
   const keyHandler = function (e) {
     if (e.key === "Enter") {
-      onClickButtonChange();
+      onClickButtonChange(e);
     }
   };
 

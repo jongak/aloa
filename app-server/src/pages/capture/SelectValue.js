@@ -64,7 +64,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["AccAvg"],
               cardTitle: "악세품질",
               cardValue: userData["ArmoryEquipment"]["option"]["AccAvg"],
-              size: 3,
+              size: 5,
             },
             {
               id: "jobEngraving",
@@ -77,6 +77,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
                 ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
                 : undefined,
+              size: 6,
             },
             {
               id: "oneEngraving",
@@ -93,7 +94,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["Effects"][0]
                 ? userData["ArmoryEngraving"]["Effects"][0]["Level"]
                 : undefined,
-              size: 2,
+              size: 7,
             },
             {
               id: "StatsSumBracelet",
@@ -163,7 +164,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["ElixirName"],
               cardTitle: "엘릭서",
               cardValue: userData["ArmoryEquipment"]["option"]["ElixirName"],
-              size: 3,
+              size: 4,
             },
             {
               id: "AwakeName",
@@ -172,7 +173,7 @@ const SelectValue = function () {
               value: userData["ArmoryCard"]["AwakeName"],
               cardTitle: "카드",
               cardValue: userData["ArmoryCard"]["AwakeName"],
-              size: 3,
+              size: 4,
             },
             {
               id: "Acc",
@@ -261,6 +262,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
               cardImg: "/assets/images/icons/exlixer.webp",
               cardValue: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
+              size: 3,
             },
             {
               id: "AwakeCount",
@@ -277,6 +279,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["TransLevel"],
               cardImg: "/assets/images/cho/cho_5.png",
               cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
+              size: 2,
             },
           ],
         },

@@ -22,52 +22,50 @@ function Home() {
   };
   return (
     <>
-      <div className="main-banner">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 align-self-center">
-              <div className="caption header-text">
-                <div className="logo" style={{ display: "flex" }}>
-                  <img src={`/assets/images/logo/logo_mark_${isDark}.png`} />
-                  <img src={`/assets/images/logo/logo_name_${isDark}.png`} />
-                </div>
-                <div className="search-input">
-                  <form>
-                    <input
-                      type="text"
-                      placeholder="Type Something"
-                      ref={queryRef}
-                      onKeyPress={handleOnKeyPress}
-                    />
-                    <Button
-                      onClick={handleButtonClick}
-                      isFixed={true}
-                      isRev={true}
-                      title={<i className="fa fa-search"></i>}
-                    />
-                  </form>
-                </div>
+      <div className="main-banner container">
+        <div className="row">
+          <div className="col-lg-12 align-self-center">
+            <div className="caption header-text">
+              <div className="logo" style={{ display: "flex" }}>
+                <img src={`/assets/images/logo/logo_mark_${isDark}.png`} />
+                <img src={`/assets/images/logo/logo_name_${isDark}.png`} />
+              </div>
+              <div className="search-input">
+                <form>
+                  <input
+                    type="text"
+                    placeholder="Type Something"
+                    ref={queryRef}
+                    onKeyPress={handleOnKeyPress}
+                  />
+                  <Button
+                    onClick={handleButtonClick}
+                    isFixed={true}
+                    isRev={true}
+                    title={<i className="fa fa-search"></i>}
+                  />
+                </form>
               </div>
             </div>
-            <div className="myCards row">
-              <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
-                <LootCardItem />
-              </div>
-              <div className="col-xl-4  col-lg-6 mb-5">
-                <LootCardItem />
-              </div>
-              <div className="col-xl-4  col-lg-6 mb-5">
-                <LootCardItem />
-              </div>
-              <div className="col-xl-4 col-lg-6 mb-5">
-                <LootCardItem />
-              </div>
-              <div className="col-xl-4  col-lg-6 mb-5">
-                <LootCardItem />
-              </div>
-              <div className="col-xl-4  col-lg-6 mb-5">
-                <LootCardItem />
-              </div>
+          </div>
+          <div className="myCards row">
+            <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
+              <LootCardItem />
+            </div>
+            <div className="col-xl-4  col-lg-6 mb-5">
+              <LootCardItem />
+            </div>
+            <div className="col-xl-4  col-lg-6 mb-5">
+              <LootCardItem />
+            </div>
+            <div className="col-xl-4 col-lg-6 mb-5">
+              <LootCardItem />
+            </div>
+            <div className="col-xl-4  col-lg-6 mb-5">
+              <LootCardItem />
+            </div>
+            <div className="col-xl-4  col-lg-6 mb-5">
+              <LootCardItem />
             </div>
           </div>
         </div>
