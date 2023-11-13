@@ -560,8 +560,12 @@ const CharacterCardService = {
                     myEngraving.indexOf("</FONT>")
                   );
                 data[sub][Type][`engravings0${j}`]["level"] = Number(
-                  myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
+                  myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 2) ==
+                    "10"
+                    ? myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 2)
+                    : myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
                 );
+                console.log(myEngraving);
               });
             }
             // if (Type == "팔찌") {

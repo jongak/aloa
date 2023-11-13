@@ -176,7 +176,7 @@ const CardFront = function ({
             <div className="lvl">
               <div className="equipments_lvl">
                 <div>
-                  <img src="/assets/images/power.png" />
+                  <img src="/assets/images/icons/power.png" />
                 </div>
                 <span>
                   {userData
@@ -191,7 +191,7 @@ const CardFront = function ({
               </div>
               <div className="expedition_lvl">
                 <div>
-                  <img src="/assets/images/team.png" />
+                  <img src="/assets/images/icons/team.png" />
                 </div>
                 <div>
                   Lv{" "}

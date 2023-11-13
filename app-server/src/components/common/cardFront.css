@@ -143,7 +143,8 @@
   /* display: contents; */
 }
 .cardCover.back .cardMiddle .options_left .option_item img {
-  width: 50px;
+  width: 40px;
+  height: 40px;
 }
 .cardCover.back .cardMiddle .options_left .option_item div {
   display: inline-block;
@@ -152,14 +153,21 @@
 .cardCover.back .cardMiddle .options_left .option_box {
   background-color: #80808038;
   border-radius: 6px;
-  padding: 10px;
-  padding-right: 0;
-  margin: 12px 0;
+  margin: 20px 8px;
+  margin-top: 0px;
   font-size: 16px;
   font-weight: 700;
+  height: 200px;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
 }
-.cardCover.back .cardMiddle .options_left .option_box .plusDamage_td {
-  margin-left: -16px;
+
+.cardCover.back .cardMiddle .options_left .option_box div:nth-child(3) {
+  grid-column-start: 1;
+  grid-column-end: 3;
 }
 
 .cardCover.back .cardMiddle .options_left .stats {
@@ -167,7 +175,7 @@
   font-weight: 700;
 }
 .cardCover.back .cardMiddle .options_left .stats .back_stats_bg {
-  background-image: url("../../../public/assets/images/card_back_stat_bg.png");
+  background-image: url("../../../public/assets/images/icons/card_back_stat_bg.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 40px;
@@ -208,6 +216,77 @@
 }
 .cardCover.back .cardMiddle .options_left .engravings ul li {
   margin-right: 4px;
+}
+
+.cardCover.back .cardMiddle .options_right .equipments ul li,
+.cardCover.back .cardMiddle .options_right .accessory ul li {
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.cardCover.back .cardMiddle .options_right .equipments ul li span,
+.cardCover.back .cardMiddle .options_right .accessory ul li span {
+  position: absolute;
+  border-radius: 20px;
+  padding: 0px 5px 2px 5px;
+  line-height: 022px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+  background-color: #00ffff;
+  color: #1d1e21;
+}
+.cardCover.back .cardMiddle .options_right .accessory ul li span {
+  background-color: #f3ba26;
+}
+.cardCover.back .cardMiddle .options_right .accessory ul li span:nth-child(2) {
+  top: 24px;
+}
+
+.cardCover.back .cardMiddle .options_right .equipments ul li .equipments_badge {
+  right: -15px;
+}
+.cardCover.back .cardMiddle .options_right .accessory ul li .accessory_badge {
+  right: 0px;
+}
+.cardCover.back
+  .cardMiddle
+  .options_right
+  .equipments
+  ul
+  li
+  #back_equipment_trans {
+  width: 48px;
+  height: 36px;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+.cardCover.back .cardMiddle .options_right .equipments ul li div,
+.cardCover.back .cardMiddle .options_right .accessory ul li div {
+  background-color: #82786e;
+  width: 100%;
+  height: 8px;
+}
+.cardCover.back
+  .cardMiddle
+  .options_right
+  .equipments
+  ul
+  li
+  div
+  .back_equipment_quality,
+.cardCover.back
+  .cardMiddle
+  .options_right
+  .accessory
+  ul
+  li
+  div
+  .back_accessory_quality {
+  /* background-color: orange; */
+  /* width: 80%; */
+  height: 8px;
 }
 
 .cardMiddle .title {
@@ -309,18 +388,19 @@
 }
 
 .cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
-  position: absolute;
   border-radius: 20px;
-  padding: 0px 10px 2px 12px;
+  padding: 0px 5px 2px 5px;
+  line-height: 022px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.8px;
+
+  position: absolute;
   bottom: -5px;
   right: 0px;
-  line-height: 022px;
 
   background-color: #d73737;
   overflow: hidden;
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: -0.8px;
 }
 
 .cardCover.back .cardBottom .card_awakename {

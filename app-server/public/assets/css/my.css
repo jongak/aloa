@@ -327,7 +327,7 @@ Header Style
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
   transition: all 0.4s;
-  background-color: var(--my--heading);
+  background-color: var(--my--thema);
   display: block;
   position: absolute;
   width: 30px;
