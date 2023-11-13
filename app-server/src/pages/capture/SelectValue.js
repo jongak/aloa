@@ -93,6 +93,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["Effects"][0]
                 ? userData["ArmoryEngraving"]["Effects"][0]["Level"]
                 : undefined,
+              size: 2,
             },
             {
               id: "StatsSumBracelet",
@@ -200,17 +201,17 @@ const SelectValue = function () {
               id: "TenMeul",
               title: "10레벨 멸화 갯수",
               body: "10레벨 멸화 갯수 입니다.",
-              value: userData["ArmoryGem"]["option"]["TenMeul"] + "개",
+              value: userData["ArmoryGem"]["option"]["TenMeul"] + " ea",
               cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
-              cardValue: userData["ArmoryGem"]["option"]["TenMeul"] + "개",
+              cardValue: userData["ArmoryGem"]["option"]["TenMeul"] + " ea",
             },
             {
               id: "TenHong",
               title: "10레벨 홍염 갯수",
               body: "10레벨 홍염 갯수 입니다.",
-              value: userData["ArmoryGem"]["option"]["TenHong"] + "개",
+              value: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
               cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
-              cardValue: userData["ArmoryGem"]["option"]["TenHong"] + "개",
+              cardValue: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
             },
           ],
           done: [

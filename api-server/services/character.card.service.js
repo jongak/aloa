@@ -285,6 +285,8 @@ const CharacterCardService = {
             HongNum: 0,
             Level: 0,
             Num: 0,
+            TenMeul: 0,
+            TenHong: 0,
           },
           Gems: [],
         },
@@ -592,6 +594,13 @@ const CharacterCardService = {
               element["Name"].indexOf("</FONT>")
             );
             tmp["isMeul"] = tmp["Name"].includes("멸화");
+            if (tmp["Level"] == 10) {
+              if (tmp["Name"].includes("멸화")) {
+                data[sub]["option"]["TenMeul"] += 1;
+              } else {
+                data[sub]["option"]["TenHong"] += 1;
+              }
+            }
             if (
               dat["Element_004"]["value"]["Element_001"].includes(
                 data["ArmoryProfile"]["CharacterClassName"]
@@ -712,15 +721,28 @@ const CharacterCardService = {
       data["ArmoryGem"]["option"]["Num"] =
         data["ArmoryGem"]["option"]["HongNum"] +
         data["ArmoryGem"]["option"]["MeulNum"];
-      data["ArmoryGem"]["option"]["HongLevel"] =
-        data["ArmoryGem"]["option"]["HongLevel"] /
-        data["ArmoryGem"]["option"]["HongNum"];
-      data["ArmoryGem"]["option"]["MeulLevel"] =
-        data["ArmoryGem"]["option"]["MeulLevel"] /
-        data["ArmoryGem"]["option"]["MeulNum"];
-      data["ArmoryGem"]["option"]["Level"] =
-        data["ArmoryGem"]["option"]["Level"] /
-        data["ArmoryGem"]["option"]["Num"];
+      data["ArmoryGem"]["option"]["HongLevel"] = data["ArmoryGem"]["option"][
+        "HongNum"
+      ]
+        ? (
+            data["ArmoryGem"]["option"]["HongLevel"] /
+            data["ArmoryGem"]["option"]["HongNum"]
+          ).toFixed(2)
+        : undefined;
+      data["ArmoryGem"]["option"]["MeulLevel"] = data["ArmoryGem"]["option"][
+        "MeulNum"
+      ]
+        ? (
+            data["ArmoryGem"]["option"]["MeulLevel"] /
+            data["ArmoryGem"]["option"]["MeulNum"]
+          ).toFixed(2)
+        : undefined;
+      data["ArmoryGem"]["option"]["Level"] = data["ArmoryGem"]["option"]["Num"]
+        ? (
+            data["ArmoryGem"]["option"]["Level"] /
+            data["ArmoryGem"]["option"]["Num"]
+          ).toFixed(2)
+        : undefined;
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };

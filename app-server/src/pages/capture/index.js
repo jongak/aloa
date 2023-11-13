@@ -37,8 +37,10 @@ const capture = function () {
   const shadowRef = useRef(true);
 
   const dispatch = useDispatch();
+  const front = useSelector((state) => state.captureSlice.userData);
   const userData = useSelector((state) => state.captureSlice.userData);
-
+  const frontItems = useSelector((state) => state.captureSlice.frontItems);
+  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
   );
@@ -106,7 +108,7 @@ const capture = function () {
     if (isLoading) {
       fetchData();
     }
-  }, [isLoading]);
+  }, [isLoading, frontIcons, frontItems]);
 
   const setOptionStates = {
     rarityPresetRef,
