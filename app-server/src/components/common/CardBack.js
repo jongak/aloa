@@ -1,5 +1,4 @@
 import axios from "axios";
-import "./cardBack.css";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -64,35 +63,35 @@ const CardBack = function ({
         <div className="cardMiddle container">
           <div className="options row">
             <div className="options_left col-7">
-              <div className="option_items row">
-                <div className="option_item col-6">
-                  <img src="/assets/images/exlixer.webp" />
+              <div className="option_box">
+                <div className="option_item">
+                  <img src="/assets/images/icons/exlixer.webp" />
                   <div>
                     {"Lv" +
                       userData["ArmoryEquipment"]["option"]["ElixirLevel"]}
                   </div>
                 </div>
-                <div className="option_item col-4">
-                  {/* <img src="/assets/images/cho.png" /> */}
+                <div className="option_item">
+                  <img src="/assets/images/cho/cho_5.png" />
                   <div>
                     {userData["ArmoryEquipment"]["option"]["TransLevel"]}
                   </div>
                 </div>
-                <div className="option_item col-8">
-                  <img src="/assets/images/gem.webp" />
+                <div className="option_item">
+                  <img src="/assets/images/icons/10meol.webp" />
                   <div>
                     {" "}
                     {userData["ArmoryGem"]["option"]["MeulNum"]}
                     {"멸 "}
                     {userData["ArmoryGem"]["option"]["HongNum"]}
                     {"홍  "}
-                    {"Lv " + userData["ArmoryGem"]["option"]["Level"]}
-                    {/* 5멸 6홍 평균Lv 10 */}
+                    {"Lv " +
+                      (userData["ArmoryGem"]["option"]["Level"]
+                        ? userData["ArmoryGem"]["option"]["Level"]
+                        : "0")}
                   </div>
                 </div>
-              </div>
-              <div className="option_box row">
-                <div className="col-3">악마</div>
+                {/* <div className="col-3">악마</div>
                 <div className="col-3 plusDamage_td">6.98%</div>
                 <div className="col-3">인간</div>
                 <div className="col-3 plusDamage_td">5.32%</div>
@@ -101,7 +100,7 @@ const CardBack = function ({
                 <div className="col-3">식물</div>
                 <div className="col-3 plusDamage_td">4.67%</div>
                 <div className="col-3">불사</div>
-                <div className="col-3 plusDamage_td">4.23%</div>
+                <div className="col-3 plusDamage_td">4.23%</div> */}
               </div>
 
               <div className="row stats">
@@ -145,9 +144,16 @@ const CardBack = function ({
 
               <div className="row engravings">
                 <ul>
+                  {userData
+                    ? userData["ArmoryEngraving"]["JobEffects"].map((item) => (
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
+                          <img className="engraving" src={item.Icon} />
+                        </li>
+                      ))
+                    : ""}
                   {userData ? (
                     userData["ArmoryEngraving"]["fullEffects"].map((item) => (
-                      <li key={item.Icon}>
+                      <li key={item.Name + Math.floor(Math.random() * 10000)}>
                         <img className="engraving full" src={item.Icon} />
                       </li>
                     ))
@@ -175,7 +181,7 @@ const CardBack = function ({
                   )}
                   {userData
                     ? userData["ArmoryEngraving"]["Effects"].map((item) => (
-                        <li key={item.Icon}>
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
                           <img className="engraving" src={item.Icon} />
                         </li>
                       ))
@@ -187,46 +193,43 @@ const CardBack = function ({
             <div className="options_right col-2 ">
               <div className="equipments">
                 <ul>
-                  {userData && userData["ArmoryEquipment"]
-                    ? [
-                        userData["ArmoryEquipment"]["무기"],
-                        userData["ArmoryEquipment"]["투구"],
-                        userData["ArmoryEquipment"]["상의"],
-                        userData["ArmoryEquipment"]["하의"],
-                        userData["ArmoryEquipment"]["어깨"],
-                        userData["ArmoryEquipment"]["장갑"],
-                      ].map((item) => (
-                        <li key={item.Icon}>
-                          <span
-                            className="equipments_badge"
-                            style={{
-                              backgroundColor: `${equipGrade[item["Grade"]]}`,
-                            }}
-                          >
-                            +{item["ItemGrade"]}
-                          </span>
-                          {/* <img
-                            id="back_equipment_trans"
-                            src={
-                              `/assets/images/cho/cho_${item["TransGrade"]}.png` ||
-                              ""
-                            }
-                          /> */}
-                          <img src={item["Icon"]} />
-                          <div>
-                            <div
-                              className="back_equipment_quality"
-                              style={{
-                                width: `${item["qualityValue"]}%`,
-                                backgroundColor: `${equipQuality(
-                                  item["qualityValue"]
-                                )}`,
-                              }}
-                            ></div>
-                          </div>
-                        </li>
-                      ))
-                    : ""}
+                  {[
+                    userData["ArmoryEquipment"]["무기"],
+                    userData["ArmoryEquipment"]["투구"],
+                    userData["ArmoryEquipment"]["상의"],
+                    userData["ArmoryEquipment"]["하의"],
+                    userData["ArmoryEquipment"]["어깨"],
+                    userData["ArmoryEquipment"]["장갑"],
+                  ].map((item) => (
+                    <li key={item.Name + Math.floor(Math.random() * 10000)}>
+                      <span
+                        className="equipments_badge"
+                        style={{
+                          backgroundColor: `${equipGrade[item["Grade"]]}`,
+                        }}
+                      >
+                        +{item["ItemGrade"]}
+                      </span>
+                      <img src={item["Icon"]} />
+                      <div>
+                        <div
+                          className="back_equipment_quality"
+                          style={{
+                            width: `${item["qualityValue"]}%`,
+                            backgroundColor: `${equipQuality(
+                              item["qualityValue"]
+                            )}`,
+                          }}
+                        ></div>
+                      </div>
+                      {item["TransGrade"] ? (
+                        <img
+                          id="back_equipment_trans"
+                          src={`/assets/images/cho/cho_${item["TransGrade"]}.png`}
+                        />
+                      ) : null}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -241,7 +244,7 @@ const CardBack = function ({
                         userData["ArmoryEquipment"]["반지"][0],
                         userData["ArmoryEquipment"]["반지"][1],
                       ].map((item) => (
-                        <li key={item.Icon}>
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
                           {/* <span className="accessory_badge">+25</span> */}
 
                           <img src={item["Icon"]} />
@@ -260,24 +263,37 @@ const CardBack = function ({
                       ))
                     : ""}
                   <li>
-                    <span className="accessory_badge">
-                      {userData && userData["ArmoryEquipment"]["어빌리티 스톤"]
+                    <span
+                      className="accessory_badge"
+                      style={{
+                        backgroundColor:
+                          equipGrade[
+                            userData["ArmoryEquipment"]["어빌리티 스톤"][
+                              "Grade"
+                            ]
+                          ],
+                      }}
+                    >
+                      {userData["ArmoryEquipment"]["어빌리티 스톤"]
                         ? userData["ArmoryEquipment"]["어빌리티 스톤"][
                             "engravings00"
                           ]["level"]
                         : ""}
                     </span>
-                    <span className="accessory_badge">
-                      {userData && userData["ArmoryEquipment"]["어빌리티 스톤"]
+                    <span
+                      className="accessory_badge"
+                      style={{
+                        backgroundColor:
+                          equipGrade[
+                            userData["ArmoryEquipment"]["어빌리티 스톤"][
+                              "Grade"
+                            ]
+                          ],
+                      }}
+                    >
+                      {userData["ArmoryEquipment"]["어빌리티 스톤"]
                         ? userData["ArmoryEquipment"]["어빌리티 스톤"][
                             "engravings01"
-                          ]["level"]
-                        : ""}
-                    </span>
-                    <span className="accessory_badge">
-                      {userData && userData["ArmoryEquipment"]["어빌리티 스톤"]
-                        ? userData["ArmoryEquipment"]["어빌리티 스톤"][
-                            "engravings02"
                           ]["level"]
                         : ""}
                     </span>
@@ -306,7 +322,10 @@ const CardBack = function ({
             <div className="row align-items-end">
               {userData && userData["ArmoryCard"]["Cards"] ? (
                 userData["ArmoryCard"]["Cards"].map((item) => (
-                  <div key={item.Icon} className="card_slot col-2">
+                  <div
+                    key={item.Name + Math.floor(Math.random() * 10000)}
+                    className="card_slot col-2"
+                  >
                     <img
                       className="card_grade"
                       src={`/assets/images/card/card_grade_${

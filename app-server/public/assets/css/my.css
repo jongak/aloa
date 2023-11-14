@@ -327,7 +327,7 @@ Header Style
 .header-area .main-nav .menu-trigger span:before,
 .header-area .main-nav .menu-trigger span:after {
   transition: all 0.4s;
-  background-color: var(--my--heading);
+  background-color: var(--my--thema);
   display: block;
   position: absolute;
   width: 30px;
@@ -391,6 +391,12 @@ Header Style
 .visible {
   display: inline !important;
 }
+
+/* 
+---------------------------------------------
+myDarkToggle
+--------------------------------------------- 
+*/
 
 .myDarkToggle {
   cursor: pointer;
@@ -499,6 +505,12 @@ Header Style
     top: 0;
   }
 }
+
+/* 
+---------------------------------------------
+myThema
+--------------------------------------------- 
+*/
 
 .myThema {
   cursor: pointer;
@@ -830,6 +842,27 @@ Banner Style
   }
 }
 
+@media (min-width: 768px) {
+  .main-banner {
+    max-width: 990px;
+  }
+}
+@media (min-width: 992px) {
+  .main-banner {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .main-banner {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .main-banner {
+    max-width: 1320px;
+  }
+}
+
 /* 
 ---------------------------------------------
 Footer Style
@@ -882,6 +915,7 @@ capture
   border-radius: 12px;
   padding-left: 0px;
   padding-right: 0px;
+  margin-left: 20px;
 }
 
 .option-area .progress {
@@ -903,8 +937,9 @@ capture
   justify-content: center;
   -webkit-box-align: start;
   align-items: start;
-  gap: 4px;
   position: relative;
+
+  gap: 22px;
 }
 .option-area .inner .dot-wrapper {
   display: flex;
@@ -912,7 +947,7 @@ capture
   -webkit-box-align: center;
   align-items: center;
   gap: 12px;
-  flex-basis: 74px;
+  flex-basis: 100px;
 }
 .option-area .inner .dot-wrapper .dot {
   position: relative;
@@ -939,7 +974,7 @@ capture
 .option-area .inner .bar {
   position: absolute;
   top: 4px;
-  width: 366px;
+  width: 360px;
   background-color: var(--my--very--dark--background--hover);
   height: 2px;
 }
@@ -1012,12 +1047,12 @@ capture
   margin: 2%;
 }
 
-@media (min-width: 768px) {
-  .option-area .inner {
-    gap: 22px;
+@media (max-width: 768px) {
+  .option-area {
+    margin-left: 0px;
   }
-  .option-area .inner .dot-wrapper {
-    flex-basis: 100px;
+  .option-area .inner {
+    gap: 16px;
   }
 }
 @media (min-width: 992px) {
@@ -1053,6 +1088,13 @@ card-area
 
 .card-area {
   /* position: sticky; */
+  margin-left: -20px;
+}
+@media (max-width: 768px) {
+  .card-area {
+    /* position: sticky; */
+    margin-left: 0px;
+  }
 }
 
 /* 
@@ -1194,6 +1236,12 @@ card
   }
 }
 
+/* 
+---------------------------------------------
+myToggle
+--------------------------------------------- 
+*/
+
 .myToggle {
   margin-top: 20px;
   margin-left: -30px;
@@ -1302,6 +1350,12 @@ card
   }
 }
 
+/* 
+---------------------------------------------
+dnd
+--------------------------------------------- 
+*/
+
 .drag-cover {
   display: grid;
   flex: 1;
@@ -1376,6 +1430,205 @@ card
   .drag-cover .drag-item .item-value {
     top: 6px;
   }
+}
+
+/* 
+---------------------------------------------
+mycol
+--------------------------------------------- 
+*/
+
+.mycol-1 {
+  flex: 0 0 auto;
+  width: 4.167%;
+}
+.mycol-2 {
+  flex: 0 0 auto;
+  width: 8.333%;
+}
+.mycol-3 {
+  flex: 0 0 auto;
+  width: 12.5%;
+}
+.mycol-4 {
+  flex: 0 0 auto;
+  width: 16.667%;
+}
+.mycol-5 {
+  flex: 0 0 auto;
+  width: 20.833%;
+}
+.mycol-6 {
+  flex: 0 0 auto;
+  width: 25%;
+}
+.mycol-7 {
+  flex: 0 0 auto;
+  width: 29.167%;
+}
+.mycol-8 {
+  flex: 0 0 auto;
+  width: 33.333%;
+}
+.mycol-9 {
+  flex: 0 0 auto;
+  width: 37.5%;
+}
+.mycol-10 {
+  flex: 0 0 auto;
+  width: 41.667%;
+}
+.mycol-11 {
+  flex: 0 0 auto;
+  width: 45.833%;
+}
+.mycol-12 {
+  flex: 0 0 auto;
+  width: 50%;
+}
+.mycol-13 {
+  flex: 0 0 auto;
+  width: 54.167%;
+}
+.mycol-14 {
+  flex: 0 0 auto;
+  width: 58.333%;
+}
+.mycol-15 {
+  flex: 0 0 auto;
+  width: 62.5%;
+}
+.mycol-16 {
+  flex: 0 0 auto;
+  width: 66.667%;
+}
+.mycol-17 {
+  flex: 0 0 auto;
+  width: 70.833%;
+}
+.mycol-18 {
+  flex: 0 0 auto;
+  width: 75%;
+}
+.mycol-19 {
+  flex: 0 0 auto;
+  width: 79.167%;
+}
+.mycol-20 {
+  flex: 0 0 auto;
+  width: 83.333%;
+}
+.mycol-21 {
+  flex: 0 0 auto;
+  width: 87.5%;
+}
+.mycol-22 {
+  flex: 0 0 auto;
+  width: 91.667%;
+}
+.mycol-23 {
+  flex: 0 0 auto;
+  width: 95.833%;
+}
+.mycol-24 {
+  flex: 0 0 auto;
+  width: 100%;
+}
+.mycol-25 {
+  flex: 0 0 auto;
+  width: 104.167%;
+}
+.mycol-26 {
+  flex: 0 0 auto;
+  width: 108.333%;
+}
+.mycol-27 {
+  flex: 0 0 auto;
+  width: 112.5%;
+}
+.mycol-28 {
+  flex: 0 0 auto;
+  width: 116.667%;
+}
+.mycol-29 {
+  flex: 0 0 auto;
+  width: 120.833%;
+}
+.mycol-30 {
+  flex: 0 0 auto;
+  width: 125%;
+}
+.mycol-31 {
+  flex: 0 0 auto;
+  width: 129.167%;
+}
+.mycol-32 {
+  flex: 0 0 auto;
+  width: 133.333%;
+}
+.mycol-33 {
+  flex: 0 0 auto;
+  width: 137.5%;
+}
+.mycol-34 {
+  flex: 0 0 auto;
+  width: 141.667%;
+}
+.mycol-35 {
+  flex: 0 0 auto;
+  width: 145.833%;
+}
+.mycol-36 {
+  flex: 0 0 auto;
+  width: 150%;
+}
+.mycol-37 {
+  flex: 0 0 auto;
+  width: 154.167%;
+}
+.mycol-38 {
+  flex: 0 0 auto;
+  width: 158.333%;
+}
+.mycol-39 {
+  flex: 0 0 auto;
+  width: 162.5%;
+}
+.mycol-40 {
+  flex: 0 0 auto;
+  width: 166.667%;
+}
+.mycol-41 {
+  flex: 0 0 auto;
+  width: 170.833%;
+}
+.mycol-42 {
+  flex: 0 0 auto;
+  width: 175%;
+}
+.mycol-43 {
+  flex: 0 0 auto;
+  width: 179.167%;
+}
+.mycol-44 {
+  flex: 0 0 auto;
+  width: 183.333%;
+}
+.mycol-45 {
+  flex: 0 0 auto;
+  width: 187.5%;
+}
+.mycol-46 {
+  flex: 0 0 auto;
+  width: 191.667%;
+}
+.mycol-47 {
+  flex: 0 0 auto;
+  width: 195.833%;
+}
+.mycol-48 {
+  flex: 0 0 auto;
+  width: 200%;
 }
 
 .toastPosition {

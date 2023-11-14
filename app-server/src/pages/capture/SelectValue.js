@@ -64,7 +64,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["AccAvg"],
               cardTitle: "악세품질",
               cardValue: userData["ArmoryEquipment"]["option"]["AccAvg"],
-              size: 3,
+              size: 5,
             },
             {
               id: "jobEngraving",
@@ -77,6 +77,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
                 ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
                 : undefined,
+              size: 6,
             },
             {
               id: "oneEngraving",
@@ -93,7 +94,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["Effects"][0]
                 ? userData["ArmoryEngraving"]["Effects"][0]["Level"]
                 : undefined,
-              size: 2,
+              size: 7,
             },
             {
               id: "StatsSumBracelet",
@@ -163,6 +164,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["option"]["ElixirName"],
               cardTitle: "엘릭서",
               cardValue: userData["ArmoryEquipment"]["option"]["ElixirName"],
+              size: 4,
             },
             {
               id: "AwakeName",
@@ -171,7 +173,7 @@ const SelectValue = function () {
               value: userData["ArmoryCard"]["AwakeName"],
               cardTitle: "카드",
               cardValue: userData["ArmoryCard"]["AwakeName"],
-              size: 3,
+              size: 4,
             },
             {
               id: "Acc",
@@ -202,7 +204,7 @@ const SelectValue = function () {
               title: "10레벨 멸화 갯수",
               body: "10레벨 멸화 갯수 입니다.",
               value: userData["ArmoryGem"]["option"]["TenMeul"] + " ea",
-              cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
+              cardImg: "/assets/images/icons/10meol.webp",
               cardValue: userData["ArmoryGem"]["option"]["TenMeul"] + " ea",
             },
             {
@@ -210,7 +212,7 @@ const SelectValue = function () {
               title: "10레벨 홍염 갯수",
               body: "10레벨 홍염 갯수 입니다.",
               value: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
-              cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
+              cardImg: "/assets/images/icons/10hong.webp",
               cardValue: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
             },
           ],
@@ -252,30 +254,36 @@ const SelectValue = function () {
                 userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
                   "level"
                 ],
+              iconSize: 16,
             },
             {
               id: "ElixirLevel",
               title: "엘릭서 레벨합",
               body: "엘릭서 강화의 총 레벨 합입니다.",
               value: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
-              cardImg: "/assets/images/exlixer.webp",
+              cardImg: "/assets/images/icons/exlixer.webp",
               cardValue: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
+              size: 3,
+              iconSize: 23,
             },
             {
               id: "AwakeCount",
               title: "카드 각성 합",
               body: "카드의 각성단계 합입니다.",
               value: userData["ArmoryCard"]["AwakeCount"],
-              cardImg: "/assets/images/card.png",
+              cardImg: "/assets/images/icons/card.png",
               cardValue: userData["ArmoryCard"]["AwakeCount"],
             },
             {
               id: "TransGrade",
               title: "초월 각성 합",
               body: "초월의 각성단계 합입니다.",
-              value: userData["ArmoryCard"]["TransLevel"],
-              cardImg: "/assets/images/cho.png",
-              cardValue: userData["ArmoryCard"]["TransLevel"],
+              value: userData["ArmoryEquipment"]["option"]["TransLevel"],
+              cardImg: "/assets/images/cho/cho_5.png",
+              cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
+              size: 2,
+              iconSize: 30,
+              margin: "mt-2",
             },
           ],
         },

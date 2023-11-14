@@ -156,7 +156,7 @@ const capture = function () {
   return (
     <div className="main-banner container">
       <div className="row">
-        <div className="option-area col-lg-7 col-md-6">
+        <div className="option-area col-md-7">
           <div className="progress">
             <div className="inner">
               <div className={`dot-wrapper ${page == "find" ? "active" : ""}`}>
@@ -192,7 +192,7 @@ const capture = function () {
           />
         </div>
 
-        <div className="card-area col-lg-5 col-md-6">
+        <div className="card-area col-md-5 ">
           {/* {cardImgMemo} */}
           <button onClick={handleFrontDown}>다운로드</button>
           <CardBack
