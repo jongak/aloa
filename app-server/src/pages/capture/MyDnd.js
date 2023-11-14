@@ -14,11 +14,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState();
+  var maxItems = 6;
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.captureSlice.frontItems);
   } else if (title == "frontIcons") {
+    maxItems = 5;
     items = useSelector((state) => state.captureSlice.frontIcons);
   }
 
@@ -47,8 +48,11 @@ const MyDnd = function ({ title }) {
     const _items = JSON.parse(JSON.stringify(items));
     const [targetItem] = _items[scourceKey].splice(source.index, 1);
     _items[destinationKey].splice(destination.index, 0, targetItem);
-    setItem(_items);
-    toast("이게없으면 안되네");
+    if (_items["done"].length <= maxItems) {
+      setItem(_items);
+    } else {
+      toast.error(`${maxItems + 1}개 이상은 넣을수 없습니다.`);
+    }
   };
 
   // --- requestAnimationFrame 초기화
@@ -70,22 +74,6 @@ const MyDnd = function ({ title }) {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <ToastContainer
-        position="top-right" // 알람 위치 지정
-        autoClose={3000} // 자동 off 시간
-        hideProgressBar={false} // 진행시간바 숨김
-        closeOnClick // 클릭으로 알람 닫기
-        rtl={false} // 알림 좌우 반전
-        pauseOnFocusLoss // 화면을 벗어나면 알람 정지
-        draggable // 드래그 가능
-        pauseOnHover // 마우스를 올리면 알람 정지
-        theme="light"
-        toastClassName="제목"
-        bodyClassName="내용"
-        ProgressClassName="선"
-        // limit={1} // 알람 개수 제한
-      />
-
       <div
         className="drag-cover"
         style={{

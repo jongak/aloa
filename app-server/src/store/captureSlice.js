@@ -7,6 +7,9 @@ const captureSlice = createSlice({
     userData: {},
     frontItems: { todo: [], done: [] },
     frontIcons: { todo: [], done: [] },
+    isName: true,
+    isTitle: true,
+    isLevel: false,
   },
   reducers: {
     setRarityPreset(state, action) {
@@ -21,9 +24,25 @@ const captureSlice = createSlice({
     setFrontIcons(state, action) {
       state.frontIcons = action.payload.newFrontIcons;
     },
+    setIsName(state, action) {
+      state.isName = action.payload.newIsName;
+    },
+    setIsTitle(state, action) {
+      state.isTitle = action.payload.newIsTitle;
+    },
+    setIsLevel(state, action) {
+      state.isLevel = action.payload.newIsLevel;
+    },
   },
 });
 
 export default captureSlice;
-export const { setRarityPreset, setUserData, setFrontItems, setFrontIcons } =
-  captureSlice.actions;
+export const {
+  setRarityPreset,
+  setUserData,
+  setFrontItems,
+  setFrontIcons,
+  setIsName,
+  setIsTitle,
+  setIsLevel,
+} = captureSlice.actions;

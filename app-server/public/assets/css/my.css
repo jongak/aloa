@@ -1046,6 +1046,14 @@ capture
   width: 80%;
   margin: 2%;
 }
+@media (max-width: 576px) {
+  .option-area .inner .bar {
+    width: 75%;
+  }
+  .option-area .inner {
+    gap: 5%;
+  }
+}
 
 @media (max-width: 768px) {
   .option-area {

@@ -63,6 +63,9 @@ const CardFront = function ({
   const userData = useSelector((state) => state.captureSlice.userData);
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
   const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
+  const isName = useSelector((state) => state.captureSlice.isName);
+  const isTitle = useSelector((state) => state.captureSlice.isTitle);
+  const isLevel = useSelector((state) => state.captureSlice.isLevel);
 
   useEffect(() => {
     if (characterNameRef.current) {
@@ -159,17 +162,13 @@ const CardFront = function ({
           <div className="title">
             <div className="row justify-content-center">
               <div className="titlename col align-self-center">
-                <h2>
-                  {userData ? userData["ArmoryProfile"]["Title"] : "칭호"}
-                </h2>
+                <h2>{isTitle ? userData["ArmoryProfile"]["Title"] : ""}</h2>
               </div>
             </div>
             <div className="row justify-content-center">
               <div className="nickname col align-self-center">
                 <h2>
-                  {userData
-                    ? userData["ArmoryProfile"]["CharacterName"]
-                    : "열두자까지가능한닉네임임"}
+                  {isName ? userData["ArmoryProfile"]["CharacterName"] : "-"}
                 </h2>
               </div>
             </div>
@@ -179,15 +178,18 @@ const CardFront = function ({
                   <img src="/assets/images/icons/power.png" />
                 </div>
                 <span>
-                  {userData
-                    ? userData["ArmoryProfile"]["ItemAvgLevel"].substring(0, 5)
-                    : " -"}
+                  {isLevel
+                    ? userData["ArmoryProfile"]["ItemAvgLevel"].substring(
+                        0,
+                        4
+                      ) + "0+"
+                    : userData["ArmoryProfile"]["ItemAvgLevel"].substring(0, 5)}
                 </span>
-                <sub>
-                  {userData
-                    ? userData["ArmoryProfile"]["ItemAvgLevel"].substring(5, 8)
-                    : " "}
-                </sub>
+                {isLevel ? undefined : (
+                  <sub>
+                    {userData["ArmoryProfile"]["ItemAvgLevel"].substring(5, 8)}
+                  </sub>
+                )}
               </div>
               <div className="expedition_lvl">
                 <div>
