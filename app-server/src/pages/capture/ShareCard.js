@@ -1,14 +1,25 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import UserItem from "../../components/common/UserItem";
 
 const ShareCard = function () {
-  const { setPage } = useOutletContext();
+  const { setPage, handleFrontDown, handleBackDown } = useOutletContext();
 
   useEffect(() => {
     setPage("share");
   }, []);
+  const copyLinkRef = useRef();
+
+  const copyTextUrl = function () {
+    copyLinkRef.current.focus();
+    copyLinkRef.current.select();
+
+    navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
+      alert("링크를 복사했습니다.");
+    });
+  };
+
   return (
     <>
       <UserItem
@@ -31,6 +42,13 @@ const ShareCard = function () {
       />
       <Button href="../set" title={"이전"} />
       <Button href="../share" title={"이후"} />
+
+      <br />
+      <Button title={"앞면"} onClick={handleFrontDown} />
+      <Button title={"뒷면"} onClick={handleBackDown} />
+
+      <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
+      <Button title={"복사"} onClick={copyTextUrl} />
     </>
   );
 };

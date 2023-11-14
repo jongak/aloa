@@ -19,6 +19,7 @@ import Avatar from "./pages/characterDetail/Avatar";
 import Statistics from "./pages/characterDetail/Statistics";
 import Character from "./pages/characterDetail/Character";
 import Guild from "./pages/characterDetail/Guild";
+import GetCard from "./pages/card";
 import Makecard from "./pages/make";
 import FindName from "./pages/capture/FindName";
 import SelectValue from "./pages/capture/SelectValue";
@@ -42,6 +43,7 @@ function App() {
               <Route path="set" element={<SetOption />} />
               <Route path="share" element={<ShareCard />} />
             </Route>
+            <Route path="/cards" element={<GetCard />} />
             <Route path="/make" element={<Makecard />} />
             <Route path="/character">
               <Route path=":id" element={<CharacterDetail />}>

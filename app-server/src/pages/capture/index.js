@@ -7,6 +7,7 @@ import { Outlet } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/captureSlice";
+import saveAs from "file-saver";
 
 const getDataCard = async function (id) {
   try {
@@ -104,6 +105,16 @@ const capture = function () {
       //     saveAs(blob, "result.png");
       //   }
       // });
+
+      // frontCanvas.toBlob(function (blob) {
+      //   saveAs(blob, "result.png");
+      // });
+
+      const handleBackDown = () => {
+        backCanvas.toBlob(function (blob) {
+          saveAs(blob, "result.png");
+        });
+      };
     };
     if (isLoading) {
       fetchData();
@@ -124,6 +135,24 @@ const capture = function () {
     holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
+
+  const handleFrontDown = async () => {
+    const front = frontRef.current;
+    const cardFront = await html2canvas(front, { scale: 2 });
+    cardFront.toBlob(function (blob) {
+      saveAs(blob, "result.png");
+    });
+  };
+  const handleBackDown = async () => {
+    const back = backRef.current;
+    const cardBack = await html2canvas(back, { scale: 2 });
+    cardBack.toBlob(function (blob) {
+      if (blob !== null) {
+        saveAs(blob, "result.png");
+      }
+    });
+  };
+
   return (
     <div className="main-banner container">
       <div className="row">
@@ -157,13 +186,15 @@ const capture = function () {
               characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
+              handleFrontDown,
+              handleBackDown,
             }}
           />
         </div>
 
         <div className="card-area col-lg-5 col-md-6">
           {/* {cardImgMemo} */}
-
+          <button onClick={handleFrontDown}>다운로드</button>
           <CardBack
             characterNameRef={characterNameRef}
             divRef={backRef}

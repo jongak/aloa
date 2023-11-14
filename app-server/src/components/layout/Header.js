@@ -55,7 +55,7 @@ function Header({ setThema, thema }) {
                   <Link to="/capture">capture</Link>
                 </li>
                 <li>
-                  <Link to="/make">만들기</Link>
+                  <Link to="/cards">Card</Link>
                 </li>
                 <li>
                   <Link to="/character/송도나봉선">Contact Us</Link>
