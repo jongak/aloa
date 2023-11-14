@@ -64,7 +64,10 @@ const GetCard = function () {
   ]);
   useEffect(() => {
     if (characterNameRef.current) {
-      getDataCard(characterNameRef.current);
+      getDataCard(characterNameRef.current).then((res) => {
+        dispatch(setUserData({ newUserData: res }));
+        console.log(res, "");
+      });
     }
   }, [characterNameRef.current]);
 
