@@ -1,4 +1,4 @@
-const pool = require("./pool");
+// const pool = require("./pool");
 const axios = require("axios");
 const lostArk = axios.create({
   baseURL: "https://developer-lostark.game.onstove.com/",

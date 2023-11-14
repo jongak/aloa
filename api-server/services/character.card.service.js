@@ -565,7 +565,7 @@ const CharacterCardService = {
                     ? myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 2)
                     : myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
                 );
-                console.log(myEngraving);
+                // console.log(myEngraving);
               });
             }
             // if (Type == "팔찌") {

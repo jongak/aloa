@@ -1,8 +1,9 @@
 const PopUp = function (props) {
+  const { isActive, body } = props;
   return (
     <div
       className={
-        props.isActive
+        isActive
           ? `toast toast-3s fade show toastPosition`
           : `toast toast-3s fade hide toastPosition`
       }
@@ -21,7 +22,7 @@ const PopUp = function (props) {
         <small className="text-muted"></small>
       </div>
       <div className="toast-body">
-        <strong className="mr-auto">{props.body}</strong>
+        <strong className="mr-auto">{body}</strong>
       </div>
     </div>
   );

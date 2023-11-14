@@ -392,6 +392,12 @@ Header Style
   display: inline !important;
 }
 
+/* 
+---------------------------------------------
+myDarkToggle
+--------------------------------------------- 
+*/
+
 .myDarkToggle {
   cursor: pointer;
   width: 50px;
@@ -499,6 +505,12 @@ Header Style
     top: 0;
   }
 }
+
+/* 
+---------------------------------------------
+myThema
+--------------------------------------------- 
+*/
 
 .myThema {
   cursor: pointer;
@@ -1224,6 +1236,12 @@ card
   }
 }
 
+/* 
+---------------------------------------------
+myToggle
+--------------------------------------------- 
+*/
+
 .myToggle {
   margin-top: 20px;
   margin-left: -30px;
@@ -1332,6 +1350,12 @@ card
   }
 }
 
+/* 
+---------------------------------------------
+dnd
+--------------------------------------------- 
+*/
+
 .drag-cover {
   display: grid;
   flex: 1;
@@ -1408,16 +1432,11 @@ card
   }
 }
 
-.toastPosition {
-  position: absolute;
-  top: 25%;
-  right: 30%;
-  z-index: 200;
-}
-
-.logoStyle {
-  width: 150px;
-}
+/* 
+---------------------------------------------
+mycol
+--------------------------------------------- 
+*/
 
 .mycol-1 {
   flex: 0 0 auto;
@@ -1514,4 +1533,100 @@ card
 .mycol-24 {
   flex: 0 0 auto;
   width: 100%;
+}
+.mycol-25 {
+  flex: 0 0 auto;
+  width: 104.167%;
+}
+.mycol-26 {
+  flex: 0 0 auto;
+  width: 108.333%;
+}
+.mycol-27 {
+  flex: 0 0 auto;
+  width: 112.5%;
+}
+.mycol-28 {
+  flex: 0 0 auto;
+  width: 116.667%;
+}
+.mycol-29 {
+  flex: 0 0 auto;
+  width: 120.833%;
+}
+.mycol-30 {
+  flex: 0 0 auto;
+  width: 125%;
+}
+.mycol-31 {
+  flex: 0 0 auto;
+  width: 129.167%;
+}
+.mycol-32 {
+  flex: 0 0 auto;
+  width: 133.333%;
+}
+.mycol-33 {
+  flex: 0 0 auto;
+  width: 137.5%;
+}
+.mycol-34 {
+  flex: 0 0 auto;
+  width: 141.667%;
+}
+.mycol-35 {
+  flex: 0 0 auto;
+  width: 145.833%;
+}
+.mycol-36 {
+  flex: 0 0 auto;
+  width: 150%;
+}
+.mycol-37 {
+  flex: 0 0 auto;
+  width: 154.167%;
+}
+.mycol-38 {
+  flex: 0 0 auto;
+  width: 158.333%;
+}
+.mycol-39 {
+  flex: 0 0 auto;
+  width: 162.5%;
+}
+.mycol-40 {
+  flex: 0 0 auto;
+  width: 166.667%;
+}
+.mycol-41 {
+  flex: 0 0 auto;
+  width: 170.833%;
+}
+.mycol-42 {
+  flex: 0 0 auto;
+  width: 175%;
+}
+.mycol-43 {
+  flex: 0 0 auto;
+  width: 179.167%;
+}
+.mycol-44 {
+  flex: 0 0 auto;
+  width: 183.333%;
+}
+.mycol-45 {
+  flex: 0 0 auto;
+  width: 187.5%;
+}
+.mycol-46 {
+  flex: 0 0 auto;
+  width: 191.667%;
+}
+.mycol-47 {
+  flex: 0 0 auto;
+  width: 195.833%;
+}
+.mycol-48 {
+  flex: 0 0 auto;
+  width: 200%;
 }

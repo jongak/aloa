@@ -254,6 +254,7 @@ const SelectValue = function () {
                 userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
                   "level"
                 ],
+              iconSize: 16,
             },
             {
               id: "ElixirLevel",
@@ -263,6 +264,7 @@ const SelectValue = function () {
               cardImg: "/assets/images/icons/exlixer.webp",
               cardValue: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
               size: 3,
+              iconSize: 23,
             },
             {
               id: "AwakeCount",
@@ -280,6 +282,8 @@ const SelectValue = function () {
               cardImg: "/assets/images/cho/cho_5.png",
               cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
               size: 2,
+              iconSize: 30,
+              margin: "mt-2",
             },
           ],
         },
