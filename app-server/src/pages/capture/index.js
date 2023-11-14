@@ -38,8 +38,6 @@ const capture = function () {
   const shadowRef = useRef(true);
 
   const dispatch = useDispatch();
-  const front = useSelector((state) => state.captureSlice.userData);
-  const userData = useSelector((state) => state.captureSlice.userData);
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
   const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
   const imgSrcRef = useRef(
@@ -99,22 +97,6 @@ const capture = function () {
       setBackCanvasRef(backCanvas);
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
       setIsCardReady(true); // 카드 생성이 완료됨
-
-      // canvas.toBlob((blob) => {
-      //   if (blob !== null) {
-      //     saveAs(blob, "result.png");
-      //   }
-      // });
-
-      // frontCanvas.toBlob(function (blob) {
-      //   saveAs(blob, "result.png");
-      // });
-
-      const handleBackDown = () => {
-        backCanvas.toBlob(function (blob) {
-          saveAs(blob, "result.png");
-        });
-      };
     };
     if (isLoading) {
       fetchData();
@@ -137,16 +119,12 @@ const capture = function () {
   const setOptionActions = { setIsChanged };
 
   const handleFrontDown = async () => {
-    const front = frontRef.current;
-    const cardFront = await html2canvas(front, { scale: 2 });
-    cardFront.toBlob(function (blob) {
+    frontCanvasRef.toBlob(function (blob) {
       saveAs(blob, "result.png");
     });
   };
   const handleBackDown = async () => {
-    const back = backRef.current;
-    const cardBack = await html2canvas(back, { scale: 2 });
-    cardBack.toBlob(function (blob) {
+    backCanvasRef.toBlob(function (blob) {
       if (blob !== null) {
         saveAs(blob, "result.png");
       }
