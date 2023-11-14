@@ -1630,3 +1630,14 @@ mycol
   flex: 0 0 auto;
   width: 200%;
 }
+
+.toastPosition {
+  position: absolute;
+  top: 25%;
+  right: 30%;
+  z-index: 200;
+}
+
+.logoStyle {
+  width: 150px;
+}
