@@ -19,9 +19,9 @@ const SelectValue = function () {
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("select");
   }, []);

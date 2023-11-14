@@ -178,9 +178,9 @@ const capture = function () {
             divRef={backRef}
             setIsLoading={setIsLoading}
             style={{
-              // position: "absolute",
-              // left: "-1000px",
-              marginLeft: "-100px",
+              position: "absolute",
+              left: "-1000px",
+              // marginLeft: "-100px",
             }}
           />
           <CardFront
@@ -188,9 +188,9 @@ const capture = function () {
             divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
-              // position: "absolute",
-              // left: "-1000px",
-              marginLeft: "-100px",
+              position: "absolute",
+              left: "-1000px",
+              // marginLeft: "-100px",
             }}
           />
           <LootCard
