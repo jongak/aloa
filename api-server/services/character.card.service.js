@@ -426,10 +426,12 @@ const CharacterCardService = {
                   `Element_0${whereElixir + 1 > 9 ? "" : "0"}${whereElixir + 1}`
                 ]["value"]["Element_000"]["topStr"];
 
-              data[sub]["option"]["ElixirName"] = myElixir.substring(
-                myElixir.indexOf("><FONT SIZE='12'") + 33,
-                myElixir.indexOf(")</FONT>") - 5
-              );
+              if (myElixir) {
+                data[sub]["option"]["ElixirName"] = myElixir.substring(
+                  myElixir.indexOf("><FONT SIZE='12'") + 33,
+                  myElixir.indexOf(")</FONT>") - 5
+                );
+              }
             }
 
             if (
@@ -456,7 +458,8 @@ const CharacterCardService = {
               }
               if (
                 ["투구", "장갑"].includes(Type) &&
-                data[sub]["option"]["ElixirName"]
+                dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["type"] ==
+                  "IndentStringGroup"
               ) {
                 whereSet += 1;
               }

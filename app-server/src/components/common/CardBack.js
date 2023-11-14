@@ -146,14 +146,14 @@ const CardBack = function ({
                 <ul>
                   {userData
                     ? userData["ArmoryEngraving"]["JobEffects"].map((item) => (
-                        <li key={item.Icon}>
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
                           <img className="engraving" src={item.Icon} />
                         </li>
                       ))
                     : ""}
                   {userData ? (
                     userData["ArmoryEngraving"]["fullEffects"].map((item) => (
-                      <li key={item.Icon}>
+                      <li key={item.Name + Math.floor(Math.random() * 10000)}>
                         <img className="engraving full" src={item.Icon} />
                       </li>
                     ))
@@ -181,7 +181,7 @@ const CardBack = function ({
                   )}
                   {userData
                     ? userData["ArmoryEngraving"]["Effects"].map((item) => (
-                        <li key={item.Icon}>
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
                           <img className="engraving" src={item.Icon} />
                         </li>
                       ))
@@ -201,7 +201,7 @@ const CardBack = function ({
                     userData["ArmoryEquipment"]["어깨"],
                     userData["ArmoryEquipment"]["장갑"],
                   ].map((item) => (
-                    <li key={item.Icon}>
+                    <li key={item.Name + Math.floor(Math.random() * 10000)}>
                       <span
                         className="equipments_badge"
                         style={{
@@ -210,7 +210,6 @@ const CardBack = function ({
                       >
                         +{item["ItemGrade"]}
                       </span>
-
                       <img src={item["Icon"]} />
                       <div>
                         <div
@@ -223,13 +222,12 @@ const CardBack = function ({
                           }}
                         ></div>
                       </div>
-                      <img
-                        id="back_equipment_trans"
-                        src={
-                          `/assets/images/cho/cho_${item["TransGrade"]}.png` ||
-                          ""
-                        }
-                      />
+                      {item["TransGrade"] ? (
+                        <img
+                          id="back_equipment_trans"
+                          src={`/assets/images/cho/cho_${item["TransGrade"]}.png`}
+                        />
+                      ) : null}
                     </li>
                   ))}
                 </ul>
@@ -246,7 +244,7 @@ const CardBack = function ({
                         userData["ArmoryEquipment"]["반지"][0],
                         userData["ArmoryEquipment"]["반지"][1],
                       ].map((item) => (
-                        <li key={item.Icon}>
+                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
                           {/* <span className="accessory_badge">+25</span> */}
 
                           <img src={item["Icon"]} />
@@ -324,7 +322,10 @@ const CardBack = function ({
             <div className="row align-items-end">
               {userData && userData["ArmoryCard"]["Cards"] ? (
                 userData["ArmoryCard"]["Cards"].map((item) => (
-                  <div key={item.Icon} className="card_slot col-2">
+                  <div
+                    key={item.Name + Math.floor(Math.random() * 10000)}
+                    className="card_slot col-2"
+                  >
                     <img
                       className="card_grade"
                       src={`/assets/images/card/card_grade_${
