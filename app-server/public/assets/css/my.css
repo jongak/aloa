@@ -117,6 +117,8 @@
 
   --my--background: #f7f7f7;
   --my--background-hover: var(--my--thema);
+  --my--background-opacity9: rgb(247, 247, 247, 0.9);
+  --my--background-opacity66: rgb(247, 247, 247, 0.66);
   --my--text: #393c42;
   --my--heading: #393c42;
   --my--shadow: #bebebe;
@@ -302,7 +304,7 @@ Header Style
   position: fixed;
   bottom: 80px;
   right: 0;
-  background-color: var(--my--background);
+  background-color: var(--my--very--dark--background);
   width: 100vw;
   padding: 0 20px 40px;
   animation: menu 0.3s;
@@ -317,9 +319,18 @@ Header Style
 }
 .menu ul li {
   padding: 4px;
+  border-bottom: 1px solid var(--my--dark--background);
+  align-self: center;
 }
+.menu ul li:first-child {
+  border: 0px;
+}
+.menu ul li:last-child {
+  border: 0px;
+}
+
 .menu ul li a {
-  color: #fff;
+  color: var(--my--thema);
   font-size: 24px;
   font-weight: 650;
 }
@@ -636,8 +647,8 @@ myThema
     top: auto;
     bottom: 0;
     position: fixed;
-    opacity: 1;
-    background-color: var(--my--background-opacity9);
+    opacity: 0.9;
+    background-color: var(--my--very--dark--background);
   }
   .header-area .main-nav {
     overflow: hidden;
