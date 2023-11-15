@@ -146,7 +146,7 @@ const SetOption = function () {
           setIsChanged(!isChanged);
         }}
         defaultValue={imgSrcRef.current}
-      />*/}
+      />
       <input
         type="text"
         className="form-control"
