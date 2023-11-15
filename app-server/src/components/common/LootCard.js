@@ -2,10 +2,10 @@ import React, { useMemo, useState, useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 export default function LootCard(props) {
   var {
-    rarityPreset = "custom", //홀로그램 디폴트
     landscape = false, //90도 회전
     img, //이미지
     holo,
@@ -19,6 +19,7 @@ export default function LootCard(props) {
     style = {}, //메인div관련 stlye
   } = props;
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
+  const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const id = useMemo(

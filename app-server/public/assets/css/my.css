@@ -901,6 +901,7 @@ footer {
   background-color: var(--my--very--dark--background);
   min-height: 100px;
   box-shadow: 0px -1px 9px 2px var(--my--very--dark--background);
+  z-index: 1;
 }
 
 footer p {
@@ -1010,6 +1011,7 @@ capture
   color: var(--my--heading);
   text-align: center;
 }
+
 .option-area .option-body .find-input {
   margin-top: 50px;
   margin-bottom: 50px;
@@ -1043,6 +1045,9 @@ capture
   position: relative;
   width: auto;
 }
+.accordion .userRow {
+  padding-top: 30px;
+}
 
 .option-area .userRow.undefined {
   box-shadow: none;
@@ -1074,6 +1079,42 @@ capture
   margin: 2%;
 }
 
+.option-area .option-body .accordion {
+  margin-top: 30px;
+}
+.option-area .option-body .my_button {
+  margin-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.option-area .userRow .myToggle {
+  margin-top: 20px;
+  margin-left: -30px;
+  position: relative;
+}
+
+.option-area .userRow .myToggle .switch {
+  top: 5px;
+  left: 250px;
+}
+.option-area .userRow .myToggle .toggleTitle {
+  text-align: right;
+  font-size: 20px;
+}
+.option-area .userRow .myToggle .toggleBody {
+  margin-left: 160px;
+}
+
+@media (max-width: 576px) {
+  .option-area .inner .bar {
+    width: 75%;
+  }
+  .option-area .inner {
+    gap: 5%;
+  }
+}
+
 @media (max-width: 768px) {
   .option-area {
     margin-left: 0px;
@@ -1093,6 +1134,23 @@ capture
   }
   .option-area .option-body input {
     width: 300px;
+  }
+}
+
+@media (max-width: 992px) {
+  .option-area .userRow .myToggle {
+    margin-left: -10px;
+  }
+  .option-area .userRow .myToggle .toggleTitle {
+    text-align: left;
+    margin-left: 40px;
+  }
+  .option-area .userRow .myToggle .switch {
+    left: auto;
+    right: 40px;
+  }
+  .option-area .userRow .myToggle .toggleBody {
+    margin-left: 65px;
   }
 }
 
@@ -1270,8 +1328,6 @@ myToggle
 */
 
 .myToggle {
-  margin-top: 20px;
-  margin-left: -30px;
   position: relative;
 }
 
@@ -1280,8 +1336,8 @@ myToggle
   display: inline-block;
   width: 52px;
   height: 26px;
-  top: 5px;
-  left: 250px;
+  top: 0px;
+  right: 0px;
 }
 
 /* Hide default HTML checkbox */
@@ -1344,7 +1400,7 @@ myToggle
 
 .myToggle .toggleTitle {
   color: var(--my--text);
-  text-align: right;
+  text-align: left;
   font-size: 20px;
   width: 180px;
 }
@@ -1357,24 +1413,7 @@ myToggle
   font-size: 16px;
   text-align: left;
   margin-top: 10px;
-  margin-left: 128px;
-}
-
-@media (max-width: 992px) {
-  .myToggle {
-    margin-left: -10px;
-  }
-  .myToggle .toggleTitle {
-    text-align: left;
-    margin-left: 40px;
-  }
-  .myToggle .switch {
-    left: auto;
-    right: 40px;
-  }
-  .myToggle .toggleBody {
-    margin-left: 65px;
-  }
+  margin-left: 30px;
 }
 
 /* 
@@ -1667,4 +1706,96 @@ mycol
 
 .logoStyle {
   width: 150px;
+}
+
+/* 
+---------------------------------------------
+404page
+--------------------------------------------- 
+*/
+.js-preloader {
+  position: inherit;
+  z-index: -1;
+  background-color: var(--my--background);
+  transition: all 0s;
+}
+
+.preloader-inner .dot {
+  background-color: #dc3545;
+}
+.preloader-inner .dots span {
+  background-color: var(--my--heading);
+  transition: all 0.3s;
+}
+
+.textCover {
+  display: inline-flex;
+  font-size: 24px;
+  color: var(--my--text);
+
+  transition: all 0s;
+}
+.textCover .title {
+  padding-right: 20px;
+  margin-right: 20px;
+  border-right: 2px solid var(--my--heading);
+}
+
+/* 
+---------------------------------------------
+accodion
+--------------------------------------------- 
+*/
+.accordion {
+  --bs-accordion-color: var(--bs-body-color);
+  /* 내부배경 */
+  --bs-accordion-bg: var(--my--dark--background);
+  --bs-accordion-transition: color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out, border-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out, border-radius 0.3s ease;
+  /* 모든선 */
+  --bs-accordion-border-color: var(--my--background);
+  /* 각요소들 gap */
+  --bs-accordion-border-width: 2px;
+  /* 가장조상 border-radius */
+  --bs-accordion-border-radius: 0px;
+  /* 제일위 아래 자식 border-radius */
+  --bs-accordion-inner-border-radius: 0px;
+  /* 제목의  padding */
+  --bs-accordion-btn-padding-x: 50px;
+  --bs-accordion-btn-padding-y: 1rem;
+  /* 제목의 색 */
+  --bs-accordion-btn-color: var(--my--text);
+  /* 활성화 안된 제목의배경 색 */
+  --bs-accordion-btn-bg: var(--my--dark--background);
+  --bs-accordion-btn-icon: null;
+  --bs-accordion-btn-icon-width: 1.25rem;
+  --bs-accordion-btn-icon-transform: rotate(-180deg);
+  --bs-accordion-btn-icon-transition: transform 0.3s ease-in-out;
+  --bs-accordion-btn-active-icon: null;
+  --bs-accordion-btn-focus-border-color: var(--my--heading);
+  /* 포커스된 제목의 border */
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0px var(--my--heading);
+  /* 포커스된 내부의 padding */
+  --bs-accordion-body-padding-x: 0px;
+  --bs-accordion-body-padding-y: 0px;
+  /* 포커스된 제목의 color */
+  --bs-accordion-active-color: var(--my--thema);
+  /* 포커스된 제목의 background */
+  --bs-accordion-active-bg: var(--my--very--dark--background);
+}
+
+.accordion-item {
+  border: 0px solid;
+  border-bottom: var(--bs-accordion-border-width) solid
+    var(--bs-accordion-border-color);
+}
+
+.accordion-button:not(.collapsed) {
+  box-shadow: var(--bs-accordion-border-width) var(--bs-accordion-border-color);
+}
+
+.accordion-header button {
+  font-size: 18px;
+  font-weight: 700;
 }

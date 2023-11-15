@@ -8,6 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
+import { ToastContainer } from "react-toastify";
 
 const getDataCard = async function (id) {
   try {
@@ -29,17 +30,19 @@ const capture = function () {
   const [backCanvasRef, setBackCanvasRef] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
-  const [isCardReady, setIsCardReady] = useState(false);
-  const rarityPresetRef = useRef("custom");
+
   const characterNameRef = useRef();
-  const holoRef = useRef(true);
-  const glowRef = useRef(true);
-  const shineRef = useRef(true);
-  const shadowRef = useRef(true);
+  const holoRef = useRef(false);
+  const glowRef = useRef(false);
+  const shineRef = useRef(false);
+  const shadowRef = useRef(false);
 
   const dispatch = useDispatch();
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
   const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
+  const isName = useSelector((state) => state.captureSlice.isName);
+  const isTitle = useSelector((state) => state.captureSlice.isTitle);
+  const isLevel = useSelector((state) => state.captureSlice.isLevel);
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
   );
@@ -96,27 +99,12 @@ const capture = function () {
       setFrontCanvasRef(frontCanvas);
       setBackCanvasRef(backCanvas);
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
-      setIsCardReady(true); // 카드 생성이 완료됨
+      // setIsCardReady(true); // 카드 생성이 완료됨
     };
     if (isLoading) {
       fetchData();
     }
-  }, [isLoading, frontIcons, frontItems]);
-
-  const setOptionStates = {
-    rarityPresetRef,
-    holoRef,
-    glowRef,
-    shineRef,
-    shadowRef,
-    isChanged,
-    holographicOptionColors,
-    shineOptionColors,
-    shadowOptionColors,
-    imgSrcRef,
-    holoSrcRef,
-  };
-  const setOptionActions = { setIsChanged };
+  }, [isLoading, frontIcons, frontItems, isLevel, isName, isTitle]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
@@ -130,6 +118,20 @@ const capture = function () {
       }
     });
   };
+  const setOptionStates = {
+    holoRef,
+    glowRef,
+    shineRef,
+    shadowRef,
+    isChanged,
+    holographicOptionColors,
+    shineOptionColors,
+    shadowOptionColors,
+    imgSrcRef,
+    holoSrcRef,
+  };
+  const setOptionActions = { setIsChanged };
+  const shareCardActions = { handleFrontDown, handleBackDown };
 
   return (
     <div className="main-banner container">
@@ -158,29 +160,39 @@ const capture = function () {
               <div className="bar"></div>
             </div>
           </div>
+          <ToastContainer
+            position="top-right" // 알람 위치 지정
+            autoClose={3000} // 자동 off 시간
+            hideProgressBar={false} // 진행시간바 숨김
+            // closeOnClick={true} // 클릭으로 알람 닫기
+            rtl={false} // 알림 좌우 반전
+            pauseOnFocusLoss={false} // 화면을 벗어나면 알람 정지
+            draggable={false} // 드래그 가능
+            pauseOnHover // 마우스를 올리면 알람 정지
+            theme="light"
+            // limit={1} // 알람 개수 제한
+          />
           <Outlet
             context={{
               setPage,
               characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
-              handleFrontDown,
-              handleBackDown,
+              ...shareCardActions,
             }}
           />
         </div>
 
         <div className="card-area col-md-5 ">
           {/* {cardImgMemo} */}
-          {/* <button onClick={handleFrontDown}>다운로드</button> */}
           <CardBack
             characterNameRef={characterNameRef}
             divRef={backRef}
             setIsLoading={setIsLoading}
             style={{
-              // position: "absolute",
-              // left: "-1000px",
-              marginLeft: "-100px",
+              position: "absolute",
+              left: "-1000px",
+              // marginLeft: "-100px",
             }}
           />
           <CardFront
@@ -188,13 +200,12 @@ const capture = function () {
             divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
-              // position: "absolute",
-              // left: "-1000px",
-              marginLeft: "-100px",
+              position: "absolute",
+              left: "-1000px",
+              // marginLeft: "-100px",
             }}
           />
           <LootCard
-            rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
             canvasRef={frontCanvasRef}
@@ -236,7 +247,6 @@ const capture = function () {
           />
 
           <LootCard
-            rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
             canvasRef={backCanvasRef}

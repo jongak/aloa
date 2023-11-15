@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
-
+import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,8 +14,7 @@ import {
 const SelectValue = function () {
   const { setPage, characterNameRef } = useOutletContext();
   const navigate = useNavigate();
-  const [isName, setIsName] = useState(true);
-  const [isServer, setIsServer] = useState(false);
+
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
 
@@ -40,6 +39,7 @@ const SelectValue = function () {
               cardTitle: "멸화",
               cardValue: userData["ArmoryGem"]["option"]["MeulLevel"],
             },
+
             {
               id: "HongLevel",
               title: "홍염레벨 평균",
@@ -66,19 +66,7 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEquipment"]["option"]["AccAvg"],
               size: 5,
             },
-            {
-              id: "jobEngraving",
-              title: "직업각인",
-              body: "직업각인입니다.",
-              value: userData["ArmoryEngraving"]["JobEffects"][0]
-                ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
-                : undefined,
-              cardTitle: "직각",
-              cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
-                ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
-                : undefined,
-              size: 6,
-            },
+
             {
               id: "oneEngraving",
               title: "1각인",
@@ -139,6 +127,14 @@ const SelectValue = function () {
               cardTitle: "영지",
               cardValue: `Lv ${userData["ArmoryProfile"]["TownLevel"]}`,
             },
+            {
+              id: "Acc",
+              title: "악마 추가피해옵션",
+              body: "카드효과의 악마추가피해증가 입니다.",
+              value: "지원안함",
+              cardTitle: "악추피",
+              cardValue: "-",
+            },
           ],
           done: [
             {
@@ -176,12 +172,17 @@ const SelectValue = function () {
               size: 4,
             },
             {
-              id: "Acc",
-              title: "악마 추가피해옵션",
-              body: "카드효과의 악마추가피해증가 입니다.",
-              value: "지원안함",
-              cardTitle: "악추피",
-              cardValue: "-",
+              id: "jobEngraving",
+              title: "직업각인",
+              body: "직업각인입니다.",
+              value: userData["ArmoryEngraving"]["JobEffects"][0]
+                ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                : undefined,
+              cardTitle: "직각",
+              cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
+                ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                : undefined,
+              size: 6,
             },
           ],
         },
@@ -297,37 +298,46 @@ const SelectValue = function () {
   return (
     <div className="option-body" style={{ position: "relative" }}>
       <h3>02. 내용 정하기</h3>
-
-      <div className="userRow">
-        <MyDnd title="frontIcons" />
-      </div>
-
-      <div className="userRow">
-        <ToggleButton
-          valueRef={isName}
-          setValueRef={setIsName}
-          title={"닉네임 표시"}
-          body={"닉네임을 숨깁니다."}
-        />
-        <ToggleButton
-          valueRef={isServer}
-          setValueRef={setIsServer}
-          title={"칭호 표시"}
-          body={"칭호를 숨깁니다."}
-        />
-        <ToggleButton
-          valueRef={isServer}
-          setValueRef={setIsServer}
-          title={"레벨 근사"}
-          body={"아이템 레벨을 근사값으로 표현합니다."}
-        />
-      </div>
-
-      <div className="userRow">
-        <MyDnd title="frontItems" />
-      </div>
-
-      <div>{characterNameRef.current}</div>
+      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>숨기기</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <ToggleButton
+                titleRef={"isName"}
+                title={"닉네임 표시"}
+                body={"닉네임을 숨깁니다."}
+              />
+              <ToggleButton
+                titleRef={"isTitle"}
+                title={"칭호 표시"}
+                body={"칭호를 숨깁니다."}
+              />
+              <ToggleButton
+                titleRef={"isLevel"}
+                title={"레벨 근사"}
+                body={"아이템 레벨을 근사값으로 표현합니다."}
+              />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>내용 활성화</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="frontItems" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>아이콘 활성화</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="frontIcons" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
       <Button href="../" title={"이전"} />
       <Button href="../set" title={"이후"} />
     </div>

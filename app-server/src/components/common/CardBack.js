@@ -117,20 +117,12 @@ const CardBack = function ({
                   </span>
                 </div>
                 <div className="col-10 back_stats_bg">
-                  <span>특화</span>
-                  <span>
-                    {userData && userData["ArmoryProfile"]["Stats"]["특화"]
-                      ? userData["ArmoryProfile"]["Stats"]["특화"]
-                      : "1673"}
-                  </span>
+                  <span>{userData["MainStat"]["statName"]}</span>
+                  <span>{userData["MainStat"]["statValue"]}</span>
                 </div>
                 <div className="col-10 back_stats_bg">
-                  <span>치명</span>
-                  <span>
-                    {userData && userData["ArmoryProfile"]["Stats"]["치명"]
-                      ? userData["ArmoryProfile"]["Stats"]["치명"]
-                      : "675"}
-                  </span>
+                  <span>{userData["SubStat"]["statName"]}</span>
+                  <span>{userData["SubStat"]["statValue"]}</span>
                 </div>
                 <div className="col-10 back_stats_bg">
                   <span>길드</span>

@@ -9,13 +9,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
 import PopUp from "../../components/common/PopUp";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
-  const [isActive, setIsActive] = useState();
+  var maxItems = 6;
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.captureSlice.frontItems);
   } else if (title == "frontIcons") {
+    maxItems = 5;
     items = useSelector((state) => state.captureSlice.frontIcons);
   }
 
@@ -44,12 +48,11 @@ const MyDnd = function ({ title }) {
     const _items = JSON.parse(JSON.stringify(items));
     const [targetItem] = _items[scourceKey].splice(source.index, 1);
     _items[destinationKey].splice(destination.index, 0, targetItem);
-
-    setIsActive(true);
-    setTimeout(() => {
-      setIsActive(false);
-    }, 3000);
-    setItem(_items);
+    if (_items["done"].length <= maxItems) {
+      setItem(_items);
+    } else {
+      toast.error(`${maxItems + 1}개 이상은 넣을수 없습니다.`);
+    }
   };
 
   // --- requestAnimationFrame 초기화
@@ -71,8 +74,6 @@ const MyDnd = function ({ title }) {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <PopUp body={"두둥탁"} isActive={isActive} />
-
       <div
         className="drag-cover"
         style={{
