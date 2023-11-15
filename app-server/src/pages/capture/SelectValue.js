@@ -1,7 +1,7 @@
 import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
-
+import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,9 +18,9 @@ const SelectValue = function () {
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
 
-  if (!characterNameRef.current) {
-    navigate("../");
-  }
+  // if (!characterNameRef.current) {
+  //   navigate("../");
+  // }
   useEffect(() => {
     setPage("select");
   }, []);
@@ -298,33 +298,46 @@ const SelectValue = function () {
   return (
     <div className="option-body" style={{ position: "relative" }}>
       <h3>02. 내용 정하기</h3>
-
-      <div className="userRow">
-        <ToggleButton
-          titleRef={"isName"}
-          title={"닉네임 표시"}
-          body={"닉네임을 숨깁니다."}
-        />
-        <ToggleButton
-          titleRef={"isTitle"}
-          title={"칭호 표시"}
-          body={"칭호를 숨깁니다."}
-        />
-        <ToggleButton
-          titleRef={"isLevel"}
-          title={"레벨 근사"}
-          body={"아이템 레벨을 근사값으로 표현합니다."}
-        />
-      </div>
-
-      <div className="userRow">
-        <MyDnd title="frontItems" />
-      </div>
-
-      <div className="userRow">
-        <MyDnd title="frontIcons" />
-      </div>
-
+      <Accordion defaultActiveKey={["0"]} alwaysOpen>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>숨기기</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <ToggleButton
+                titleRef={"isName"}
+                title={"닉네임 표시"}
+                body={"닉네임을 숨깁니다."}
+              />
+              <ToggleButton
+                titleRef={"isTitle"}
+                title={"칭호 표시"}
+                body={"칭호를 숨깁니다."}
+              />
+              <ToggleButton
+                titleRef={"isLevel"}
+                title={"레벨 근사"}
+                body={"아이템 레벨을 근사값으로 표현합니다."}
+              />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>내용 활성화</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="frontItems" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>아이콘 활성화</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="frontIcons" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
       <Button href="../" title={"이전"} />
       <Button href="../set" title={"이후"} />
     </div>

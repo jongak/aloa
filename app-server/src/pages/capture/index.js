@@ -30,12 +30,12 @@ const capture = function () {
   const [backCanvasRef, setBackCanvasRef] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
-  const rarityPresetRef = useRef("custom");
+
   const characterNameRef = useRef();
-  const holoRef = useRef(true);
-  const glowRef = useRef(true);
-  const shineRef = useRef(true);
-  const shadowRef = useRef(true);
+  const holoRef = useRef(false);
+  const glowRef = useRef(false);
+  const shineRef = useRef(false);
+  const shadowRef = useRef(false);
 
   const dispatch = useDispatch();
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
@@ -106,21 +106,6 @@ const capture = function () {
     }
   }, [isLoading, frontIcons, frontItems, isLevel, isName, isTitle]);
 
-  const setOptionStates = {
-    rarityPresetRef,
-    holoRef,
-    glowRef,
-    shineRef,
-    shadowRef,
-    isChanged,
-    holographicOptionColors,
-    shineOptionColors,
-    shadowOptionColors,
-    imgSrcRef,
-    holoSrcRef,
-  };
-  const setOptionActions = { setIsChanged };
-
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
       saveAs(blob, "result.png");
@@ -133,6 +118,20 @@ const capture = function () {
       }
     });
   };
+  const setOptionStates = {
+    holoRef,
+    glowRef,
+    shineRef,
+    shadowRef,
+    isChanged,
+    holographicOptionColors,
+    shineOptionColors,
+    shadowOptionColors,
+    imgSrcRef,
+    holoSrcRef,
+  };
+  const setOptionActions = { setIsChanged };
+  const shareCardActions = { handleFrontDown, handleBackDown };
 
   return (
     <div className="main-banner container">
@@ -179,15 +178,13 @@ const capture = function () {
               characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
-              handleFrontDown,
-              handleBackDown,
+              ...shareCardActions,
             }}
           />
         </div>
 
         <div className="card-area col-md-5 ">
           {/* {cardImgMemo} */}
-          <button onClick={handleFrontDown}>다운로드</button>
           <CardBack
             characterNameRef={characterNameRef}
             divRef={backRef}
@@ -209,7 +206,6 @@ const capture = function () {
             }}
           />
           <LootCard
-            rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
             canvasRef={frontCanvasRef}
@@ -251,7 +247,6 @@ const capture = function () {
           />
 
           <LootCard
-            rarityPreset={rarityPresetRef.current}
             img={imgSrcRef.current}
             holo={holoSrcRef.current}
             canvasRef={backCanvasRef}

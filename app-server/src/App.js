@@ -25,6 +25,7 @@ import FindName from "./pages/capture/FindName";
 import SelectValue from "./pages/capture/SelectValue";
 import ShareCard from "./pages/capture/ShareCard";
 import SetOption from "./pages/capture/SetOption";
+import NotFound from "./pages/notFound";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
                 <Route path="guild" element={<Guild />} />
               </Route>
             </Route>
+            <Route path="/*" element={<NotFound />}></Route>
           </Route>
         </Routes>
       </Router>

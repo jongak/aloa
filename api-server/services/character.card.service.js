@@ -295,6 +295,10 @@ const CharacterCardService = {
           statName: "",
           statValue: 0,
         },
+        SubStat: {
+          statName: "",
+          statValue: 0,
+        },
       };
 
       // Object.keys(res).forEach((sub) => {
@@ -665,12 +669,19 @@ const CharacterCardService = {
           data[sub] = { ...res[sub], AwakeCount, AwakeName };
         }
       });
+      data["SubStat"]["statValue"] = Number(
+        data["ArmoryProfile"]["Stats"]["치명"]
+      );
+      data["SubStat"]["statName"] = "치명";
+
       Object.keys(data["ArmoryProfile"]["Stats"]).forEach((key) => {
         if (key != "공격력" && key != "최대 생명력") {
           if (
             data["MainStat"]["statValue"] <
             Number(data["ArmoryProfile"]["Stats"][key])
           ) {
+            data["SubStat"]["statName"] = data["MainStat"]["statName"];
+            data["SubStat"]["statValue"] = data["MainStat"]["statValue"];
             data["MainStat"]["statValue"] = Number(
               data["ArmoryProfile"]["Stats"][key]
             );
