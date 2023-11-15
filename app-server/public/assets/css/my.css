@@ -77,6 +77,8 @@
 
   --my--background: #393c42;
   --my--background-hover: #717779;
+  --my--background-opacity9: rgba(57, 60, 66, 0.9);
+  --my--background-opacity66: rgba(57, 60, 66, 0.66);
   --my--text: #f7f7f7;
   --my--heading: var(--my--thema);
   --my--shadow: #1d1e21;
@@ -282,7 +284,8 @@ Header Style
   top: 0;
   left: 0;
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: 100vh;
+  z-index: 66;
 }
 .isMenu {
   display: none;
@@ -291,20 +294,29 @@ Header Style
   /* position: fixed;
   top: 0;
   left: 0; */
-  background-color: var(--my--background);
+  background-color: var(--my--background-opacity66);
   width: 100vw;
-  height: calc(100vh - 80px);
-  opacity: 0.66;
+  height: 100vh;
 }
 .menu ul {
   position: fixed;
   bottom: 80px;
   right: 0;
-  background-color: #22b3c1;
-  width: 70vw;
-  padding: 20px;
+  background-color: var(--my--background);
+  width: 100vw;
+  padding: 0 20px 40px;
+  animation: menu 0.3s;
+}
+@keyframes menu {
+  100% {
+    transform: scale(1);
+  }
+  0% {
+    transform: scale(0);
+  }
 }
 .menu ul li {
+  padding: 4px;
 }
 .menu ul li a {
   color: #fff;
@@ -624,7 +636,8 @@ myThema
     top: auto;
     bottom: 0;
     position: fixed;
-    opacity: 0.9;
+    opacity: 1;
+    background-color: var(--my--background-opacity9);
   }
   .header-area .main-nav {
     overflow: hidden;
@@ -675,7 +688,7 @@ myThema
   }
   .myDarkToggle {
     position: fixed;
-    right: 160px;
+    right: 18%;
   }
   .myThema {
     position: fixed;
@@ -719,6 +732,20 @@ myThema
     padding-left: 0px !important;
     padding-right: 0px !important;
   } */
+  #mobile_thema_color .myThemaToggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    position: relative;
+    top: 0;
+    right: 0;
+    margin: 0 auto;
+    margin-top: 0;
+    height: 32px;
+  }
+  .myThema {
+    display: none;
+  }
 }
 
 /* 

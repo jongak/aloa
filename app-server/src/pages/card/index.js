@@ -66,7 +66,7 @@ const GetCard = function () {
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
         dispatch(setUserData({ newUserData: res }));
-        console.log(res, "");
+        console.log(res, " ");
       });
     }
   }, [characterNameRef.current]);
@@ -132,16 +132,12 @@ const GetCard = function () {
   const setOptionActions = { setIsChanged };
 
   const handleFrontDown = async () => {
-    const front = frontRef.current;
-    const cardFront = await html2canvas(front, { scale: 2 });
-    cardFront.toBlob(function (blob) {
+    frontCanvasRef.toBlob(function (blob) {
       saveAs(blob, "result.png");
     });
   };
   const handleBackDown = async () => {
-    const back = backRef.current;
-    const cardBack = await html2canvas(back, { scale: 2 });
-    cardBack.toBlob(function (blob) {
+    backCanvasRef.toBlob(function (blob) {
       if (blob !== null) {
         saveAs(blob, "result.png");
       }

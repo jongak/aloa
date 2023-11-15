@@ -172,7 +172,7 @@ const capture = function () {
 
         <div className="card-area col-md-5 ">
           {/* {cardImgMemo} */}
-          <button onClick={handleFrontDown}>다운로드</button>
+          {/* <button onClick={handleFrontDown}>다운로드</button> */}
           <CardBack
             characterNameRef={characterNameRef}
             divRef={backRef}

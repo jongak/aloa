@@ -40,15 +40,16 @@ const ShareCard = function () {
         }}
         characterName={"부먹펩시파인애플피자지코"}
       />
+      <br />
       <Button href="../set" title={"이전"} />
       <Button href="../share" title={"이후"} />
 
       <br />
-      <Button title={"앞면"} onClick={handleFrontDown} />
-      <Button title={"뒷면"} onClick={handleBackDown} />
-
       <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
       <Button title={"복사"} onClick={copyTextUrl} />
+      <br />
+      <Button title={"앞면 저장"} onClick={handleFrontDown} />
+      <Button title={"뒷면 저장"} onClick={handleBackDown} />
     </>
   );
 };
