@@ -156,8 +156,7 @@ const SetOption = function () {
           setIsChanged(!isChanged);
         }}
         defaultValue={holoSrcRef.current}
-      />
-      <br />
+      /> */}
       <Button href="../select" title={"이전"} />
       <Button href="../share" title={"이후"} />
     </div>
