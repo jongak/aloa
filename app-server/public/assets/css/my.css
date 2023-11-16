@@ -1114,6 +1114,12 @@ capture
   margin-left: 40px;
 }
 
+.option-body.share .userRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 @media (max-width: 576px) {
   .option-area .inner .bar {
     width: 75%;

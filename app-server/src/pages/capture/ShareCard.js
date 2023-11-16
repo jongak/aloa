@@ -24,9 +24,6 @@ const ShareCard = function () {
     <div className="option-body share">
       <h3>04. 공유하기</h3>
       <div className="userRow">
-        <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
-        <Button title={"복사"} onClick={copyTextUrl} />
-
         <Button
           title={
             <>
@@ -34,7 +31,7 @@ const ShareCard = function () {
             </>
           }
           onClick={handleFrontDown}
-          style={{ padding: "20px 50px" }}
+          style={{ padding: "10px 50px", fontSize: "20px" }}
         />
         <Button
           title={
@@ -43,7 +40,11 @@ const ShareCard = function () {
             </>
           }
           onClick={handleBackDown}
+          style={{ padding: "10px 50px", fontSize: "20px" }}
         />
+
+        <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
+        <Button title={"복사"} onClick={copyTextUrl} />
       </div>
       <Button href="../set" title={"이전"} />
       <Button isFixed title={"다음"} />
