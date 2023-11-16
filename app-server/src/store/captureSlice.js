@@ -10,6 +10,10 @@ const captureSlice = createSlice({
     isName: true,
     isTitle: true,
     isLevel: false,
+    isHolo: true,
+    isGlow: true,
+    isShine: true,
+    isShadow: true,
   },
   reducers: {
     setRarityPreset(state, action) {
@@ -33,6 +37,18 @@ const captureSlice = createSlice({
     setIsLevel(state, action) {
       state.isLevel = action.payload.newIsLevel;
     },
+    setIsHolo(state, action) {
+      state.isHolo = action.payload.newIsHolo;
+    },
+    setIsGlow(state, action) {
+      state.isGlow = action.payload.newIsGlow;
+    },
+    setIsShine(state, action) {
+      state.isShine = action.payload.newIsShine;
+    },
+    setIsShadow(state, action) {
+      state.isShadow = action.payload.newIsShadow;
+    },
   },
 });
 
@@ -45,4 +61,8 @@ export const {
   setIsName,
   setIsTitle,
   setIsLevel,
+  setIsHolo,
+  setIsGlow,
+  setIsShine,
+  setIsShadow,
 } = captureSlice.actions;

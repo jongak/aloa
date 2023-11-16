@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import UserItem from "../../components/common/UserItem";
+import UserItem from "../../components/item/UserItem";
 
 const serverList = [
   "Lupeon",
@@ -81,7 +81,7 @@ const FindName = function () {
   };
 
   return (
-    <div className="option-body">
+    <div className="option-body find">
       <h3>01. 캐릭터 고르기</h3>
       <div className="find-input">
         <input

@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setIsGlow,
+  setIsHolo,
   setIsLevel,
   setIsName,
+  setIsShadow,
+  setIsShine,
   setIsTitle,
   setRarityPreset,
 } from "../../store/captureSlice";
@@ -9,8 +13,7 @@ import { useContext, useEffect } from "react";
 import AccordionContext from "react-bootstrap/AccordionContext";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 
-const ToggleButton = function ({ title, body, titleRef }) {
-  const { activeEventKey } = useContext(AccordionContext);
+const ToggleButton = function ({ title, body, titleRef, eventKey }) {
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const dispatch = useDispatch();
   var valueRef = true;
@@ -22,6 +25,14 @@ const ToggleButton = function ({ title, body, titleRef }) {
     valueRef = useSelector((state) => state.captureSlice.isLevel);
   } else if (["custom", "legendary", "holographic"].includes(titleRef)) {
     valueRef = rarityPreset == titleRef;
+  } else if (titleRef == "isHolo") {
+    valueRef = useSelector((state) => state.captureSlice.isHolo);
+  } else if (titleRef == "isGlow") {
+    valueRef = useSelector((state) => state.captureSlice.isGlow);
+  } else if (titleRef == "isShine") {
+    valueRef = useSelector((state) => state.captureSlice.isShine);
+  } else if (titleRef == "isShadow") {
+    valueRef = useSelector((state) => state.captureSlice.isShadow);
   }
 
   const setValueRef = function (item) {
@@ -43,26 +54,93 @@ const ToggleButton = function ({ title, body, titleRef }) {
           newIsLevel: item,
         })
       );
-    } else if (["custom", "legendary", "holographic"].includes(titleRef)) {
+    } else if (titleRef == "custom") {
       dispatch(
-        setRarityPreset({
-          newRarityPreset: titleRef,
+        setIsHolo({
+          newIsHolo: true,
+        })
+      );
+      dispatch(
+        setIsGlow({
+          newIsGlow: true,
+        })
+      );
+      dispatch(
+        setIsShine({
+          newIsShine: true,
+        })
+      );
+      dispatch(
+        setIsShadow({
+          newIsShadow: true,
+        })
+      );
+    } else if (["legendary", "holographic"].includes(titleRef)) {
+      dispatch(
+        setIsHolo({
+          newIsHolo: false,
+        })
+      );
+      dispatch(
+        setIsGlow({
+          newIsGlow: false,
+        })
+      );
+      dispatch(
+        setIsShine({
+          newIsShine: false,
+        })
+      );
+      dispatch(
+        setIsShadow({
+          newIsShadow: false,
+        })
+      );
+    } else if (titleRef == "isHolo") {
+      dispatch(
+        setIsHolo({
+          newIsHolo: item,
+        })
+      );
+    } else if (titleRef == "isGlow") {
+      if (item) {
+        dispatch(
+          setIsHolo({
+            newIsHolo: true,
+          })
+        );
+      }
+      dispatch(
+        setIsGlow({
+          newIsGlow: item,
+        })
+      );
+    } else if (titleRef == "isShine") {
+      dispatch(
+        setIsShine({
+          newIsShine: item,
+        })
+      );
+    } else if (titleRef == "isShadow") {
+      dispatch(
+        setIsShadow({
+          newIsShadow: item,
         })
       );
     }
   };
 
   return (
-    <div className="myToggle">
+    <div
+      className="myToggle"
+      onClick={(e) => {
+        e.preventDefault();
+        setValueRef(!valueRef);
+      }}
+    >
       <div className={`toggleTitle ${valueRef ? "yes" : "no"}`}>{title}</div>
       <label className="switch">
-        <input
-          type="checkbox"
-          checked={valueRef}
-          onChange={() => {
-            setValueRef(!valueRef);
-          }}
-        />
+        <input type="checkbox" checked={valueRef} onChange={() => {}} />
         <span className="slider round"></span>
       </label>
 

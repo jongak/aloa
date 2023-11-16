@@ -7,7 +7,6 @@ import {
 } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
-import PopUp from "../../components/common/PopUp";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

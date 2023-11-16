@@ -1,7 +1,7 @@
 import { useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef } from "react";
-import UserItem from "../../components/common/UserItem";
+import UserItem from "../../components/item/UserItem";
 
 const ShareCard = function () {
   const { setPage, handleFrontDown, handleBackDown } = useOutletContext();
@@ -21,7 +21,7 @@ const ShareCard = function () {
   };
 
   return (
-    <>
+    <div className="option-body share">
       <UserItem
         character={{
           CharacterClassName: "창술사",
@@ -50,7 +50,7 @@ const ShareCard = function () {
       <br />
       <Button title={"앞면 저장"} onClick={handleFrontDown} />
       <Button title={"뒷면 저장"} onClick={handleBackDown} />
-    </>
+    </div>
   );
 };
 

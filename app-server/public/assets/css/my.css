@@ -1117,6 +1117,13 @@ capture
   margin-left: 160px;
 }
 
+/* .option-area .option-body.set .accordion-header .myToggle .toggleTitle {
+  color: var(--my--t);
+}
+.option-area .option-body.set .accordion-header .myToggle .toggleTitle.no {
+  color: var(--my--no--text);
+} */
+
 @media (max-width: 576px) {
   .option-area .inner .bar {
     width: 75%;
@@ -1809,4 +1816,23 @@ accodion
 .accordion-header button {
   font-size: 18px;
   font-weight: 700;
+}
+
+.accordion-header .myToggle {
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+/* 
+---------------------------------------------
+colorcover
+--------------------------------------------- 
+*/
+
+.ColorCover {
+  display: none;
+}
+.ColorCover.show {
+  display: inherit;
 }

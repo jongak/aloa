@@ -5,14 +5,11 @@ import { useContext, useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
-import AccordionContext from "react-bootstrap/AccordionContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setRarityPreset } from "../../store/captureSlice";
 
 const SetOption = function () {
   const {
-    holoRef,
-    glowRef,
-    shineRef,
-    shadowRef,
     setIsChanged,
     isChanged,
     holographicOptionColors,
@@ -22,117 +19,97 @@ const SetOption = function () {
     holoSrcRef,
     setPage,
   } = useOutletContext();
-
+  const dispatch = useDispatch();
+  const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   useEffect(() => {
     setPage("set");
   }, []);
-  // const onChangeToggleRarityPreset = (event) => {
-  //   rarityPresetRef.current = event.target.dataset.value;
-  //   if (rarityPresetRef.current != "custom") {
-  //     holoRef.current = false;
-  //     glowRef.current = false;
-  //     shineRef.current = false;
-  //     shadowRef.current = false;
-  //   }
-  //   setIsChanged(!isChanged);
-  // };
-
-  // const onClickToggleHolo = (event) => {
-  //   holoRef.current = !holoRef.current;
-  //   if (!holoRef.current) {
-  //     glowRef.current = false;
-  //     shineRef.current = false;
-  //     shadowRef.current = false;
-  //   }
-  //   rarityPresetRef.current = "custom";
-  //   setIsChanged(!isChanged);
-  // };
-
-  // const rarityPresets = ["custom", "legendary", "holographic"];
-  // const rarityPresetsList = rarityPresets.map((rarityPreset) => {
-  //   return (
-  //     <Button
-  //       isRev={rarityPreset == rarityPresetRef.current}
-  //       value={rarityPreset}
-  //       key={rarityPreset}
-  //       onClick={onChangeToggleRarityPreset}
-  //       title={rarityPreset}
-  //     />
-  //   );
-  // });
 
   return (
-    <div className="option-body">
+    <div className="option-body set">
       <h3>03. 카드 효과</h3>
-      <Accordion defaultActiveKey={["custom"]} alwaysOpen>
+
+      <Accordion
+        defaultActiveKey={["custom"]}
+        onSelect={(eventKey) => {
+          if (eventKey[0]) {
+            dispatch(
+              setRarityPreset({
+                newRarityPreset: eventKey[0],
+              })
+            );
+          }
+        }}
+        activeKey={rarityPreset}
+        alwaysOpen
+      >
         <Accordion.Item eventKey="custom">
           <Accordion.Header>
             <ToggleButton titleRef={"custom"} title={"Custom"} />
           </Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
-              {/* <Button
-                isRev={holoRef.current}
-                onClick={onClickToggleHolo}
-                title={"홀로"}
+              <ToggleButton
+                titleRef={"isHolo"}
+                title={"홀로그램"}
+                body={"반짝이는 효과를 설정합니다."}
               />
-
-              <Button
-                isRev={glowRef.current}
-                toggleRef={glowRef}
-                // defaltRefs={[rarityPresetRef, holoRef]}
-                defaltValues={["custom", true]}
-                toggleChanged={isChanged}
-                setToggleChanged={setIsChanged}
+              <ToggleButton
+                titleRef={"isGlow"}
                 title={"글로우"}
-              />
-              <ColorToggle
-                optionColors={shineOptionColors}
-                isChanged={isChanged}
-                setIsChanged={setIsChanged}
+                body={"움직임에 따라 반짝이는 효과를 설정합니다."}
               />
 
               <ColorToggle
                 optionColors={holographicOptionColors}
                 isChanged={isChanged}
                 setIsChanged={setIsChanged}
+                titleRef={"isGlow"}
               />
 
-              <Button
-                isRev={shineRef.current}
-                toggleRef={shineRef}
-                // defaltRefs={[rarityPresetRef]}
-                defaltValues={["custom"]}
-                toggleChanged={isChanged}
-                setToggleChanged={setIsChanged}
+              <ToggleButton
+                titleRef={"isShine"}
                 title={"샤인"}
+                body={"빛나는 효과를 설정합니다."}
+              />
+              <ColorToggle
+                optionColors={shineOptionColors}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
+                titleRef={"isShine"}
               />
 
-              <Button
-                isRev={shadowRef.current}
-                toggleRef={shadowRef}
-                defaltRefs={[rarityPresetRef]}
-                defaltValues={["custom"]}
-                toggleChanged={isChanged}
-                setToggleChanged={setIsChanged}
+              <ToggleButton
+                titleRef={"isShadow"}
                 title={"그림자"}
+                body={"그림자를 설정합니다."}
               />
+
               <ColorToggle
                 optionColors={shadowOptionColors}
                 isChanged={isChanged}
                 setIsChanged={setIsChanged}
-              /> */}
+                titleRef={"isShadow"}
+              />
             </div>
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="legendary">
           <Accordion.Header>
-            <ToggleButton titleRef={"legendary"} title={"Legendary"} />
+            <ToggleButton
+              eventKey="legendary"
+              titleRef={"legendary"}
+              title={"Legendary"}
+            />
           </Accordion.Header>
         </Accordion.Item>
         <Accordion.Item eventKey="holographic">
           <Accordion.Header>
-            <ToggleButton titleRef={"holographic"} title={"Holographic"} />
+            <ToggleButton
+              eventKey="holographic"
+              titleRef={"holographic"}
+              title={"Holographic"}
+            />
           </Accordion.Header>
         </Accordion.Item>
       </Accordion>

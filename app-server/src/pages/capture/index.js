@@ -32,10 +32,6 @@ const capture = function () {
   const [isChanged, setIsChanged] = useState(true);
 
   const characterNameRef = useRef();
-  const holoRef = useRef(false);
-  const glowRef = useRef(false);
-  const shineRef = useRef(false);
-  const shadowRef = useRef(false);
 
   const dispatch = useDispatch();
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
@@ -43,6 +39,12 @@ const capture = function () {
   const isName = useSelector((state) => state.captureSlice.isName);
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
+
+  const isHolo = useSelector((state) => state.captureSlice.isHolo);
+  const isGlow = useSelector((state) => state.captureSlice.isGlow);
+  const isShine = useSelector((state) => state.captureSlice.isShine);
+  const isShadow = useSelector((state) => state.captureSlice.isShadow);
+
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
   );
@@ -119,10 +121,6 @@ const capture = function () {
     });
   };
   const setOptionStates = {
-    holoRef,
-    glowRef,
-    shineRef,
-    shadowRef,
     isChanged,
     holographicOptionColors,
     shineOptionColors,
@@ -210,9 +208,9 @@ const capture = function () {
             holo={holoSrcRef.current}
             canvasRef={frontCanvasRef}
             holographicOptions={
-              holoRef.current
+              isHolo
                 ? {
-                    glow: glowRef.current,
+                    glow: isGlow,
                     color1: holographicOptionColors.current[0],
                     color2: holographicOptionColors.current[1],
                     color3: holographicOptionColors.current[2],
@@ -222,7 +220,7 @@ const capture = function () {
                 : null
             }
             shineOptions={
-              shineRef.current
+              isShine
                 ? {
                     color1: shineOptionColors.current[0],
                     color2: shineOptionColors.current[1],
@@ -230,7 +228,7 @@ const capture = function () {
                 : null
             }
             shadowOptions={
-              shadowRef.current
+              isShadow
                 ? {
                     default: {
                       color1: shadowOptionColors.current[0],
@@ -251,9 +249,9 @@ const capture = function () {
             holo={holoSrcRef.current}
             canvasRef={backCanvasRef}
             holographicOptions={
-              holoRef.current
+              isHolo
                 ? {
-                    glow: glowRef.current,
+                    glow: isGlow,
                     color1: holographicOptionColors.current[0],
                     color2: holographicOptionColors.current[1],
                     color3: holographicOptionColors.current[2],
@@ -263,7 +261,7 @@ const capture = function () {
                 : null
             }
             shineOptions={
-              shineRef.current
+              isShine
                 ? {
                     color1: shineOptionColors.current[0],
                     color2: shineOptionColors.current[1],
@@ -271,7 +269,7 @@ const capture = function () {
                 : null
             }
             shadowOptions={
-              shadowRef.current
+              isShadow
                 ? {
                     default: {
                       color1: shadowOptionColors.current[0],
