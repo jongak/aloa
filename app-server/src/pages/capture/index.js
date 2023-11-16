@@ -3,12 +3,12 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import CardFront from "../../components/common/CardFront";
 import CardBack from "../../components/common/CardBack";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 
 const getDataCard = async function (id) {
   try {
@@ -39,7 +39,7 @@ const capture = function () {
   const isName = useSelector((state) => state.captureSlice.isName);
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
-
+  const navigate = useNavigate();
   const isHolo = useSelector((state) => state.captureSlice.isHolo);
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
@@ -69,6 +69,11 @@ const capture = function () {
       getDataCard(characterNameRef.current).then((res) => {
         dispatch(setUserData({ newUserData: res }));
         console.log(res);
+
+        if (!res) {
+          toast.error("서버에 문제가 생겼습니다.");
+          navigate("./");
+        }
       });
     }
   }, [characterNameRef.current]);
@@ -160,7 +165,7 @@ const capture = function () {
           </div>
           <ToastContainer
             position="top-right" // 알람 위치 지정
-            autoClose={3000} // 자동 off 시간
+            autoClose={6000} // 자동 off 시간
             hideProgressBar={false} // 진행시간바 숨김
             // closeOnClick={true} // 클릭으로 알람 닫기
             rtl={false} // 알림 좌우 반전
@@ -183,16 +188,6 @@ const capture = function () {
 
         <div className="card-area col-md-5 ">
           {/* {cardImgMemo} */}
-          <CardBack
-            characterNameRef={characterNameRef}
-            divRef={backRef}
-            setIsLoading={setIsLoading}
-            style={{
-              position: "absolute",
-              left: "-1000px",
-              // marginLeft: "-100px",
-            }}
-          />
           <CardFront
             characterNameRef={characterNameRef}
             divRef={frontRef}
@@ -203,6 +198,17 @@ const capture = function () {
               // marginLeft: "-100px",
             }}
           />
+          <CardBack
+            characterNameRef={characterNameRef}
+            divRef={backRef}
+            setIsLoading={setIsLoading}
+            style={{
+              position: "absolute",
+              left: "-1000px",
+              // marginLeft: "-100px",
+            }}
+          />
+
           <LootCard
             img={imgSrcRef.current}
             holo={holoSrcRef.current}

@@ -27,6 +27,7 @@ const ColorToggle = function ({
   const OptionsList = optionColors.current.map((color, i) => {
     return (
       <input
+        className="colorInput"
         key={`color${i + 1}`}
         type="color"
         defaultValue={color}
@@ -36,7 +37,7 @@ const ColorToggle = function ({
     );
   });
   return (
-    <div className={`ColorCover ${isShow ? "show" : ""}`}>{OptionsList}</div>
+    <div className={`colorCover ${isShow ? "show" : ""}`}>{OptionsList}</div>
   );
 };
 

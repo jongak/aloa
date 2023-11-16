@@ -10,6 +10,7 @@ import {
   setFrontItems,
   setUserData,
 } from "../../store/captureSlice";
+import { toast } from "react-toastify";
 
 const SelectValue = function () {
   const { setPage, characterNameRef } = useOutletContext();
@@ -18,15 +19,17 @@ const SelectValue = function () {
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("select");
   }, []);
 
   useEffect(() => {
-    if (!userData["ArmoryEquipment"]) return;
+    if (!userData || !userData["ArmoryProfile"]) {
+      return;
+    }
     dispatch(
       setFrontItems({
         newFrontItems: {
@@ -339,7 +342,7 @@ const SelectValue = function () {
         </Accordion.Item>
       </Accordion>
       <Button href="../" title={"이전"} />
-      <Button href="../set" title={"이후"} />
+      <Button href="../set" title={"다음"} />
     </div>
   );
 };

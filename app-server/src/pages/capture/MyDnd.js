@@ -13,12 +13,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
-  var maxItems = 6;
+  var maxItems = 5;
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.captureSlice.frontItems);
   } else if (title == "frontIcons") {
-    maxItems = 5;
     items = useSelector((state) => state.captureSlice.frontIcons);
   }
 

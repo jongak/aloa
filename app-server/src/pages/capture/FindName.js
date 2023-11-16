@@ -111,8 +111,8 @@ const FindName = function () {
             );
         })}
       </div>
-      <Button href="/" title={"이전"} />
-      <Button href="./select" title={"이후"} />
+      <Button isFixed title={"이전"} />
+      <Button href="./select" title={"다음"} />
     </div>
   );
 };

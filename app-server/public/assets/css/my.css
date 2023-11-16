@@ -1028,11 +1028,11 @@ capture
   margin-bottom: 50px;
 }
 
-.option-area .find-input input {
+.option-area .find-input .form-control {
   margin-right: 10px;
 }
 
-.option-area .option-body input {
+.option-area .option-body .find-input .form-control {
   background-color: var(--my--no--background);
   border-color: var(--my--no--border);
 
@@ -1040,7 +1040,7 @@ capture
   width: 250px;
   display: inline-block;
 }
-.option-area .option-body input:focus {
+.option-area .option-body .form-control:focus {
   background-color: var(--my--yes--background);
   border-color: var(--my--yes--border);
   box-shadow: var(--my--heading);
@@ -1094,35 +1094,25 @@ capture
   margin-top: 30px;
 }
 .option-area .option-body .my_button {
-  margin-top: 30px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin: 30px 10px;
 }
 
 .option-area .userRow .myToggle {
+  flex-direction: row;
+  margin-left: 40px;
   margin-top: 20px;
-  margin-left: -30px;
-  position: relative;
+  margin-bottom: 20px;
+  justify-content: flex-start;
 }
 
 .option-area .userRow .myToggle .switch {
-  top: 5px;
-  left: 250px;
-}
-.option-area .userRow .myToggle .toggleTitle {
-  text-align: right;
-  font-size: 20px;
-}
-.option-area .userRow .myToggle .toggleBody {
-  margin-left: 160px;
+  top: 3px;
+  left: 130px;
 }
 
-/* .option-area .option-body.set .accordion-header .myToggle .toggleTitle {
-  color: var(--my--t);
+.option-area .userRow .myToggle .toggleBody {
+  margin-left: 40px;
 }
-.option-area .option-body.set .accordion-header .myToggle .toggleTitle.no {
-  color: var(--my--no--text);
-} */
 
 @media (max-width: 576px) {
   .option-area .inner .bar {
@@ -1150,25 +1140,24 @@ capture
     padding-left: 50px;
     text-align: left;
   }
-  .option-area .option-body input {
-    width: 300px;
-  }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   .option-area .userRow .myToggle {
-    margin-left: -10px;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: flex-start;
   }
-  .option-area .userRow .myToggle .toggleTitle {
-    text-align: left;
-    margin-left: 40px;
-  }
+
   .option-area .userRow .myToggle .switch {
+    top: 3px;
     left: auto;
     right: 40px;
   }
+
   .option-area .userRow .myToggle .toggleBody {
-    margin-left: 65px;
+    margin-left: 40px;
   }
 }
 
@@ -1256,17 +1245,19 @@ button
 }
 
 .my_button.fixed a,
-.my_button_rev.fixed a:hover {
-  color: var(--my--thema);
-  background-color: #55595f;
-  border: 1px solid #393c42;
+.my_button.fixed a:hover {
+  cursor: auto;
+  background-color: var(--my--button--hover--background);
+  color: var(--my--button--hover--color);
+  border: 0px solid var(--my--button--hover--border);
 }
 
 .my_button_rev.fixed a,
-.my_button.fixed a:hover {
-  color: #f7f7f7;
-  background-color: #393c42;
-  border: 1px solid #f7f7f7;
+.my_button_rev.fixed a:hover {
+  cursor: auto;
+  background-color: var(--my--button--hover--background);
+  color: var(--my--button--hover--color);
+  border: 0px solid var(--my--button--hover--border);
 }
 
 .my_button.fixed a i.fa,
@@ -1347,6 +1338,11 @@ myToggle
 
 .myToggle {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .myToggle .switch {
@@ -1417,10 +1413,10 @@ myToggle
 }
 
 .myToggle .toggleTitle {
-  color: var(--my--text);
+  color: var(--my--yes--heading);
   text-align: left;
   font-size: 20px;
-  width: 180px;
+  width: 160px;
 }
 .myToggle .toggleTitle.no {
   color: var(--my--no--text);
@@ -1430,8 +1426,8 @@ myToggle
   color: var(--my--no--text);
   font-size: 16px;
   text-align: left;
-  margin-top: 10px;
-  margin-left: 30px;
+  /* margin-top: 10px; */
+  /* margin-left: 30px; */
 }
 
 /* 
@@ -1820,9 +1816,19 @@ accodion
 
 .accordion-header .myToggle {
   width: 250px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  display: contents;
+}
+.accordion-header .myToggle .switch {
+  top: 16px;
+  right: 40px;
+}
+.accordion-header .myToggle .toggleTitle {
+  color: var(--my--very--dark--text);
+  font-weight: 500;
+}
+.accordion-header .myToggle .toggleTitle.no {
+  color: var(--my--no--text);
+  font-weight: 500;
 }
 /* 
 ---------------------------------------------
@@ -1830,9 +1836,56 @@ colorcover
 --------------------------------------------- 
 */
 
-.ColorCover {
+.colorCover {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 60px;
   display: none;
 }
-.ColorCover.show {
-  display: inherit;
+.colorCover.show {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+}
+/* 겉부분의 디자인 변경 */
+.colorCover .colorInput {
+  width: 40px;
+  padding: 0px;
+  border: 0px;
+  margin: 0px;
+  outline: 0px;
+  background-color: transparent;
+  cursor: pointer;
+  /* box-shadow: 0 0 0 3px #4872f4 inset; */
+}
+.colorCover .colorInput:focus {
+  border: 1px solid;
+}
+.colorCover .colorInput:first-child:focus {
+  border-radius: 30px 0px 0px 30px;
+}
+.colorCover .colorInput:last-child:focus {
+  border-radius: 0px 30px 30px 0px;
+}
+
+.colorCover input:first-child::-webkit-color-swatch {
+  border-radius: 30px 0px 0px 30px;
+}
+.colorCover input:last-child::-webkit-color-swatch {
+  border-radius: 0px 30px 30px 0px;
+}
+
+/* 안쪽부분의 디자인 변경 */
+.colorCover .colorInput::-webkit-color-swatch {
+  border: none;
+}
+@media (max-width: 1200px) {
+  .colorCover.show {
+    margin-left: 0px;
+    display: flex;
+    justify-content: center;
+  }
 }

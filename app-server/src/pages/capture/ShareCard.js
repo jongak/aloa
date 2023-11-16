@@ -22,34 +22,31 @@ const ShareCard = function () {
 
   return (
     <div className="option-body share">
-      <UserItem
-        character={{
-          CharacterClassName: "창술사",
-          CharacterLevel: 59,
-          CharacterName: "qq",
-          ItemMaxLevel: 1650,
-        }}
-        characterName={"부먹펩시파인애플피자지코"}
-      />
-      <UserItem
-        character={{
-          CharacterClassName: "창술사",
-          CharacterLevel: 59,
-          CharacterName: "부먹펩시파인애플피자지코",
-          ItemMaxLevel: 1650,
-        }}
-        characterName={"부먹펩시파인애플피자지코"}
-      />
-      <br />
-      <Button href="../set" title={"이전"} />
-      <Button href="../share" title={"이후"} />
+      <h3>04. 공유하기</h3>
+      <div className="userRow">
+        <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
+        <Button title={"복사"} onClick={copyTextUrl} />
 
-      <br />
-      <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
-      <Button title={"복사"} onClick={copyTextUrl} />
-      <br />
-      <Button title={"앞면 저장"} onClick={handleFrontDown} />
-      <Button title={"뒷면 저장"} onClick={handleBackDown} />
+        <Button
+          title={
+            <>
+              <i className="fa fa-download" /> 앞면 저장
+            </>
+          }
+          onClick={handleFrontDown}
+          style={{ padding: "20px 50px" }}
+        />
+        <Button
+          title={
+            <>
+              <i className="fa fa-download" /> 뒷면 저장
+            </>
+          }
+          onClick={handleBackDown}
+        />
+      </div>
+      <Button href="../set" title={"이전"} />
+      <Button isFixed title={"다음"} />
     </div>
   );
 };
