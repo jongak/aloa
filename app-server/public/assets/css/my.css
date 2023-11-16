@@ -1114,7 +1114,7 @@ capture
   margin-left: 40px;
 }
 
-.option-body.share .userRow {
+.option-body.share .userRow .buttonCover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

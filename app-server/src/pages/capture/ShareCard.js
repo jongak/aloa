@@ -24,25 +24,26 @@ const ShareCard = function () {
     <div className="option-body share">
       <h3>04. 공유하기</h3>
       <div className="userRow">
-        <Button
-          title={
-            <>
-              <i className="fa fa-download" /> 앞면 저장
-            </>
-          }
-          onClick={handleFrontDown}
-          style={{ padding: "10px 50px", fontSize: "20px" }}
-        />
-        <Button
-          title={
-            <>
-              <i className="fa fa-download" /> 뒷면 저장
-            </>
-          }
-          onClick={handleBackDown}
-          style={{ padding: "10px 50px", fontSize: "20px" }}
-        />
-
+        <div className="buttonCover">
+          <Button
+            title={
+              <>
+                <i className="fa fa-download" /> 앞면 저장
+              </>
+            }
+            onClick={handleFrontDown}
+            style={{ padding: "10px 50px", fontSize: "20px" }}
+          />
+          <Button
+            title={
+              <>
+                <i className="fa fa-download" /> 뒷면 저장
+              </>
+            }
+            onClick={handleBackDown}
+            style={{ padding: "10px 50px", fontSize: "20px" }}
+          />
+        </div>
         <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
         <Button title={"복사"} onClick={copyTextUrl} />
       </div>
