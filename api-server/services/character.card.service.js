@@ -238,11 +238,8 @@ const CharacterCardService = {
             Name: "", //이름
             Icon: "", //아이콘
             Grade: "", //등급(고대)
-            Stats: {},
-            OptionName1: { name: "", effect: "" },
-            OptionName2: { name: "", effect: "" },
-            OptionName3: { name: "", effect: "" },
-            OptionName4: { name: "", effect: "" },
+            LetStats: {},
+            LetOptions: {},
           },
           나침반: {
             Name: "", //이름
@@ -269,6 +266,7 @@ const CharacterCardService = {
             SetLevel: "지원안함",
             ArmourAvg: 0,
             AccAvg: 0,
+            LetSum: 0,
           },
         },
         ArmoryEngraving: {
@@ -311,9 +309,11 @@ const CharacterCardService = {
           Object.keys(data[sub]).forEach((key) => {
             if (typeof data[sub][key] == "object") {
               res[sub][key].forEach((element) => {
-                data[sub][key][element["Type"]] = element["Value"]
-                  ? element["Value"]
-                  : element["Point"];
+                if (element) {
+                  data[sub][key][element["Type"]] = element["Value"]
+                    ? element["Value"]
+                    : element["Point"];
+                }
               });
             } else {
               data[sub][key] = res[sub][key];
@@ -350,7 +350,8 @@ const CharacterCardService = {
 
               if (
                 isTrans &&
-                (!TransTooltip["topStr"] ||
+                (!TransTooltip ||
+                  !TransTooltip["topStr"] ||
                   (TransTooltip["topStr"] &&
                     TransTooltip["topStr"].indexOf("초월") == -1))
               ) {
@@ -362,7 +363,8 @@ const CharacterCardService = {
 
               if (
                 isElixir &&
-                (!ElixirTooltip["topStr"] ||
+                (!ElixirTooltip ||
+                  !ElixirTooltip["topStr"] ||
                   (ElixirTooltip["topStr"] &&
                     ElixirTooltip["topStr"].indexOf("엘릭서") == -1))
               ) {
@@ -467,12 +469,13 @@ const CharacterCardService = {
               ) {
                 whereSet += 1;
               }
-
               var mySetOption =
                 dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["value"][
                   "Element_001"
                 ];
-              if (Type == "무기" && mySetOption.indexOf("장갑") != -1) {
+              if (!mySetOption) {
+                1;
+              } else if (Type == "무기" && mySetOption.indexOf("장갑") != -1) {
                 //에스더면
                 isEsdo = true;
               } else {
@@ -535,6 +538,14 @@ const CharacterCardService = {
               ] = Number(ringTooltip.substr(ringTooltip.indexOf("+")));
 
               [0, 1, 2].forEach((j) => {
+                if (
+                  !dat["Element_006"]["value"]["Element_000"] ||
+                  !dat["Element_006"]["value"]["Element_000"]["contentStr"][
+                    `Element_00${j}`
+                  ]
+                ) {
+                  return false;
+                }
                 const myEngraving =
                   dat["Element_006"]["value"]["Element_000"]["contentStr"][
                     `Element_00${j}`
@@ -559,6 +570,9 @@ const CharacterCardService = {
                   dat["Element_005"]["value"]["Element_000"]["contentStr"];
               }
               [0, 1, 2].forEach((j) => {
+                if (!myEngravingList[`Element_00${j}`]) {
+                  return false;
+                }
                 const myEngraving =
                   myEngravingList[`Element_00${j}`]["contentStr"];
                 data[sub][Type][`engravings0${j}`]["name"] =
@@ -575,10 +589,31 @@ const CharacterCardService = {
                 // console.log(myEngraving);
               });
             }
-            // if (Type == "팔찌") {
-            //   data[sub][Type]["ss"] =
-            //     dat["Element_004"]["value"]["Element_001"];
-            // }
+            if (Type == "팔찌") {
+              const myDatas =
+                dat["Element_004"]["value"]["Element_001"].split("<BR>");
+              myDatas.forEach((myData) => {
+                if (myData.includes("[<FONT COLOR=''>")) {
+                  data[sub][Type]["LetOptions"][
+                    myData.substring(
+                      myData.indexOf("[<FONT COLOR=''>") + 16,
+                      myData.indexOf("</FONT>")
+                    )
+                  ] = 1;
+                } else if (myData.includes("</img>")) {
+                  const myStats = myData
+                    .substring(myData.indexOf("</img>") + 6)
+                    .split(" ");
+                  var a = 0;
+                  if (!myStats[0]) {
+                    a = 1;
+                  }
+                  data[sub][Type]["LetStats"][myStats[a]] = Number(
+                    myStats[a + 1].substr(1)
+                  );
+                }
+              });
+            }
           });
         } else if (sub == "ArmoryEngraving") {
           res[sub]["Effects"].forEach((element) => {
@@ -633,27 +668,42 @@ const CharacterCardService = {
           });
         } else if (sub == "ArmoryCard") {
           var AwakeCount = 0;
-          var AwakeName = "지원안함";
+          var AwakeName = "";
 
           res[sub]["Cards"].forEach((element) => {
             AwakeCount += element["AwakeCount"];
           });
-
-          if (res[sub]["Effects"][0]["Items"][2]["Name"].includes("빛 6세트")) {
-            AwakeName = "세구빛";
-          } else if (
-            res[sub]["Effects"][0]["Items"][2]["Name"].includes("장 6세트")
-          ) {
-            AwakeName = "암구빛";
-          } else if (
-            res[sub]["Effects"][0]["Items"][2]["Name"].includes("벽 6세트")
-          ) {
-            AwakeName = "남바절";
-          } else if (
-            res[sub]["Effects"][0]["Items"][2]["Name"].includes("인 6세트")
-          ) {
-            AwakeName = "창달";
-          }
+          res[sub]["Effects"].forEach((element) => {
+            if (!element["Items"][2]) {
+              1;
+            } else if (element["Items"][2]["Name"].includes("하는 빛 6세트")) {
+              AwakeName += "세구빛";
+            } else if (element["Items"][2]["Name"].includes("군단장 6세트")) {
+              AwakeName += "암구빛";
+            } else if (element["Items"][2]["Name"].includes("절벽 6세트")) {
+              AwakeName += "남바절";
+            } else if (element["Items"][2]["Name"].includes("달인 6세트")) {
+              AwakeName += "창의달인";
+            } else if (element["Items"][2]["Name"].includes("오리라 3세트")) {
+              if (AwakeName == "라제") {
+                AwakeName = "세우라제";
+              } else {
+                AwakeName += "세우";
+              }
+            } else if (element["Items"][2]["Name"].includes("운명 2세트")) {
+              AwakeName += "라제";
+            } else if (element["Items"][2]["Name"].includes("있도다 3세트")) {
+              AwakeName += "부르";
+            } else if (
+              element["Items"][2]["Name"].includes("운명의 별 5세트")
+            ) {
+              AwakeName += "운명";
+            } else if (element["Items"][2]["Name"].includes("있구나 6세트")) {
+              AwakeName += "너계획";
+            } else if (element["Items"][2]["Name"].includes("보면 6세트")) {
+              AwakeName += "알고";
+            }
+          });
           if (AwakeName == "남바절") {
             if (AwakeCount < 12) {
               AwakeCount = 0;
@@ -663,13 +713,16 @@ const CharacterCardService = {
               AwakeCount = 18;
             }
           } else {
-            if (AwakeCount < 18) {
+            if (AwakeCount < 12) {
               AwakeCount = 0;
-            } else if (AwakeCount < 30) {
+            } else if (AwakeCount < 18) {
+              AwakeCount = 12;
+            } else if (AwakeCount < 25) {
               AwakeCount = 18;
+            } else if (AwakeCount < 30) {
+              AwakeCount = 25;
             }
           }
-
           data[sub] = { ...res[sub], AwakeCount, AwakeName };
         }
       });
@@ -732,6 +785,16 @@ const CharacterCardService = {
       );
       data["ArmoryEquipment"]["option"]["ArmourAvg"] /= 5;
       data["ArmoryEquipment"]["option"]["AccAvg"] /= 5;
+
+      Object.keys(data["ArmoryEquipment"]["팔찌"]["LetStats"]).forEach(
+        (key) => {
+          if (["특화", "치명", "신속"].includes(key)) {
+            data["ArmoryEquipment"]["option"]["LetSum"] +=
+              data["ArmoryEquipment"]["팔찌"]["LetStats"][key];
+          }
+        }
+      );
+      data["ArmoryEquipment"]["option"]["LetSum"];
 
       var engravingLevel = "";
       data["ArmoryEngraving"]["fullEffects"].forEach(() => {

@@ -194,15 +194,12 @@
   background-repeat: no-repeat;
   height: 40px;
   width: 100%;
-  line-height: 38px;
   margin-bottom: 4px;
   margin-left: 12px;
-  padding: 0 44px;
+  padding: 2px 0px 1px 28px;
+  justify-content: center;
 }
 
-.cardCover.back .cardMiddle .options_left .stats #back_characterlevel {
-  font-size: 20px;
-}
 .cardCover.back
   .cardMiddle
   .options_left
@@ -218,6 +215,7 @@
   .back_stats_bg
   .back_guildname {
   letter-spacing: -1.8px;
+  font-size: 20px;
 }
 
 .cardCover.back .cardMiddle .options_left .engravings {

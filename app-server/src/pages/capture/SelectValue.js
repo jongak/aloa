@@ -91,9 +91,9 @@ const SelectValue = function () {
               id: "StatsSumBracelet",
               title: "팔찌 특성합",
               body: "팔찌의 특성합 입니다.",
-              value: "지원안함",
+              value: userData["ArmoryEquipment"]["option"]["LetSum"],
               cardTitle: "팔찌특성합",
-              cardValue: undefined,
+              cardValue: userData["ArmoryEquipment"]["option"]["LetSum"],
             },
             {
               id: "StatsMain",
@@ -172,7 +172,7 @@ const SelectValue = function () {
               value: userData["ArmoryCard"]["AwakeName"],
               cardTitle: "카드",
               cardValue: userData["ArmoryCard"]["AwakeName"],
-              size: 4,
+              size: 5,
             },
             {
               id: "jobEngraving",
