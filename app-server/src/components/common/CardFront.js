@@ -57,7 +57,7 @@ const CardFront = function ({
   style,
   divRef,
   bgImgSrc = "/assets/images/card_bg.png",
-  bgFrame = "/assets/images/card_frame.png",
+  bgFrame = "/assets/images/card_frame/1/3.png",
 }) {
   const imgRef = useRef();
   const userData = useSelector((state) => state.captureSlice.userData);

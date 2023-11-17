@@ -120,6 +120,78 @@ const SetOption = function () {
         </Accordion.Item>
       </Accordion>
 
+      <Accordion defaultActiveKey={["frame"]} alwaysOpen>
+        <Accordion.Item eventKey="card_frame_select">
+          <Accordion.Header>카드 테두리</Accordion.Header>
+          <Accordion.Body>
+            <div
+              style={{
+                display: "inline-flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/1/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/2/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/3/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/4/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/5/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/6/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage: "url('/assets/images/card_frame/7/0.png')",
+                  cursor: "pointer",
+                }}
+              ></div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+
       {/* <input
         type="text"
         className="form-control"
