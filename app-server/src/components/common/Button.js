@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const Button = function ({
   isFixed = false, //모드에 관계없이 css적용
+  isClickable = true,
   isRev = false, //반전모드
   toggleRef = null, //값
   defaltRefs = [], //버튼누르면 초기화할값
@@ -21,6 +22,9 @@ const Button = function ({
   var buttonClassName = isRev ? "my_button_rev" : "my_button";
   if (isFixed) {
     buttonClassName += " fixed";
+  }
+  if (!isClickable) {
+    buttonClassName += " notClicked";
   }
 
   return (

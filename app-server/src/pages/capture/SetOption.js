@@ -1,4 +1,4 @@
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import ColorToggle from "../../components/common/ColorToggle";
 import { useContext, useEffect } from "react";
@@ -18,9 +18,15 @@ const SetOption = function () {
     imgSrcRef,
     holoSrcRef,
     setPage,
+    characterNameRef,
   } = useOutletContext();
-  const dispatch = useDispatch();
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("set");
   }, []);

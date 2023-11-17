@@ -14,10 +14,10 @@ import { toast } from "react-toastify";
 
 const SelectValue = function () {
   const { setPage, characterNameRef } = useOutletContext();
-  const navigate = useNavigate();
 
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   if (!characterNameRef.current) {
     navigate("../");
@@ -185,7 +185,12 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
                 ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
                 : undefined,
-              size: 6,
+              size: userData["ArmoryEngraving"]["JobEffects"][0]
+                ? Math.floor(
+                    userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                      .length / 1.5
+                  ) + 3
+                : 3,
             },
           ],
         },

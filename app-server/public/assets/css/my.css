@@ -1026,6 +1026,7 @@ capture
 .option-area .option-body .find-input {
   margin-top: 50px;
   margin-bottom: 50px;
+  text-align: center;
 }
 
 .option-area .find-input .form-control {
@@ -1114,10 +1115,21 @@ capture
   margin-left: 40px;
 }
 
-.option-body.share .userRow {
+.option-body.share .userRow .buttonCover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.option-body.share .userRow .find-input {
+  margin-top: 0px;
+}
+.option-body.share .userRow .find-input .form-control {
+  margin-left: 10px;
+  width: 284px;
+}
+.option-body.share .userRow .buttonCover .my_button a {
+  padding: 10px 50px;
+  font-size: 20px;
 }
 
 @media (max-width: 576px) {
@@ -1145,6 +1157,12 @@ capture
     padding-top: 50px;
     padding-left: 50px;
     text-align: left;
+  }
+}
+@media (max-width: 992px) {
+  .option-body.share .userRow .buttonCover .my_button a {
+    padding: 10px 32px;
+    font-size: 16px;
   }
 }
 
@@ -1250,20 +1268,34 @@ button
   color: var(--my--button--hover--color);
 }
 
-.my_button.fixed a,
-.my_button.fixed a:hover {
+.my_button.notClicked a,
+.my_button.notClicked a:hover {
   cursor: auto;
   background-color: var(--my--button--hover--background);
   color: var(--my--button--hover--color);
   border: 0px solid var(--my--button--hover--border);
 }
 
-.my_button_rev.fixed a,
-.my_button_rev.fixed a:hover {
+.my_button_rev.notClicked a,
+.my_button_rev.notClicked a:hover {
   cursor: auto;
   background-color: var(--my--button--hover--background);
   color: var(--my--button--hover--color);
   border: 0px solid var(--my--button--hover--border);
+}
+
+.my_button.fixed a,
+.my_button_rev.fixed a:hover {
+  color: var(--my--thema);
+  background-color: #55595f;
+  border: 1px solid #393c42;
+}
+
+.my_button_rev.fixed a,
+.my_button.fixed a:hover {
+  color: #f7f7f7;
+  background-color: #393c42;
+  border: 1px solid #f7f7f7;
 }
 
 .my_button.fixed a i.fa,
