@@ -29,3 +29,5 @@ const imageUploader = multer({
     acl: "public-read-write", // ???모르겠다
   }),
 });
+
+module.exports = imageUploader;

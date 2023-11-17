@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
+var imageUploader = require("./imageUploader");
 
 router.get("/:imageSrc", function (req, res, next) {
   try {
@@ -10,6 +11,10 @@ router.get("/:imageSrc", function (req, res, next) {
   } catch (err) {
     next(err);
   }
+});
+
+router.post("/", imageUploader.single("image"), (req, res) => {
+  res.send("good");
 });
 
 module.exports = router;
