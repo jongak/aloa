@@ -4,10 +4,10 @@ ins
 **/TEST
 workspace2
 
-*/.env
-*/.env.development
-*/.env.local
-*/.env.production
+**/.env
+**/.env.development
+**/.env.local
+**/.env.production
 # 오피스 임시파일
 ~$*
 
