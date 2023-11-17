@@ -120,15 +120,18 @@ const SetOption = function () {
         </Accordion.Item>
       </Accordion>
 
-      <Accordion defaultActiveKey={["frame"]} alwaysOpen>
+      <Accordion defaultActiveKey={["card_frame_select"]} alwaysOpen>
         <Accordion.Item eventKey="card_frame_select">
           <Accordion.Header>카드 테두리</Accordion.Header>
           <Accordion.Body>
             <div
+              className="userRow"
               style={{
                 display: "inline-flex",
                 justifyContent: "center",
                 flexWrap: "wrap",
+                marginTop: "20px",
+                padding: "20px",
               }}
             >
               <div
@@ -137,6 +140,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/1/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -145,6 +149,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/2/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -153,6 +158,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/3/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -161,6 +167,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/4/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -169,6 +176,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/5/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -177,6 +185,7 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/6/0.png')",
                   cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
               <div
@@ -185,6 +194,82 @@ const SetOption = function () {
                   height: "60px",
                   backgroundImage: "url('/assets/images/card_frame/7/0.png')",
                   cursor: "pointer",
+                }}
+              ></div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="card_frame_color">
+          <Accordion.Header>카드 색상</Accordion.Header>
+          <Accordion.Body>
+            <div
+              className="userRow"
+              style={{
+                display: "inline-flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginTop: "20px",
+                padding: "20px",
+              }}
+            >
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/0.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/1.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/2.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/3.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/4.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/5.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
                 }}
               ></div>
             </div>
