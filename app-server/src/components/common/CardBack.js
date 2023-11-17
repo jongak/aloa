@@ -38,7 +38,7 @@ const CardBack = function ({
     고급: "#60db6d",
     일반: "#475577",
   };
-  if (!userData["ArmoryProfile"]) {
+  if (!userData || !userData["ArmoryProfile"]) {
     return;
   }
   return (

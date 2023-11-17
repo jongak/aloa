@@ -1,11 +1,16 @@
-import { useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef } from "react";
-import UserItem from "../../components/common/UserItem";
+import UserItem from "../../components/item/UserItem";
 
 const ShareCard = function () {
-  const { setPage, handleFrontDown, handleBackDown } = useOutletContext();
+  const { setPage, handleFrontDown, handleBackDown, characterNameRef } =
+    useOutletContext();
+  const navigate = useNavigate();
 
+  // if (!characterNameRef.current) {
+  //   navigate("../");
+  // }
   useEffect(() => {
     setPage("share");
   }, []);
@@ -21,36 +26,41 @@ const ShareCard = function () {
   };
 
   return (
-    <>
-      <UserItem
-        character={{
-          CharacterClassName: "창술사",
-          CharacterLevel: 59,
-          CharacterName: "qq",
-          ItemMaxLevel: 1650,
-        }}
-        characterName={"부먹펩시파인애플피자지코"}
-      />
-      <UserItem
-        character={{
-          CharacterClassName: "창술사",
-          CharacterLevel: 59,
-          CharacterName: "부먹펩시파인애플피자지코",
-          ItemMaxLevel: 1650,
-        }}
-        characterName={"부먹펩시파인애플피자지코"}
-      />
-      <br />
-      <Button href="../set" title={"이전"} />
-      <Button href="../share" title={"이후"} />
+    <div className="option-body share">
+      <h3>04. 공유하기</h3>
+      <div className="userRow">
+        <div className="buttonCover">
+          <Button
+            title={
+              <>
+                <i className="fa fa-download" /> 앞면 저장
+              </>
+            }
+            onClick={handleFrontDown}
+          />
+          <Button
+            title={
+              <>
+                <i className="fa fa-download" /> 뒷면 저장
+              </>
+            }
+            onClick={handleBackDown}
+          />
+        </div>
 
-      <br />
-      <input type="text" ref={copyLinkRef} value={"http://localhost:3000"} />
-      <Button title={"복사"} onClick={copyTextUrl} />
-      <br />
-      <Button title={"앞면 저장"} onClick={handleFrontDown} />
-      <Button title={"뒷면 저장"} onClick={handleBackDown} />
-    </>
+        <div className="find-input">
+          <input
+            className="form-control"
+            ref={copyLinkRef}
+            value={process.env.REACT_APP_API_SERVER}
+            onChange={() => {}}
+          ></input>
+          <Button title={"클립보드에 복사"} onClick={copyTextUrl} />
+        </div>
+      </div>
+      <Button href="../set" title={"이전"} />
+      <Button isClickable={false} title={"다음"} />
+    </div>
   );
 };
 

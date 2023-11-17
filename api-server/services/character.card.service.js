@@ -18,7 +18,7 @@ const isJob = function (value) {
     "돌격대장",
     "마나 효율 증가",
     "마나의 흐름",
-    "바리게이트",
+    "바리케이드",
     "방어력 감소",
     "번개의 분노",
     "부러진 뼈",
@@ -612,10 +612,14 @@ const CharacterCardService = {
                 data[sub]["option"]["TenHong"] += 1;
               }
             }
+            var isZero = false;
+            if (dat["Element_002"]["value"].includes("귀속")) {
+              isZero = true;
+            }
             if (
-              dat["Element_004"]["value"]["Element_001"].includes(
-                data["ArmoryProfile"]["CharacterClassName"]
-              )
+              dat[`Element_00${isZero ? 5 : 4}`]["value"][
+                "Element_001"
+              ].includes(data["ArmoryProfile"]["CharacterClassName"])
             ) {
               data[sub]["Gems"].push(tmp);
               if (tmp["isMeul"]) {
@@ -669,13 +673,18 @@ const CharacterCardService = {
           data[sub] = { ...res[sub], AwakeCount, AwakeName };
         }
       });
-      data["SubStat"]["statValue"] = Number(
-        data["ArmoryProfile"]["Stats"]["치명"]
-      );
-      data["SubStat"]["statName"] = "치명";
 
       Object.keys(data["ArmoryProfile"]["Stats"]).forEach((key) => {
         if (key != "공격력" && key != "최대 생명력") {
+          if (
+            data["SubStat"]["statValue"] <
+            Number(data["ArmoryProfile"]["Stats"][key])
+          ) {
+            data["SubStat"]["statValue"] = Number(
+              data["ArmoryProfile"]["Stats"][key]
+            );
+            data["SubStat"]["statName"] = key;
+          }
           if (
             data["MainStat"]["statValue"] <
             Number(data["ArmoryProfile"]["Stats"][key])

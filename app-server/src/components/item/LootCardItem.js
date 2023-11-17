@@ -1,4 +1,4 @@
-import LootCard from "./LootCard";
+import LootCard from "../common/LootCard";
 
 const LootCardItem = function () {
   const rarityPreset = "hologram";

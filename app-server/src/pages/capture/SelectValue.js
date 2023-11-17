@@ -10,23 +10,26 @@ import {
   setFrontItems,
   setUserData,
 } from "../../store/captureSlice";
+import { toast } from "react-toastify";
 
 const SelectValue = function () {
   const { setPage, characterNameRef } = useOutletContext();
-  const navigate = useNavigate();
 
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("select");
   }, []);
 
   useEffect(() => {
-    if (!userData["ArmoryEquipment"]) return;
+    if (!userData || !userData["ArmoryProfile"]) {
+      return;
+    }
     dispatch(
       setFrontItems({
         newFrontItems: {
@@ -182,7 +185,12 @@ const SelectValue = function () {
               cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
                 ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
                 : undefined,
-              size: 6,
+              size: userData["ArmoryEngraving"]["JobEffects"][0]
+                ? Math.floor(
+                    userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                      .length / 1.5
+                  ) + 3
+                : 3,
             },
           ],
         },
@@ -296,7 +304,7 @@ const SelectValue = function () {
   //   return;
   // }
   return (
-    <div className="option-body" style={{ position: "relative" }}>
+    <div className="option-body select" style={{ position: "relative" }}>
       <h3>02. 내용 정하기</h3>
       <Accordion defaultActiveKey={["0"]} alwaysOpen>
         <Accordion.Item eventKey="0">
@@ -339,7 +347,7 @@ const SelectValue = function () {
         </Accordion.Item>
       </Accordion>
       <Button href="../" title={"이전"} />
-      <Button href="../set" title={"이후"} />
+      <Button href="../set" title={"다음"} />
     </div>
   );
 };

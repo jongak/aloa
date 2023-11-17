@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import { useRef } from "react";
-import LootCardItem from "../../components/common/LootCardItem";
 import Button from "../../components/common/Button";
 import { useSelector } from "react-redux";
+import LootCardItem from "../../components/item/LootCardItem";
 
 function Home() {
   const queryRef = useRef("");

@@ -68,7 +68,8 @@ const CardFront = function ({
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
 
   useEffect(() => {
-    if (characterNameRef.current) {
+    if (userData && characterNameRef.current) {
+      setIsLoading(false);
       getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
         imgRef.current = res;
       });
@@ -78,7 +79,7 @@ const CardFront = function ({
     }
   }, [userData]);
 
-  if (!userData["ArmoryProfile"]) {
+  if (!userData || !userData["ArmoryProfile"]) {
     return;
   }
   return (
