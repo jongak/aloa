@@ -19,6 +19,9 @@ function NotFound() {
             </div>
           </div>
         </div>
+        <div>
+          <img src="/assets/images/404_card.png" style={{ width: "400px" }} />
+        </div>
         <div className="textCover">
           <div className="text-danger title">404</div>
           <div>존재하지 않는 페이지 입니다.</div>

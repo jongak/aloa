@@ -311,10 +311,10 @@ Header Style
 }
 @keyframes menu {
   100% {
-    transform: scale(1);
+    bottom: 80px;
   }
   0% {
-    transform: scale(0);
+    bottom: -200px;
   }
 }
 .menu ul li {
