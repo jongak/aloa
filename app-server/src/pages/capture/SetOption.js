@@ -234,26 +234,6 @@ const SetOption = function () {
         </Accordion.Item>
       </Accordion>
 
-      {/* <input
-        type="text"
-        className="form-control"
-        // ref={imgSrcRef}
-        onBlur={(e) => {
-          imgSrcRef.current = e.target.value;
-          setIsChanged(!isChanged);
-        }}
-        defaultValue={imgSrcRef.current}
-      />
-      <input
-        type="text"
-        className="form-control"
-        // ref={holoSrcRef}
-        onBlur={async (e) => {
-          holoSrcRef.current = e.target.value;
-          setIsChanged(!isChanged);
-        }}
-        defaultValue={holoSrcRef.current}
-      /> */}
       <Button href="../select" title={"이전"} />
       <Button href="../share" title={"다음"} />
     </div>
