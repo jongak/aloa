@@ -88,7 +88,7 @@ const CardFront = function ({
       <div className="cardBody">
         <img
           id="cardFrame"
-          src={`/assets/images/card_frame/${framePreset}/0.png`}
+          src={`/assets/images/card_frame/${framePreset}/3.png`}
         />
 
         <div className="cardTop">
