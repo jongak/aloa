@@ -14,7 +14,7 @@ router.get("/:imageSrc", function (req, res, next) {
 });
 
 router.post("/", imageUploader.single("image"), (req, res) => {
-  res.send("good");
+  res.send("hi");
 });
 
 module.exports = router;
