@@ -1,7 +1,9 @@
 var express = require("express");
 var router = express.Router();
 var path = require("path");
-var imageUploader = require("./imageUploader");
+const multerS3 = require("multer-s3");
+const multer = require("multer");
+const { S3 } = require("@aws-sdk/client-s3");
 
 router.get("/:imageSrc", function (req, res, next) {
   try {
@@ -13,29 +15,35 @@ router.get("/:imageSrc", function (req, res, next) {
   }
 });
 
-class ProfileController {
-  static editProfileImage = async (req, res) => {
-    const filePath = req.file.location;
+const s3 = new S3({
+  region: "ap-northeast-2",
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+});
 
-    if (!filePath) {
-      throw new Error({
-        status: 401,
-        response: {
-          message: "Invalid file path",
-        },
-      });
-    }
-    const profile = await imageUploader({
-      photoUrl: filePath,
-    });
-    res.status(200).send(profile);
-  };
-}
+// multer 에 대한 설정값
+const awsUpload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: "bevelog-bucket", // 객체를 업로드할 버킷 이름
+    acl: "public-read", // Access control for the file
+    key: function (req, file, cb) {
+      // 객체의 키로 고유한 식별자 이기 때문에 겹치면 안됨
+      cb(
+        null,
+        Math.floor(Math.random() * 1000).toString() +
+          Date.now() +
+          "." +
+          file.originalname.split(".").pop()
+      );
+    },
+  }),
+});
 
-router.post(
-  "/",
-  imageUploader.single("image"),
-  ProfileController.editProfileImage
-);
+router.post("/", awsUpload.single("image"), (req, res) => {
+  res.send("hi");
+});
 
 module.exports = router;
