@@ -62,7 +62,6 @@ const SetOption = function () {
                       marginRight: "10px",
                     }}
                     onClick={() => {
-                      console.log(i);
                       dispatch(setFramePreset({ newFramePreset: i }));
                     }}
                   ></div>
