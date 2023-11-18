@@ -176,7 +176,7 @@ Header Style
   height: 80px;
   opacity: 0.9;
 
-  border-bottom: 1px solid var(--my--heading);
+  /* border-bottom: 1px solid var(--my--heading); */
   box-shadow: 0px 0px 30px 0px var(--my--dark-heading) !important;
 
   z-index: 100;

@@ -6,7 +6,11 @@ import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
-import { setFramePreset, setRarityPreset } from "../../store/captureSlice";
+import {
+  setFrameColor,
+  setFramePreset,
+  setRarityPreset,
+} from "../../store/captureSlice";
 
 const SetOption = function () {
   const {
@@ -83,66 +87,24 @@ const SetOption = function () {
                 padding: "20px",
               }}
             >
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/1.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/2.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/3.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/4.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/5.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
+              {[0, 1, 2, 3, 4, 5].map((i) => {
+                return (
+                  <div
+                    key={`${i}`}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      backgroundImage: `url('/assets/images/card_frame/color/${i}.png')`,
+                      cursor: "pointer",
+                      marginRight: "10px",
+                      backgroundSize: "cover",
+                    }}
+                    onClick={() => {
+                      dispatch(setFrameColor({ newFrameColor: i }));
+                    }}
+                  ></div>
+                );
+              })}
             </div>
           </Accordion.Body>
         </Accordion.Item>

@@ -45,10 +45,14 @@ const capture = function () {
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
   const framePreset = useSelector((state) => state.captureSlice.framePreset);
+  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
-  const imgSrcRef = useRef(
-    "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
-  );
+  // const imgSrcRef = useRef(
+  //   "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
+  // );
+  const imgSrcRef = useRef("/assets/images/card_example_f.png");
+  const imgSrcRefB = useRef("/assets/images/card_example_b.png");
+
   const holoSrcRef = useRef("http://localhost:4400/api/images/wave.png");
 
   const holographicOptionColors = useRef([
@@ -121,6 +125,7 @@ const capture = function () {
     isName,
     isTitle,
     framePreset,
+    frameColor,
   ]);
 
   const handleFrontDown = async () => {
@@ -261,7 +266,7 @@ const capture = function () {
           />
 
           <LootCard
-            img={imgSrcRef.current}
+            img={imgSrcRefB.current}
             holo={holoSrcRef.current}
             canvasRef={backCanvasRef}
             holographicOptions={
