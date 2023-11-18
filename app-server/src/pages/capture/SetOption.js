@@ -36,12 +36,8 @@ const SetOption = function () {
     <div className="option-body set">
       <h3>03. 카드 효과</h3>
 
-      <Accordion
-        defaultActiveKey={["card_frame_select", "card_frame_color"]}
-        activeKey={framePreset}
-        alwaysOpen
-      >
-        <Accordion.Item eventKey="card_frame_select">
+      <Accordion defaultActiveKey={["select", "color"]} alwaysOpen>
+        <Accordion.Item eventKey="select">
           <Accordion.Header>카드 테두리</Accordion.Header>
           <Accordion.Body>
             <div
@@ -54,16 +50,14 @@ const SetOption = function () {
                 padding: "20px",
               }}
             >
-              dd
-              {[1, 2, 3, 4, 5].map((i) => {
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => {
                 return (
                   <div
                     key={`aa${i}`}
                     style={{
                       width: "60px",
                       height: "60px",
-                      backgroundImage:
-                        "url('/assets/images/card_frame/1/0.png')",
+                      backgroundImage: `url('/assets/images/card_frame/${i}/0.png')`,
                       cursor: "pointer",
                       marginRight: "10px",
                     }}
@@ -77,7 +71,7 @@ const SetOption = function () {
             </div>
           </Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="card_frame_color">
+        <Accordion.Item eventKey="color">
           <Accordion.Header>카드 색상</Accordion.Header>
           <Accordion.Body>
             <div
