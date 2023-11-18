@@ -38,7 +38,6 @@ const SetOption = function () {
 
       <Accordion
         defaultActiveKey={["card_frame_select", "card_frame_color"]}
-        activeKey={framePreset}
         alwaysOpen
       >
         <Accordion.Item eventKey="card_frame_select">
@@ -54,16 +53,14 @@ const SetOption = function () {
                 padding: "20px",
               }}
             >
-              dd
-              {[1, 2, 3, 4, 5].map((i) => {
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => {
                 return (
                   <div
                     key={`aa${i}`}
                     style={{
                       width: "60px",
                       height: "60px",
-                      backgroundImage:
-                        "url('/assets/images/card_frame/1/0.png')",
+                      backgroundImage: `url('/assets/images/card_frame/${i}/0.png')`,
                       cursor: "pointer",
                       marginRight: "10px",
                     }}

@@ -103,7 +103,10 @@ const CardFront = function ({
   return (
     <div className="cardCover front" ref={divRef} style={{ ...style }}>
       <div className="cardBody">
-        <img id="cardFrame" src={framePreset} />
+        <img
+          id="cardFrame"
+          src={`/assets/images/card_frame/${framePreset}/3.png`}
+        />
 
         <div className="cardTop">
           <span className="servername">

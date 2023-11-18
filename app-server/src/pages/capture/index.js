@@ -44,6 +44,7 @@ const capture = function () {
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
+  const framePreset = useSelector((state) => state.captureSlice.framePreset);
 
   const imgSrcRef = useRef(
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
@@ -112,7 +113,15 @@ const capture = function () {
     if (isLoading) {
       fetchData();
     }
-  }, [isLoading, frontIcons, frontItems, isLevel, isName, isTitle]);
+  }, [
+    isLoading,
+    frontIcons,
+    frontItems,
+    isLevel,
+    isName,
+    isTitle,
+    framePreset,
+  ]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
