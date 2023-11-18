@@ -13,8 +13,29 @@ router.get("/:imageSrc", function (req, res, next) {
   }
 });
 
-router.post("/", imageUploader.single("image"), (req, res) => {
-  res.send("hi");
-});
+class ProfileController {
+  static editProfileImage = async (req, res) => {
+    const filePath = req.file.location;
+
+    if (!filePath) {
+      throw new Error({
+        status: 401,
+        response: {
+          message: "Invalid file path",
+        },
+      });
+    }
+    const profile = await imageUploader({
+      photoUrl: filePath,
+    });
+    res.status(200).send(profile);
+  };
+}
+
+router.post(
+  "/",
+  imageUploader.single("image"),
+  ProfileController.editProfileImage
+);
 
 module.exports = router;
