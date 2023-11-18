@@ -33,8 +33,8 @@
   line-height: 36px;
   color: #fcfcfc;
   letter-spacing: -2px;
-  top: 48px;
-  right: 60px;
+  top: 64px;
+  right: 68px;
 }
 
 .cardCover.front .cardTop .class_mark {
@@ -49,8 +49,8 @@
 
   z-index: 10;
   position: absolute;
-  top: 100px;
-  left: 48px;
+  top: 88px;
+  left: 52px;
 }
 .cardCover.front .cardTop .class_mark img {
   width: 72px;
@@ -315,7 +315,7 @@
   left: 0px;
   align-items: center;
   text-align: center;
-  padding-top: 90px;
+  padding-top: 72px;
 }
 
 .cardMiddle .title h2 {

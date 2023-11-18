@@ -67,6 +67,7 @@ const CardFront = function ({
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
   const framePreset = useSelector((state) => state.captureSlice.framePreset);
+  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
   useEffect(() => {
     if (userData && characterNameRef.current) {
@@ -88,7 +89,7 @@ const CardFront = function ({
       <div className="cardBody">
         <img
           id="cardFrame"
-          src={`/assets/images/card_frame/${framePreset}/3.png`}
+          src={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}
         />
 
         <div className="cardTop">

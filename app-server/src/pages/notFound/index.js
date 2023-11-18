@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router";
 import Button from "../../components/common/Button";
 import { Link } from "react-router-dom";
+import LootCard from "../../components/common/LootCard";
 
 function NotFound() {
   return (
     <>
       <div className="main-banner container">
         <div className="js-preloader">
-          <div className="preloader-inner">
+          {/* <div className="preloader-inner">
             <span className="dot"></span>
             <div className="dots">
               <span>
@@ -17,19 +18,27 @@ function NotFound() {
               <span></span>
               <span></span>
             </div>
-          </div>
+          </div> */}
         </div>
         <div>
-          <img src="/assets/images/404_card.png" style={{ width: "400px" }} />
+          {/* <img src="/assets/images/404_card.png" style={{ width: "400px" }} /> */}
+
+          <LootCard
+            img={"/assets/images/404_card.png"}
+            size={{ height: 400, width: 300 }}
+          />
         </div>
-        <div className="textCover">
+        <div
+          className="textCover"
+          style={{ padding: "10px", marginTop: "50px" }}
+        >
           <div className="text-danger title">404</div>
           <div>존재하지 않는 페이지 입니다.</div>
         </div>
+        <br />
         <Button
           href="/"
-          title="메인 페이지"
-          divStyle={{ padding: "10px", marginTop: "50px" }}
+          title="메인 페이지로 가기"
           style={{ width: "100px", padding: "5px 20px", fontSize: "20px" }}
         />
       </div>

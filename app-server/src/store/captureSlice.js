@@ -15,6 +15,8 @@ const captureSlice = createSlice({
     isShine: true,
     isShadow: true,
     framePreset: "1",
+    frameColor: "3",
+    cardBG: "1",
   },
   reducers: {
     setRarityPreset(state, action) {
@@ -53,6 +55,12 @@ const captureSlice = createSlice({
     setFramePreset(state, action) {
       state.framePreset = action.payload.newFramePreset;
     },
+    setFrameColor(state, action) {
+      state.frameColor = action.payload.newFrameColor;
+    },
+    cardBG(state, action) {
+      state.cardBG = action.payload.newcardBG;
+    },
   },
 });
 
@@ -70,4 +78,6 @@ export const {
   setIsShine,
   setIsShadow,
   setFramePreset,
+  setFrameColor,
+  cardBG,
 } = captureSlice.actions;
