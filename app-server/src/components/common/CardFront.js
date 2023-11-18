@@ -50,24 +50,7 @@ const getData = async function (url) {
     console.error(err);
   }
 };
-const cardFrameP = [
-  {
-    0: "/assets/images/card_frame/1/0.png",
-    1: "/assets/images/card_frame/1/1.png",
-    2: "/assets/images/card_frame/1/2.png",
-    3: "/assets/images/card_frame/1/3.png",
-    4: "/assets/images/card_frame/1/4.png",
-    5: "/assets/images/card_frame/1/5.png",
-  },
-  {
-    0: "/assets/images/card_frame/2/0.png",
-    1: "/assets/images/card_frame/2/1.png",
-    2: "/assets/images/card_frame/2/2.png",
-    3: "/assets/images/card_frame/2/3.png",
-    4: "/assets/images/card_frame/2/4.png",
-    5: "/assets/images/card_frame/2/5.png",
-  },
-];
+
 const CardFront = function ({
   characterNameRef,
   setIsLoading,
