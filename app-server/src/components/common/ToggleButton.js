@@ -13,7 +13,14 @@ import { useContext, useEffect } from "react";
 import AccordionContext from "react-bootstrap/AccordionContext";
 import { useAccordionButton } from "react-bootstrap/AccordionButton";
 
-const ToggleButton = function ({ title, body, titleRef, eventKey }) {
+const ToggleButton = function ({
+  title,
+  body,
+  titleRef,
+  eventKey,
+  isChanged,
+  setIsChanged,
+}) {
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const dispatch = useDispatch();
   var valueRef = true;
@@ -128,6 +135,7 @@ const ToggleButton = function ({ title, body, titleRef, eventKey }) {
         })
       );
     }
+    setIsChanged(!isChanged);
   };
 
   return (

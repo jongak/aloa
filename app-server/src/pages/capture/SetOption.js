@@ -172,11 +172,15 @@ const SetOption = function () {
                 titleRef={"isHolo"}
                 title={"홀로그램"}
                 body={"반짝이는 효과를 설정합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
               <ToggleButton
                 titleRef={"isGlow"}
                 title={"글로우"}
                 body={"움직임에 따라 반짝이는 효과를 설정합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
 
               <ColorToggle
@@ -190,6 +194,8 @@ const SetOption = function () {
                 titleRef={"isShine"}
                 title={"샤인"}
                 body={"빛나는 효과를 설정합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
               <ColorToggle
                 optionColors={shineOptionColors}
@@ -202,6 +208,8 @@ const SetOption = function () {
                 titleRef={"isShadow"}
                 title={"그림자"}
                 body={"그림자를 설정합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
 
               <ColorToggle
@@ -219,6 +227,8 @@ const SetOption = function () {
               eventKey="legendary"
               titleRef={"legendary"}
               title={"Legendary"}
+              isChanged={isChanged}
+              setIsChanged={setIsChanged}
             />
           </Accordion.Header>
         </Accordion.Item>
@@ -228,6 +238,8 @@ const SetOption = function () {
               eventKey="holographic"
               titleRef={"holographic"}
               title={"Holographic"}
+              isChanged={isChanged}
+              setIsChanged={setIsChanged}
             />
           </Accordion.Header>
         </Accordion.Item>
