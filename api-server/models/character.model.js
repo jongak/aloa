@@ -30,7 +30,7 @@ const CharacterModel = {
     const url = "characters/" + characterName + "/siblings";
     const headers = {
       accept: "application/json",
-      authorization: "bearer " + process.env.REACT_APP_LOSTARK_API_KEY,
+      authorization: `bearer ${process.env.REACT_APP_LOSTARK_API_KEY}`,
     };
 
     const res = await lostArk.get(url, { headers: headers });
