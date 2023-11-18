@@ -50,7 +50,24 @@ const getData = async function (url) {
     console.error(err);
   }
 };
-
+const cardFrameP = [
+  {
+    0: "/assets/images/card_frame/1/0.png",
+    1: "/assets/images/card_frame/1/1.png",
+    2: "/assets/images/card_frame/1/2.png",
+    3: "/assets/images/card_frame/1/3.png",
+    4: "/assets/images/card_frame/1/4.png",
+    5: "/assets/images/card_frame/1/5.png",
+  },
+  {
+    0: "/assets/images/card_frame/2/0.png",
+    1: "/assets/images/card_frame/2/1.png",
+    2: "/assets/images/card_frame/2/2.png",
+    3: "/assets/images/card_frame/2/3.png",
+    4: "/assets/images/card_frame/2/4.png",
+    5: "/assets/images/card_frame/2/5.png",
+  },
+];
 const CardFront = function ({
   characterNameRef,
   setIsLoading,
@@ -66,6 +83,7 @@ const CardFront = function ({
   const isName = useSelector((state) => state.captureSlice.isName);
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
+  const framePreset = useSelector((state) => state.captureSlice.framePreset);
 
   useEffect(() => {
     if (userData && characterNameRef.current) {
@@ -85,7 +103,7 @@ const CardFront = function ({
   return (
     <div className="cardCover front" ref={divRef} style={{ ...style }}>
       <div className="cardBody">
-        <img id="cardFrame" src={bgFrame} />
+        <img id="cardFrame" src={framePreset} />
 
         <div className="cardTop">
           <span className="servername">

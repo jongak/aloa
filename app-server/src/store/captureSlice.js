@@ -14,6 +14,7 @@ const captureSlice = createSlice({
     isGlow: true,
     isShine: true,
     isShadow: true,
+    framePreset: "1",
   },
   reducers: {
     setRarityPreset(state, action) {
@@ -49,6 +50,9 @@ const captureSlice = createSlice({
     setIsShadow(state, action) {
       state.isShadow = action.payload.newIsShadow;
     },
+    setFramePreset(state, action) {
+      state.framePreset = action.payload.newFramePreset;
+    },
   },
 });
 
@@ -65,4 +69,5 @@ export const {
   setIsGlow,
   setIsShine,
   setIsShadow,
+  setFramePreset,
 } = captureSlice.actions;

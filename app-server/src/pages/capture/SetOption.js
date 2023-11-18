@@ -6,7 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
-import { setRarityPreset } from "../../store/captureSlice";
+import { setFramePreset, setRarityPreset } from "../../store/captureSlice";
 
 const SetOption = function () {
   const {
@@ -23,6 +23,7 @@ const SetOption = function () {
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const framePreset = useSelector((state) => state.captureSlice.framePreset);
 
   if (!characterNameRef.current) {
     navigate("../");
@@ -34,6 +35,125 @@ const SetOption = function () {
   return (
     <div className="option-body set">
       <h3>03. 카드 효과</h3>
+
+      <Accordion
+        defaultActiveKey={["card_frame_select", "card_frame_color"]}
+        activeKey={framePreset}
+        alwaysOpen
+      >
+        <Accordion.Item eventKey="card_frame_select">
+          <Accordion.Header>카드 테두리</Accordion.Header>
+          <Accordion.Body>
+            <div
+              className="userRow"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginTop: "20px",
+                padding: "20px",
+              }}
+            >
+              dd
+              {[1, 2, 3, 4, 5].map((i) => {
+                return (
+                  <div
+                    key={`aa${i}`}
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      backgroundImage:
+                        "url('/assets/images/card_frame/1/0.png')",
+                      cursor: "pointer",
+                      marginRight: "10px",
+                    }}
+                    onClick={() => {
+                      console.log(i);
+                      dispatch(setFramePreset({ newFramePreset: i }));
+                    }}
+                  ></div>
+                );
+              })}
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="card_frame_color">
+          <Accordion.Header>카드 색상</Accordion.Header>
+          <Accordion.Body>
+            <div
+              className="userRow"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginTop: "20px",
+                padding: "20px",
+              }}
+            >
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/0.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/1.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/2.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/3.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/4.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+              <div
+                style={{
+                  width: "60px",
+                  height: "60px",
+                  backgroundImage:
+                    "url('/assets/images/card_frame/color/5.png')",
+                  cursor: "pointer",
+                  marginRight: "10px",
+                }}
+              ></div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
 
       <Accordion
         defaultActiveKey={["custom"]}
@@ -117,163 +237,6 @@ const SetOption = function () {
               title={"Holographic"}
             />
           </Accordion.Header>
-        </Accordion.Item>
-      </Accordion>
-
-      <Accordion defaultActiveKey={["card_frame_select"]} alwaysOpen>
-        <Accordion.Item eventKey="card_frame_select">
-          <Accordion.Header>카드 테두리</Accordion.Header>
-          <Accordion.Body>
-            <div
-              className="userRow"
-              style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                marginTop: "20px",
-                padding: "20px",
-              }}
-            >
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/1/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/2/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/3/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/4/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/5/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/6/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage: "url('/assets/images/card_frame/7/0.png')",
-                  cursor: "pointer",
-                }}
-              ></div>
-            </div>
-          </Accordion.Body>
-        </Accordion.Item>
-        <Accordion.Item eventKey="card_frame_color">
-          <Accordion.Header>카드 색상</Accordion.Header>
-          <Accordion.Body>
-            <div
-              className="userRow"
-              style={{
-                display: "inline-flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
-                marginTop: "20px",
-                padding: "20px",
-              }}
-            >
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/0.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/1.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/2.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/3.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/4.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-              <div
-                style={{
-                  width: "60px",
-                  height: "60px",
-                  backgroundImage:
-                    "url('/assets/images/card_frame/color/5.png')",
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-              ></div>
-            </div>
-          </Accordion.Body>
         </Accordion.Item>
       </Accordion>
 
