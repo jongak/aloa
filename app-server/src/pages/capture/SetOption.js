@@ -27,7 +27,6 @@ const SetOption = function () {
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const framePreset = useSelector((state) => state.captureSlice.framePreset);
 
   if (!characterNameRef.current) {
     navigate("../");
@@ -67,6 +66,7 @@ const SetOption = function () {
                     }}
                     onClick={() => {
                       dispatch(setFramePreset({ newFramePreset: i }));
+                      setIsChanged(!isChanged);
                     }}
                   ></div>
                 );
@@ -101,6 +101,7 @@ const SetOption = function () {
                     }}
                     onClick={() => {
                       dispatch(setFrameColor({ newFrameColor: i }));
+                      setIsChanged(!isChanged);
                     }}
                   ></div>
                 );

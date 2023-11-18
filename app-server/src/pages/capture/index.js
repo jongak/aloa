@@ -34,22 +34,12 @@ const capture = function () {
   const characterNameRef = useRef();
 
   const dispatch = useDispatch();
-  const frontItems = useSelector((state) => state.captureSlice.frontItems);
-  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
-  const isName = useSelector((state) => state.captureSlice.isName);
-  const isTitle = useSelector((state) => state.captureSlice.isTitle);
-  const isLevel = useSelector((state) => state.captureSlice.isLevel);
   const navigate = useNavigate();
   const isHolo = useSelector((state) => state.captureSlice.isHolo);
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
-  const framePreset = useSelector((state) => state.captureSlice.framePreset);
-  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
-  // const imgSrcRef = useRef(
-  //   "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
-  // );
   const imgSrcRef = useRef("/assets/images/card_example_f.png");
   const imgSrcRefB = useRef("/assets/images/card_example_b.png");
 
@@ -117,16 +107,7 @@ const capture = function () {
     if (isLoading) {
       fetchData();
     }
-  }, [
-    isLoading,
-    frontIcons,
-    frontItems,
-    isLevel,
-    isName,
-    isTitle,
-    framePreset,
-    frameColor,
-  ]);
+  }, [isLoading, isChanged]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
