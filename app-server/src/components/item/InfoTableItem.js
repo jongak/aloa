@@ -5,7 +5,7 @@ const InfoTableItem = function ({ element }) {
   return (
     <div className={`info_table_tr mycol-${size ? size : 4}`}>
       <div className="info_table_th ">{cardTitle}</div>
-      <div className="info_table_td">{cardValue ? cardValue : "-"}</div>
+      <div className="info_table_td">{cardValue ? cardValue : "-"} </div>
     </div>
   );
 };

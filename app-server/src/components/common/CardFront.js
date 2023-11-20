@@ -56,8 +56,7 @@ const CardFront = function ({
   setIsLoading,
   style,
   divRef,
-  bgImgSrc = "/assets/images/card_bg.png",
-  bgFrame = "/assets/images/card_frame/1/3.png",
+  framePreset = `/assets/images/card_frame/1/0.png`,
 }) {
   const imgRef = useRef();
   const userData = useSelector((state) => state.captureSlice.userData);
@@ -66,8 +65,6 @@ const CardFront = function ({
   const isName = useSelector((state) => state.captureSlice.isName);
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
-  const framePreset = useSelector((state) => state.captureSlice.framePreset);
-  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
   useEffect(() => {
     if (userData && characterNameRef.current) {
@@ -86,12 +83,8 @@ const CardFront = function ({
   }
   return (
     <div className="cardCover front" ref={divRef} style={{ ...style }}>
+      <img id="cardFrame" src={framePreset} />
       <div className="cardBody">
-        <img
-          id="cardFrame"
-          src={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}
-        />
-
         <div className="cardTop">
           <span className="servername">
             {userData["ArmoryProfile"]["ServerName"]}

@@ -39,11 +39,13 @@ const capture = function () {
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
+  const framePreset = useSelector((state) => state.captureSlice.framePreset);
+  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
-  const imgSrcRef = useRef("/assets/images/card_example_f.png");
-  const imgSrcRefB = useRef("/assets/images/card_example_b.png");
+  // const imgSrcRef = useRef("/assets/images/card_example_f.png");
+  // const imgSrcRefB = useRef("/assets/images/card_example_b.png");
 
-  const holoSrcRef = useRef("http://localhost:4400/api/images/wave.png");
+  // const holoSrcRef = useRef("http://localhost:4400/api/images/wave.png");
 
   const holographicOptionColors = useRef([
     "#0077be",
@@ -76,6 +78,7 @@ const capture = function () {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log("호출됨");
       if (!frontRef.current) return;
       const front = frontRef.current;
 
@@ -126,8 +129,8 @@ const capture = function () {
     holographicOptionColors,
     shineOptionColors,
     shadowOptionColors,
-    imgSrcRef,
-    holoSrcRef,
+    // imgSrcRef,
+    // holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
   const shareCardActions = { handleFrontDown, handleBackDown };
@@ -187,6 +190,7 @@ const capture = function () {
           <CardFront
             characterNameRef={characterNameRef}
             divRef={frontRef}
+            framePreset={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
@@ -206,49 +210,49 @@ const capture = function () {
           />
 
           <LootCard
-            img={imgSrcRef.current}
-            holo={holoSrcRef.current}
+            img={"/assets/images/card_example_f.png"}
+            // holo={holoSrcRef.current}
             canvasRef={frontCanvasRef}
-            holographicOptions={
-              isHolo
-                ? {
-                    glow: isGlow,
-                    color1: holographicOptionColors.current[0],
-                    color2: holographicOptionColors.current[1],
-                    color3: holographicOptionColors.current[2],
-                    color4: holographicOptionColors.current[3],
-                    color5: holographicOptionColors.current[4],
-                  }
-                : null
-            }
-            shineOptions={
-              isShine
-                ? {
-                    color1: shineOptionColors.current[0],
-                    color2: shineOptionColors.current[1],
-                  }
-                : null
-            }
-            shadowOptions={
-              isShadow
-                ? {
-                    default: {
-                      color1: shadowOptionColors.current[0],
-                      color2: shadowOptionColors.current[1],
-                    },
-                    hover: {
-                      color1: shadowOptionColors.current[2],
-                      color2: shadowOptionColors.current[3],
-                    },
-                  }
-                : null
-            }
+            // holographicOptions={
+            // isHolo
+            // ? {
+            //         glow: isGlow,
+            //         color1: holographicOptionColors.current[0],
+            //         color2: holographicOptionColors.current[1],
+            //         color3: holographicOptionColors.current[2],
+            //         color4: holographicOptionColors.current[3],
+            //         color5: holographicOptionColors.current[4],
+            //       }
+            //     : null
+            // }
+            // shineOptions={
+            //   isShine
+            //     ? {
+            //         color1: shineOptionColors.current[0],
+            //         color2: shineOptionColors.current[1],
+            //       }
+            //     : null
+            // }
+            // shadowOptions={
+            //   isShadow
+            //     ? {
+            //         default: {
+            //           color1: shadowOptionColors.current[0],
+            //           color2: shadowOptionColors.current[1],
+            //         },
+            //         hover: {
+            //           color1: shadowOptionColors.current[2],
+            //           color2: shadowOptionColors.current[3],
+            //         },
+            //       }
+            //     : null
+            // }
             size={{ height: 400, width: 300 }}
           />
 
           <LootCard
-            img={imgSrcRefB.current}
-            holo={holoSrcRef.current}
+            img={"/assets/images/card_example_b.png"}
+            // holo={holoSrcRef.current}
             canvasRef={backCanvasRef}
             holographicOptions={
               isHolo

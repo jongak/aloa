@@ -13,7 +13,8 @@ import {
 import { toast } from "react-toastify";
 
 const SelectValue = function () {
-  const { setPage, characterNameRef } = useOutletContext();
+  const { setPage, characterNameRef, setIsChanged, isChanged } =
+    useOutletContext();
 
   const userData = useSelector((state) => state.captureSlice.userData);
   const dispatch = useDispatch();
@@ -315,16 +316,22 @@ const SelectValue = function () {
                 titleRef={"isName"}
                 title={"닉네임 표시"}
                 body={"닉네임을 숨깁니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
               <ToggleButton
                 titleRef={"isTitle"}
                 title={"칭호 표시"}
                 body={"칭호를 숨깁니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
               <ToggleButton
                 titleRef={"isLevel"}
                 title={"레벨 근사"}
                 body={"아이템 레벨을 근사값으로 표현합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
               />
             </div>
           </Accordion.Body>
