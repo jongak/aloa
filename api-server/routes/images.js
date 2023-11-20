@@ -28,6 +28,7 @@ const awsUpload = multer({
     bucket: "aloa-bucket", // 객체를 업로드할 버킷 이름
     acl: "public-read", // Access control for the file
     key: function (req, file, cb) {
+      console.log(file);
       // 객체의 키로 고유한 식별자 이기 때문에 겹치면 안됨
       cb(
         null,

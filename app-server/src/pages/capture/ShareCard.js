@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import UserItem from "../../components/item/UserItem";
 
 const ShareCard = function () {
-  const { setPage, handleFrontDown, handleBackDown, characterNameRef } =
+  const { setPage, handleFrontDown, handleBackDown, handleServer } =
     useOutletContext();
   const navigate = useNavigate();
 
@@ -57,6 +57,15 @@ const ShareCard = function () {
           ></input>
           <Button title={"클립보드에 복사"} onClick={copyTextUrl} />
         </div>
+
+        <Button
+          title={
+            <>
+              <i className="fa fa-download" /> 서버에 저장
+            </>
+          }
+          onClick={handleServer}
+        />
       </div>
       <Button href="../set" title={"이전"} />
       <Button isClickable={false} title={"다음"} />
