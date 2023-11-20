@@ -2,6 +2,7 @@
   margin: 100px;
   width: 600px;
   height: 800px;
+  position: relative;
 }
 
 .cardCover .cardBody {
@@ -10,9 +11,8 @@
   display: inline-block;
   width: 600px;
   height: 800px;
-  position: relative;
 }
-.cardCover .cardBody #cardFrame {
+.cardCover #cardFrame {
   height: 100%;
   position: absolute;
   right: 0;

@@ -1,12 +1,12 @@
 import html2canvas from "html2canvas";
-import { useEffect, useMemo, useRef, useState } from "react";
-import LootCard from "../../components/common/LootCard";
-import CardFront from "../../components/common/CardFront";
-import CardBack from "../../components/common/CardBack";
-import { Outlet } from "react-router";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../../store/captureSlice";
+// import { useEffect, useMemo, useRef, useState } from "react";
+// import LootCard from "../../components/common/LootCard";
+// import CardFront from "../../components/common/CardFront";
+// import CardBack from "../../components/common/CardBack";
+// import { Outlet } from "react-router";
+// import axios from "axios";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
 import Button from "../../components/common/Button";
 
@@ -50,9 +50,9 @@ const GetCard = function () {
   };
   const copyLinkRef = useRef();
 
-  const copyTextUrl = function () {
-    copyLinkRef.current.focus();
-    copyLinkRef.current.select();
+//   const copyTextUrl = function () {
+//     copyLinkRef.current.focus();
+//     copyLinkRef.current.select();
 
     navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
       alert("링크를 복사했습니다.");
@@ -62,6 +62,7 @@ const GetCard = function () {
   const copy = "<i className='fas fa-copy'></i>";
 
   return (
+    <>
     <div className="main-banner container">
       <div className="row justify-content-center">
         <div className="option-area col-lg-10 col-md-6">
@@ -150,6 +151,7 @@ const GetCard = function () {
         </div>
       </div>
     </div>
+    </>
   );
 };
 export default GetCard;
