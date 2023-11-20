@@ -68,7 +68,9 @@ const GetCard = function () {
           <div className="option-area col-lg-10 col-md-6">
             <div className="progress">
               <div className="inner">
-                <h3 style={{ color: "var(--my--dark-heading)" }}>내 카드</h3>
+                <h3 style={{ color: "var(--my--dark-heading)" }}>
+                  *** 님의 카드
+                </h3>
               </div>
             </div>
 
@@ -109,6 +111,7 @@ const GetCard = function () {
               </div>
               <div>
                 <Button
+                  btnClass={"ripple"}
                   title={"카드 전체"}
                   onClick={cardDown}
                   style={{
@@ -118,6 +121,7 @@ const GetCard = function () {
                   }}
                 />
                 <Button
+                  btnClass={"ripple"}
                   title={"앞면"}
                   onClick={handleFrontDown}
                   style={{
@@ -127,6 +131,7 @@ const GetCard = function () {
                   }}
                 />
                 <Button
+                  btnClass={"ripple"}
                   title={"뒷면"}
                   onClick={handleBackDown}
                   style={{ fontSize: "20px", padding: "12px 50px" }}
@@ -145,7 +150,11 @@ const GetCard = function () {
                     borderRadius: "8px 0 0 8px",
                   }}
                 />
-                <Button title={"복사"} onClick={copyTextUrl} />
+                <Button
+                  btnClass={"ripple"}
+                  title={"복사"}
+                  onClick={copyTextUrl}
+                />
               </div>
             </div>
           </div>

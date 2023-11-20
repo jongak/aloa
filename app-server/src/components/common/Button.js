@@ -17,6 +17,7 @@ const Button = function ({
   style, //Link css
   onClick,
   title, //내부들어갈것
+  btnClass,
 }) {
   // 버튼 스타일을 결정하는 클래스 이름
   var buttonClassName = isRev ? "my_button_rev" : "my_button";
@@ -30,6 +31,7 @@ const Button = function ({
   return (
     <div className={buttonClassName} value={value} style={divStyle}>
       <Link
+        className={btnClass}
         to={href}
         style={style}
         data-value={value}

@@ -43,7 +43,7 @@ function Header({ setThema, thema }) {
                   />
                 </Link>
                 <ul className="nav">
-                  <li>
+                  <li className="ripple">
                     <Link to="/">Home</Link>
                   </li>
                   {/* <li>
@@ -52,60 +52,19 @@ function Header({ setThema, thema }) {
                 <li>
                   <Link to="/product-details">Product Details</Link>
                 </li> */}
-                  <li>
+                  <li className="ripple">
                     <Link to="/capture">capture</Link>
                   </li>
-                  <li>
+                  <li className="ripple">
                     <Link to="/cards">Card</Link>
                   </li>
-                  <li>
+                  <li className="ripple">
                     <Link to="/character/송도나봉선">Contact Us</Link>
                   </li>
-                  <li>
+                  <li className="ripple">
                     <Link to="#">Sign In</Link>
                   </li>
                 </ul>
-                {/* 모바일 메뉴창 */}
-                {/* <div>
-                  <div className={isMenu ? "menu" : "menu isMenu"}>
-                    {/* <div className="menu_bg" onClick={closeMenu}></div>
-                    <ul className="nav_mobile">
-                      <li id="mobile_thema_color">
-                        <ThemaToggle
-                          setValueRef={setThema}
-                          options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                          colorToggle={true}
-                          valueRef={thema}
-                        />
-                      </li>
-                      <li>
-                        <Link to="/" onClick={closeMenu}>
-                          Home
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/capture" onClick={closeMenu}>
-                          capture
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/make" onClick={closeMenu}>
-                          만들기
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/character/송도나봉선" onClick={closeMenu}>
-                          Contact Us
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#" onClick={closeMenu}>
-                          Sign In
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div> */}
                 <Link className="menu-trigger" onClick={menuToggle}>
                   <span>Menu</span>
                 </Link>
@@ -151,27 +110,27 @@ function Header({ setThema, thema }) {
                 valueRef={thema}
               />
             </li>
-            <li>
+            <li className="ripple">
               <Link to="/" onClick={closeMenu}>
                 Home
               </Link>
             </li>
-            <li>
+            <li className="ripple">
               <Link to="/capture" onClick={closeMenu}>
                 capture
               </Link>
             </li>
-            <li>
-              <Link to="/make" onClick={closeMenu}>
-                만들기
+            <li className="ripple">
+              <Link to="/cards" onClick={closeMenu}>
+                card
               </Link>
             </li>
-            <li>
+            <li className="ripple">
               <Link to="/character/송도나봉선" onClick={closeMenu}>
                 Contact Us
               </Link>
             </li>
-            <li>
+            <li className="ripple">
               <Link to="#" onClick={closeMenu}>
                 Sign In
               </Link>
