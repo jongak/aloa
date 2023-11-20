@@ -23,134 +23,29 @@ const getDataCard = async function (id) {
 };
 
 const GetCard = function () {
-  const frontRef = useRef(null);
-  const backRef = useRef(null);
-  const [page, setPage] = useState("share");
-  const [frontCanvasRef, setFrontCanvasRef] = useState("우레");
-  const [backCanvasRef, setBackCanvasRef] = useState("우레");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isChanged, setIsChanged] = useState(true);
-  const [isCardReady, setIsCardReady] = useState(false);
-  const rarityPresetRef = useRef("custom");
-  const characterNameRef = useRef("우레");
-  const holoRef = useRef(true);
-  const glowRef = useRef(true);
-  const shineRef = useRef(true);
-  const shadowRef = useRef(true);
-
-  const dispatch = useDispatch();
-  const front = useSelector((state) => state.captureSlice.userData);
-  const userData = useSelector((state) => state.captureSlice.userData);
-  const frontItems = useSelector((state) => state.captureSlice.frontItems);
-  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
-  const imgSrcRef = useRef(
-    "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png"
-  );
-  const holoSrcRef = useRef("http://localhost:4500/api/images/wave.png");
-
-  const holographicOptionColors = useRef([
-    "#0077be",
-    "#0087b3",
-    "#0097a8",
-    "#00a799",
-    "#00b78e",
-  ]);
-  const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
-  const shadowOptionColors = useRef([
-    "#6dd5ed",
-    "#2193b0",
-    "#6dd5ed",
-    "#2193b0",
-  ]);
-  useEffect(() => {
-    if (characterNameRef.current) {
-      getDataCard(characterNameRef.current).then((res) => {
-        dispatch(setUserData({ newUserData: res }));
-        console.log(res, " ");
-      });
-    }
-  }, [characterNameRef.current]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      if (!frontRef.current) return;
-      const front = frontRef.current;
-
-      // 캔버스 생성 코드
-      const frontCanvas = await html2canvas(front, {
-        scale: 2,
-        allowTaint: true,
-        useCORS: true,
-      });
-      frontCanvas.style.setProperty("width", "400px");
-      frontCanvas.style.setProperty("height", "500px");
-
-      if (!backRef.current) return;
-      const back = backRef.current;
-      // 캔버스 생성 코드
-      const backCanvas = await html2canvas(back, {
-        scale: 2,
-        allowTaint: true,
-        useCORS: true,
-      });
-      backCanvas.style.setProperty("width", "400px");
-      backCanvas.style.setProperty("height", "500px");
-
-      setFrontCanvasRef(frontCanvas);
-      setBackCanvasRef(backCanvas);
-      // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
-      setIsCardReady(true); // 카드 생성이 완료됨
-
-      // canvas.toBlob((blob) => {
-      //   if (blob !== null) {
-      //     saveAs(blob, "result.png");
-      //   }
-      // });
-
-      // frontCanvas.toBlob(function (blob) {
-      //   saveAs(blob, "result.png");
-      // });
-    };
-    if (isLoading) {
-      fetchData();
-    }
-  }, [isLoading, frontIcons, frontItems]);
-
-  const setOptionStates = {
-    rarityPresetRef,
-    holoRef,
-    glowRef,
-    shineRef,
-    shadowRef,
-    isChanged,
-    holographicOptionColors,
-    shineOptionColors,
-    shadowOptionColors,
-    imgSrcRef,
-    holoSrcRef,
-  };
-  const setOptionActions = { setIsChanged };
+  const frontRef = useRef("");
+  const backRef = useRef("");
+  const fullRef = useRef("");
 
   const handleFrontDown = async () => {
-    frontCanvasRef.toBlob(function (blob) {
+    const div = frontRef.current;
+    const frontCard = await html2canvas(div, { scale: 2 });
+    frontCard.toBlob(function (blob) {
       saveAs(blob, "result.png");
     });
   };
   const handleBackDown = async () => {
-    backCanvasRef.toBlob(function (blob) {
-      if (blob !== null) {
-        saveAs(blob, "result.png");
-      }
+    const div = backRef.current;
+    const backCard = await html2canvas(div, { scale: 2 });
+    backCard.toBlob(function (blob) {
+      saveAs(blob, "result.png");
     });
   };
-  const fullcard = useRef();
   const cardDown = async () => {
-    const div = fullcard.current;
-    const card = await html2canvas(div, { scale: 2 });
-    card.toBlob(function (blob) {
-      if (blob !== null) {
-        saveAs(blob, "result.png");
-      }
+    const div = fullRef.current;
+    const fullCard = await html2canvas(div, { scale: 2 });
+    fullCard.toBlob(function (blob) {
+      saveAs(blob, "result.png");
     });
   };
   const copyLinkRef = useRef();
@@ -164,155 +59,93 @@ const GetCard = function () {
     });
   };
 
+  const copy = "<i className='fas fa-copy'></i>";
+
   return (
     <div className="main-banner container">
       <div className="row justify-content-center">
         <div className="option-area col-lg-10 col-md-6">
           <div className="progress">
             <div className="inner">
-              <div className={`dot-wrapper ${page == "find" ? "active" : ""}`}>
-                <div className="dot"></div>
-                <span className="step-text">캐릭터 고르기</span>
+              <h3 style={{ color: "var(--my--dark-heading)" }}>내 카드</h3>
+            </div>
+          </div>
+
+          <div
+            className="row justify-content-center"
+            style={{ padding: "40px 0" }}
+          >
+            <div
+              className="card-area col-lg-10 col-md-8"
+              ref={fullRef}
+              style={{ display: "flex" }}
+            >
+              <div ref={frontRef}>
+                <img src="/assets/images/card_front_sample.png" />
               </div>
-              <div
-                className={`dot-wrapper ${page == "select" ? "active" : ""}`}
+              <div ref={backRef}>
+                <img src="/assets/images/card_back_sample.png" />
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="progress"
+            style={{
+              borderRadius: "0",
+              height: "200px",
+              marginBottom: "4px",
+            }}
+          >
+            <div className="inner" style={{ marginBottom: "12px" }}>
+              <h4
+                style={{
+                  color: "var(--my--dark-heading)",
+                }}
               >
-                <div className="dot"></div>
-                <span className="step-text">내용 정하기</span>
-              </div>
-              <div className={`dot-wrapper ${page == "set" ? "active" : ""}`}>
-                <div className="dot"></div>
-                <span className="step-text">카드 효과</span>
-              </div>
-              <div className={`dot-wrapper ${page == "share" ? "active" : ""}`}>
-                <div className="dot"></div>
-                <span className="step-text">공유 하기</span>
-              </div>
-              <div className="bar"></div>
+                카드 저장하기
+              </h4>
             </div>
-          </div>
-
-          <div className="card-area col-lg-5 col-md-6">
-            {/* {cardImgMemo} */}
-            <CardBack
-              characterNameRef={characterNameRef}
-              divRef={backRef}
-              setIsLoading={setIsLoading}
-              style={{
-                position: "absolute",
-                left: "-1000px",
-                marginLeft: "-100px",
-              }}
-            />
-            <CardFront
-              characterNameRef={characterNameRef}
-              divRef={frontRef}
-              setIsLoading={setIsLoading}
-              style={{
-                position: "absolute",
-                left: "-1000px",
-                marginLeft: "-100px",
-              }}
-            />
-            <div ref={fullcard} style={{ display: "flex", width: "1200px" }}>
-              <LootCard
-                rarityPreset={rarityPresetRef.current}
-                img={imgSrcRef.current}
-                holo={holoSrcRef.current}
-                canvasRef={frontCanvasRef}
-                holographicOptions={
-                  holoRef.current
-                    ? {
-                        glow: glowRef.current,
-                        color1: holographicOptionColors.current[0],
-                        color2: holographicOptionColors.current[1],
-                        color3: holographicOptionColors.current[2],
-                        color4: holographicOptionColors.current[3],
-                        color5: holographicOptionColors.current[4],
-                      }
-                    : null
-                }
-                shineOptions={
-                  shineRef.current
-                    ? {
-                        color1: shineOptionColors.current[0],
-                        color2: shineOptionColors.current[1],
-                      }
-                    : null
-                }
-                shadowOptions={
-                  shadowRef.current
-                    ? {
-                        default: {
-                          color1: shadowOptionColors.current[0],
-                          color2: shadowOptionColors.current[1],
-                        },
-                        hover: {
-                          color1: shadowOptionColors.current[2],
-                          color2: shadowOptionColors.current[3],
-                        },
-                      }
-                    : null
-                }
-                size={{ height: 500, width: 400 }}
+            <div>
+              <Button
+                title={"카드 전체"}
+                onClick={cardDown}
+                style={{
+                  fontSize: "20px",
+                  padding: "12px 50px",
+                  marginRight: "8px",
+                }}
               />
-
-              <LootCard
-                rarityPreset={rarityPresetRef.current}
-                img={imgSrcRef.current}
-                holo={holoSrcRef.current}
-                canvasRef={backCanvasRef}
-                holographicOptions={
-                  holoRef.current
-                    ? {
-                        glow: glowRef.current,
-                        color1: holographicOptionColors.current[0],
-                        color2: holographicOptionColors.current[1],
-                        color3: holographicOptionColors.current[2],
-                        color4: holographicOptionColors.current[3],
-                        color5: holographicOptionColors.current[4],
-                      }
-                    : null
-                }
-                shineOptions={
-                  shineRef.current
-                    ? {
-                        color1: shineOptionColors.current[0],
-                        color2: shineOptionColors.current[1],
-                      }
-                    : null
-                }
-                shadowOptions={
-                  shadowRef.current
-                    ? {
-                        default: {
-                          color1: shadowOptionColors.current[0],
-                          color2: shadowOptionColors.current[1],
-                        },
-                        hover: {
-                          color1: shadowOptionColors.current[2],
-                          color2: shadowOptionColors.current[3],
-                        },
-                      }
-                    : null
-                }
-                size={{ height: 500, width: 400 }}
+              <Button
+                title={"앞면"}
+                onClick={handleFrontDown}
+                style={{
+                  fontSize: "20px",
+                  padding: "12px 50px",
+                  marginRight: "8px",
+                }}
+              />
+              <Button
+                title={"뒷면"}
+                onClick={handleBackDown}
+                style={{ fontSize: "20px", padding: "12px 50px" }}
               />
             </div>
           </div>
-
-          <div>
-            <Button title={"카드"} onClick={cardDown} />
-            <Button title={"앞면"} onClick={handleFrontDown} />
-            <Button title={"뒷면"} onClick={handleBackDown} />
-          </div>
-          <div>
-            <input
-              type="text"
-              ref={copyLinkRef}
-              value={"http://localhost:3000/cards"}
-            />
-            <Button title={"복사"} onClick={copyTextUrl} />
+          <div className="progress" style={{ borderRadius: "0 0 12px 12px" }}>
+            <div>
+              <input
+                type="text"
+                ref={copyLinkRef}
+                value={"http://localhost:3000/cards"}
+                style={{
+                  padding: "4px 20px",
+                  width: "300px",
+                  borderRadius: "8px 0 0 8px",
+                }}
+              />
+              <Button title={"복사"} onClick={copyTextUrl} />
+            </div>
           </div>
         </div>
       </div>
