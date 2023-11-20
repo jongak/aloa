@@ -4,6 +4,7 @@ var path = require("path");
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const { S3 } = require("@aws-sdk/client-s3");
+const imageUploader = require("./imageUploader");
 
 router.get("/:imageSrc", function (req, res, next) {
   try {
@@ -40,8 +41,21 @@ const awsUpload = multer({
   }),
 });
 
-router.post("/", awsUpload.single("image"), (req, res) => {
-  res.send("hi");
+// router.post("/", awsUpload.single("image"), (req, res) => {
+//   res.send("hi");
+// });
+
+router.put("/upload", imageUploader.single("file"), async (req, res) => {
+  try {
+    // 이미지가 성공적으로 업로드되면 이곳에서 파일 URL을 얻을 수 있습니다.
+    const fileUrl = req.file.location; // "location"은 S3에 업로드된 파일의 URL을 가리킵니다.
+
+    // 업로드된 파일의 URL을 클라이언트에 응답합니다.
+    res.json({ fileUrl });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 module.exports = router;
