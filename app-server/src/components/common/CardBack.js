@@ -51,11 +51,7 @@ const CardBack = function ({
       >
         <div className="cardTop">
           <img id="back_logo" src="/assets/images/logo_back3.png" />
-          <h3>
-            {userData && userData["ArmoryProfile"]["CharacterName"]
-              ? userData["ArmoryProfile"]["CharacterName"]
-              : "열두자까지가능한닉네임임"}
-          </h3>
+          <h3>{userData["ArmoryProfile"]["CharacterName"]}</h3>
           <span className="servername">
             {userData["ArmoryProfile"]["ServerName"]}
           </span>

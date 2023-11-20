@@ -39,8 +39,8 @@ const capture = function () {
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
-  const framePreset = useSelector((state) => state.captureSlice.framePreset);
-  const frameColor = useSelector((state) => state.captureSlice.frameColor);
+  const frontItems = useSelector((state) => state.captureSlice.frontItems);
+  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
 
   // const imgSrcRef = useRef("/assets/images/card_example_f.png");
   // const imgSrcRefB = useRef("/assets/images/card_example_b.png");
@@ -108,9 +108,9 @@ const capture = function () {
       // setIsCardReady(true); // 카드 생성이 완료됨
     };
     if (isLoading) {
-      fetchData();
+      setTimeout(fetchData, 50);
     }
-  }, [isLoading, isChanged]);
+  }, [isLoading, isChanged, frontItems, frontIcons]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
@@ -190,7 +190,6 @@ const capture = function () {
           <CardFront
             characterNameRef={characterNameRef}
             divRef={frontRef}
-            framePreset={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
