@@ -51,13 +51,7 @@ const getData = async function (url) {
   }
 };
 
-const CardFront = function ({
-  characterNameRef,
-  setIsLoading,
-  style,
-  divRef,
-  framePreset = `/assets/images/card_frame/1/0.png`,
-}) {
+const CardFront = function ({ characterNameRef, setIsLoading, style, divRef }) {
   const imgRef = useRef();
   const userData = useSelector((state) => state.captureSlice.userData);
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
@@ -65,6 +59,8 @@ const CardFront = function ({
   const isName = useSelector((state) => state.captureSlice.isName);
   const isTitle = useSelector((state) => state.captureSlice.isTitle);
   const isLevel = useSelector((state) => state.captureSlice.isLevel);
+  const framePreset = useSelector((state) => state.captureSlice.framePreset);
+  const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
   useEffect(() => {
     if (userData && characterNameRef.current) {
@@ -83,7 +79,10 @@ const CardFront = function ({
   }
   return (
     <div className="cardCover front" ref={divRef} style={{ ...style }}>
-      <img id="cardFrame" src={framePreset} />
+      <img
+        id="cardFrame"
+        src={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}
+      />
       <div className="cardBody">
         <div className="cardTop">
           <span className="servername">
