@@ -124,6 +124,43 @@ const capture = function () {
       }
     });
   };
+
+  const handleServer = () => {
+    frontCanvasRef.toBlob(async function (blob) {
+      try {
+        var formData = new FormData();
+        formData.append("image", blob);
+        const res = await axios.post("/images", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        if (res.data.ok) {
+          return res.data.data;
+        }
+        return;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+    backCanvasRef.toBlob(async function (blob) {
+      try {
+        var formData = new FormData();
+        formData.append("image", blob);
+        const res = await axios.post("/images", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        if (res.data.ok) {
+          return res.data.data;
+        }
+        return;
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  };
   const setOptionStates = {
     isChanged,
     holographicOptionColors,
@@ -133,7 +170,7 @@ const capture = function () {
     // holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
-  const shareCardActions = { handleFrontDown, handleBackDown };
+  const shareCardActions = { handleFrontDown, handleBackDown, handleServer };
 
   return (
     <div className="main-banner container">

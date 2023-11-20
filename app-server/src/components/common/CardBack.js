@@ -11,7 +11,8 @@ const CardBack = function ({
   bgFrame = "/assets/images/card_frame.png",
 }) {
   const userData = useSelector((state) => state.captureSlice.userData);
-
+  const isName = useSelector((state) => state.captureSlice.isName);
+  const isLevel = useSelector((state) => state.captureSlice.isLevel);
   const cardGrade = {
     일반: 1,
     고급: 2,
@@ -51,7 +52,7 @@ const CardBack = function ({
       >
         <div className="cardTop">
           <img id="back_logo" src="/assets/images/logo_back3.png" />
-          <h3>{userData["ArmoryProfile"]["CharacterName"]}</h3>
+          <h3>{isName ? userData["ArmoryProfile"]["CharacterName"] : "-"}</h3>
           <span className="servername">
             {userData["ArmoryProfile"]["ServerName"]}
           </span>
@@ -188,14 +189,18 @@ const CardBack = function ({
                     userData["ArmoryEquipment"]["장갑"],
                   ].map((item) => (
                     <li key={item.Name + Math.floor(Math.random() * 10000)}>
-                      <span
-                        className="equipments_badge"
-                        style={{
-                          backgroundColor: `${equipGrade[item["Grade"]]}`,
-                        }}
-                      >
-                        +{item["ItemGrade"]}
-                      </span>
+                      {isLevel ? (
+                        ""
+                      ) : (
+                        <span
+                          className="equipments_badge"
+                          style={{
+                            backgroundColor: `${equipGrade[item["Grade"]]}`,
+                          }}
+                        >
+                          +{item["ItemGrade"]}
+                        </span>
+                      )}
                       <img src={item["Icon"]} />
                       <div>
                         <div
