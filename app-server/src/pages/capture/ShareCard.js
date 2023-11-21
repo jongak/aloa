@@ -2,7 +2,7 @@ import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef } from "react";
 import UserItem from "../../components/item/UserItem";
-
+import { toast, ToastContainer } from "react-toastify";
 const ShareCard = function () {
   const {
     setPage,
@@ -26,7 +26,7 @@ const ShareCard = function () {
     copyLinkRef.current.select();
 
     navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-      alert("링크를 복사했습니다.");
+      toast.success(`링크를 복사했습니다.`);
     });
   };
 

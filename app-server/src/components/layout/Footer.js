@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 function Footer() {
-  const handleClick = () => {
-    window.location.href = `mailto:${process.env.MY_EMAIL_ADDRESS}`;
+  const copyTextUrl = function () {
+    navigator.clipboard
+      .writeText(process.env.REACT_APP_MY_EMAIL_ADDRESS)
+      .then(() => {
+        toast.success(`이메일 주소를 복사했습니다.`);
+      });
   };
   return (
     <footer>
@@ -10,7 +15,7 @@ function Footer() {
         <div className="col-lg-12">
           <p>
             Copyright © 2023 ALOATeams &nbsp;&nbsp;{" "}
-            <Link onClick={handleClick}>문의하기</Link>
+            <Link onClick={copyTextUrl}>문의하기</Link>
           </p>
         </div>
       </div>
