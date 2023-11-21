@@ -65,7 +65,7 @@ const GetCard = function () {
     <>
       <div className="main-banner container">
         <div className="row justify-content-center">
-          <div className="option-area col-lg-10 col-md-6">
+          <div className="option-area col-lg-10 col-md-10">
             <div className="progress">
               <div className="inner">
                 <h3 style={{ color: "var(--my--dark-heading)" }}>
@@ -79,7 +79,7 @@ const GetCard = function () {
               style={{ padding: "40px 0" }}
             >
               <div
-                className="card-area col-lg-10 col-md-8"
+                className="card-area col-lg-10 col-md-11"
                 ref={fullRef}
                 style={{ display: "flex" }}
               >
@@ -87,7 +87,10 @@ const GetCard = function () {
                   <img src="/assets/images/card_front_sample.png" />
                 </div>
                 <div ref={backRef}>
-                  <img src="/assets/images/card_back_sample.png" />
+                  <img
+                    src="/assets/images/card_back_sample.png"
+                    style={{ marginLeft: "12px" }}
+                  />
                 </div>
               </div>
             </div>
@@ -117,7 +120,6 @@ const GetCard = function () {
                   style={{
                     fontSize: "20px",
                     padding: "12px 50px",
-                    marginRight: "8px",
                   }}
                 />
                 <Button
@@ -127,7 +129,6 @@ const GetCard = function () {
                   style={{
                     fontSize: "20px",
                     padding: "12px 50px",
-                    marginRight: "8px",
                   }}
                 />
                 <Button
@@ -152,7 +153,7 @@ const GetCard = function () {
                 />
                 <Button
                   btnClass={"ripple"}
-                  title={"복사"}
+                  title={"현재 페이지 url 복사"}
                   onClick={copyTextUrl}
                 />
               </div>
