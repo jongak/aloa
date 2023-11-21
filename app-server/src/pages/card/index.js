@@ -96,65 +96,18 @@ const GetCard = function () {
               </div>
             </div>
 
-            {/* <div
-              className="progress"
-              style={{
-                borderRadius: "0",
-                height: "200px",
-                marginBottom: "4px",
-              }}
-            >
-              <div className="inner" style={{ marginBottom: "12px" }}>
-                <h4
-                  style={{
-                    color: "var(--my--dark-heading)",
-                  }}
-                >
-                  카드 저장하기
-                </h4>
-              </div>
-              <div>
-                <ul style={{ display: "inline-flex" }}>
-                  <li>
-                    <Button
-                      title={"카드 전체"}
-                      onClick={cardDown}
-                      style={{
-                        fontSize: "20px",
-                        padding: "10px 50px",
-                      }}
-                    />
-                  </li>
-                  <li style={{ margin: "0 20px" }}>
-                    <Button
-                      title={"앞면"}
-                      onClick={handleFrontDown}
-                      style={{
-                        fontSize: "20px",
-                        padding: "10px 50px",
-                      }}
-                    />
-                  </li>
-                  <li>
-                    <Button
-                      title={"뒷면"}
-                      onClick={handleBackDown}
-                      style={{ fontSize: "20px", padding: "10px 50px" }}
-                    />
-                  </li>
-                </ul>
-              </div>
-            </div> */}
             <div className="option-body share">
-              <div className="userRow">
-                <div className="inner" style={{ marginBottom: "12px" }}>
-                  <h4
-                    style={{
-                      color: "var(--my--dark-heading)",
-                    }}
-                  >
-                    카드 간직하기
-                  </h4>
+              <div className="cardRow">
+                <div className="progress">
+                  <div className="inner" style={{ marginBottom: "12px" }}>
+                    <h4
+                      style={{
+                        color: "var(--my--dark-heading)",
+                      }}
+                    >
+                      <i className="fa fa-download"></i> 카드 저장하기
+                    </h4>
+                  </div>
                 </div>
                 <div className="buttonCover">
                   <Button
@@ -185,7 +138,19 @@ const GetCard = function () {
             </div>
 
             <div className="option-body share">
-              <div className="userRow">
+              <div className="cardRow">
+                <div className="progress">
+                  <div className="inner" style={{ marginBottom: "12px" }}>
+                    <h4
+                      style={{
+                        color: "var(--my--dark-heading)",
+                      }}
+                    >
+                      <i className="fa fa-share-nodes"></i> 카드 공유하기
+                    </h4>
+                  </div>
+                </div>
+
                 <div className="find-input">
                   <input
                     className="form-control"
