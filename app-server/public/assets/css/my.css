@@ -1244,7 +1244,40 @@ capture
     text-align: center;
   }
 }
+/* 
+---------------------------------------------
+getCard
+--------------------------------------------- 
+*/
 
+.option-area .cardRow {
+  background-color: var(--my--button--background);
+  text-align: center;
+  margin: 2rem 1rem;
+  box-shadow: 3px 4px 20px 2px var(--my--shadow);
+  /* padding-top: 60px; */
+  padding-bottom: 20px;
+  position: relative;
+  width: auto;
+}
+.option-body.share .cardRow .buttonCover {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.cardRow .progress {
+  border-radius: 0;
+}
+.cardRow .inner {
+  justify-content: start;
+  padding-left: 64px;
+}
+.option-body.share .cardRow .find-input {
+  margin: 0;
+}
+.option-body.share .cardRow .form-control {
+  width: 284px;
+}
 /* 
 ---------------------------------------------
 card-area
@@ -1252,7 +1285,7 @@ card-area
 */
 
 .card-area {
-  /* position: sticky; */
+  position: relative;
   margin-left: -20px;
 }
 @media (max-width: 768px) {
@@ -1260,6 +1293,14 @@ card-area
     /* position: sticky; */
     margin-left: 0px;
   }
+}
+.card-area section {
+  position: sticky;
+  top: 10%;
+}
+.card-area section:nth-child(2) {
+  position: sticky;
+  top: 48%;
 }
 
 /* 

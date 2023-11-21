@@ -80,15 +80,17 @@ const GetCard = function () {
             </div>
 
             <div className="option-body share">
-              <div className="userRow">
-                <div className="inner" style={{ marginBottom: "12px" }}>
-                  <h4
-                    style={{
-                      color: "var(--my--dark-heading)",
-                    }}
-                  >
-                    카드 간직하기
-                  </h4>
+              <div className="cardRow">
+                <div className="progress">
+                  <div className="inner" style={{ marginBottom: "12px" }}>
+                    <h4
+                      style={{
+                        color: "var(--my--dark-heading)",
+                      }}
+                    >
+                      <i className="fa fa-download"></i> 카드 저장하기
+                    </h4>
+                  </div>
                 </div>
                 <div className="buttonCover">
                   <Button
@@ -119,7 +121,19 @@ const GetCard = function () {
             </div>
 
             <div className="option-body share">
-              <div className="userRow">
+              <div className="cardRow">
+                <div className="progress">
+                  <div className="inner" style={{ marginBottom: "12px" }}>
+                    <h4
+                      style={{
+                        color: "var(--my--dark-heading)",
+                      }}
+                    >
+                      <i className="fa fa-share-nodes"></i> 카드 공유하기
+                    </h4>
+                  </div>
+                </div>
+
                 <div className="find-input">
                   <input
                     className="form-control"

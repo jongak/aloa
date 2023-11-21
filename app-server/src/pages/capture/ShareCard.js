@@ -67,7 +67,7 @@ const ShareCard = function () {
           <Button
             title={
               <>
-                <i className="fa fa-download" /> 서버에 저장
+                <i className="fa fa-cloud-download" /> 서버에 저장
               </>
             }
             onClick={handleServer}
