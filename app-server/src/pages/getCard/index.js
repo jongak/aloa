@@ -1,32 +1,17 @@
 import html2canvas from "html2canvas";
-import { useEffect, useMemo, useRef, useState } from "react";
-// import LootCard from "../../components/common/LootCard";
-// import CardFront from "../../components/common/CardFront";
-// import CardBack from "../../components/common/CardBack";
-// import { Outlet } from "react-router";
+import { useRef } from "react";
+
 import axios from "axios";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
 import Button from "../../components/common/Button";
-import { Link } from "react-router-dom";
-
-const getDataCard = async function (id) {
-  try {
-    const res = await axios.get(`/character/carddata/${id}`);
-    if (res.data.ok) {
-      return res.data.data;
-    }
-    return;
-  } catch (err) {
-    console.error(err);
-  }
-};
+import { useParams } from "react-router-dom";
 
 const GetCard = function () {
   const frontRef = useRef("");
   const backRef = useRef("");
   const fullRef = useRef("");
+  const { id } = useParams();
+  console.log(id);
 
   const handleFrontDown = async () => {
     const div = frontRef.current;
@@ -59,8 +44,6 @@ const GetCard = function () {
       alert("링크를 복사했습니다.");
     });
   };
-
-  const copy = "<i className='fas fa-copy'></i>";
 
   return (
     <>
