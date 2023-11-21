@@ -14,7 +14,7 @@ function Footer() {
       <div className="container">
         <div className="col-lg-12">
           <p>
-            Copyright © 2023 ALOATeams &nbsp;&nbsp;{" "}
+            Copyright © 2023 ALOA Team &nbsp;&nbsp;{" "}
             <Link onClick={copyTextUrl}>문의하기</Link>
           </p>
         </div>

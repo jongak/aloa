@@ -12,7 +12,7 @@ function Home() {
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate(`/character/${queryRef.current.value}`);
+      navigate(`/cards/${queryRef.current.value}`);
     }
   };
 

@@ -17,7 +17,6 @@ const ToggleButton = function ({
   title,
   body,
   titleRef,
-  eventKey,
   isChanged,
   setIsChanged,
 }) {

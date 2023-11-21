@@ -125,7 +125,12 @@ const SetOption = function () {
       >
         <Accordion.Item eventKey="custom">
           <Accordion.Header>
-            <ToggleButton titleRef={"custom"} title={"Custom"} />
+            <ToggleButton
+              titleRef={"custom"}
+              title={"Custom"}
+              isChanged={isChanged}
+              setIsChanged={setIsChanged}
+            />
           </Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
@@ -185,7 +190,6 @@ const SetOption = function () {
         <Accordion.Item eventKey="legendary">
           <Accordion.Header>
             <ToggleButton
-              eventKey="legendary"
               titleRef={"legendary"}
               title={"Legendary"}
               isChanged={isChanged}
@@ -196,7 +200,6 @@ const SetOption = function () {
         <Accordion.Item eventKey="holographic">
           <Accordion.Header>
             <ToggleButton
-              eventKey="holographic"
               titleRef={"holographic"}
               title={"Holographic"}
               isChanged={isChanged}

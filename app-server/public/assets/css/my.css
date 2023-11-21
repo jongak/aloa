@@ -967,6 +967,12 @@ footer p a:hover {
   opacity: 0.75;
 }
 
+@media (max-width: 768px) {
+  footer {
+    min-height: 160px;
+  }
+}
+
 /* 
 ---------------------------------------------
 main
@@ -1158,6 +1164,7 @@ capture
 }
 .option-body.share .userRow .find-input {
   margin-top: 0px;
+  margin-bottom: 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
