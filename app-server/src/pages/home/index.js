@@ -34,7 +34,7 @@ function Home() {
                 <form>
                   <input
                     type="text"
-                    placeholder="Type Something"
+                    placeholder="닉네임을 입력해 주세요."
                     ref={queryRef}
                     onKeyPress={handleOnKeyPress}
                   />

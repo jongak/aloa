@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom";
 
-function Footer(){
-  return(
+function Footer() {
+  const handleClick = () => {
+    window.location.href = `mailto:${process.env.MY_EMAIL_ADDRESS}`;
+  };
+  return (
     <footer>
       <div className="container">
         <div className="col-lg-12">
-          <p>Copyright © 2048 LUGX Gaming Company. All rights reserved. &nbsp;&nbsp; <Link rel="nofollow" to="https://templatemo.com" target="_blank">Design: TemplateMo</Link></p>
+          <p>
+            Copyright © 2023 ALOATeams &nbsp;&nbsp;{" "}
+            <Link onClick={handleClick}>문의하기</Link>
+          </p>
         </div>
       </div>
     </footer>
-
   );
 }
 

@@ -47,8 +47,7 @@ const SetOption = function () {
               className="userRow"
               style={{
                 display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
+                justifyContent: "space-between",
                 marginTop: "20px",
                 padding: "20px",
               }}
@@ -62,7 +61,7 @@ const SetOption = function () {
                       height: "60px",
                       backgroundImage: `url('/assets/images/card_frame/${i}/0.png')`,
                       cursor: "pointer",
-                      marginRight: "10px",
+                      marginRight: "4px",
                     }}
                     onClick={() => {
                       dispatch(setFramePreset({ newFramePreset: i }));
@@ -81,8 +80,7 @@ const SetOption = function () {
               className="userRow"
               style={{
                 display: "flex",
-                justifyContent: "center",
-                flexWrap: "wrap",
+                justifyContent: "space-between",
                 marginTop: "20px",
                 padding: "20px",
               }}
@@ -96,7 +94,7 @@ const SetOption = function () {
                       height: "60px",
                       backgroundImage: `url('/assets/images/card_frame/color/${i}.png')`,
                       cursor: "pointer",
-                      marginRight: "10px",
+                      marginRight: "4px",
                       backgroundSize: "cover",
                     }}
                     onClick={() => {
