@@ -159,17 +159,12 @@ const GetCard = function () {
                   </h4>
                 </div>
                 <div className="buttonCover">
-                  <ButtonO
+                  <Button
                     title={"카드 전체"}
                     onClick={cardDown}
                     style={{
                       fontSize: "20px",
                       padding: "10px 50px",
-                    }}
-                    divStyle={{
-                      overflow: "hidden",
-                      border: "none",
-                      background: "var(--my--background)",
                     }}
                   />
                   <div>
@@ -180,18 +175,13 @@ const GetCard = function () {
                         fontSize: "20px",
                         padding: "10px 50px",
                       }}
-                      divStyle={{ overflow: "hidden", padding: "10px 0" }}
                     />
                     <Button
                       title={"뒷면"}
                       onClick={handleBackDown}
                       style={{ fontSize: "20px", padding: "10px 50px" }}
-                      divStyle={{ overflow: "hidden", padding: "10px 0" }}
                     />
                   </div>
-                  <button className="ripple">
-                    <Link>옆면</Link>
-                  </button>
                 </div>
               </div>
             </div>
@@ -205,10 +195,9 @@ const GetCard = function () {
                     ref={copyLinkRef}
                     value={"http://localhost:3000/cards"}
                   />
-                  <ButtonO
+                  <Button
                     title={"현재 페이지 url 복사"}
                     onClick={copyTextUrl}
-                    divStyle={{ overflow: "hidden", padding: "10px 0" }}
                   />
                 </div>
               </div>
