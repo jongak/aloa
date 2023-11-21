@@ -21,28 +21,34 @@ const s3 = new S3({
   region: "ap-northeast-2",
 });
 
-// multer 에 대한 설정값
 const awsUpload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "aloa-bucket", // 객체를 업로드할 버킷 이름
-    acl: "public-read", // Access control for the file
+    bucket: "aloa-bucket",
+    acl: "public-read",
     key: function (req, file, cb) {
-      console.log(file);
-      // 객체의 키로 고유한 식별자 이기 때문에 겹치면 안됨
-      cb(
-        null,
+      const uniqueId =
+        file.originalname.split(".")[0] +
+        "_" +
         Math.floor(Math.random() * 1000).toString() +
-          Date.now() +
-          "." +
-          file.originalname.split(".").pop()
-      );
+        Date.now() +
+        "." +
+        file.originalname.split(".").pop();
+      // file.originalname.split(".").pop();
+      cb(null, uniqueId);
     },
   }),
 });
 
-router.post("/", awsUpload.single("image"), (req, res) => {
-  res.send("hi");
+router.post("/", awsUpload.array("image", 2), (req, res) => {
+  // 업로드된 파일 목록은 req.files에서 사용 가능
+  const uploadedFiles = req.files;
+
+  // 각 파일의 S3 URL을 추출하여 배열에 저장
+  const fileUrls = uploadedFiles.map((file) => file.location);
+
+  // 이제 fileUrls 또는 다른 정보를 클라이언트로 전송
+  res.json({ ok: true, data: { fileUrls } });
 });
 
 module.exports = router;

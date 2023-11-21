@@ -125,41 +125,34 @@ const capture = function () {
     });
   };
 
-  const handleServer = () => {
-    frontCanvasRef.toBlob(async function (blob) {
-      try {
-        var formData = new FormData();
-        formData.append("image", blob);
-        const res = await axios.post("/images", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        if (res.data.ok) {
-          return res.data.data;
-        }
-        return;
-      } catch (err) {
-        console.error(err);
+  const handleServer = async () => {
+    try {
+      const frontBlob = await new Promise((resolve) => {
+        frontCanvasRef.toBlob(resolve);
+      });
+
+      const backBlob = await new Promise((resolve) => {
+        backCanvasRef.toBlob(resolve);
+      });
+
+      const encodedCharacterName = encodeURIComponent(characterNameRef.current);
+
+      const formData = new FormData();
+      formData.append("image", frontBlob, `${encodedCharacterName}_front.png`);
+      formData.append("image", backBlob, `${encodedCharacterName}_back.png`);
+
+      const res = await axios.post("/images", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (res.data.ok) {
+        console.log("Images uploaded:", res.data.data);
       }
-    });
-    backCanvasRef.toBlob(async function (blob) {
-      try {
-        var formData = new FormData();
-        formData.append("image", blob);
-        const res = await axios.post("/images", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        if (res.data.ok) {
-          return res.data.data;
-        }
-        return;
-      } catch (err) {
-        console.error(err);
-      }
-    });
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
   };
   const setOptionStates = {
     isChanged,
