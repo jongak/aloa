@@ -29,9 +29,9 @@ const Button = function ({
   }
 
   return (
-    <div className={buttonClassName} value={value} style={divStyle}>
+    <button className={buttonClassName} value={value} style={divStyle}>
       <Link
-        className="ripple"
+        // className="ripple"
         to={href}
         style={style}
         data-value={value}
@@ -50,7 +50,7 @@ const Button = function ({
       >
         {title}
       </Link>
-    </div>
+    </button>
   );
 };
 

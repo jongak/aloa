@@ -9,6 +9,8 @@ import axios from "axios";
 // import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
 import Button from "../../components/common/Button";
+import ButtonO from "../../components/common/ButtonO";
+import { Link } from "react-router-dom";
 
 const getDataCard = async function (id) {
   try {
@@ -79,12 +81,13 @@ const GetCard = function () {
               style={{ padding: "40px 0" }}
             >
               <div
-                className="card-area col-lg-10 col-md-11"
+                className="card-area col-sm-10"
                 ref={fullRef}
                 style={{ display: "flex" }}
               >
                 <div ref={frontRef}>
                   <img src="/assets/images/card_front_sample.png" />
+                  <img src="https://aloa-bucket.s3.ap-northeast-2.amazonaws.com/EB%B6%80%EB%A8%B9%ED%8E%A9%EC%8B%9C%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C%ED%94%BC%EC%9E%90%EC%A7%80%EC%BD%94_front_7371700533445057.png" />
                 </div>
                 <div ref={backRef}>
                   <img
@@ -95,7 +98,7 @@ const GetCard = function () {
               </div>
             </div>
 
-            <div
+            {/* <div
               className="progress"
               style={{
                 borderRadius: "0",
@@ -113,49 +116,101 @@ const GetCard = function () {
                 </h4>
               </div>
               <div>
-                <Button
-                  btnClass={"ripple"}
-                  title={"카드 전체"}
-                  onClick={cardDown}
-                  style={{
-                    fontSize: "20px",
-                    padding: "12px 50px",
-                  }}
-                />
-                <Button
-                  btnClass={"ripple"}
-                  title={"앞면"}
-                  onClick={handleFrontDown}
-                  style={{
-                    fontSize: "20px",
-                    padding: "12px 50px",
-                  }}
-                />
-                <Button
-                  btnClass={"ripple"}
-                  title={"뒷면"}
-                  onClick={handleBackDown}
-                  style={{ fontSize: "20px", padding: "12px 50px" }}
-                />
+                <ul style={{ display: "inline-flex" }}>
+                  <li>
+                    <Button
+                      title={"카드 전체"}
+                      onClick={cardDown}
+                      style={{
+                        fontSize: "20px",
+                        padding: "10px 50px",
+                      }}
+                    />
+                  </li>
+                  <li style={{ margin: "0 20px" }}>
+                    <Button
+                      title={"앞면"}
+                      onClick={handleFrontDown}
+                      style={{
+                        fontSize: "20px",
+                        padding: "10px 50px",
+                      }}
+                    />
+                  </li>
+                  <li>
+                    <Button
+                      title={"뒷면"}
+                      onClick={handleBackDown}
+                      style={{ fontSize: "20px", padding: "10px 50px" }}
+                    />
+                  </li>
+                </ul>
+              </div>
+            </div> */}
+            <div className="option-body share">
+              <div className="userRow">
+                <div className="inner" style={{ marginBottom: "12px" }}>
+                  <h4
+                    style={{
+                      color: "var(--my--dark-heading)",
+                    }}
+                  >
+                    카드 간직하기
+                  </h4>
+                </div>
+                <div className="buttonCover">
+                  <ButtonO
+                    title={"카드 전체"}
+                    onClick={cardDown}
+                    style={{
+                      fontSize: "20px",
+                      padding: "10px 50px",
+                    }}
+                    divStyle={{
+                      overflow: "hidden",
+                      border: "none",
+                      background: "var(--my--background)",
+                    }}
+                  />
+                  <div>
+                    <Button
+                      title={"앞면"}
+                      onClick={handleFrontDown}
+                      style={{
+                        fontSize: "20px",
+                        padding: "10px 50px",
+                      }}
+                      divStyle={{ overflow: "hidden", padding: "10px 0" }}
+                    />
+                    <Button
+                      title={"뒷면"}
+                      onClick={handleBackDown}
+                      style={{ fontSize: "20px", padding: "10px 50px" }}
+                      divStyle={{ overflow: "hidden", padding: "10px 0" }}
+                    />
+                  </div>
+                  <button className="ripple">
+                    <Link>옆면</Link>
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="progress" style={{ borderRadius: "0 0 12px 12px" }}>
-              <div>
-                <input
-                  type="text"
-                  ref={copyLinkRef}
-                  value={"http://localhost:3000/cards"}
-                  style={{
-                    padding: "4px 20px",
-                    width: "300px",
-                    borderRadius: "8px 0 0 8px",
-                  }}
-                />
-                <Button
-                  btnClass={"ripple"}
-                  title={"현재 페이지 url 복사"}
-                  onClick={copyTextUrl}
-                />
+
+            <div className="option-body share">
+              <div className="userRow">
+                <div className="find-input">
+                  <input
+                    className="form-control"
+                    type="text"
+                    ref={copyLinkRef}
+                    value={"http://localhost:3000/cards"}
+                  />
+                  <ButtonO
+                    title={"현재 페이지 url 복사"}
+                    onClick={copyTextUrl}
+                    divStyle={{ overflow: "hidden", padding: "10px 0" }}
+                  />
+                </div>
               </div>
             </div>
           </div>
