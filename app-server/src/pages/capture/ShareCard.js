@@ -63,14 +63,16 @@ const ShareCard = function () {
           <Button title={"클립보드에 복사"} onClick={copyTextUrl} />
         </div>
 
-        <Button
-          title={
-            <>
-              <i className="fa fa-download" /> 서버에 저장
-            </>
-          }
-          onClick={handleServer}
-        />
+        <div className="find-input">
+          <Button
+            title={
+              <>
+                <i className="fa fa-download" /> 서버에 저장
+              </>
+            }
+            onClick={handleServer}
+          />
+        </div>
       </div>
       <Button href="../set" title={"이전"} />
       <Button isClickable={false} title={"다음"} />

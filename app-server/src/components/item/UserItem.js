@@ -51,7 +51,7 @@ const UserItem = function (props) {
   };
 
   return (
-    <div className="my-card userItem" onClick={onClickButtonChange}>
+    <div className="my-card userItem ripple" onClick={onClickButtonChange}>
       <div
         className="my-card-img class"
         style={{
