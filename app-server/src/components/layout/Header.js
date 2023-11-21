@@ -44,25 +44,16 @@ function Header({ setThema, thema }) {
                 </Link>
                 <ul className="nav">
                   <li className="ripple">
-                    <Link to="/">Home</Link>
-                  </li>
-                  {/* <li>
-                  <Link to="/shop">Our Shop</Link>
-                </li>
-                <li>
-                  <Link to="/product-details">Product Details</Link>
-                </li> */}
-                  <li className="ripple">
-                    <Link to="/capture">capture</Link>
+                    <Link to="/">홈</Link>
                   </li>
                   <li className="ripple">
-                    <Link to="/cards">Card</Link>
+                    <Link to="/capture">카드생성</Link>
                   </li>
                   <li className="ripple">
-                    <Link to="/character/송도나봉선">Contact Us</Link>
+                    <Link to="/cards">카드확인</Link>
                   </li>
                   <li className="ripple">
-                    <Link to="#">Sign In</Link>
+                    <Link to="/aa">회원가입</Link>
                   </li>
                 </ul>
                 <Link className="menu-trigger" onClick={menuToggle}>

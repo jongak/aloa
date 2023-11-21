@@ -4,13 +4,18 @@ import { useEffect, useRef } from "react";
 import UserItem from "../../components/item/UserItem";
 
 const ShareCard = function () {
-  const { setPage, handleFrontDown, handleBackDown, handleServer } =
-    useOutletContext();
+  const {
+    setPage,
+    handleFrontDown,
+    handleBackDown,
+    handleServer,
+    characterNameRef,
+  } = useOutletContext();
   const navigate = useNavigate();
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("share");
   }, []);
