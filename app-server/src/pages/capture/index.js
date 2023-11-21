@@ -203,16 +203,14 @@ const capture = function () {
             }}
           />
         </div>
-
-        <div className="card-area col-md-5 ">
-          {/* {cardImgMemo} */}
+        <div style={{ position: "absolute" }}>
           <CardFront
             characterNameRef={characterNameRef}
             divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              left: "-1000px",
+              left: "-3000px",
               // marginLeft: "-100px",
             }}
           />
@@ -222,10 +220,14 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              left: "-1000px",
+              left: "-3000px",
               // marginLeft: "-100px",
             }}
           />
+        </div>
+
+        <div className="card-area col-md-5 ">
+          {/* {cardImgMemo} */}
 
           <LootCard
             img={"/assets/images/card_example_f.png"}

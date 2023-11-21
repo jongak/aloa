@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Button from "../../components/common/Button";
 import { useSelector } from "react-redux";
 import LootCardItem from "../../components/item/LootCardItem";
+import { toast } from "react-toastify";
 
 function Home() {
   const queryRef = useRef("");
@@ -18,7 +19,14 @@ function Home() {
 
   const handleButtonClick = (e) => {
     e.preventDefault();
-    navigate(`/character/${queryRef.current.value}`);
+
+    if (queryRef.current.value) {
+      navigate(`/character/${queryRef.current.value}`);
+    } else {
+      toast.error(`아이디를 입력해 주세요`);
+      queryRef.current.value = "";
+      queryRef.current.focus();
+    }
   };
   return (
     <>

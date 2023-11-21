@@ -3,6 +3,7 @@ import Button from "../../components/common/Button";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import UserItem from "../../components/item/UserItem";
+import { toast } from "react-toastify";
 
 const serverList = [
   "Lupeon",
@@ -52,6 +53,10 @@ const FindName = function () {
     var tmp = await getData(userName.current.value);
     if (tmp) {
       setUserList(tmp);
+    } else {
+      toast.error(`잘못된 아이디 입니다.`);
+      userName.current.value = "";
+      userName.current.focus();
     }
   };
 
