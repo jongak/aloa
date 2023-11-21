@@ -9,7 +9,6 @@ import axios from "axios";
 // import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
 import Button from "../../components/common/Button";
-import ButtonO from "../../components/common/ButtonO";
 import { Link } from "react-router-dom";
 
 const getDataCard = async function (id) {
@@ -87,7 +86,6 @@ const GetCard = function () {
               >
                 <div ref={frontRef}>
                   <img src="/assets/images/card_front_sample.png" />
-                  <img src="https://aloa-bucket.s3.ap-northeast-2.amazonaws.com/EB%B6%80%EB%A8%B9%ED%8E%A9%EC%8B%9C%ED%8C%8C%EC%9D%B8%EC%95%A0%ED%94%8C%ED%94%BC%EC%9E%90%EC%A7%80%EC%BD%94_front_7371700533445057.png" />
                 </div>
                 <div ref={backRef}>
                   <img

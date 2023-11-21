@@ -115,7 +115,7 @@
   --my--light--background: #f7f7f7;
   --my--light--text: #717779;
 
-  --my--background: #f7f7f7;
+  --my--background: #fff;
   --my--background-hover: var(--my--thema);
   --my--background-opacity9: rgb(247, 247, 247, 0.9);
   --my--background-opacity66: rgb(247, 247, 247, 0.66);
@@ -159,7 +159,6 @@ iframe,
 .App * {
   transition: all 0.3s;
 }
-
 /* 
 ---------------------------------------------
 Header Style
@@ -759,6 +758,41 @@ myThema
   }
 }
 
+/* ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+  display: inline-block;
+}
+.ripple:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    var(--my--button--hover--color) 10%,
+    transparent 10.01%
+  );
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition:
+    transform 0.5s,
+    opacity 1s;
+}
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
+}
+
 /* 
 ---------------------------------------------
 Banner Style
@@ -1027,6 +1061,8 @@ capture
   margin-top: 50px;
   margin-bottom: 50px;
   text-align: center;
+  align-items: center;
+  display: inline-flex;
 }
 
 .option-area .find-input .form-control {
@@ -1039,7 +1075,7 @@ capture
 
   color: var(--my--text);
   width: 250px;
-  display: inline-block;
+  /* display: inline-block; */
 }
 .option-area .option-body .form-control:focus {
   background-color: var(--my--yes--background);
@@ -1048,7 +1084,7 @@ capture
 }
 
 .option-area .userRow {
-  background-color: var(--my--background);
+  background-color: var(--my--button--background);
   text-align: center;
   margin: 2rem 1rem;
   box-shadow: 3px 4px 20px 2px var(--my--shadow);
@@ -1088,7 +1124,7 @@ capture
 
 .option-area .userRow .userItem {
   width: 80%;
-  margin: 2%;
+  margin: 10px;
 }
 
 .option-area .option-body .accordion {
@@ -1122,6 +1158,9 @@ capture
 }
 .option-body.share .userRow .find-input {
   margin-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .option-body.share .userRow .find-input .form-control {
   margin-left: 10px;
@@ -1194,6 +1233,9 @@ capture
     width: 45%;
     margin: 2.5%;
   }
+  .find-input {
+    text-align: center;
+  }
 }
 
 /* 
@@ -1227,6 +1269,9 @@ button
 
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+.my_button .ripple {
+  display: block;
 }
 
 .my_button a,
@@ -1321,6 +1366,7 @@ card
   /* width: 25%; */
   display: inline-block;
   position: relative;
+  box-shadow: 3px 4px 5px -1px var(--my--shadow);
 }
 .my-card-img {
   width: 3rem;
@@ -1337,7 +1383,6 @@ card
   border: 1px solid var(--my--no--border);
   background-color: var(--my--yes--background);
   text-align: left;
-  box-shadow: 3px 4px 5px -1px var(--my--shadow);
 }
 .my-card-body .my-card-title {
   font-size: 1rem;
@@ -1926,39 +1971,4 @@ colorcover
     display: flex;
     justify-content: center;
   }
-}
-
-/* ripple effect */
-.ripple {
-  position: relative;
-  overflow: hidden;
-  transform: translate3d(0, 0, 0);
-  display: block;
-}
-.ripple:after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: radial-gradient(
-    circle,
-    var(--my--thema) 10%,
-    transparent 10.01%
-  );
-  background-repeat: no-repeat;
-  background-position: 50%;
-  transform: scale(10, 10);
-  opacity: 0;
-  transition:
-    transform 0.5s,
-    opacity 1s;
-}
-.ripple:active:after {
-  transform: scale(0, 0);
-  opacity: 0.2;
-  transition: 0s;
 }
