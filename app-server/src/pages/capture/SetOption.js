@@ -85,7 +85,7 @@ const SetOption = function () {
                 padding: "20px",
               }}
             >
-              {[0, 1, 2, 3, 4, 5].map((i) => {
+              {[1, 2, 3, 4, 5, 6].map((i) => {
                 return (
                   <div
                     key={`${i}`}
