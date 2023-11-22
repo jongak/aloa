@@ -1093,11 +1093,14 @@ capture
   background-color: var(--my--button--background);
   text-align: center;
   margin: 2rem 1rem;
-  box-shadow: 3px 4px 20px 2px var(--my--shadow);
+  /* box-shadow: 3px 4px 20px 2px var(--my--shadow); */
   padding-top: 60px;
   padding-bottom: 20px;
   position: relative;
   width: auto;
+  box-shadow:
+    0 0 0 1px var(--my--shadow),
+    0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 .accordion .userRow {
   padding-top: 30px;
@@ -1421,10 +1424,7 @@ card
   /* width: 25%; */
   display: inline-block;
   position: relative;
-  /* box-shadow: 3px 4px 5px -1px var(--my--shadow); */
-  box-shadow:
-    0 0 0 1px var(--my--shadow),
-    0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  box-shadow: 3px 4px 5px -1px var(--my--shadow);
 }
 .my-card-img {
   width: 3rem;
