@@ -29,9 +29,9 @@ const awsUpload = multer({
     key: function (req, file, cb) {
       const uniqueId =
         file.originalname.split(".")[0] +
-        "_" +
-        Math.floor(Math.random() * 1000).toString() +
-        Date.now() +
+        // "_" +
+        // Math.floor(Math.random() * 1000).toString() +
+        // Date.now() +
         "." +
         file.originalname.split(".").pop();
       // file.originalname.split(".").pop();

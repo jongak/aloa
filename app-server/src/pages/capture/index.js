@@ -42,11 +42,6 @@ const capture = function () {
   const frontItems = useSelector((state) => state.captureSlice.frontItems);
   const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
 
-  // const imgSrcRef = useRef("/assets/images/card_example_f.png");
-  // const imgSrcRefB = useRef("/assets/images/card_example_b.png");
-
-  // const holoSrcRef = useRef("http://localhost:4400/api/images/wave.png");
-
   const holographicOptionColors = useRef([
     "#0077be",
     "#0087b3",
@@ -148,6 +143,7 @@ const capture = function () {
       if (res.data.ok) {
         // console.log("Images uploaded:", res.data.data);
         toast.success(`서버에 저장 완료`);
+        navigate("../cards/" + characterNameRef.current);
       }
     } catch (error) {
       // console.error("Error uploading images:", error);
