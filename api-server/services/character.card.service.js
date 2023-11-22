@@ -1,4 +1,4 @@
-// const pool = require("../models/pool");
+const pool = require("../models/pool");
 const CharacterModel = require("../models/character.model");
 
 const isJob = function (value) {
@@ -59,10 +59,10 @@ const isJob = function (value) {
 const NumberRegex = /[^0-9]/g;
 const CharacterCardService = {
   async getCardData(characterName) {
-    // const conn = await pool.getConnection();
+    const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
-      // await conn.beginTransaction();
+      await conn.beginTransaction();
       const res = await CharacterModel.getCharacter(characterName);
       var elixirLevel = 0;
       var transLevel = 0;
@@ -834,15 +834,15 @@ const CharacterCardService = {
           ).toFixed(2)
         : undefined;
       // DB에 작업 반영
-      // await conn.commit();
+      await conn.commit();
       return { ok: true, data: data };
     } catch (err) {
       // DB 작업 취소
-      // await conn.rollback();
+      await conn.rollback();
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      // pool.releaseConnection(conn);
+      pool.releaseConnection(conn);
     }
   },
 };
