@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import LootCardItem from "../../components/item/LootCardItem";
 import { toast } from "react-toastify";
 import axios from "axios";
+import LootCard from "../../components/common/LootCard";
 
 const getData = async function (id) {
   try {
@@ -79,22 +80,40 @@ function Home() {
           </div>
           <div className="myCards row">
             <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
-              <LootCardItem />
+              <LootCard
+                img={"/assets/images/sample.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem />
+              <LootCardItem
+                img={"/assets/images/sample2.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem />
+              <LootCardItem
+                img={"/assets/images/sample.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
             <div className="col-xl-4 col-lg-6 mb-5">
-              <LootCardItem />
+              <LootCardItem
+                img={"/assets/images/sample.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem />
+              <LootCardItem
+                img={"/assets/images/sample.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem />
+              <LootCardItem
+                img={"/assets/images/sample.png"}
+                size={{ height: 400, width: 300 }}
+              />
             </div>
           </div>
         </div>
