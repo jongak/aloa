@@ -7,6 +7,7 @@ import Button from "../../components/common/Button";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LootCard from "../../components/common/LootCard";
+import { toast } from "react-toastify";
 
 const GetCard = function () {
   const { id } = useParams();
@@ -49,7 +50,7 @@ const GetCard = function () {
     copyLinkRef.current.select();
 
     navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-      alert("링크를 복사했습니다.");
+      toast.success(`링크를 복사했습니다.`);
     });
   };
 
