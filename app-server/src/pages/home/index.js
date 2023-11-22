@@ -5,6 +5,19 @@ import Button from "../../components/common/Button";
 import { useSelector } from "react-redux";
 import LootCardItem from "../../components/item/LootCardItem";
 import { toast } from "react-toastify";
+import axios from "axios";
+
+const getData = async function (id) {
+  try {
+    const res = await axios.get(`/character/characters/${id}`);
+    if (res.data.ok) {
+      return res.data.data;
+    }
+    return;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 function Home() {
   const queryRef = useRef("");
@@ -13,15 +26,23 @@ function Home() {
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
-      navigate(`/cards/${queryRef.current.value}`);
+      handleButtonClick(e);
     }
   };
 
-  const handleButtonClick = (e) => {
+  const handleButtonClick = async (e) => {
     e.preventDefault();
 
     if (queryRef.current.value) {
-      navigate(`/character/${queryRef.current.value}`);
+      var tmp = await getData(queryRef.current.value);
+      console.log(tmp);
+      if (tmp) {
+        navigate(`/cards/${queryRef.current.value}`);
+      } else {
+        toast.error(`잘못된 아이디 입니다.`);
+        queryRef.current.value = "";
+        queryRef.current.focus();
+      }
     } else {
       toast.error(`아이디를 입력해 주세요`);
       queryRef.current.value = "";
