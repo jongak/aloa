@@ -1288,12 +1288,6 @@ card-area
   position: relative;
   margin-left: -20px;
 }
-@media (max-width: 768px) {
-  .card-area {
-    /* position: sticky; */
-    margin-left: 0px;
-  }
-}
 .card-area section {
   position: sticky;
   top: 10%;
@@ -1301,6 +1295,12 @@ card-area
 .card-area section:nth-child(2) {
   position: sticky;
   top: 48%;
+}
+@media (max-width: 768px) {
+  .card-area section {
+    position: relative;
+    margin-left: 0px;
+  }
 }
 
 /* 
