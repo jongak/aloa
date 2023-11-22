@@ -66,6 +66,7 @@
 .App.dark {
   --my--very--dark--background: #1d1e21;
   --my--very--dark--background--hover: #393c42;
+  --my--very--dark--nav--hover: #393c42;
   --my--very--dark--text: #f7f7f7;
 
   --my--dark--background: #2b2d32;
@@ -101,11 +102,13 @@
   --my--button--hover--background: #717779;
   --my--button--hover--color: var(--my--thema);
   --my--button--hover--border: var(--my--thema);
+  --my--ripple--color: var(--my--thema);
 }
 
 .App.light {
   --my--very--dark--background: #55595f;
-  --my--very--dark--background--hover: #2b2d32;
+  --my--very--dark--background--hover: #eaeaea;
+  --my--very--dark--nav--hover: #48494a;
   --my--very--dark--text: #f7f7f7;
 
   --my--dark--background: #f7f7f7;
@@ -126,7 +129,8 @@
   --my--no--background: #fff;
   --my--no--text: #63686c;
   --my--no--heading: #63686c;
-  --my--no--border: #393c42;
+  --my--no--border: #d2d2d7;
+  /* --my--no--border: #717779; */
 
   --my--yes--background: #f7f7f7;
   --my--yes--heading: #393c42;
@@ -139,9 +143,10 @@
   --my--button--color: #393c42;
   --my--button--border: #393c42;
 
-  --my--button--hover--background: #f7f7f7;
+  --my--button--hover--background: #eaeaea;
   --my--button--hover--color: #393c42;
   --my--button--hover--border: #393c42;
+  --my--ripple--color: var(--my--thema);
 }
 
 html,
@@ -273,7 +278,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:hover a {
-  background-color: var(--my--very--dark--background--hover);
+  background-color: var(--my--very--dark--nav--hover);
 }
 
 /* .header-area .main-nav .nav li a.active {
@@ -452,7 +457,7 @@ myDarkToggle
 }
 
 .myDarkToggle .myDarkButton:hover {
-  background-color: var(--my--very--dark--background--hover);
+  background-color: var(--my--very--dark--nav--hover);
 }
 .myDarkButton .fa-sun {
   z-index: 1;
@@ -548,7 +553,7 @@ myThema
 .myThema:hover {
   /* transition: all 0s; */
   /* padding: 6px; */
-  background-color: var(--my--very--dark--background--hover);
+  background-color: var(--my--very--dark--nav--hover);
 }
 
 .myThemaIn {
@@ -776,7 +781,7 @@ myThema
   pointer-events: none;
   background-image: radial-gradient(
     circle,
-    var(--my--button--hover--color) 10%,
+    var(--my--ripple--color) 10%,
     transparent 10.01%
   );
   background-repeat: no-repeat;
@@ -1084,7 +1089,7 @@ capture
   /* display: inline-block; */
 }
 .option-area .option-body .form-control:focus {
-  background-color: var(--my--yes--background);
+  background-color: var(--my--no--background);
   border-color: var(--my--yes--border);
   box-shadow: var(--my--heading);
 }
