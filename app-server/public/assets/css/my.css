@@ -763,7 +763,7 @@ myThema
   position: relative;
   overflow: hidden;
   transform: translate3d(0, 0, 0);
-  display: inline-block;
+  /* display: inline-block; */
 }
 .ripple:after {
   content: "";

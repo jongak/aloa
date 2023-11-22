@@ -101,7 +101,7 @@ const MyDnd = function ({ title }) {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className="drag-item"
+                          className="drag-item ripple"
                         >
                           <div className="item-title">{item.title}</div>
                           <div className="item-value">
