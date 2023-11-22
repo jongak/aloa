@@ -108,7 +108,7 @@
   --my--very--dark--background--hover: #2b2d32;
   --my--very--dark--text: #f7f7f7;
 
-  --my--dark--background: #cecece;
+  --my--dark--background: #f7f7f7;
   --my--dark-text: #bebebe;
   --my--dark-heading: var(--my--thema);
 
@@ -121,9 +121,9 @@
   --my--background-opacity66: rgb(247, 247, 247, 0.66);
   --my--text: #393c42;
   --my--heading: #393c42;
-  --my--shadow: #bebebe;
+  --my--shadow: #eaeaea;
 
-  --my--no--background: #eaeaea;
+  --my--no--background: #fff;
   --my--no--text: #63686c;
   --my--no--heading: #63686c;
   --my--no--border: #393c42;
@@ -135,7 +135,7 @@
 
   --my--input--focus--background: #eaeaea;
 
-  --my--button--background: #eaeaea;
+  --my--button--background: #fff;
   --my--button--color: #393c42;
   --my--button--border: #393c42;
 
@@ -1288,7 +1288,11 @@ card-area
   position: relative;
   margin-left: -20px;
 }
-.card-area section {
+.card-view {
+  position: sticky;
+  top: 10%;
+}
+/* .card-area section {
   position: sticky;
   top: 10%;
 }
@@ -1301,7 +1305,10 @@ card-area
     position: relative;
     margin-left: 0px;
   }
-}
+  .card-area section:nth-child(2) {
+    margin-top: 88px;
+  }
+} */
 
 /* 
 ---------------------------------------------
@@ -1414,7 +1421,10 @@ card
   /* width: 25%; */
   display: inline-block;
   position: relative;
-  box-shadow: 3px 4px 5px -1px var(--my--shadow);
+  /* box-shadow: 3px 4px 5px -1px var(--my--shadow); */
+  box-shadow:
+    0 0 0 1px var(--my--shadow),
+    0 1px 2px 0 rgba(0, 0, 0, 0.04);
 }
 .my-card-img {
   width: 3rem;
