@@ -167,9 +167,9 @@ const GetCard = function () {
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button title={"카드 전체"} />
-                <Button title={"앞면"} />
-                <Button title={"뒷면"} />
+                <Button title={"카드전체 저장"} />
+                <Button title={"앞면 저장"} />
+                <Button title={"뒷면 저장"} />
               </div>
             </div>
             <h3>

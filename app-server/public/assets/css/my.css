@@ -1164,13 +1164,15 @@ capture
   margin-left: 40px;
 }
 
-.option-body.share .userRow {
+.option-body.share .userRow,
+.option-body.getCard .userRow {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.option-body.share .userRow .find-input {
+.option-body.share .userRow .find-input,
+.option-body.getCard .userRow .find-input {
   margin: 0px;
   display: flex;
   flex-wrap: wrap;
@@ -1196,51 +1198,30 @@ capture
   margin-bottom: 30px;
 }
 
-.option-body .userRow .buttonCover .my_button {
+.option-body.share .userRow .buttonCover .my_button {
   margin: 0;
   width: 48%;
 }
+
 .option-body .userRow .buttonCover .my_button a {
   padding: 10px 0px;
   font-size: 20px;
 }
 
-@media (max-width: 576px) {
-  .option-area {
-    border-radius: 0px;
-  }
-  .option-area .progress {
-    border-radius: 0px;
-  }
-  .option-area .inner .bar {
-    width: 75%;
-  }
-  .option-area .inner {
-    gap: 5%;
-  }
+.option-body.getCard .userRow .buttonCover .my_button {
+  margin: 0;
+  width: 30%;
 }
 
-@media (max-width: 768px) {
-  .option-area .inner {
-    gap: 16px;
-  }
-}
-@media (min-width: 992px) {
-  .option-area .userRow {
-    margin: 2rem;
-  }
-  .option-area .option-body h3 {
-    padding-top: 50px;
-    padding-left: 50px;
-    text-align: left;
-  }
-}
-@media (max-width: 992px) {
-  .option-body.share .userRow .buttonCover .my_button a {
-    font-size: 16px;
-  }
+.option-body.getCard .userRow .find-input .form-control {
+  margin: 0px;
+  width: 68%;
 }
 
+.option-body.getCard .userRow .find-input .my_button {
+  margin: 0;
+  width: 26%;
+}
 @media (max-width: 1200px) {
   .option-area .userRow .myToggle {
     display: flex;
@@ -1270,6 +1251,68 @@ capture
   .option-body.share .userRow .find-input .my_button {
     margin: 30px 0px;
     width: 50%;
+  }
+  .option-body.getCard .userRow .find-input .form-control {
+    margin: 0px;
+    width: 58%;
+  }
+  .option-body.getCard .userRow .find-input .my_button {
+    margin: 30px 0px;
+    width: 36%;
+  }
+}
+@media (max-width: 992px) {
+  .option-body .userRow .buttonCover .my_button a {
+    font-size: 16px;
+  }
+}
+@media (max-width: 768px) {
+  .option-area .inner {
+    gap: 16px;
+  }
+  .option-body.getCard .userRow .buttonCover .my_button:first-child {
+    width: 96%;
+    margin-bottom: 30px;
+  }
+  .option-body.getCard .userRow .buttonCover .my_button {
+    width: 46%;
+  }
+  .option-body.getCard .userRow .find-input .form-control {
+    margin: 0px;
+    width: 100%;
+  }
+  .option-body.getCard .userRow .find-input .my_button {
+    margin: 30px 0px;
+    width: 50%;
+  }
+}
+@media (max-width: 576px) {
+  .option-area {
+    border-radius: 0px;
+  }
+  .option-area .progress {
+    border-radius: 0px;
+  }
+  .option-area .inner .bar {
+    width: 75%;
+  }
+  .option-area .inner {
+    gap: 5%;
+  }
+  .option-body.getCard .userRow .find-input .my_button {
+    margin: 30px 0px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .option-area .userRow {
+    margin: 2rem;
+  }
+  .option-area .option-body h3 {
+    padding-top: 50px;
+    padding-left: 50px;
+    text-align: left;
   }
 }
 
