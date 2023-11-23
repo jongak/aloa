@@ -53,7 +53,7 @@ function Home() {
   return (
     <>
       <div className="main-banner container">
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-lg-12 align-self-center">
             <div className="caption header-text">
               <div className="logo" style={{ display: "flex" }}>

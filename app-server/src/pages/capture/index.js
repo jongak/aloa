@@ -163,7 +163,7 @@ const capture = function () {
 
   return (
     <div className="main-banner container">
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="option-area col-md-7">
           <div className="progress">
             <div className="inner">

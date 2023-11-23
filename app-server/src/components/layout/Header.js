@@ -103,27 +103,12 @@ function Header({ setThema, thema }) {
             </li>
             <li className="ripple">
               <Link to="/" onClick={closeMenu}>
-                Home
+                홈
               </Link>
             </li>
             <li className="ripple">
               <Link to="/capture" onClick={closeMenu}>
-                capture
-              </Link>
-            </li>
-            <li className="ripple">
-              <Link to="/cards" onClick={closeMenu}>
-                card
-              </Link>
-            </li>
-            <li className="ripple">
-              <Link to="/character/송도나봉선" onClick={closeMenu}>
-                Contact Us
-              </Link>
-            </li>
-            <li className="ripple">
-              <Link to="#" onClick={closeMenu}>
-                Sign In
+                카드만들기
               </Link>
             </li>
           </ul>
