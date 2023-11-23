@@ -334,6 +334,7 @@ Header Style
 }
 
 .menu ul li a {
+  display: block;
   color: var(--my--thema);
   font-size: 24px;
   font-weight: 650;

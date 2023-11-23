@@ -6,5 +6,9 @@ require("greenlock-express")
     configDir: path.join(__dirname, "..", "greenlock.d"),
     maintainerEmail: process.env.REACT_APP_MY_EMAIL_ADDRESS,
     cluster: false,
+    ports: {
+      http: 4401, // 사용자 지정 HTTP 포트
+      https: 4400, // 사용자 지정 HTTPS 포트
+    },
   })
   .serve(app); // Serves on 80 and 443
