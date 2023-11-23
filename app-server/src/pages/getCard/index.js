@@ -44,7 +44,7 @@ const GetCard = function () {
   //   "#2193b0",
   // ]);
 
-  const copyLinkRef = useRef();
+  const copyLinkRef = useRef({ value: "" });
 
   return (
     <div className="main-banner container">
@@ -178,7 +178,9 @@ const GetCard = function () {
                 />
                 <CopyToClipboard
                   text={copyLinkRef.current.value}
-                  onCopy={() => toast.success(`링크를 복사했습니다.`)}
+                  onCopy={() => {
+                    toast.success(`링크를 복사했습니다.`);
+                  }}
                 >
                   <Button title={"현재 페이지 url 복사"} />
                 </CopyToClipboard>

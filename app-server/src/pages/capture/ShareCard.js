@@ -21,7 +21,7 @@ const ShareCard = function () {
     setPage("share");
   }, []);
 
-  const copyLinkRef = useRef();
+  const copyLinkRef = useRef({ value: "" });
 
   return (
     <div className="option-body share">
@@ -56,7 +56,7 @@ const ShareCard = function () {
             onChange={() => {}}
           ></input>
           <CopyToClipboard
-            text={"얘도 복사"}
+            text={copyLinkRef.current.value}
             onCopy={() => toast.success(`링크를 복사했습니다.`)}
           >
             <Button
