@@ -56,7 +56,7 @@ const ShareCard = function () {
             onChange={() => {}}
           ></input>
           <CopyToClipboard
-            text={copyLinkRef.current.value}
+            text={"얘도 복사"}
             onCopy={() => toast.success(`링크를 복사했습니다.`)}
           >
             <Button
