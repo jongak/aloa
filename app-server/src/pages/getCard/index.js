@@ -1,5 +1,6 @@
 import html2canvas from "html2canvas";
 import { useEffect, useRef } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 import axios from "axios";
 import saveAs from "file-saver";
@@ -44,15 +45,6 @@ const GetCard = function () {
   // ]);
 
   const copyLinkRef = useRef();
-
-  const copyTextUrl = function () {
-    copyLinkRef.current.focus();
-    copyLinkRef.current.select();
-
-    navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-      toast.success(`링크를 복사했습니다.`);
-    });
-  };
 
   return (
     <div className="main-banner container">
@@ -184,7 +176,12 @@ const GetCard = function () {
                   value={process.env.REACT_APP_SERVER + "cards/" + id}
                   onChange={() => {}}
                 />
-                <Button title={"현재 페이지 url 복사"} onClick={copyTextUrl} />
+                <CopyToClipboard
+                  text={copyLinkRef.current.value}
+                  onCopy={() => toast.success(`링크를 복사했습니다.`)}
+                >
+                  <Button title={"현재 페이지 url 복사"} />
+                </CopyToClipboard>
               </div>
             </div>
           </div>
