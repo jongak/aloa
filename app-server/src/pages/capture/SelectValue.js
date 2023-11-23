@@ -93,7 +93,7 @@ const SelectValue = function () {
               title: "팔찌 특성합",
               body: "팔찌의 특성합 입니다.",
               value: userData["ArmoryEquipment"]["option"]["LetSum"],
-              cardTitle: "팔찌특성합",
+              cardTitle: "팔찌 특",
               cardValue: userData["ArmoryEquipment"]["option"]["LetSum"],
             },
             {
