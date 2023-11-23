@@ -65,13 +65,9 @@ const GetCard = function () {
               </h3>
             </div>
           </div>
-
-          <div
-            className="row justify-content-center"
-            style={{ padding: "40px 0" }}
-          >
+          <div className="option-body getCard">
             <div
-              className="col-sm-12"
+              className="col-sm-12 mt-5"
               // ref={fullRef}
               style={{
                 display: "flex",
@@ -165,65 +161,21 @@ const GetCard = function () {
                 style={{ height: 400, width: 300 }}
               />
             </div>
-          </div>
 
-          {/* <div className="option-body share">
-            <div className="cardRow">
-              <div className="progress">
-                <div className="inner" style={{ marginBottom: "12px" }}>
-                  <h4
-                    style={{
-                      color: "var(--my--dark-heading)",
-                    }}
-                  >
-                    <i className="fa fa-download"></i> &nbsp;&nbsp; 카드
-                    저장하기
-                  </h4>
-                </div>
-              </div>
+            <h3>
+              <i className="fa fa-download"></i> &nbsp;&nbsp; 카드 저장하기
+            </h3>
+            <div className="userRow">
               <div className="buttonCover">
-                <Button
-                  title={"카드 전체"}
-                  onClick={handleDownload}
-                  style={{
-                    fontSize: "20px",
-                    padding: "10px 50px",
-                  }}
-                />
-                <div>
-                  <Button
-                    title={"앞면"}
-                    // onClick={handleFrontDown}
-                    style={{
-                      fontSize: "20px",
-                      padding: "10px 50px",
-                    }}
-                  />
-                  <Button
-                    title={"뒷면"}
-                    // onClick={handleBackDown}
-                    style={{ fontSize: "20px", padding: "10px 50px" }}
-                  />
-                </div>
+                <Button title={"카드 전체"} />
+                <Button title={"앞면"} />
+                <Button title={"뒷면"} />
               </div>
             </div>
-          </div> */}
-
-          <div className="option-body share">
-            <div className="cardRow">
-              <div className="progress">
-                <div className="inner" style={{ marginBottom: "12px" }}>
-                  <h4
-                    style={{
-                      color: "var(--my--dark-heading)",
-                    }}
-                  >
-                    <i className="fa fa-share-nodes"></i> &nbsp;&nbsp; 카드
-                    공유하기
-                  </h4>
-                </div>
-              </div>
-
+            <h3>
+              <i className="fa fa-share-nodes"></i> &nbsp;&nbsp; 카드 공유하기
+            </h3>
+            <div className="userRow">
               <div className="find-input">
                 <input
                   className="form-control"

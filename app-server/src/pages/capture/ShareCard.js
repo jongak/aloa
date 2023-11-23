@@ -38,7 +38,7 @@ const ShareCard = function () {
           <Button
             title={
               <>
-                <i className="fa fa-download" /> 앞면 저장
+                <i className="fa fa-download" /> &nbsp;&nbsp; 앞면 저장
               </>
             }
             onClick={handleFrontDown}
@@ -46,7 +46,7 @@ const ShareCard = function () {
           <Button
             title={
               <>
-                <i className="fa fa-download" /> 뒷면 저장
+                <i className="fa fa-download" /> &nbsp;&nbsp; 뒷면 저장
               </>
             }
             onClick={handleBackDown}
@@ -62,14 +62,23 @@ const ShareCard = function () {
             }
             onChange={() => {}}
           ></input>
-          <Button title={"클립보드에 복사"} onClick={copyTextUrl} />
+          <Button
+            title={
+              <>
+                <i className="fa fa-clipboard" />
+                &nbsp;&nbsp;클립보드에 복사
+              </>
+            }
+            onClick={copyTextUrl}
+          />
         </div>
 
         <div className="find-input">
           <Button
             title={
               <>
-                <i className="fa fa-cloud-download" /> 서버에 저장
+                <i className="fa fa-cloud-download" />
+                &nbsp;&nbsp; 서버에 저장
               </>
             }
             onClick={handleServer}
