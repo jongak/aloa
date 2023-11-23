@@ -3,6 +3,7 @@ import Button from "../../components/common/Button";
 import { useEffect, useRef } from "react";
 import UserItem from "../../components/item/UserItem";
 import { toast, ToastContainer } from "react-toastify";
+import CopyToClipboard from "react-copy-to-clipboard";
 const ShareCard = function () {
   const {
     setPage,
@@ -22,14 +23,6 @@ const ShareCard = function () {
 
   const copyLinkRef = useRef();
 
-  const copyTextUrl = function () {
-    copyLinkRef.current.focus();
-    copyLinkRef.current.select();
-
-    navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
-      toast.success(`링크를 복사했습니다.`);
-    });
-  };
   return (
     <div className="option-body share">
       <h3>04. 공유하기</h3>
@@ -62,15 +55,19 @@ const ShareCard = function () {
             }
             onChange={() => {}}
           ></input>
-          <Button
-            title={
-              <>
-                <i className="fa fa-clipboard" />
-                &nbsp;&nbsp;클립보드에 복사
-              </>
-            }
-            onClick={copyTextUrl}
-          />
+          <CopyToClipboard
+            text={copyLinkRef.current.value}
+            onCopy={() => toast.success(`링크를 복사했습니다.`)}
+          >
+            <Button
+              title={
+                <>
+                  <i className="fa fa-clipboard" />
+                  &nbsp;&nbsp;클립보드에 복사
+                </>
+              }
+            />
+          </CopyToClipboard>
         </div>
 
         <div className="find-input">
