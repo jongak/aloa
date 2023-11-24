@@ -1,6 +1,7 @@
 import LootCard from "../common/LootCard";
 
 const LootCardItem = function (props) {
+  const { img } = props;
   const rarityPreset = "hologram";
   const imgSrc =
     "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png";
@@ -22,7 +23,7 @@ const LootCardItem = function (props) {
   return (
     <LootCard
       rarityPreset={rarityPreset}
-      img={props.img}
+      img={img}
       holo={holoSrc}
       holographicOptions={
         holo

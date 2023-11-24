@@ -80,7 +80,7 @@ function Home() {
           </div>
           <div className="myCards row">
             <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
-              <LootCard
+              <LootCardItem
                 img={"/assets/images/sample1.png"}
                 size={{ height: 400, width: 300 }}
               />
