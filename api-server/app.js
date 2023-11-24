@@ -8,6 +8,20 @@ if (process.env.NODE_ENV) {
   dotenv.config({ override: true, path: `.env.${process.env.NODE_ENV}` });
 }
 
+// healthcheck
+app.get("/helath-check", (req, res) => {
+  res.send("Health Success");
+});
+// redirect
+// 로드 밸런싱 사용 시 Header 에 X-Forwarded-Proto 포함되어 요청됨
+if (dotenv.APP_ENV === "production") {
+  app.use(function (req, res, next) {
+    if (!req.secure && req.get("X-Forwarded-Proto") !== "https") {
+      res.redirect("https://" + req.get("Host") + req.url);
+    } else next();
+  });
+}
+
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
