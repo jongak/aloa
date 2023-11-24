@@ -185,6 +185,38 @@ const GetCard = function () {
                   <Button title={"현재 페이지 url 복사"} />
                 </CopyToClipboard>
               </div>
+              <div className="find-input">
+                <input
+                  className="form-control"
+                  type="text"
+                  ref={copyLinkRef}
+                  value={`<a href='http://www.naver.com'>
+                  <img
+                    src=${frontRef.current}
+                    loading='lazy'
+                    style='aspect-ratio: 300 / 400'
+                  />
+                  <img
+                    src=${backRef.current}
+                    loading='lazy'
+                    style='aspect-ratio: 300 / 400'
+                  />
+                </a>
+                <div>
+                  더많은 카드를 만들기 위해서 <a href='http://www.naver.com'>ALOA</a> 방문
+                </div>
+                `}
+                  onChange={() => {}}
+                />
+                <CopyToClipboard
+                  text={copyLinkRef.current.value}
+                  onCopy={() => {
+                    toast.success(`HTML 태그를 복사했습니다.`);
+                  }}
+                >
+                  <Button title={"HTML 태그 복사"} />
+                </CopyToClipboard>
+              </div>
             </div>
           </div>
         </div>
