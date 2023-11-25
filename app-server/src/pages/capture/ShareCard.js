@@ -22,6 +22,7 @@ const ShareCard = function () {
   }, []);
 
   const copyLinkRef = useRef({ value: "" });
+  const copyHTMLRef = useRef({ value: "" });
 
   return (
     <div className="option-body share">
@@ -64,6 +65,46 @@ const ShareCard = function () {
                 <>
                   <i className="fa fa-clipboard" />
                   &nbsp;&nbsp;클립보드에 복사
+                </>
+              }
+            />
+          </CopyToClipboard>
+        </div>
+
+        <div className="find-input">
+          <input
+            className="form-control"
+            type="text"
+            ref={copyHTMLRef}
+            value={`<a href=${process.env.REACT_APP_SERVER}>
+                  <img
+                    
+                    loading='lazy'
+                    style='aspect-ratio: 300 / 400'
+                  />
+                  <img
+                   
+                    loading='lazy'
+                    style='aspect-ratio: 300 / 400'
+                  />
+                </a>
+                <div>
+                  더많은 카드를 만들기 위해서 <a href=${process.env.REACT_APP_SERVER}>ALOA</a> 방문
+                </div>
+                `}
+            onChange={() => {}}
+          />
+          <CopyToClipboard
+            text={copyHTMLRef.current.value}
+            onCopy={() => {
+              toast.success(`HTML 태그를 복사했습니다.`);
+            }}
+          >
+            <Button
+              title={
+                <>
+                  <i className="fa fa-clipboard" />
+                  &nbsp;&nbsp;HTML 태그 복사
                 </>
               }
             />

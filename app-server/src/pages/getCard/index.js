@@ -45,6 +45,7 @@ const GetCard = function () {
   // ]);
 
   const copyLinkRef = useRef({ value: "" });
+  const copyHTMLRef = useRef({ value: "" });
 
   return (
     <div className="main-banner container">
@@ -171,50 +172,62 @@ const GetCard = function () {
               <div className="find-input">
                 <input
                   className="form-control"
-                  type="text"
                   ref={copyLinkRef}
                   value={process.env.REACT_APP_SERVER + "cards/" + id}
                   onChange={() => {}}
-                />
+                ></input>
                 <CopyToClipboard
                   text={copyLinkRef.current.value}
-                  onCopy={() => {
-                    toast.success(`링크를 복사했습니다.`);
-                  }}
+                  onCopy={() => toast.success(`링크를 복사했습니다.`)}
                 >
-                  <Button title={"현재 페이지 url 복사"} />
+                  <Button
+                    title={
+                      <>
+                        <i className="fa fa-clipboard" />
+                        &nbsp;&nbsp;클립보드에 복사
+                      </>
+                    }
+                  />
                 </CopyToClipboard>
               </div>
+
               <div className="find-input">
                 <input
                   className="form-control"
                   type="text"
-                  ref={copyLinkRef}
-                  value={`<a href='http://www.naver.com'>
+                  ref={copyHTMLRef}
+                  value={`<a href=${process.env.REACT_APP_SERVER}>
                   <img
-                    src=${frontRef.current}
+                    
                     loading='lazy'
                     style='aspect-ratio: 300 / 400'
                   />
                   <img
-                    src=${backRef.current}
+                   
                     loading='lazy'
                     style='aspect-ratio: 300 / 400'
                   />
                 </a>
                 <div>
-                  더많은 카드를 만들기 위해서 <a href='http://www.naver.com'>ALOA</a> 방문
+                  더많은 카드를 만들기 위해서 <a href=${process.env.REACT_APP_SERVER}>ALOA</a> 방문
                 </div>
                 `}
                   onChange={() => {}}
                 />
                 <CopyToClipboard
-                  text={copyLinkRef.current.value}
+                  text={copyHTMLRef.current.value}
                   onCopy={() => {
                     toast.success(`HTML 태그를 복사했습니다.`);
                   }}
                 >
-                  <Button title={"HTML 태그 복사"} />
+                  <Button
+                    title={
+                      <>
+                        <i className="fa fa-clipboard" />
+                        &nbsp;&nbsp;HTML 태그 복사
+                      </>
+                    }
+                  />
                 </CopyToClipboard>
               </div>
             </div>

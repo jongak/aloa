@@ -133,8 +133,8 @@ $sudo setcap 'cap_net_bind_service=+ep' $(which node)
 
 ```
 $ cd /
-$ sudo chown -R root:root ./  // 하위폴더의 모든 파일 root로 변경
-$ sudo su                     //root로 로그인
+$ sudo chown -R root:root ./  // 하위폴더의 모든 파일 권한을 root로 변경
+$ sudo su                     // root로 로그인
 $ npm start
 ```
 
