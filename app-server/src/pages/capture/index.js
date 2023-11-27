@@ -1,5 +1,5 @@
 import html2canvas from "html2canvas";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import CardFront from "../../components/common/CardFront";
 import CardBack from "../../components/common/CardBack";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserData } from "../../store/captureSlice";
 import saveAs from "file-saver";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const getDataCard = async function (id) {
   try {
@@ -50,12 +50,7 @@ const capture = function () {
     "#00b78e",
   ]);
   const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
-  const shadowOptionColors = useRef([
-    "#6dd5ed",
-    "#2193b0",
-    "#6dd5ed",
-    "#2193b0",
-  ]);
+  const shadowOptionColors = useRef(["#6dd5ed", "#2193b0"]);
   useEffect(() => {
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
@@ -257,8 +252,8 @@ const capture = function () {
                         color2: shadowOptionColors.current[1],
                       },
                       hover: {
-                        color1: shadowOptionColors.current[2],
-                        color2: shadowOptionColors.current[3],
+                        color1: shadowOptionColors.current[0],
+                        color2: shadowOptionColors.current[1],
                       },
                     }
                   : null
@@ -298,8 +293,8 @@ const capture = function () {
                         color2: shadowOptionColors.current[1],
                       },
                       hover: {
-                        color1: shadowOptionColors.current[2],
-                        color2: shadowOptionColors.current[3],
+                        color1: shadowOptionColors.current[0],
+                        color2: shadowOptionColors.current[1],
                       },
                     }
                   : null

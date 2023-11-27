@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import Button from "../../components/common/Button";
 import { useSelector } from "react-redux";
-import LootCardItem from "../../components/item/LootCardItem";
 import { toast } from "react-toastify";
 import axios from "axios";
 import LootCard from "../../components/common/LootCard";
@@ -80,38 +79,62 @@ function Home() {
           </div>
           <div className="myCards row">
             <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample1.png"}
                 size={{ height: 400, width: 300 }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample2.png"}
                 size={{ height: 400, width: 300 }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample3.png"}
+                rarityPreset="legendary"
                 size={{ height: 400, width: 300 }}
               />
             </div>
             <div className="col-xl-4 col-lg-6 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample4.png"}
+                holographicOptions={{
+                  glow: true,
+                  color1: "#0077be",
+                  color2: "#0087b3",
+                  color3: "#0097a8",
+                  color4: "#00a799",
+                  color5: "#00b78e",
+                }}
+                shineOptions={{
+                  color1: "#6dd5ed",
+                  color2: "#2193b0",
+                }}
+                shadowOptions={{
+                  default: {
+                    color1: "#6dd5ed",
+                    color2: "#2193b0",
+                  },
+                  hover: {
+                    color1: "#6dd5ed",
+                    color2: "#2193b0",
+                  },
+                }}
                 size={{ height: 400, width: 300 }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample5.png"}
                 size={{ height: 400, width: 300 }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
-              <LootCardItem
+              <LootCard
                 img={"/assets/images/sample6.png"}
+                rarityPreset="holographic"
                 size={{ height: 400, width: 300 }}
               />
             </div>

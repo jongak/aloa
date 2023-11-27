@@ -76,22 +76,23 @@ const ShareCard = function () {
             className="form-control"
             type="text"
             ref={copyHTMLRef}
-            value={`<a href=${process.env.REACT_APP_SERVER}>
-                  <img
-                    
-                    loading='lazy'
-                    style='aspect-ratio: 300 / 400'
-                  />
-                  <img
-                   
-                    loading='lazy'
-                    style='aspect-ratio: 300 / 400'
-                  />
-                </a>
-                <div>
-                  더많은 카드를 만들기 위해서 <a href=${process.env.REACT_APP_SERVER}>ALOA</a> 방문
-                </div>
-                `}
+            value={
+              `<a href='${process.env.REACT_APP_SERVER}'> ` +
+              `<img ` +
+              `loading='lazy' ` +
+              `src='${process.env.REACT_APP_API_SERVER}/images/front/${characterNameRef.current}' ` +
+              `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+              `/> ` +
+              `<img ` +
+              `loading='lazy' ` +
+              `src='${process.env.REACT_APP_API_SERVER}/images/back/${characterNameRef.current}' ` +
+              `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+              `/> ` +
+              `</a> ` +
+              `<div> ` +
+              `더많은 카드를 만들기 위해서 <a href='${process.env.REACT_APP_SERVER}'>ALOA</a> 방문 ` +
+              `</div> `
+            }
             onChange={() => {}}
           />
           <CopyToClipboard

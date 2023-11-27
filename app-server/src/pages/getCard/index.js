@@ -1,44 +1,13 @@
-import html2canvas from "html2canvas";
-import { useEffect, useRef, useState } from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard/src";
+import { useRef } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
 
-import axios from "axios";
-import saveAs from "file-saver";
 import Button from "../../components/common/Button";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import LootCard from "../../components/common/LootCard";
 import { toast } from "react-toastify";
-import { setRarityPreset } from "../../store/captureSlice";
 
 const GetCard = function () {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const isHolo = useSelector((state) => state.captureSlice.isHolo);
-  const isGlow = useSelector((state) => state.captureSlice.isGlow);
-  const isShine = useSelector((state) => state.captureSlice.isShine);
-  const isShadow = useSelector((state) => state.captureSlice.isShadow);
-
-  // const holographicOptionColors = useRef([
-  //   "#0077be",
-  //   "#0087b3",
-  //   "#0097a8",
-  //   "#00a799",
-  //   "#00b78e",
-  // ]);
-  // const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
-  // const shadowOptionColors = useRef([
-  //   "#6dd5ed",
-  //   "#2193b0",
-  //   "#6dd5ed",
-  //   "#2193b0",
-  // ]);
-  dispatch(
-    setRarityPreset({
-      newRarityPreset: "Holographic",
-    })
-  );
 
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
@@ -57,99 +26,24 @@ const GetCard = function () {
           <div className="option-body getCard">
             <div
               className="col-sm-12 mt-5"
-              // ref={fullRef}
               style={{
                 display: "flex",
                 justifyContent: "space-evenly",
                 flexWrap: "wrap",
               }}
             >
+              {/* 나중에 db에 저장된 커스텀모드 불러오기 가능해야할듯 */}
               <LootCard
                 img={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
-                // holographicOptions={
-                //   isHolo
-                //     ? {
-                //         glow: isGlow,
-                //         color1: holographicOptionColors.current[0],
-                //         color2: holographicOptionColors.current[1],
-                //         color3: holographicOptionColors.current[2],
-                //         color4: holographicOptionColors.current[3],
-                //         color5: holographicOptionColors.current[4],
-                //       }
-                //     : null
-                // }
-                // shineOptions={
-                //   isShine
-                //     ? {
-                //         color1: shineOptionColors.current[0],
-                //         color2: shineOptionColors.current[1],
-                //       }
-                //     : null
-                // }
-                // shadowOptions={
-                //   isShadow
-                //     ? {
-                //         default: {
-                //           color1: shadowOptionColors.current[0],
-                //           color2: shadowOptionColors.current[1],
-                //         },
-                //         hover: {
-                //           color1: shadowOptionColors.current[2],
-                //           color2: shadowOptionColors.current[3],
-                //         },
-                //       }
-                //     : null
-                // }
+                rarityPreset={"holographic"}
                 size={{ height: 400, width: 300 }}
               />
 
               <LootCard
                 img={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                // holographicOptions={
-                //   isHolo
-                //     ? {
-                //         glow: isGlow,
-                //         color1: holographicOptionColors.current[0],
-                //         color2: holographicOptionColors.current[1],
-                //         color3: holographicOptionColors.current[2],
-                //         color4: holographicOptionColors.current[3],
-                //         color5: holographicOptionColors.current[4],
-                //       }
-                //     : null
-                // }
-                // shineOptions={
-                //   isShine
-                //     ? {
-                //         color1: shineOptionColors.current[0],
-                //         color2: shineOptionColors.current[1],
-                //       }
-                //     : null
-                // }
-                // shadowOptions={
-                //   isShadow
-                //     ? {
-                //         default: {
-                //           color1: shadowOptionColors.current[0],
-                //           color2: shadowOptionColors.current[1],
-                //         },
-                //         hover: {
-                //           color1: shadowOptionColors.current[2],
-                //           color2: shadowOptionColors.current[3],
-                //         },
-                //       }
-                //     : null
-                // }
+                rarityPreset={"holographic"}
                 size={{ height: 400, width: 300 }}
               />
-
-              {/* <img
-                src={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
-                style={{ height: 400, width: 300 }}
-              />
-              <img
-                src={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                style={{ height: 400, width: 300 }}
-              /> */}
             </div>
 
             <h3>
