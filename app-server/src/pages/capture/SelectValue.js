@@ -315,7 +315,7 @@ const SelectValue = function () {
               <ToggleButton
                 titleRef={"isName"}
                 title={"닉네임 표시"}
-                body={"닉네임을 숨깁니다."}
+                body={"닉네임/길드명을 숨깁니다."}
                 isChanged={isChanged}
                 setIsChanged={setIsChanged}
               />

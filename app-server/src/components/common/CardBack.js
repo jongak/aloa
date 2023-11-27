@@ -122,9 +122,7 @@ const CardBack = function ({
                 <div className="col-10 back_stats_bg">
                   <span>길드</span>
                   <span className="back_guildname">
-                    {userData && userData["ArmoryProfile"]["GuildName"]
-                      ? userData["ArmoryProfile"]["GuildName"]
-                      : "길드명도열두자까지가능함"}
+                    {isName ? userData["ArmoryProfile"]["GuildName"] : "-"}
                   </span>
                 </div>
               </div>

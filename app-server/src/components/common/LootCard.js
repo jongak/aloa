@@ -20,7 +20,6 @@ export default function LootCard(props) {
     rarityPreset = "custom",
   } = props;
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
-  // const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const id = useMemo(

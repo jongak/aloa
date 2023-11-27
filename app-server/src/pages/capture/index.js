@@ -30,7 +30,7 @@ const capture = function () {
   const [backCanvasRef, setBackCanvasRef] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
-
+  const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const characterNameRef = useRef();
 
   const dispatch = useDispatch();
@@ -227,7 +227,7 @@ const capture = function () {
           <div className="card-view">
             <LootCard
               img={"/assets/images/card_example_f.png"}
-              // holo={holoSrcRef.current}
+              rarityPreset={rarityPreset}
               canvasRef={frontCanvasRef}
               holographicOptions={
                 isHolo
@@ -268,7 +268,7 @@ const capture = function () {
 
             <LootCard
               img={"/assets/images/card_example_b.png"}
-              // holo={holoSrcRef.current}
+              rarityPreset={rarityPreset}
               canvasRef={backCanvasRef}
               holographicOptions={
                 isHolo
