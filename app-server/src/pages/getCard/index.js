@@ -40,26 +40,6 @@ const GetCard = function () {
     downloadLink.download = id + "_back.png";
     downloadLink.click();
   };
-  const handleDownload = useCallback(async () => {
-    try {
-      // Front 이미지 다운로드
-      const frontDownloadLink = document.createElement("a");
-      frontDownloadLink.href =
-        process.env.REACT_APP_API_SERVER + "/images/front/" + id;
-      frontDownloadLink.download = id + "_front.png";
-      frontDownloadLink.click();
-
-      // 기다린 후에 Back 이미지 다운로드
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // 적절한 대기 시간 설정
-      const backDownloadLink = document.createElement("a");
-      backDownloadLink.href =
-        process.env.REACT_APP_API_SERVER + "/images/back/" + id;
-      backDownloadLink.download = id + "_back.png";
-      backDownloadLink.click();
-    } catch (error) {
-      console.error("다운로드 에러:", error);
-    }
-  }, [id]);
 
   return (
     <div className="main-banner container">
@@ -100,7 +80,12 @@ const GetCard = function () {
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button title={"카드전체 저장"} onClick={handleDownload} />
+                <Button
+                  title={"카드전체 저장"}
+                  onClick={() => {
+                    toast.error(`준비중입니다.`);
+                  }}
+                />
                 <Button title={"앞면저장"} onClick={handleFrontDownload} />
                 <Button title={"뒷면저장"} onClick={handleBackDownload} />
               </div>
