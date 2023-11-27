@@ -1,8 +1,9 @@
 import { useCallback, useRef } from "react";
-
+import domtoimage from "dom-to-image";
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
 import LootCard from "../../components/common/LootCard";
+import saveAs from "file-saver";
 import { toast } from "react-toastify";
 
 const GetCard = function () {
@@ -41,6 +42,14 @@ const GetCard = function () {
     downloadLink.click();
   };
 
+  const cardRef = useRef();
+  const fullDown = () => {
+    const card = cardRef.current;
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, "aloacard.png");
+    });
+  };
+
   return (
     <div className="main-banner container">
       <div className="row justify-content-center">
@@ -74,23 +83,22 @@ const GetCard = function () {
                 size={{ height: 400, width: 300 }}
               />
             </div>
-            {/* <div ref={fullRef} style={{ display: "flex" }}>
-              <img
-                // src={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
-                src={front}
-                style={{ height: "400px", width: "300px" }}
-              />
+
+            <div style={{ position: "absolute", top: "-100%" }}>
               <div
-                id="canvas"
-                src={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                style={{
-                  height: "400px",
-                  width: "300px",
-                  backgroundImage: `url(${process.env.REACT_APP_API_SERVER}/images/back/${id})`,
-                  backgroundSize: "100% 100%",
-                }}
-              />
-            </div> */}
+                ref={cardRef}
+                style={{ position: "absolute", display: "flex" }}
+              >
+                <img
+                  src={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
+                  style={{ height: "800px", width: "600px" }}
+                />
+                <img
+                  src={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
+                  style={{ height: "800px", width: "600px" }}
+                />
+              </div>
+            </div>
 
             <h3>
               <i className="fa fa-download"></i> &nbsp;&nbsp; 카드 저장하기
@@ -100,7 +108,7 @@ const GetCard = function () {
                 <Button
                   title={"카드전체 저장"}
                   onClick={() => {
-                    toast.error(`준비중입니다.`);
+                    fullDown();
                   }}
                 />
                 <Button title={"앞면저장"} onClick={handleFrontDownload} />
