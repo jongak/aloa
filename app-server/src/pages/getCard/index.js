@@ -198,12 +198,12 @@ const GetCard = function () {
                   value={`<a href=${process.env.REACT_APP_SERVER}>
                   <img
                     loading='lazy'
-                    src='${process.env.REACT_APP_API_SERVER} + "/images/front/" + ${id}'
+                    src='${process.env.REACT_APP_API_SERVER}/images/front/${id}'
                     style='aspect-ratio: 300 / 400'
                   />
                   <img
                     loading='lazy'
-                    src='${process.env.REACT_APP_API_SERVER} + "/images/back/" + ${id}'
+                    src='${process.env.REACT_APP_API_SERVER}/images/back/${id}'
                     style='aspect-ratio: 300 / 400'
                   />
                 </a>
