@@ -14,25 +14,25 @@ const GetCard = function () {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // const isHolo = useSelector((state) => state.captureSlice.isHolo);
-  // const isGlow = useSelector((state) => state.captureSlice.isGlow);
-  // const isShine = useSelector((state) => state.captureSlice.isShine);
-  // const isShadow = useSelector((state) => state.captureSlice.isShadow);
+  const isHolo = useSelector((state) => state.captureSlice.isHolo);
+  const isGlow = useSelector((state) => state.captureSlice.isGlow);
+  const isShine = useSelector((state) => state.captureSlice.isShine);
+  const isShadow = useSelector((state) => state.captureSlice.isShadow);
 
-  // const holographicOptionColors = useRef([
-  //   "#0077be",
-  //   "#0087b3",
-  //   "#0097a8",
-  //   "#00a799",
-  //   "#00b78e",
-  // ]);
-  // const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
-  // const shadowOptionColors = useRef([
-  //   "#6dd5ed",
-  //   "#2193b0",
-  //   "#6dd5ed",
-  //   "#2193b0",
-  // ]);
+  const holographicOptionColors = useRef([
+    "#0077be",
+    "#0087b3",
+    "#0097a8",
+    "#00a799",
+    "#00b78e",
+  ]);
+  const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
+  const shadowOptionColors = useRef([
+    "#6dd5ed",
+    "#2193b0",
+    "#6dd5ed",
+    "#2193b0",
+  ]);
 
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
@@ -58,8 +58,8 @@ const GetCard = function () {
                 flexWrap: "wrap",
               }}
             >
-              {/* <LootCard
-                img={encodeURI(frontRef.current)}
+              <LootCard
+                img={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
                 holographicOptions={
                   isHolo
                     ? {
@@ -98,7 +98,7 @@ const GetCard = function () {
               />
 
               <LootCard
-                img={encodeURI(backRef.current)}
+                img={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
                 holographicOptions={
                   isHolo
                     ? {
@@ -134,20 +134,16 @@ const GetCard = function () {
                     : null
                 }
                 size={{ height: 400, width: 300 }}
-              /> */}
+              />
 
-              <img
-                src={
-                  "http://localhost:4400/api/images/front/%EC%86%A1%EB%8F%84%EB%82%98%EB%B4%89%EC%84%A0"
-                }
+              {/* <img
+                src={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
                 style={{ height: 400, width: 300 }}
               />
               <img
-                src={
-                  "http://localhost:4400/api/images/back/%EC%86%A1%EB%8F%84%EB%82%98%EB%B4%89%EC%84%A0"
-                }
+                src={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
                 style={{ height: 400, width: 300 }}
-              />
+              /> */}
             </div>
 
             <h3>
@@ -157,18 +153,14 @@ const GetCard = function () {
               <div className="buttonCover">
                 <Button title={"카드전체 저장"} />
                 <Button
-                  title={
-                    <a href="http://localhost:4400/api/images/front/%EC%86%A1%EB%8F%84%EB%82%98%EB%B4%89%EC%84%A0">
-                      앞면저장
-                    </a>
+                  title={"앞면저장"}
+                  href={
+                    process.env.REACT_APP_API_SERVER + "/images/front/" + id
                   }
                 />
                 <Button
-                  title={
-                    <a href="http://localhost:4400/api/images/front/%EC%86%A1%EB%8F%84%EB%82%98%EB%B4%89%EC%84%A0">
-                      뒷면저장
-                    </a>
-                  }
+                  title={"뒷면저장"}
+                  href={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
                 />
               </div>
             </div>
@@ -206,10 +198,12 @@ const GetCard = function () {
                   value={`<a href=${process.env.REACT_APP_SERVER}>
                   <img
                     loading='lazy'
+                    src='${process.env.REACT_APP_API_SERVER} + "/images/front/" + ${id}'
                     style='aspect-ratio: 300 / 400'
                   />
                   <img
                     loading='lazy'
+                    src='${process.env.REACT_APP_API_SERVER} + "/images/back/" + ${id}'
                     style='aspect-ratio: 300 / 400'
                   />
                 </a>
