@@ -68,25 +68,18 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
-router.get("/cards/:id", async (req, res, next) => {
+
+router.get("/front/:id", async (req, res, next) => {
   const id = req.params.id;
 
-  const frontBucketParams = {
+  const bucketParams = {
     Bucket: "aloa-bucket",
     Key: encodeURIComponent(id) + "_front.png",
   };
-  const backBucketParams = {
-    Bucket: "aloa-bucket",
-    Key: encodeURIComponent(id) + "_back.png", // 수정된 부분
-  };
-  console.log(frontBucketParams.Key);
-  console.log(backBucketParams.Key);
 
   try {
-    const frontData = await s3Client.send(
-      new GetObjectCommand(frontBucketParams)
-    );
-    const frontInputStream = frontData.Body;
+    const data = await s3Client.send(new GetObjectCommand(bucketParams));
+    const inputStream = data.Body;
 
     // Front 이미지를 클라이언트로 스트리밍합니다.
     res.setHeader(
@@ -94,33 +87,31 @@ router.get("/cards/:id", async (req, res, next) => {
       `attachment; filename=${encodeURIComponent("front.png")}`
     );
     res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
-    frontInputStream.pipe(res);
+    inputStream.pipe(res);
+  } catch (err) {
+    next(err);
+  }
+});
 
-    // 에러 핸들링
-    frontInputStream.on("error", (err) => {
-      res.status(500).send("Internal Server Error");
-    });
+router.get("/back/:id", async (req, res, next) => {
+  const id = req.params.id;
 
-    // Front 이미지 스트리밍이 완료된 후에 Back 이미지를 스트리밍합니다.
-    frontInputStream.on("end", async () => {
-      const backData = await s3Client.send(
-        new GetObjectCommand(backBucketParams)
-      );
-      const backInputStream = backData.Body;
+  const bucketParams = {
+    Bucket: "aloa-bucket",
+    Key: encodeURIComponent(id) + "_back.png",
+  };
 
-      // Back 이미지를 클라이언트로 스트리밍합니다.
-      res.setHeader(
-        "Content-Disposition",
-        `attachment; filename=${encodeURIComponent("back.png")}`
-      );
-      res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
-      backInputStream.pipe(res);
+  try {
+    const data = await s3Client.send(new GetObjectCommand(bucketParams));
+    const inputStream = data.Body;
 
-      // 에러 핸들링
-      backInputStream.on("error", (err) => {
-        res.status(500).send("Internal Server Error");
-      });
-    });
+    // Front 이미지를 클라이언트로 스트리밍합니다.
+    res.setHeader(
+      "Content-Disposition",
+      `attachment; filename=${encodeURIComponent("back.png")}`
+    );
+    res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
+    inputStream.pipe(res);
   } catch (err) {
     next(err);
   }
