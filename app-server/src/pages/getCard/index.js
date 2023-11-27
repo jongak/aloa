@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import html2canvas from "html2canvas";
+import saveAs from "file-saver";
 
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
@@ -27,6 +29,26 @@ const GetCard = function () {
       toast.success(`HTML 태그를 복사했습니다.`);
     });
   };
+  // saveAs(
+  //   "http://localhost:4400/api/images/front/송도나봉선",
+
+  //   "image.jpg"
+  // );
+
+  const fullRef = useRef();
+  const fullDown = async () => {
+    const card = fullRef.current;
+    const canvas = await html2canvas(card);
+    canvas.toBlob(function (blob) {
+      saveAs(blob, "card.png");
+    });
+  };
+
+  const front = decodeURI(
+    `${process.env.REACT_APP_API_SERVER + "/images/front/" + id}`
+  );
+  console.log(front);
+  // const f_blob = front.toBlob();
 
   return (
     <div className="main-banner container">
@@ -61,13 +83,30 @@ const GetCard = function () {
                 size={{ height: 400, width: 300 }}
               />
             </div>
+            {/* <div ref={fullRef} style={{ display: "flex" }}>
+              <img
+                // src={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
+                src={front}
+                style={{ height: "400px", width: "300px" }}
+              />
+              <div
+                id="canvas"
+                src={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
+                style={{
+                  height: "400px",
+                  width: "300px",
+                  backgroundImage: `url(${process.env.REACT_APP_API_SERVER}/images/back/${id})`,
+                  backgroundSize: "100% 100%",
+                }}
+              />
+            </div> */}
 
             <h3>
               <i className="fa fa-download"></i> &nbsp;&nbsp; 카드 저장하기
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button title={"카드전체 저장"} />
+                <Button title={"카드전체 저장"} onClick={fullDown} />
                 <Button
                   title={"앞면저장"}
                   href={
