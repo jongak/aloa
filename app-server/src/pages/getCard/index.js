@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import CopyToClipboard from "react-copy-to-clipboard";
 
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
@@ -11,6 +10,23 @@ const GetCard = function () {
 
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
+
+  const copyLinkUrl = function () {
+    copyLinkRef.current.focus();
+    copyLinkRef.current.select();
+
+    navigator.clipboard.writeText(copyLinkRef.current.value).then(() => {
+      toast.success(`링크를 복사했습니다.`);
+    });
+  };
+  const copyHTMLUrl = function () {
+    copyHTMLRef.current.focus();
+    copyHTMLRef.current.select();
+
+    navigator.clipboard.writeText(copyHTMLRef.current.value).then(() => {
+      toast.success(`HTML 태그를 복사했습니다.`);
+    });
+  };
 
   return (
     <div className="main-banner container">
@@ -75,19 +91,16 @@ const GetCard = function () {
                   value={process.env.REACT_APP_SERVER + "cards/" + id}
                   onChange={() => {}}
                 ></input>
-                <CopyToClipboard
-                  text={copyLinkRef.current.value}
-                  onCopy={() => toast.success(`링크를 복사했습니다.`)}
-                >
-                  <Button
-                    title={
-                      <>
-                        <i className="fa fa-clipboard" />
-                        &nbsp;&nbsp;클립보드에 복사
-                      </>
-                    }
-                  />
-                </CopyToClipboard>
+
+                <Button
+                  title={
+                    <>
+                      <i className="fa fa-clipboard" />
+                      &nbsp;&nbsp;클립보드에 복사
+                    </>
+                  }
+                  onClick={copyLinkUrl}
+                />
               </div>
 
               <div className="find-input">
@@ -114,21 +127,16 @@ const GetCard = function () {
                   }
                   onChange={() => {}}
                 />
-                <CopyToClipboard
-                  text={copyHTMLRef.current.value}
-                  onCopy={() => {
-                    toast.success(`HTML 태그를 복사했습니다.`);
-                  }}
-                >
-                  <Button
-                    title={
-                      <>
-                        <i className="fa fa-clipboard" />
-                        &nbsp;&nbsp;HTML 태그 복사
-                      </>
-                    }
-                  />
-                </CopyToClipboard>
+
+                <Button
+                  title={
+                    <>
+                      <i className="fa fa-clipboard" />
+                      &nbsp;&nbsp;HTML 태그 복사
+                    </>
+                  }
+                  onClick={copyHTMLUrl}
+                />
               </div>
             </div>
           </div>
