@@ -17,9 +17,10 @@ export default function LootCard(props) {
     shadowOptions = null, //그림자관련 default: 고정 그림자 색 hover는 안먹힘
     className = "",
     style = {}, //메인div관련 stlye
+    rarityPreset = "custom",
   } = props;
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
-  const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
+  // const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const id = useMemo(
