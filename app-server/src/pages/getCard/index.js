@@ -1,5 +1,5 @@
 import html2canvas from "html2canvas";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 import axios from "axios";
@@ -10,6 +10,15 @@ import { useSelector } from "react-redux";
 import LootCard from "../../components/common/LootCard";
 import { toast } from "react-toastify";
 
+const getData = async function (url) {
+  try {
+    const res = await axios.get(`/?url=${url}`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const GetCard = function () {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -17,12 +26,29 @@ const GetCard = function () {
     `https://aloa-bucket.s3.ap-northeast-2.amazonaws.com/${encodeURI(
       id
     )}_front.png`
+    // "https://img.lostark.co.kr/armory/3/3fded19a32096773a7815a94861aa2a39b13bedf5f1ee124967cb76b0a516fc4.png?v=20231123093936"
   );
   const backRef = useRef(
     `https://aloa-bucket.s3.ap-northeast-2.amazonaws.com/${encodeURI(
       id
     )}_back.png`
   );
+
+  const imgRef = useRef();
+  const [isLoading, setIsLoading] = useState();
+
+  useEffect(() => {
+    if (id) {
+      setIsLoading(false);
+      getData(frontRef.current).then((res) => {
+        imgRef.current = res;
+      });
+      setTimeout(() => {
+        setIsLoading(true);
+      }, 500);
+    }
+    console.log(imgRef.current);
+  }, []);
 
   // const isHolo = useSelector((state) => state.captureSlice.isHolo);
   // const isGlow = useSelector((state) => state.captureSlice.isGlow);
@@ -47,6 +73,21 @@ const GetCard = function () {
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
 
+  const fRef = useRef();
+
+  const handleFrontDown = async () => {
+    const div = fRef.current;
+    const frontCanvas = await html2canvas(div, { scale: 2 });
+    frontCanvas.toBlob(function (blob) {
+      saveAs(blob, "CardFront.png");
+    });
+  };
+  // const handleBackDown = async () => {
+  //   bRef.toBlob(function (blob) {
+  //     saveAs(blob, "CardBack.png");
+  //   });
+  // };
+  const fimage = encodeURI(frontRef.current);
   return (
     <div className="main-banner container">
       <div className="row justify-content-center">
@@ -68,7 +109,8 @@ const GetCard = function () {
                 flexWrap: "wrap",
               }}
             >
-              {/* <LootCard
+              <div>
+                {/* <LootCard
                 img={encodeURI(frontRef.current)}
                 holographicOptions={
                   isHolo
@@ -145,6 +187,16 @@ const GetCard = function () {
                 }
                 size={{ height: 400, width: 300 }}
               /> */}
+              </div>
+              <div
+                ref={fRef}
+                style={{
+                  height: "400px",
+                  width: "300px",
+                  backgroundImage: `url(${imgRef.current})`,
+                  backgroundSize: "100% 100%",
+                }}
+              ></div>
               <img
                 src={encodeURI(frontRef.current)}
                 style={{ height: 400, width: 300 }}
@@ -161,7 +213,7 @@ const GetCard = function () {
             <div className="userRow">
               <div className="buttonCover">
                 <Button title={"카드전체 저장"} />
-                <Button title={"앞면 저장"} />
+                <Button title={"앞면 저장"} onClick={handleFrontDown} />
                 <Button title={"뒷면 저장"} />
               </div>
             </div>
@@ -237,4 +289,5 @@ const GetCard = function () {
     </div>
   );
 };
+
 export default GetCard;
