@@ -250,12 +250,12 @@ const GetCard = function () {
                   ref={copyHTMLRef}
                   value={`<a href=${process.env.REACT_APP_SERVER}>
                   <img
-                    
+                    src=${frontRef.current}
                     loading='lazy'
                     style='aspect-ratio: 300 / 400'
                   />
                   <img
-                   
+                    src=${backRef.current}
                     loading='lazy'
                     style='aspect-ratio: 300 / 400'
                   />
