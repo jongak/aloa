@@ -18,6 +18,7 @@ const Button = function ({
   onClick,
   title, //내부들어갈것
   btnClass,
+  download = false,
 }) {
   // 버튼 스타일을 결정하는 클래스 이름
   var buttonClassName = isRev ? "my_button_rev" : "my_button";
@@ -35,6 +36,7 @@ const Button = function ({
         to={href}
         style={style}
         data-value={value}
+        download={download}
         onClick={(e) => {
           if (onClick) {
             onClick(e);

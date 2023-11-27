@@ -78,10 +78,12 @@ const GetCard = function () {
                   href={
                     process.env.REACT_APP_API_SERVER + "/images/front/" + id
                   }
+                  download={true}
                 />
                 <Button
                   title={"뒷면저장"}
                   href={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
+                  download={true}
                 />
               </div>
             </div>
