@@ -77,7 +77,7 @@ const ShareCard = function () {
             type="text"
             ref={copyHTMLRef}
             value={
-              `<a href='${process.env.REACT_APP_SERVER}'> ` +
+              `<a href='${process.env.REACT_APP_SERVER}cards/${characterNameRef.current}'> ` +
               `<img ` +
               `loading='lazy' ` +
               `src='${process.env.REACT_APP_API_SERVER}/images/front/${characterNameRef.current}' ` +

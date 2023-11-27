@@ -35,7 +35,6 @@ function Home() {
 
     if (queryRef.current.value) {
       var tmp = await getData(queryRef.current.value);
-      console.log(tmp);
       if (tmp) {
         navigate(`/cards/${queryRef.current.value}`);
       } else {
@@ -88,6 +87,28 @@ function Home() {
               <LootCard
                 img={"/assets/images/sample2.png"}
                 size={{ height: 400, width: 300 }}
+                holographicOptions={{
+                  glow: true,
+                  color1: "#5211e8",
+                  color2: "#c5ABCF",
+                  color3: "#576DDB",
+                  color4: "#D094E6",
+                  color5: "#6E3CE2",
+                }}
+                shineOptions={{
+                  color1: "#D397BA",
+                  color2: "#CC85A1",
+                }}
+                shadowOptions={{
+                  default: {
+                    color1: "#E10EB4",
+                    color2: "#EE17E6",
+                  },
+                  hover: {
+                    color1: "#E10EB4",
+                    color2: "#EE17E6",
+                  },
+                }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">
@@ -129,6 +150,24 @@ function Home() {
               <LootCard
                 img={"/assets/images/sample5.png"}
                 size={{ height: 400, width: 300 }}
+                holographicOptions={{
+                  glow: true,
+                  color1: "#ff0000",
+                  color2: "#ff8000",
+                  color3: "#ffff00",
+                  color4: "#0000ff",
+                  color5: "#8000ff",
+                }}
+                shadowOptions={{
+                  default: {
+                    color1: "#ffffff",
+                    color2: "#ffffff",
+                  },
+                  hover: {
+                    color1: "#ffffff",
+                    color2: "#ffffff",
+                  },
+                }}
               />
             </div>
             <div className="col-xl-4  col-lg-6 mb-5">

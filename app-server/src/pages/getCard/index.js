@@ -1,6 +1,4 @@
-import { useRef } from "react";
-import html2canvas from "html2canvas";
-import saveAs from "file-saver";
+import { useCallback, useRef } from "react";
 
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
@@ -29,26 +27,19 @@ const GetCard = function () {
       toast.success(`HTML 태그를 복사했습니다.`);
     });
   };
-  // saveAs(
-  //   "http://localhost:4400/api/images/front/송도나봉선",
-
-  //   "image.jpg"
-  // );
-
-  const fullRef = useRef();
-  const fullDown = async () => {
-    const card = fullRef.current;
-    const canvas = await html2canvas(card);
-    canvas.toBlob(function (blob) {
-      saveAs(blob, "card.png");
-    });
+  const handleFrontDownload = () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href =
+      process.env.REACT_APP_API_SERVER + "/images/front/" + id;
+    downloadLink.download = id + "_front.png";
+    downloadLink.click();
   };
-
-  const front = decodeURI(
-    `${process.env.REACT_APP_API_SERVER + "/images/front/" + id}`
-  );
-  console.log(front);
-  // const f_blob = front.toBlob();
+  const handleBackDownload = () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href = process.env.REACT_APP_API_SERVER + "/images/back/" + id;
+    downloadLink.download = id + "_back.png";
+    downloadLink.click();
+  };
 
   return (
     <div className="main-banner container">
@@ -106,17 +97,14 @@ const GetCard = function () {
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button title={"카드전체 저장"} onClick={fullDown} />
                 <Button
-                  title={"앞면저장"}
-                  href={
-                    process.env.REACT_APP_API_SERVER + "/images/front/" + id
-                  }
+                  title={"카드전체 저장"}
+                  onClick={() => {
+                    toast.error(`준비중입니다.`);
+                  }}
                 />
-                <Button
-                  title={"뒷면저장"}
-                  href={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                />
+                <Button title={"앞면저장"} onClick={handleFrontDownload} />
+                <Button title={"뒷면저장"} onClick={handleBackDownload} />
               </div>
             </div>
             <h3>
@@ -148,7 +136,7 @@ const GetCard = function () {
                   type="text"
                   ref={copyHTMLRef}
                   value={
-                    `<a href='${process.env.REACT_APP_SERVER}'> ` +
+                    `<a href='${process.env.REACT_APP_SERVER}cards/${id}'> ` +
                     `<img ` +
                     `loading='lazy' ` +
                     `src='${process.env.REACT_APP_API_SERVER}/images/front/${id}' ` +

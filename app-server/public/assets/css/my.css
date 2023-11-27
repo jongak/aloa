@@ -913,10 +913,11 @@ Banner Style
 
 @media (max-width: 768px) {
   .main-banner {
-    margin-top: 50px;
+    margin-top: 0px;
   }
   .main-banner .caption .logo {
     width: 200px;
+    margin-top: 50px;
   }
 }
 
@@ -1282,6 +1283,7 @@ capture
     margin: 0px;
     width: 100%;
   }
+  .option-body.share .userRow .find-input .my_button,
   .option-body.getCard .userRow .find-input .my_button {
     margin: 30px 0px;
     width: 50%;
@@ -1300,6 +1302,7 @@ capture
   .option-area .inner {
     gap: 5%;
   }
+  .option-body.share .userRow .find-input .my_button,
   .option-body.getCard .userRow .find-input .my_button {
     margin: 30px 0px;
     width: 100%;
@@ -1346,6 +1349,20 @@ getCard
   position: relative;
   width: auto;
 }
+.option-body.set .accordion-body .userRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+.option-body.set .accordion-body .userRow .colorItem {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+
 .option-body.share .cardRow .buttonCover {
   display: flex;
   flex-wrap: wrap;
@@ -1364,6 +1381,15 @@ getCard
 .option-body.share .cardRow .form-control {
   width: 360px;
 }
+@media (max-width: 576px) {
+  .option-body.set .accordion-body .userRow {
+    justify-content: center;
+  }
+  .option-body.set .accordion-body .userRow .colorItem {
+    margin-top: 4px;
+  }
+}
+
 /* 
 ---------------------------------------------
 card-area
