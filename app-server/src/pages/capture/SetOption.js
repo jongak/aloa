@@ -28,9 +28,9 @@ const SetOption = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (!characterNameRef.current) {
-    navigate("../");
-  }
+  // if (!characterNameRef.current) {
+  //   navigate("../");
+  // }
   useEffect(() => {
     setPage("set");
   }, []);
@@ -43,25 +43,14 @@ const SetOption = function () {
         <Accordion.Item eventKey="select">
           <Accordion.Header>카드 테두리</Accordion.Header>
           <Accordion.Body>
-            <div
-              className="userRow"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "20px",
-                padding: "20px",
-              }}
-            >
+            <div className="userRow">
               {[1, 2, 3, 4, 5, 6, 7].map((i) => {
                 return (
                   <div
                     key={`aa${i}`}
+                    className="colorItem"
                     style={{
-                      width: "60px",
-                      height: "60px",
                       backgroundImage: `url('/assets/images/card_frame/${i}/0.png')`,
-                      cursor: "pointer",
-                      marginRight: "4px",
                     }}
                     onClick={() => {
                       dispatch(setFramePreset({ newFramePreset: i }));
@@ -76,26 +65,14 @@ const SetOption = function () {
         <Accordion.Item eventKey="color">
           <Accordion.Header>카드 색상</Accordion.Header>
           <Accordion.Body>
-            <div
-              className="userRow"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "20px",
-                padding: "20px",
-              }}
-            >
+            <div className="userRow">
               {[1, 2, 3, 4, 5, 6].map((i) => {
                 return (
                   <div
                     key={`${i}`}
+                    className="colorItem"
                     style={{
-                      width: "60px",
-                      height: "60px",
                       backgroundImage: `url('/assets/images/card_frame/color/${i}.png')`,
-                      cursor: "pointer",
-                      marginRight: "4px",
-                      backgroundSize: "cover",
                     }}
                     onClick={() => {
                       dispatch(setFrameColor({ newFrameColor: i }));
