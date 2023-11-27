@@ -67,7 +67,12 @@ const GetCard = function () {
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button title={"카드전체 저장"} />
+                <Button
+                  title={"카드전체 저장"}
+                  onClick={() => {
+                    toast.error(`준비중입니다.`);
+                  }}
+                />
                 <Button
                   title={"앞면저장"}
                   href={
