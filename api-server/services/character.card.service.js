@@ -842,7 +842,7 @@ const CharacterCardService = {
       throw new Error("Service Error", { cause: err });
     } finally {
       // 커넥션 반납
-      const connection = await pool.getConnection();
+      const connection = await conn.getConnection();
       connection.release();
     }
   },
