@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
@@ -27,6 +27,39 @@ const GetCard = function () {
       toast.success(`HTML 태그를 복사했습니다.`);
     });
   };
+  const handleFrontDownload = () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href =
+      process.env.REACT_APP_API_SERVER + "/images/front/" + id;
+    downloadLink.download = id + "_front.png";
+    downloadLink.click();
+  };
+  const handleBackDownload = () => {
+    const downloadLink = document.createElement("a");
+    downloadLink.href = process.env.REACT_APP_API_SERVER + "/images/back/" + id;
+    downloadLink.download = id + "_back.png";
+    downloadLink.click();
+  };
+  const handleDownload = useCallback(async () => {
+    try {
+      // Front 이미지 다운로드
+      const frontDownloadLink = document.createElement("a");
+      frontDownloadLink.href =
+        process.env.REACT_APP_API_SERVER + "/images/front/" + id;
+      frontDownloadLink.download = id + "_front.png";
+      frontDownloadLink.click();
+
+      // 기다린 후에 Back 이미지 다운로드
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // 적절한 대기 시간 설정
+      const backDownloadLink = document.createElement("a");
+      backDownloadLink.href =
+        process.env.REACT_APP_API_SERVER + "/images/back/" + id;
+      backDownloadLink.download = id + "_back.png";
+      backDownloadLink.click();
+    } catch (error) {
+      console.error("다운로드 에러:", error);
+    }
+  }, [id]);
 
   return (
     <div className="main-banner container">
@@ -67,24 +100,9 @@ const GetCard = function () {
             </h3>
             <div className="userRow">
               <div className="buttonCover">
-                <Button
-                  title={"카드전체 저장"}
-                  onClick={() => {
-                    toast.error(`준비중입니다.`);
-                  }}
-                />
-                <Button
-                  title={"앞면저장"}
-                  href={
-                    process.env.REACT_APP_API_SERVER + "/images/front/" + id
-                  }
-                  download={true}
-                />
-                <Button
-                  title={"뒷면저장"}
-                  href={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                  download={true}
-                />
+                <Button title={"카드전체 저장"} onClick={handleDownload} />
+                <Button title={"앞면저장"} onClick={handleFrontDownload} />
+                <Button title={"뒷면저장"} onClick={handleBackDownload} />
               </div>
             </div>
             <h3>
@@ -116,7 +134,7 @@ const GetCard = function () {
                   type="text"
                   ref={copyHTMLRef}
                   value={
-                    `<a href='${process.env.REACT_APP_SERVER}'> ` +
+                    `<a href='${process.env.REACT_APP_SERVER}cards/${id}'> ` +
                     `<img ` +
                     `loading='lazy' ` +
                     `src='${process.env.REACT_APP_API_SERVER}/images/front/${id}' ` +
