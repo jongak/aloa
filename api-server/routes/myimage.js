@@ -11,3 +11,5 @@ router.get("/:imageSrc", function (req, res, next) {
     next(err);
   }
 });
+
+module.exports = router;
