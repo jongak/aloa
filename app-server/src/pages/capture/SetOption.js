@@ -65,7 +65,18 @@ const SetOption = function () {
           <Accordion.Header>카드 색상</Accordion.Header>
           <Accordion.Body>
             <div className="userRow color">
-              {[1, 2, 3, 4, 5, 6].map((i) => {
+              <div
+                key={1}
+                className="colorItem"
+                style={{
+                  backgroundImage: `url('/assets/images/card_frame/color/1.png')`,
+                }}
+                onClick={() => {
+                  dispatch(setFrameColor({ newFrameColor: 1 }));
+                  setIsChanged(!isChanged);
+                }}
+              ></div>
+              {[2, 3, 4, 5, 6].map((i) => {
                 return (
                   <div
                     key={`${i}`}
