@@ -1,14 +1,24 @@
 import { useRef } from "react";
 import domtoimage from "dom-to-image";
 import Button from "../../components/common/Button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import LootCard from "../../components/common/LootCard";
 import saveAs from "file-saver";
 import { toast } from "react-toastify";
+import axios from "axios";
+
+const getData = async function (id) {
+  try {
+    const res = await axios.get(`/images/front/${id}`);
+    return res.data.error;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const GetCard = function () {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
 
@@ -49,6 +59,13 @@ const GetCard = function () {
       saveAs(blob, "aloacard.png");
     });
   };
+
+  getData(id).then((res) => {
+    if (res) {
+      navigate("../capture");
+      toast.error("카드를 먼저 만들어 주세요");
+    }
+  });
 
   return (
     <div className="main-banner container">
