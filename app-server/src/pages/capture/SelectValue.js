@@ -7,6 +7,16 @@ import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
 import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
 
+const shortEngrav = function (eng) {
+  if (eng == "아르데타인의 기술") {
+    return "기술스카";
+  } else if (eng == "멈출 수 없는 충동") {
+    return "충모닉";
+  } else {
+    return eng;
+  }
+};
+
 const SelectValue = function () {
   const { setPage, characterNameRef, setIsChanged, isChanged } =
     useOutletContext();
@@ -179,12 +189,15 @@ const SelectValue = function () {
                 : undefined,
               cardTitle: "직각",
               cardValue: userData["ArmoryEngraving"]["JobEffects"][0]
-                ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                ? shortEngrav(
+                    userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                  )
                 : undefined,
               size: userData["ArmoryEngraving"]["JobEffects"][0]
                 ? Math.floor(
-                    userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
-                      .length / 1.5
+                    shortEngrav(
+                      userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                    ).length / 1.5
                   ) + 3
                 : 3,
             },

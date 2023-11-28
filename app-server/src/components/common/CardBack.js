@@ -101,7 +101,9 @@ const CardBack = function ({
               <div className="row stats">
                 <div className="col-10 back_stats_bg">
                   <span id="back_characterlevel">
-                    {userData["ArmoryEngraving"]["JobEffects"][0]["Name"]}
+                    {userData && userData["ArmoryEngraving"]["JobEffects"][0]
+                      ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                      : ""}
                   </span>
                   <span>
                     {userData && userData["ArmoryProfile"]["CharacterClassName"]

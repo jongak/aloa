@@ -332,7 +332,7 @@ const CharacterCardService = {
               ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
             ) {
               data[sub][Type]["ItemGrade"] = parseInt(
-                res[sub][element]["Name"].replace(NumberRegex, "")
+                res[sub][element]["Name"].substr(0, 4).replace(NumberRegex, "")
               );
             }
 
