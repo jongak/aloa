@@ -3,8 +3,6 @@ import LootCard from "../common/LootCard";
 const LootCardItem = function (props) {
   const { img } = props;
   const rarityPreset = "hologram";
-  const imgSrc =
-    "https://attach.dak.gg/portal/gaming-cards/202310/1698295239147_137d95ef15660d9f_front.png";
   const holoSrc = "http://localhost:4400/api/images/wave.png";
   const holo = true;
   const glow = true;

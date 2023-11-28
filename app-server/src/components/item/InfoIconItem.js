@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const InfoTableItem = function ({ element }) {
   const { id, cardValue, size, cardImg, iconSize, margin } = element;
   return (

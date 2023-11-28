@@ -1,10 +1,9 @@
 import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import ColorToggle from "../../components/common/ColorToggle";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
-import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFrameColor,

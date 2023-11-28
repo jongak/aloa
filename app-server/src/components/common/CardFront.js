@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import "./cardFront.css";
 import { useSelector } from "react-redux";
 import InfoTableItem from "../item/InfoTableItem";

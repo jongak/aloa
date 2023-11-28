@@ -1,5 +1,3 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
 const CardBack = function ({

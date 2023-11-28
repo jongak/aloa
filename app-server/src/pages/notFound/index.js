@@ -1,6 +1,4 @@
-import { useNavigate } from "react-router";
 import Button from "../../components/common/Button";
-import { Link } from "react-router-dom";
 import LootCard from "../../components/common/LootCard";
 
 function NotFound() {

@@ -1,8 +1,6 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import $ from "jquery";
 import "./style.css";
-import axios from "axios";
-import { useSelector } from "react-redux";
 
 export default function LootCard(props) {
   var {

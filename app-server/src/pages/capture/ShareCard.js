@@ -1,8 +1,7 @@
 import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
 import { useEffect, useRef } from "react";
-import UserItem from "../../components/item/UserItem";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import CopyToClipboard from "react-copy-to-clipboard";
 const ShareCard = function () {
   const {
@@ -81,12 +80,12 @@ const ShareCard = function () {
               `<img ` +
               `loading='lazy' ` +
               `src='${process.env.REACT_APP_API_SERVER}/images/front/${characterNameRef.current}' ` +
-              `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+              `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
               `/> ` +
               `<img ` +
               `loading='lazy' ` +
               `src='${process.env.REACT_APP_API_SERVER}/images/back/${characterNameRef.current}' ` +
-              `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+              `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
               `/> ` +
               `</a> ` +
               `<div> ` +

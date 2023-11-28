@@ -1,16 +1,11 @@
 import { useNavigate, useOutletContext } from "react-router";
 import Button from "../../components/common/Button";
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setFrontIcons,
-  setFrontItems,
-  setUserData,
-} from "../../store/captureSlice";
-import { toast } from "react-toastify";
+import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
 
 const SelectValue = function () {
   const { setPage, characterNameRef, setIsChanged, isChanged } =
