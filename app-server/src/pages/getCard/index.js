@@ -40,7 +40,8 @@ const GetCard = function () {
   };
   const handleFrontDownload = () => {
     const downloadLink = document.createElement("a");
-    process.env.REACT_APP_API_SERVER + "/images/front/" + id;
+    downloadLink.href =
+      process.env.REACT_APP_API_SERVER + "/images/front/" + id;
     downloadLink.download = id + "_front.png";
     downloadLink.click();
   };
@@ -114,7 +115,7 @@ const GetCard = function () {
               />
             </div>
 
-            <div style={{ position: "absolute", top: "-200%" }}>
+            <div style={{ position: "absolute", top: "-100%" }}>
               <div
                 ref={cardRef}
                 style={{ position: "absolute", display: "flex" }}
