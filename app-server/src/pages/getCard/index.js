@@ -67,6 +67,20 @@ const GetCard = function () {
     }
   });
 
+  const openPdfInNewTab = () => {
+    const newWindow = window.open(
+      process.env.REACT_APP_API_SERVER + "/user/file",
+      "_blank"
+    );
+    if (newWindow) {
+      newWindow.focus();
+    } else {
+      toast.error(
+        "팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요."
+      );
+    }
+  };
+
   return (
     <div className="main-banner container">
       <div className="row justify-content-center">
@@ -189,6 +203,9 @@ const GetCard = function () {
                   }
                   onClick={copyHTMLUrl}
                 />
+              </div>
+              <div className="find-input">
+                <Button title={"설명서 다운로드"} onClick={openPdfInNewTab} />
               </div>
             </div>
           </div>
