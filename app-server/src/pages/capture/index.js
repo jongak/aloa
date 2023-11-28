@@ -55,7 +55,7 @@ const capture = function () {
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
         dispatch(setUserData({ newUserData: res }));
-
+        console.log(res);
         if (!res) {
           toast.error("서버에 문제가 생겼습니다.");
           characterNameRef.current = "";

@@ -40,8 +40,7 @@ const GetCard = function () {
   };
   const handleFrontDownload = () => {
     const downloadLink = document.createElement("a");
-    downloadLink.href =
-      process.env.REACT_APP_API_SERVER + "/images/front/" + id;
+    process.env.REACT_APP_API_SERVER + "/images/front/" + id;
     downloadLink.download = id + "_front.png";
     downloadLink.click();
   };
