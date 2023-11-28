@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const Button = function ({
   isFixed = false, //모드에 관계없이 css적용

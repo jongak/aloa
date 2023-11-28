@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 function Footer() {
   const copyTextUrl = function () {

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const DarkButton = function ({
   isRev = false, //반전모드
   value, //값

@@ -9,9 +9,6 @@ import {
   setIsTitle,
   setRarityPreset,
 } from "../../store/captureSlice";
-import { useContext, useEffect } from "react";
-import AccordionContext from "react-bootstrap/AccordionContext";
-import { useAccordionButton } from "react-bootstrap/AccordionButton";
 
 const ToggleButton = function ({
   title,

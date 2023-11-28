@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import domtoimage from "dom-to-image";
 import Button from "../../components/common/Button";
 import { useParams } from "react-router-dom";
@@ -148,12 +148,12 @@ const GetCard = function () {
                     `<img ` +
                     `loading='lazy' ` +
                     `src='${process.env.REACT_APP_API_SERVER}/images/front/${id}' ` +
-                    `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+                    `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
                     `/> ` +
                     `<img ` +
                     `loading='lazy' ` +
                     `src='${process.env.REACT_APP_API_SERVER}/images/back/${id}' ` +
-                    `style='height: 400; width: 300; aspect-ratio: 300 / 400' ` +
+                    `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
                     `/> ` +
                     `</a> ` +
                     `<div> ` +
