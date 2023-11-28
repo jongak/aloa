@@ -101,7 +101,7 @@ const GetCard = function () {
               />
             </div>
 
-            <div style={{ position: "absolute", top: "-100%" }}>
+            <div style={{ position: "absolute", top: "-1000%" }}>
               <div
                 ref={cardRef}
                 style={{ position: "absolute", display: "flex" }}
