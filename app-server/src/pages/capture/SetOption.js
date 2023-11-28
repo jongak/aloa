@@ -27,9 +27,9 @@ const SetOption = function () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("set");
   }, []);
