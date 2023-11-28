@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import store from "./store/store";
 
 import GetCard from "./pages/getCard";
+import CardList from "./pages/cardList";
 import FindName from "./pages/capture/FindName";
 import SelectValue from "./pages/capture/SelectValue";
 import ShareCard from "./pages/capture/ShareCard";
@@ -31,6 +32,7 @@ function App() {
               <Route path="set" element={<SetOption />} />
               <Route path="share" element={<ShareCard />} />
             </Route>
+            <Route path="/list" element={<CardList />} />
             <Route path="/cards/:id" element={<GetCard />} />
             <Route path="/*" element={<NotFound />}></Route>
           </Route>
