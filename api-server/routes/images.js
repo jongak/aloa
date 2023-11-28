@@ -4,17 +4,8 @@ var path = require("path");
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const { S3 } = require("@aws-sdk/client-s3");
-const {
-  DynamoDBClient,
-  ListTablesCommand,
-} = require("@aws-sdk/client-dynamodb");
-const fs = require("fs");
-const {
-  GetObjectCommand,
-  S3Client,
-  ListBucketsCommand,
-  ListObjectsV2Command,
-} = require("@aws-sdk/client-s3");
+const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
+
 router.get("/:imageSrc", function (req, res, next) {
   try {
     const imageSrc = req.params.imageSrc;
