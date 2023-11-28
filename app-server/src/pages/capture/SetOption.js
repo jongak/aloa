@@ -42,7 +42,7 @@ const SetOption = function () {
         <Accordion.Item eventKey="select">
           <Accordion.Header>카드 테두리</Accordion.Header>
           <Accordion.Body>
-            <div className="userRow">
+            <div className="userRow color">
               {[1, 2, 3, 4, 5, 6, 7].map((i) => {
                 return (
                   <div
@@ -64,7 +64,7 @@ const SetOption = function () {
         <Accordion.Item eventKey="color">
           <Accordion.Header>카드 색상</Accordion.Header>
           <Accordion.Body>
-            <div className="userRow">
+            <div className="userRow color">
               {[1, 2, 3, 4, 5, 6].map((i) => {
                 return (
                   <div

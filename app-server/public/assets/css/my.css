@@ -1349,14 +1349,14 @@ getCard
   position: relative;
   width: auto;
 }
-.option-body.set .accordion-body .userRow {
+.option-body.set .accordion-body .userRow.color {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
   padding: 20px;
   flex-wrap: wrap;
 }
-.option-body.set .accordion-body .userRow .colorItem {
+.option-body.set .accordion-body .userRow.color .colorItem {
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -1382,10 +1382,10 @@ getCard
   width: 360px;
 }
 @media (max-width: 576px) {
-  .option-body.set .accordion-body .userRow {
+  .option-body.set .accordion-body .userRow.color {
     justify-content: center;
   }
-  .option-body.set .accordion-body .userRow .colorItem {
+  .option-body.set .accordion-body .userRow.color .colorItem {
     margin-top: 4px;
   }
 }
