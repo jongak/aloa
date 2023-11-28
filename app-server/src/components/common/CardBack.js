@@ -19,6 +19,59 @@ const CardBack = function ({
     전설: 5,
   };
 
+  const change = {
+    "광전사의 비기": "비기",
+    광기: "광기",
+    "분노의 망치": "분망",
+    "중력 수련": "중수",
+    "고독한 기사": "고기",
+    "전투 태세": "전태",
+    "축복의 오라": "축오",
+    심판자: "심판자",
+    처단자: "처단자",
+    포식자: "포식자",
+    초심: "초심",
+    "오의 강화": "오의",
+    "충격 단련": "충단",
+    "극의: 체술": "체술",
+    역천지체: "역천",
+    세맥타통: "세맥",
+    절정: "절정",
+    절제: "절제",
+    일격필살: "일격",
+    오의난무: "오의",
+    "강화 무기": "강무",
+    핸드거너: "핸건",
+    "포격 강화": "포강",
+    "화력 강화": "화강",
+    "죽음의 습격": "죽습",
+    "두 번째 동료": "두동",
+    "아르데타인의 기술": "기술",
+    "진화의 유산": "유산",
+    피스메이커: "피메",
+    "사냥의 시간": "사시",
+    "황후의 은총": "황후",
+    "황제의 칙령": "황제",
+    "상급 소환사": "상소",
+    "넘치는 교감": "교감",
+    "절실한 구원": "절구",
+    "진실된 용맹": "용맹",
+    점화: "점화",
+    환류: "환류",
+    "완벽한 억제": "억제",
+    "멈출 수 없는 충동": "충동",
+    "잔재된 기운": "잔재",
+    버스트: "버스트",
+    "달의 소리": "달소",
+    갈증: "갈증",
+    "만월의 집행자": "만월",
+    "그믐의 경계": "그믐",
+    만개: "만개",
+    회귀: "회귀",
+    이슬비: "이슬비",
+    질풍노도: "질풍",
+  };
+
   const equipQuality = function (qualityValue) {
     if (qualityValue == 100) return "orange";
     else if (qualityValue > 89) return "hotpink";
@@ -102,8 +155,10 @@ const CardBack = function ({
                 <div className="col-10 back_stats_bg">
                   <span id="back_characterlevel">
                     {userData && userData["ArmoryEngraving"]["JobEffects"][0]
-                      ? userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
-                      : ""}
+                      ? change[
+                          userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                        ]
+                      : "-"}
                   </span>
                   <span>
                     {userData && userData["ArmoryProfile"]["CharacterClassName"]
