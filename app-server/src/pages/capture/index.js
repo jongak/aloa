@@ -225,7 +225,7 @@ const capture = function () {
               rarityPreset={rarityPreset}
               canvasRef={frontCanvasRef}
               holographicOptions={
-                isHolo
+                rarityPreset == "custom" && isHolo
                   ? {
                       glow: isGlow,
                       color1: holographicOptionColors.current[0],
@@ -237,7 +237,7 @@ const capture = function () {
                   : null
               }
               shineOptions={
-                isShine
+                rarityPreset == "custom" && isShine
                   ? {
                       color1: shineOptionColors.current[0],
                       color2: shineOptionColors.current[1],
@@ -245,7 +245,7 @@ const capture = function () {
                   : null
               }
               shadowOptions={
-                isShadow
+                rarityPreset == "custom" && isShadow
                   ? {
                       default: {
                         color1: shadowOptionColors.current[0],
@@ -266,7 +266,7 @@ const capture = function () {
               rarityPreset={rarityPreset}
               canvasRef={backCanvasRef}
               holographicOptions={
-                isHolo
+                rarityPreset == "custom" && isHolo
                   ? {
                       glow: isGlow,
                       color1: holographicOptionColors.current[0],
@@ -278,7 +278,7 @@ const capture = function () {
                   : null
               }
               shineOptions={
-                isShine
+                rarityPreset == "custom" && isShine
                   ? {
                       color1: shineOptionColors.current[0],
                       color2: shineOptionColors.current[1],
@@ -286,7 +286,7 @@ const capture = function () {
                   : null
               }
               shadowOptions={
-                isShadow
+                rarityPreset == "custom" && isShadow
                   ? {
                       default: {
                         color1: shadowOptionColors.current[0],

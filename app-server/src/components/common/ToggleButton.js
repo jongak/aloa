@@ -57,48 +57,6 @@ const ToggleButton = function ({
           newIsLevel: item,
         })
       );
-    } else if (titleRef == "custom") {
-      dispatch(
-        setIsHolo({
-          newIsHolo: true,
-        })
-      );
-      dispatch(
-        setIsGlow({
-          newIsGlow: true,
-        })
-      );
-      dispatch(
-        setIsShine({
-          newIsShine: true,
-        })
-      );
-      dispatch(
-        setIsShadow({
-          newIsShadow: true,
-        })
-      );
-    } else if (["legendary", "holographic"].includes(titleRef)) {
-      dispatch(
-        setIsHolo({
-          newIsHolo: false,
-        })
-      );
-      dispatch(
-        setIsGlow({
-          newIsGlow: false,
-        })
-      );
-      dispatch(
-        setIsShine({
-          newIsShine: false,
-        })
-      );
-      dispatch(
-        setIsShadow({
-          newIsShadow: false,
-        })
-      );
     } else if (titleRef == "isHolo") {
       dispatch(
         setIsHolo({
