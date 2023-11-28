@@ -1,20 +1,9 @@
 var express = require("express");
 var router = express.Router();
-var path = require("path");
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const { S3 } = require("@aws-sdk/client-s3");
 const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
-
-router.get("/:imageSrc", function (req, res, next) {
-  try {
-    const imageSrc = req.params.imageSrc;
-    console.log(path.join(__dirname));
-    res.sendFile(path.join(__dirname, "images", imageSrc));
-  } catch (err) {
-    next(err);
-  }
-});
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
