@@ -73,6 +73,7 @@ const SetOption = function () {
                     className="colorItem"
                     style={{
                       backgroundImage: `url('/assets/images/card_frame/color/${i}.png')`,
+                      backgroundSize: "cover",
                     }}
                     onClick={() => {
                       dispatch(setFrameColor({ newFrameColor: i }));
