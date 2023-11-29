@@ -3,7 +3,11 @@ var router = express.Router();
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const { S3 } = require("@aws-sdk/client-s3");
-const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
+const {
+  GetObjectCommand,
+  S3Client,
+  ListObjectsV2Command,
+} = require("@aws-sdk/client-s3");
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -92,6 +96,32 @@ router.get("/back/:id", async (req, res, next) => {
     );
     res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
     inputStream.pipe(res);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/cardlist", async (req, res, next) => {
+  const command = new ListObjectsV2Command({
+    Bucket: "aloa-bucket",
+    MaxKeys: 1,
+  });
+
+  try {
+    let isTruncated = true;
+
+    let contents = "";
+
+    while (isTruncated) {
+      const { Contents, IsTruncated, NextContinuationToken } =
+        await s3Client.send(command);
+      const contentsList = Contents.map((c) => ` • ${c.Key}`).join("\n");
+      contents += contentsList + "\n";
+      isTruncated = IsTruncated;
+      command.input.ContinuationToken = NextContinuationToken;
+    }
+    console.log(contents);
+    res.send("hello");
   } catch (err) {
     next(err);
   }
