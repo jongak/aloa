@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import OptionBox from "../item/OptionBox";
 
 const CardBack = function ({
   characterNameRef,
@@ -93,6 +94,31 @@ const CardBack = function ({
   if (!userData || !userData["ArmoryProfile"]) {
     return;
   }
+  const elements = [
+    {
+      id: "boxExlixer",
+      cardImg: "/assets/images/icons/exlixer.webp",
+      cardValue: "Lv" + userData["ArmoryEquipment"]["option"]["ElixirLevel"],
+    },
+    {
+      id: "boxCho",
+      cardImg: "/assets/images/cho/cho_5.png",
+      cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
+    },
+    {
+      id: "boxGem",
+      cardImg: "/assets/images/icons/10meol.webp",
+      cardValue:
+        `${userData["ArmoryGem"]["option"]["MeulNum"]}멸 ` +
+        `${userData["ArmoryGem"]["option"]["HongNum"]}홍 ` +
+        `Lv ${
+          userData["ArmoryGem"]["option"]["Level"]
+            ? userData["ArmoryGem"]["option"]["Level"]
+            : "0"
+        }`,
+      gridTwo: true,
+    },
+  ];
   return (
     <div className="cardCover back" ref={divRef} style={{ ...style }}>
       <div
@@ -111,45 +137,7 @@ const CardBack = function ({
         <div className="cardMiddle container">
           <div className="options row">
             <div className="options_left col-7">
-              <div className="option_box">
-                <div className="option_item">
-                  <img src="/assets/images/icons/exlixer.webp" />
-                  <div>
-                    {"Lv" +
-                      userData["ArmoryEquipment"]["option"]["ElixirLevel"]}
-                  </div>
-                </div>
-                <div className="option_item">
-                  <img src="/assets/images/cho/cho_5.png" />
-                  <div>
-                    {userData["ArmoryEquipment"]["option"]["TransLevel"]}
-                  </div>
-                </div>
-                <div className="option_item">
-                  <img src="/assets/images/icons/10meol.webp" />
-                  <div>
-                    {" "}
-                    {userData["ArmoryGem"]["option"]["MeulNum"]}
-                    {"멸 "}
-                    {userData["ArmoryGem"]["option"]["HongNum"]}
-                    {"홍  "}
-                    {"Lv " +
-                      (userData["ArmoryGem"]["option"]["Level"]
-                        ? userData["ArmoryGem"]["option"]["Level"]
-                        : "0")}
-                  </div>
-                </div>
-                {/* <div className="col-3">악마</div>
-                <div className="col-3 plusDamage_td">6.98%</div>
-                <div className="col-3">인간</div>
-                <div className="col-3 plusDamage_td">5.32%</div>
-                <div className="col-3">야수</div>
-                <div className="col-3 plusDamage_td">3.47%</div>
-                <div className="col-3">식물</div>
-                <div className="col-3 plusDamage_td">4.67%</div>
-                <div className="col-3">불사</div>
-                <div className="col-3 plusDamage_td">4.23%</div> */}
-              </div>
+              <OptionBox elements={elements} />
 
               <div className="row stats">
                 <div className="col-10 back_stats_bg">

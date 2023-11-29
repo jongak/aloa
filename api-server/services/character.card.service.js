@@ -833,6 +833,14 @@ const CharacterCardService = {
             data["ArmoryGem"]["option"]["Num"]
           ).toFixed(2)
         : undefined;
+      const cardSort = function (a, b) {
+        var Order = ["전설", "영웅", "고급", "희귀", "일반"];
+        var indexA = Order.indexOf(a["Grade"]);
+        var indexB = Order.indexOf(b["Grade"]);
+
+        return indexA - indexB;
+      };
+      data["ArmoryCard"]["Cards"].sort(cardSort);
       // DB에 작업 반영
       await conn.commit();
       return { ok: true, data: data };

@@ -216,6 +216,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["무기"]["qualityValue"],
               cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
               cardValue: userData["ArmoryEquipment"]["무기"]["qualityValue"],
+              spanRight: "--5",
             },
             {
               id: "TenMeul",
@@ -291,6 +292,7 @@ const SelectValue = function () {
               value: userData["ArmoryCard"]["AwakeCount"],
               cardImg: "/assets/images/icons/card.png",
               cardValue: userData["ArmoryCard"]["AwakeCount"],
+              spanRight: "--5",
             },
             {
               id: "TransGrade",
@@ -300,8 +302,10 @@ const SelectValue = function () {
               cardImg: "/assets/images/cho/cho_5.png",
               cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
               size: 2,
-              iconSize: 30,
-              margin: "mt-2",
+              iconSize: 40,
+              spanRight: userData["ArmoryEquipment"]["option"]["TransLevel"]
+                ? -30
+                : -20,
             },
           ],
         },

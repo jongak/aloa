@@ -141,24 +141,20 @@
 }
 
 .cardCover.back .cardMiddle .options_left .option_item {
-  /* float: left; */
-  /* display: contents; */
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
   margin-top: 10px;
+  flex-direction: row;
 }
 .cardCover.back .cardMiddle .options_left .option_item img {
   width: 40px;
   height: 40px;
-  /* position: absolute; */
-  /* left: 0px; */
+  margin-left: 16px;
 }
 .cardCover.back .cardMiddle .options_left .option_item div {
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 16px;
   font-size: 20px;
 }
 
@@ -177,13 +173,9 @@
   grid-template-rows: 1fr 1fr 1fr 1fr;
 }
 
-.cardCover.back .cardMiddle .options_left .option_box div:nth-child(3) {
+.cardCover.back .cardMiddle .options_left .option_box .option_item.gridTwo {
   grid-column-start: 1;
   grid-column-end: 3;
-}
-.cardCover.back .cardMiddle .options_left .option_box div:nth-child(3) img {
-  position: absolute;
-  left: 20px;
 }
 
 .cardCover.back .cardMiddle .options_left .stats {
@@ -192,14 +184,15 @@
 }
 .cardCover.back .cardMiddle .options_left .stats .back_stats_bg {
   background-image: url("../../../public/assets/images/icons/card_back_stat_bg.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 40px;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+  height: 37px;
   width: 99%;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
   margin-left: 12px;
   padding: 2px 0px 1px 28px;
   justify-content: center;
+  line-height: 32px;
 }
 
 .cardCover.back
@@ -222,7 +215,7 @@
 
 .cardCover.back .cardMiddle .options_left .engravings {
   position: static;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .cardCover.back .cardMiddle .options_left .engravings ul {
@@ -412,10 +405,10 @@
 
 .cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
   border-radius: 20px;
-  padding: 0px 5px 5px 5px;
+  padding: 1px 7px 7px 7px;
   line-height: 022px;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 22px;
   letter-spacing: -0.8px;
 
   position: absolute;
@@ -424,6 +417,39 @@
 
   background-color: #d73737;
   overflow: hidden;
+}
+
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right-10 {
+  right: -10px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right-20 {
+  right: -20px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right-30 {
+  right: -30px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right--5 {
+  right: +5px;
 }
 
 .cardCover.back .cardBottom .card_awakename {
