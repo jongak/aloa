@@ -212,7 +212,7 @@ const ShareCard = function () {
               title={
                 <>
                   <i className="fa fa-clipboard" />
-                  &nbsp;&nbsp;클립보드에 복사
+                  &nbsp;&nbsp; HTML 태그 복사
                 </>
               }
             />
