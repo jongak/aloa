@@ -21,9 +21,9 @@ const ShareCard = function () {
   const frontURL = useRef({ value: "" });
   const backURL = useRef({ value: "" });
 
-  // if (!characterNameRef.current) {
-  //   navigate("../");
-  // }
+  if (!characterNameRef.current) {
+    navigate("../");
+  }
   useEffect(() => {
     setPage("share");
   }, []);
@@ -101,7 +101,7 @@ const ShareCard = function () {
             onChange={() => {}}
           ></input>
           <CopyToClipboard
-            text={copyHTMLRef.current.value}
+            text={copyLinkRef.current.value}
             onCopy={() => {
               toast.success(`링크를 복사했습니다.`);
             }}
