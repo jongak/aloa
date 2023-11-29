@@ -205,7 +205,15 @@ const GetCard = function () {
                 />
               </div>
               <div className="find-input">
-                <Button title={"설명서 다운로드"} onClick={openPdfInNewTab} />
+                <Button
+                  title={
+                    <>
+                      <i className="fa fa-file-pdf" />
+                      &nbsp;&nbsp; 설명서 보기
+                    </>
+                  }
+                  onClick={openPdfInNewTab}
+                />
               </div>
             </div>
           </div>

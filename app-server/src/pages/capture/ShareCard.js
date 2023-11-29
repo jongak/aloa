@@ -103,14 +103,14 @@ const ShareCard = function () {
           <CopyToClipboard
             text={copyHTMLRef.current.value}
             onCopy={() => {
-              toast.success(`HTML 태그를 복사했습니다.`);
+              toast.success(`링크를 복사했습니다.`);
             }}
           >
             <Button
               title={
                 <>
                   <i className="fa fa-clipboard" />
-                  &nbsp;&nbsp;HTML 태그 복사
+                  &nbsp;&nbsp;클립보드에 복사
                 </>
               }
             />
