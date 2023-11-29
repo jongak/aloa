@@ -1089,6 +1089,10 @@ capture
   width: 250px;
   /* display: inline-block; */
 }
+.option-area .option-body .find-input .form-control::placeholder {
+  color: var(--my--no--text);
+}
+
 .option-area .option-body .form-control:focus {
   background-color: var(--my--no--background);
   border-color: var(--my--yes--border);
@@ -1191,6 +1195,11 @@ capture
   margin: 0;
   width: 36%;
 }
+.option-body.share .userRow .userbody {
+  color: var(--my--text);
+  margin: 30px;
+  text-align: center;
+}
 
 .option-body .userRow .buttonCover {
   display: flex;
@@ -1208,6 +1217,10 @@ capture
 .option-body .userRow .buttonCover .my_button a {
   padding: 10px 0px;
   font-size: 20px;
+}
+.option-body .userRow .buttonCover.small .my_button a {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
 }
 
 .option-body.getCard .userRow .buttonCover .my_button {
@@ -1242,18 +1255,23 @@ capture
     margin-left: 40px;
   }
 
+  .option-body .userRow .buttonCover {
+    justify-content: space-between;
+  }
+
   .option-body.share .userRow .find-input {
     justify-content: center;
-    margin-bottom: 0px;
   }
+
   .option-body.share .userRow .find-input .form-control {
     margin: 0px;
     width: 100%;
   }
   .option-body.share .userRow .find-input .my_button {
-    margin: 30px 0px;
+    margin: 15px 0px 0px 0px;
     width: 50%;
   }
+
   .option-body.getCard .userRow .find-input .form-control {
     margin: 0px;
     width: 58%;
@@ -1306,6 +1324,10 @@ capture
   .option-body.getCard .userRow .find-input .my_button {
     margin: 30px 0px;
     width: 100%;
+  }
+  .option-body.share .userRow .buttonCover.small .my_button {
+    width: 100%;
+    margin-bottom: 15px;
   }
 }
 
