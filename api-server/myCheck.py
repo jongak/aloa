@@ -16,8 +16,8 @@ def job():
         log_entry = f"{current_time}: {result}"
         f.write(log_entry)
 
-schedule.every(10).seconds.do(job)
-#schedule.every(10).minutes.do(job)
+# schedule.every(10).seconds.do(job)
+schedule.every(10).minutes.do(job)
 
 
 while True:
