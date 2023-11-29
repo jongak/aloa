@@ -112,6 +112,10 @@
 .cardMiddle .cardImgs .cardCharacter.artist {
   background-position-y: -40px;
 }
+.cardMiddle .cardImgs .cardCharacter.demonic {
+  background-position-x: -72px;
+  background-position-y: 38px;
+}
 .cardMiddle .cardImgs .cardCharacter.soulEater {
   background-position-x: 0px;
   background-position-y: 30px;
