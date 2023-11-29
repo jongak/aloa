@@ -65,7 +65,7 @@ root $sudo pm2 restart aloa
 #### PM2 클러스터
 
 ```
-root $sudo pm2 start --name aloa npm -- start --watch
+root $sudo pm2 start --name aloa npm -- start
 ```
 
 #### 서버 접속자수 파악
