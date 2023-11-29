@@ -5,7 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
-import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
+import { setFrontIcons, setFrontItems } from "../../store/itemSlice";
 
 const shortEngrav = function (eng) {
   if (eng == "아르데타인의 기술") {
@@ -21,7 +21,7 @@ const SelectValue = function () {
   const { setPage, characterNameRef, setIsChanged, isChanged } =
     useOutletContext();
 
-  const userData = useSelector((state) => state.captureSlice.userData);
+  const userData = useSelector((state) => state.itemSlice.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -216,6 +216,7 @@ const SelectValue = function () {
               value: userData["ArmoryEquipment"]["무기"]["qualityValue"],
               cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
               cardValue: userData["ArmoryEquipment"]["무기"]["qualityValue"],
+              spanRight: "--5",
             },
             {
               id: "TenMeul",
@@ -291,6 +292,7 @@ const SelectValue = function () {
               value: userData["ArmoryCard"]["AwakeCount"],
               cardImg: "/assets/images/icons/card.png",
               cardValue: userData["ArmoryCard"]["AwakeCount"],
+              spanRight: "--5",
             },
             {
               id: "TransGrade",
@@ -300,8 +302,10 @@ const SelectValue = function () {
               cardImg: "/assets/images/cho/cho_5.png",
               cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
               size: 2,
-              iconSize: 30,
-              margin: "mt-2",
+              iconSize: 40,
+              spanRight: userData["ArmoryEquipment"]["option"]["TransLevel"]
+                ? -30
+                : -20,
             },
           ],
         },

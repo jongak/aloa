@@ -67,3 +67,9 @@ root $sudo pm2 restart aloa
 ```
 root $sudo pm2 start --name aloa npm -- start --watch
 ```
+
+#### 서버 접속자수 파악
+
+```
+netstat -anp | grep -E ":80 |:443 " | grep ESTABLISHED | wc -l
+```

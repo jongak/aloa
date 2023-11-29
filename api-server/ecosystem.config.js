@@ -4,7 +4,7 @@ module.exports = {
       name: "aloa",
       script: "./bin/www-https",
       instances: 0,
-      exec_mode: "cluster",
+      exec_mode: "fork",
     },
   ],
 };

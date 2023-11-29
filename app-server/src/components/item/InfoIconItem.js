@@ -1,5 +1,5 @@
 const InfoTableItem = function ({ element }) {
-  const { id, cardValue, size, cardImg, iconSize, margin } = element;
+  const { id, cardValue, size, cardImg, iconSize, margin, spanRight } = element;
   return (
     <div className={`icons_table_tr mycol-${size ? size : 4}`}>
       <div>
@@ -10,7 +10,11 @@ const InfoTableItem = function ({ element }) {
           src={cardImg}
         />
       </div>
-      <div className="icons_table_badge">{cardValue ? cardValue : "-"}</div>
+      <div
+        className={`icons_table_badge ${spanRight ? "right" + spanRight : ""}`}
+      >
+        {cardValue ? cardValue : "-"}
+      </div>
     </div>
   );
 };

@@ -53,12 +53,12 @@ const getData = async function (url) {
 
 const CardFront = function ({ characterNameRef, setIsLoading, style, divRef }) {
   const imgRef = useRef();
-  const userData = useSelector((state) => state.captureSlice.userData);
-  const frontItems = useSelector((state) => state.captureSlice.frontItems);
-  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
-  const isName = useSelector((state) => state.captureSlice.isName);
-  const isTitle = useSelector((state) => state.captureSlice.isTitle);
-  const isLevel = useSelector((state) => state.captureSlice.isLevel);
+  const userData = useSelector((state) => state.itemSlice.userData);
+  const frontItems = useSelector((state) => state.itemSlice.frontItems);
+  const frontIcons = useSelector((state) => state.itemSlice.frontIcons);
+  const isName = useSelector((state) => state.itemSlice.isName);
+  const isTitle = useSelector((state) => state.itemSlice.isTitle);
+  const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const framePreset = useSelector((state) => state.captureSlice.framePreset);
   const frameColor = useSelector((state) => state.captureSlice.frameColor);
 
