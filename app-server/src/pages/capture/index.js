@@ -6,7 +6,7 @@ import CardBack from "../../components/common/CardBack";
 import { Outlet, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../../store/captureSlice";
+import { setUserData } from "../../store/itemSlice";
 import saveAs from "file-saver";
 import { toast } from "react-toastify";
 
@@ -39,8 +39,8 @@ const capture = function () {
   const isGlow = useSelector((state) => state.captureSlice.isGlow);
   const isShine = useSelector((state) => state.captureSlice.isShine);
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
-  const frontItems = useSelector((state) => state.captureSlice.frontItems);
-  const frontIcons = useSelector((state) => state.captureSlice.frontIcons);
+  const frontItems = useSelector((state) => state.itemSlice.frontItems);
+  const frontIcons = useSelector((state) => state.itemSlice.frontIcons);
 
   const holographicOptionColors = useRef([
     "#0077be",

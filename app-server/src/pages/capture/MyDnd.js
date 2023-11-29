@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
-import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { setFrontIcons, setFrontItems } from "../../store/itemSlice";
 
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
   var maxItems = 5;
   var items = [];
   if (title == "frontItems") {
-    items = useSelector((state) => state.captureSlice.frontItems);
+    items = useSelector((state) => state.itemSlice.frontItems);
   } else if (title == "frontIcons") {
-    items = useSelector((state) => state.captureSlice.frontIcons);
+    items = useSelector((state) => state.itemSlice.frontIcons);
   }
 
   const setItem = function (item) {

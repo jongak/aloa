@@ -9,9 +9,9 @@ const CardBack = function ({
   bgImgSrc = "/assets/images/card_back.png",
   bgFrame = "/assets/images/card_frame.png",
 }) {
-  const userData = useSelector((state) => state.captureSlice.userData);
-  const isName = useSelector((state) => state.captureSlice.isName);
-  const isLevel = useSelector((state) => state.captureSlice.isLevel);
+  const userData = useSelector((state) => state.itemSlice.userData);
+  const isName = useSelector((state) => state.itemSlice.isName);
+  const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const cardGrade = {
     일반: 1,
     고급: 2,
@@ -20,7 +20,7 @@ const CardBack = function ({
     전설: 5,
   };
 
-  const change = {
+  const changeJobEng = {
     "광전사의 비기": "비기",
     광기: "광기",
     "분노의 망치": "분망",
@@ -143,7 +143,7 @@ const CardBack = function ({
                 <div className="col-10 back_stats_bg">
                   <span id="back_characterlevel">
                     {userData && userData["ArmoryEngraving"]["JobEffects"][0]
-                      ? change[
+                      ? changeJobEng[
                           userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
                         ]
                       : "-"}

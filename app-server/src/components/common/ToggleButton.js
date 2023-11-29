@@ -2,13 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setIsGlow,
   setIsHolo,
-  setIsLevel,
-  setIsName,
   setIsShadow,
   setIsShine,
-  setIsTitle,
-  setRarityPreset,
 } from "../../store/captureSlice";
+import { setIsLevel, setIsName, setIsTitle } from "../../store/itemSlice";
 
 const ToggleButton = function ({
   title,
@@ -21,11 +18,11 @@ const ToggleButton = function ({
   const dispatch = useDispatch();
   var valueRef = true;
   if (titleRef == "isName") {
-    valueRef = useSelector((state) => state.captureSlice.isName);
+    valueRef = useSelector((state) => state.itemSlice.isName);
   } else if (titleRef == "isTitle") {
-    valueRef = useSelector((state) => state.captureSlice.isTitle);
+    valueRef = useSelector((state) => state.itemSlice.isTitle);
   } else if (titleRef == "isLevel") {
-    valueRef = useSelector((state) => state.captureSlice.isLevel);
+    valueRef = useSelector((state) => state.itemSlice.isLevel);
   } else if (["custom", "legendary", "holographic"].includes(titleRef)) {
     valueRef = rarityPreset == titleRef;
   } else if (titleRef == "isHolo") {

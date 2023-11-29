@@ -5,7 +5,7 @@ import Accordion from "react-bootstrap/Accordion";
 import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
-import { setFrontIcons, setFrontItems } from "../../store/captureSlice";
+import { setFrontIcons, setFrontItems } from "../../store/itemSlice";
 
 const shortEngrav = function (eng) {
   if (eng == "아르데타인의 기술") {
@@ -21,7 +21,7 @@ const SelectValue = function () {
   const { setPage, characterNameRef, setIsChanged, isChanged } =
     useOutletContext();
 
-  const userData = useSelector((state) => state.captureSlice.userData);
+  const userData = useSelector((state) => state.itemSlice.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
