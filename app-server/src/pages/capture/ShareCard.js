@@ -30,7 +30,7 @@ const ShareCard = function () {
 
   const openPdfInNewTab = () => {
     const newWindow = window.open(
-      process.env.REACT_APP_API_SERVER + "/user/file",
+      process.env.REACT_APP_API_SERVER + "/user/file/2",
       "_blank"
     );
     if (newWindow) {

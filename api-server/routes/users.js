@@ -18,11 +18,16 @@ const s3Client = new S3Client({
   },
 });
 
-router.get("/file", async (req, res, next) => {
-  const bucketParams = {
+router.get("/file/:id", async (req, res, next) => {
+  const id = req.params.id;
+  var bucketParams = {
     Bucket: "aloa-bucket",
-    Key: "6cde1952be6d1c20.pdf",
   };
+  if (id == 1) {
+    bucketParams["Key"] = "6cde1952be6d1c20.pdf";
+  } else if (id == 2) {
+    bucketParams["Key"] = "2c40027e88855869.pdf";
+  }
 
   try {
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
