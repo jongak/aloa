@@ -4,7 +4,10 @@ import time
 from datetime import datetime
 
 def job():
+    #우분투
     terminal_command = "netstat -anp | grep -E ":80 |:443 " | grep ESTABLISHED | wc -l"
+
+    #윈도우
     # terminal_command = 'netstat -an | findstr ":80 :443" | findstr /C:"ESTABLISHED" /C:"TCP" /C:"127.0.0.1" | find /c /v ""'
 
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -13,8 +16,8 @@ def job():
         log_entry = f"{current_time}: {result}"
         f.write(log_entry)
 
-# schedule.every(10).seconds.do(job)
-schedule.every(10).minutes.do(job)
+schedule.every(10).seconds.do(job)
+#schedule.every(10).minutes.do(job)
 
 
 while True:
