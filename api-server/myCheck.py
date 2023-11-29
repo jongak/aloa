@@ -5,7 +5,7 @@ from datetime import datetime
 
 def job():
     #우분투
-    terminal_command = "netstat -anp | grep -E ":80 |:443 " | grep ESTABLISHED | wc -l"
+    terminal_command = 'netstat -anp | grep -E ":80 |:443 " | grep ESTABLISHED | wc -l'
 
     #윈도우
     # terminal_command = 'netstat -an | findstr ":80 :443" | findstr /C:"ESTABLISHED" /C:"TCP" /C:"127.0.0.1" | find /c /v ""'
