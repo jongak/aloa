@@ -120,7 +120,7 @@
   --my--very--dark--nav--hover: #48494a;
   --my--very--dark--text: #f7f7f7;
 
-  --my--dark--background: #f7f7f7;
+  --my--dark--background: #eaeaea;
   --my--dark-text: #bebebe;
   --my--dark-heading: var(--my--thema);
 
@@ -152,7 +152,7 @@
   --my--button--color: #393c42;
   --my--button--border: #393c42;
 
-  --my--button--hover--background: #eaeaea;
+  --my--button--hover--background: #cecece;
   --my--button--hover--color: #393c42;
   --my--button--hover--border: #393c42;
   --my--ripple--color: var(--my--thema);
