@@ -7,7 +7,9 @@ const {
   GetObjectCommand,
   S3Client,
   ListObjectsV2Command,
+  DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
+var fs = require("fs");
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -108,27 +110,91 @@ router.get("/back/:id", async (req, res, next) => {
 router.get("/cardlist", async (req, res, next) => {
   const command = new ListObjectsV2Command({
     Bucket: "aloa-bucket",
-    MaxKeys: 1,
+    MaxKeys: 100, // 예시로 100개씩 가져오도록 설정
   });
 
   try {
     let isTruncated = true;
-
     let contents = "";
 
     while (isTruncated) {
       const { Contents, IsTruncated, NextContinuationToken } =
         await s3Client.send(command);
-      const contentsList = Contents.map((c) => ` • ${c.Key}`).join("\n");
-      contents += contentsList + "\n";
+
+      const contentsList = Contents.map((c) => {
+        if (
+          c["Key"].indexOf("_front.png") == -1 &&
+          c["Key"].indexOf("_back.png") == -1
+        ) {
+          if (
+            c["Key"] != "6cde1952be6d1c20.pdf" &&
+            c["Key"] != "2c40027e88855869.pdf" &&
+            c["Key"] != "server_status.png"
+          ) {
+            return c["Key"];
+          }
+        }
+        return false;
+      })
+        .filter(Boolean)
+        .join("\n");
+      if (contentsList) {
+        contents += contentsList + "\n";
+      }
+
       isTruncated = IsTruncated;
-      command.input.ContinuationToken = NextContinuationToken;
+      if (isTruncated) {
+        command.input.ContinuationToken = NextContinuationToken;
+      }
     }
-    console.log(contents);
-    res.send("hello");
+    fs.appendFile("fileList.txt", contents, function (err) {
+      res.send("ok");
+    });
   } catch (err) {
     next(err);
   }
 });
+
+// // 해다아이디 삭제
+// router.delete("/:id", async (req, res, next) => {
+//   const id = req.params.id;
+
+//   const bucketParams = {
+//     Bucket: "aloa-bucket",
+//     Key: encodeURIComponent(id),
+//   };
+
+//   try {
+//     const data = await s3Client.send(new DeleteObjectCommand(bucketParams));
+//     res.send(data);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// // fileList.txt에 있는것들삭제
+// router.delete("/", async (req, res, next) => {
+//   fs.readFile("fileList.txt", "utf8", async (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       return next(err);
+//     }
+
+//     var tmp = data.split("\n");
+
+//     try {
+//       tmp.forEach(async (id) => {
+//         const bucketParams = {
+//           Bucket: "aloa-bucket",
+//           Key: id,
+//         };
+//         await s3Client.send(new DeleteObjectCommand(bucketParams));
+//       });
+//       res.send("ok");
+//     } catch (err) {
+//       next(err);
+//     }
+//   });
+// });
 
 module.exports = router;
