@@ -56,10 +56,14 @@ const s3Client = new S3Client({
 router.get("/front/:id", async (req, res, next) => {
   const id = req.params.id;
 
-  const bucketParams = {
+  var bucketParams = {
     Bucket: "aloa-bucket",
-    Key: encodeURIComponent(id) + "_front.png",
   };
+  if (id == "abcd123456789") {
+    bucketParams["Key"] = "server_status.png";
+  } else {
+    bucketParams["Key"] = encodeURIComponent(id) + "_front.png";
+  }
 
   try {
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
