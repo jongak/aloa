@@ -27,6 +27,8 @@ router.get("/file/:id", async (req, res, next) => {
     bucketParams["Key"] = "6cde1952be6d1c20.pdf";
   } else if (id == 2) {
     bucketParams["Key"] = "2c40027e88855869.pdf";
+  } else if (id == 3) {
+    bucketParams["Key"] = "log.txt";
   }
 
   try {
@@ -35,7 +37,11 @@ router.get("/file/:id", async (req, res, next) => {
 
     // PDF 파일을 클라이언트로 스트리밍하고 브라우저에서 열도록 Content-Disposition 설정
     res.setHeader("Content-Disposition", `inline; filename="ALOA.pdf"`);
-    res.setHeader("Content-Type", "application/pdf"); // PDF 파일의 Content-Type
+    if (id == 3) {
+      res.setHeader("Content-Type", "txt");
+    } else {
+      res.setHeader("Content-Type", "application/pdf"); // PDF 파일의 Content-Type
+    }
     inputStream.pipe(res);
   } catch (err) {
     next(err);

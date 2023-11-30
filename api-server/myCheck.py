@@ -2,6 +2,27 @@ import subprocess
 import schedule
 import time
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+import boto3
+from botocore.client import Config
+
+load_dotenv()
+
+
+def handle_upload():
+    # '로컬의 해당파일경로'+ 파일명 + 확장자
+    with open('log.txt', 'r', encoding='utf-8') as data:
+        s3 = boto3.resource(
+            's3',
+            aws_access_key_id=os.environ.get('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.environ.get('AWS_SECRET_ACCESS_KEY'),
+            config=Config(signature_version='s3v4')
+        )
+        s3.Bucket("aloa-bucket").put_object(
+            Key='log.txt', Body=data.read().encode('utf-8'), ContentType='txt'
+        )
+
 
 def job():
     #우분투
@@ -15,6 +36,7 @@ def job():
         result = subprocess.check_output(terminal_command, shell=True, text=True)
         log_entry = f"{current_time}: {result}"
         f.write(log_entry)
+    handle_upload()
 
 # schedule.every(10).seconds.do(job)
 schedule.every(10).minutes.do(job)
