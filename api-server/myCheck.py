@@ -20,6 +20,12 @@ def job():
 schedule.every(10).minutes.do(job)
 
 
+
+current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+with open('log.txt', 'a', encoding='utf-8') as f:  # 'a'는 파일을 텍스트 모드로 열기 위함
+    log_entry = f"{current_time}: {'start'}"
+    f.write(log_entry)
+
 while True:
     schedule.run_pending()
     time.sleep(1)
