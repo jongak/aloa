@@ -155,7 +155,7 @@ router.get("/cardlist", async (req, res, next) => {
   }
 });
 
-// // 해다아이디 삭제
+// // 해당아이디 파일 삭제
 // router.delete("/:id", async (req, res, next) => {
 //   const id = req.params.id;
 

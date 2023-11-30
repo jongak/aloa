@@ -5,9 +5,10 @@ import ThemaToggle from "./ThemaToggle";
 import DarkToggle from "./DarkToggle";
 import { useState } from "react";
 
-function Header({ setThema, thema }) {
+function Header() {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.mainSlice.isDark);
+  const thema = useSelector((state) => state.mainSlice.thema);
   const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
   const [isMenu, setMenu] = useState();
 
@@ -79,10 +80,8 @@ function Header({ setThema, thema }) {
                   <div className="myThemaIn"></div>
                 </div>
                 <ThemaToggle
-                  setValueRef={setThema}
                   options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                   colorToggle={true}
-                  valueRef={thema}
                 />
               </nav>
             </div>
@@ -95,10 +94,8 @@ function Header({ setThema, thema }) {
           <ul className="nav_mobile">
             <li id="mobile_thema_color">
               <ThemaToggle
-                setValueRef={setThema}
                 options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
                 colorToggle={true}
-                valueRef={thema}
               />
             </li>
             <li className="ripple">

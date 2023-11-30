@@ -33,34 +33,43 @@
   --my--color--10: #41a0e0;
 }
 .App.a1 {
-  --my--thema: #d1f19c;
+  --my--thema: rgb(209, 241, 156);
 }
+
 .App.a2 {
-  --my--thema: #f79d9c;
+  --my--thema: rgb(247, 157, 156);
 }
+
 .App.a3 {
-  --my--thema: #e7bbfc;
+  --my--thema: rgb(231, 187, 252);
 }
+
 .App.a4 {
-  --my--thema: #d371d3;
+  --my--thema: rgb(211, 113, 211);
 }
+
 .App.a5 {
-  --my--thema: #f9c58a;
+  --my--thema: rgb(249, 197, 138);
 }
+
 .App.a6 {
-  --my--thema: #fad637;
+  --my--thema: rgb(250, 214, 55);
 }
+
 .App.a7 {
-  --my--thema: #fdeeb1;
+  --my--thema: rgb(253, 238, 177);
 }
+
 .App.a8 {
-  --my--thema: #bfdafd;
+  --my--thema: rgb(191, 218, 253);
 }
+
 .App.a9 {
-  --my--thema: #a8ffff;
+  --my--thema: rgb(168, 255, 255);
 }
+
 .App.a10 {
-  --my--thema: #41a0e0;
+  --my--thema: rgb(65, 160, 224);
 }
 
 .App.dark {
@@ -2160,4 +2169,66 @@ colorcover
     display: flex;
     justify-content: center;
   }
+}
+
+/* 
+---------------------------------------------
+login
+--------------------------------------------- 
+*/
+
+.login-container {
+  width: 400px;
+  background-color: var(--my--background);
+  border: 2px solid var(--my--heading);
+  border-radius: 13px;
+  padding: 0px 40px;
+  box-shadow: 0px 0px 15px var(--my--shadow);
+}
+.main-banner .login-container .logo {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+.main-banner .login-container .logo img:first-child {
+  width: 30%;
+  height: 100%;
+}
+.main-banner .login-container .logo img:nth-child(2) {
+  width: 70%;
+  height: 100%;
+  margin-left: 18px;
+  margin-top: 12%;
+}
+
+.login-container .form-control {
+  background-color: var(--my--background);
+  border: 0px;
+  border-bottom: 2px solid var(--my--heading);
+  border-radius: 0px;
+  color: var(--my--text);
+  margin-top: 16px;
+}
+.login-container .form-control::placeholder {
+  color: var(--my--text);
+}
+.login-container .form-control:focus {
+  --my--thema-color: var(--my--thema);
+}
+
+.login-container .text-center p {
+  color: var(--my--no--text);
+}
+.login-container .text-center a {
+  color: var(--my--heading);
+}
+.login-container .text-center a:hover {
+  color: var(--my--text);
+}
+
+.login-container .my_button a {
+  font-size: 18px;
+  padding: 8px 128px;
 }

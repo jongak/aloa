@@ -7,8 +7,8 @@ import { setIsThemaOpen } from "../../store/mainSlice";
 import { ToastContainer } from "react-toastify";
 
 function Layout() {
-  const [thema, setThema] = useState("1");
   const isDark = useSelector((state) => state.mainSlice.isDark);
+  const thema = useSelector((state) => state.mainSlice.thema);
   const dispatch = useDispatch();
   return (
     <div
@@ -17,7 +17,7 @@ function Layout() {
         dispatch(setIsThemaOpen({ newIsThemaOpen: true }));
       }}
     >
-      <Header setThema={setThema} thema={thema} />
+      <Header />
       <ToastContainer
         position="top-right" // 알람 위치 지정
         autoClose={6000} // 자동 off 시간

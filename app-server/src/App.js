@@ -16,6 +16,7 @@ import ShareCard from "./pages/capture/ShareCard";
 import SetOption from "./pages/capture/SetOption";
 import NotFound from "./pages/notFound";
 import axios from "axios";
+import Login from "./pages/login";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
 
@@ -34,6 +35,7 @@ function App() {
             </Route>
             <Route path="/list" element={<CardList />} />
             <Route path="/cards/:id" element={<GetCard />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/*" element={<NotFound />}></Route>
           </Route>
         </Routes>
