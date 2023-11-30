@@ -2178,7 +2178,7 @@ login
 */
 
 .login-container {
-  width: 400px;
+  width: 380px;
   background-color: var(--my--background);
   border: 2px solid var(--my--heading);
   border-radius: 13px;
@@ -2190,7 +2190,7 @@ login
   width: 80%;
   margin: 0 auto;
   margin-top: 60px;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 .main-banner .login-container .logo img:first-child {
   width: 30%;
@@ -2209,10 +2209,10 @@ login
   border-bottom: 2px solid var(--my--heading);
   border-radius: 0px;
   color: var(--my--text);
-  margin-top: 16px;
+  margin-top: 24px;
 }
 .login-container .form-control::placeholder {
-  color: var(--my--text);
+  color: var(--my--no--text);
 }
 .login-container .form-control:focus {
   --my--thema-color: var(--my--thema);
@@ -2228,7 +2228,9 @@ login
   color: var(--my--text);
 }
 
+.login-container .my_button {
+  width: 100%;
+}
 .login-container .my_button a {
   font-size: 18px;
-  padding: 8px 128px;
 }
