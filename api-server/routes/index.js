@@ -13,4 +13,7 @@ router.use("/myimage", myImageRouter);
 const imageRouter = require("./images");
 router.use("/images", imageRouter);
 
+const DBRouter = require("./db");
+router.use("/db", DBRouter);
+
 module.exports = router;

@@ -185,7 +185,7 @@ const ShareCard = function () {
       </h3>
       <div className="userRow">
         <img
-          src={process.env.REACT_APP_API_SERVER + "/user/img"}
+          src={process.env.REACT_APP_API_SERVER + "/images/front/abcd123456789"}
           style={{ width: "80%" }}
         />
         <div className="userbody">

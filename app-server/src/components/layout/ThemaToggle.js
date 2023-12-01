@@ -1,18 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setIsThemaOpen } from "../../store/mainSlice";
+import { setIsThemaOpen, setThema } from "../../store/mainSlice";
 
 const ThemaToggle = function (props) {
-  const { setValueRef, options, valueRef } = props;
+  const { options } = props;
   const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
+  const thema = useSelector((state) => state.mainSlice.thema);
+  const dispatch = useDispatch();
 
   const handleOnClickChange = (event) => {
-    setValueRef(event.target.dataset.value);
+    dispatch(setThema({ newThema: event.target.dataset.value }));
   };
 
   const OptionsList = options.map((value, i) => {
     return (
       <div
-        className={`myThemaButton ${value == valueRef ? "clicked" : ""}`}
+        className={`myThemaButton ${value == thema ? "clicked" : ""}`}
         id={`color${value}`}
         key={`button${value}`}
         data-value={value}
