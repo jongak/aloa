@@ -199,9 +199,6 @@ const ShareCard = function () {
           <input
             className="form-control"
             ref={frontURL}
-            onChange={(e) => {
-              frontURL.current.value = e.target.value;
-            }}
             placeholder="앞면 이미지 URL"
           ></input>
         </div>
@@ -209,9 +206,6 @@ const ShareCard = function () {
           <input
             className="form-control"
             ref={backURL}
-            onChange={(e) => {
-              backURL.current.value = e.target.value;
-            }}
             placeholder="뒷면 이미지 URL"
           ></input>
         </div>
