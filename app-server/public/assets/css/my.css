@@ -2161,3 +2161,141 @@ colorcover
     justify-content: center;
   }
 }
+
+/* 
+---------------------------------------------
+Notice
+--------------------------------------------- 
+*/
+/* body {
+  background: #3b4262;
+  color: #ffffff;
+  font-family: arial, sans-serif;
+} */
+.option-area .inner.notice_title {
+  /* justify-content: start; */
+  /* padding-left: 42px; */
+}
+/* .option-area .inner.notice_title h3 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 36px;
+} */
+.notice_box::-webkit-scrollbar {
+  width: 8px; /* 스크롤바의 너비 */
+}
+
+.notice_box::-webkit-scrollbar-thumb {
+  height: auto; /* 스크롤바의 길이 */
+  background: var(--my--very--dark--background); /* 스크롤바의 색상 */
+
+  border-radius: 10px;
+}
+
+.notice_box::-webkit-scrollbar-track {
+  background: var(--my--dark-text); /*스크롤바 뒷 배경 색상*/
+  border-radius: 5px;
+}
+.notice_box {
+  padding: 20px 80px;
+  height: 250px;
+  overflow-y: scroll;
+}
+.option-area .noticeRow {
+  background-color: var(--my--button--background);
+  text-align: center;
+  margin: 2rem 1rem;
+  /* box-shadow: 3px 4px 20px 2px var(--my--shadow); */
+  padding: 88px 120px 20px;
+  position: relative;
+  width: auto;
+  box-shadow:
+    0 0 0 1px var(--my--shadow),
+    0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.item {
+  display: flex;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .image {
+    padding: 1em 2em;
+
+    > div {
+      position: relative;
+      text-align: center;
+      font-size: 0.8em;
+
+      > img {
+        width: 60px;
+        height: 75px;
+        background-color: var(--my--dark--background);
+        position: relative;
+        z-index: 1;
+      }
+
+      > span {
+        color: var(--my--light--text);
+        display: block;
+        clear: both;
+        padding: 0.25em 0;
+        margin: 0.5em 0;
+        background: var(--my--no--border);
+        position: relative;
+        z-index: 1;
+        border-radius: 5px;
+      }
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 0;
+        border-bottom: 1px solid var(--my--heading);
+        position: absolute;
+        top: 2.75em;
+        left: 2.5em;
+      }
+    }
+  }
+
+  .details {
+    position: relative;
+    flex-grow: 1;
+
+    > div {
+      background-color: var(--my--background);
+      border: 1px solid var(--my--heading);
+      border-radius: 0.5em;
+      padding: 1.5em;
+      margin: 1em 0;
+
+      > h1 {
+        color: var(--my--yes--heading);
+        font-size: 1.4em;
+        margin: 0;
+        padding: 0 0 0.5em 0;
+        letter-spacing: 0.1em;
+      }
+
+      > p {
+        color: var(--my--no--text);
+        margin: 0;
+        padding: 0;
+        line-height: 150%;
+      }
+    }
+
+    &::before {
+      content: "";
+      width: 0;
+      height: 100%;
+      border-left: 1px solid var(--my--thema);
+      position: absolute;
+      top: -2em;
+      left: -4.35em;
+    }
+  }
+}
