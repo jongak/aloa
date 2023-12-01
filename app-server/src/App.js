@@ -34,7 +34,7 @@ function App() {
               <Route path="set" element={<SetOption />} />
               <Route path="share" element={<ShareCard />} />
             </Route>
-            <Route path="/notice" element={<Notice />} />
+            {/* <Route path="/notice" element={<Notice />} /> */}
             <Route path="/list" element={<CardList />} />
             <Route path="/cards/:id" element={<GetCard />} />
             <Route path="/login" element={<Login />} />
