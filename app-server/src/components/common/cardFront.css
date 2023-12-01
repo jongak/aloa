@@ -455,6 +455,14 @@
   .icons_table_badge.right--5 {
   right: +5px;
 }
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right--10 {
+  right: +10px;
+}
 
 .cardCover.back .cardBottom .card_awakename {
   color: #fff;

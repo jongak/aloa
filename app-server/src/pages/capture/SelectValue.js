@@ -260,20 +260,31 @@ const SelectValue = function () {
                 userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
                   "level"
                 ],
+
               cardImg: userData["ArmoryEquipment"]["어빌리티 스톤"]["Icon"],
               cardValue:
                 userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
                   "level"
-                ] +
-                " " +
-                userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings01"][
-                  "level"
-                ] +
-                " " +
-                userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
-                  "level"
-                ],
+                ] != ""
+                  ? userData["ArmoryEquipment"]["어빌리티 스톤"][
+                      "engravings00"
+                    ]["level"] +
+                    " " +
+                    userData["ArmoryEquipment"]["어빌리티 스톤"][
+                      "engravings01"
+                    ]["level"] +
+                    " " +
+                    userData["ArmoryEquipment"]["어빌리티 스톤"][
+                      "engravings02"
+                    ]["level"]
+                  : "-",
               iconSize: 16,
+              spanRight:
+                userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
+                  "level"
+                ] != ""
+                  ? false
+                  : "--10",
             },
             {
               id: "ElixirLevel",

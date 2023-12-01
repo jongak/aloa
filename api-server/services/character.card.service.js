@@ -566,8 +566,9 @@ const CharacterCardService = {
                 myEngravingList =
                   dat["Element_006"]["value"]["Element_000"]["contentStr"];
               } else {
-                myEngravingList =
-                  dat["Element_005"]["value"]["Element_000"]["contentStr"];
+                myEngravingList = dat["Element_005"]["value"]["Element_000"]
+                  ? dat["Element_005"]["value"]["Element_000"]["contentStr"]
+                  : "";
               }
               [0, 1, 2].forEach((j) => {
                 if (!myEngravingList[`Element_00${j}`]) {

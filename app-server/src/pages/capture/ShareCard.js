@@ -67,15 +67,17 @@ const ShareCard = function () {
       `</div> `
     );
   };
-  const copyCardRef = useRef("");
+
   const copyCardUrl = function () {
-    navigator.clipboard.writeText(copyCardRef.current.value).then(() => {
-      if (frontURL.current.value || backURL.current.value) {
-        toast.success(`HTML 태그를 복사했습니다.`);
-      } else {
-        toast.error("URL을 입력해 주세요");
-      }
-    });
+    navigator.clipboard
+      .writeText(newHTML(frontURL.current.value, backURL.current.value))
+      .then(() => {
+        if (frontURL.current.value || backURL.current.value) {
+          toast.success(`HTML 태그를 복사했습니다.`);
+        } else {
+          toast.error("URL을 입력해 주세요");
+        }
+      });
   };
 
   return (
@@ -197,6 +199,9 @@ const ShareCard = function () {
           <input
             className="form-control"
             ref={frontURL}
+            onChange={(e) => {
+              frontURL.current.value = e.target.value;
+            }}
             placeholder="앞면 이미지 URL"
           ></input>
         </div>
@@ -204,24 +209,13 @@ const ShareCard = function () {
           <input
             className="form-control"
             ref={backURL}
+            onChange={(e) => {
+              backURL.current.value = e.target.value;
+            }}
             placeholder="뒷면 이미지 URL"
           ></input>
         </div>
         <div className="buttonCover small">
-          <input
-            type="text"
-            ref={copyCardRef}
-            value={newHTML(frontURL.current.value, backURL.current.value)}
-            // onCopy={() => {
-            //   if (frontURL.current.value || backURL.current.value) {
-            //     toast.success(`HTML 태그를 복사했습니다.`);
-            //   } else {
-            //     toast.error("URL을 입력해 주세요");
-            //   }
-            // }}
-            style={{ display: "none" }}
-            onChange={() => {}}
-          />
           <Button
             title={
               <>
