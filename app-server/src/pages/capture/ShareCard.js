@@ -67,6 +67,16 @@ const ShareCard = function () {
       `</div> `
     );
   };
+  const copyCardRef = useRef("");
+  const copyCardUrl = function () {
+    navigator.clipboard.writeText(copyCardRef.current.value).then(() => {
+      if (frontURL.current.value || backURL.current.value) {
+        toast.success(`HTML 태그를 복사했습니다.`);
+      } else {
+        toast.error("URL을 입력해 주세요");
+      }
+    });
+  };
 
   return (
     <div className="option-body share">
@@ -198,25 +208,29 @@ const ShareCard = function () {
           ></input>
         </div>
         <div className="buttonCover small">
-          <CopyToClipboard
-            text={newHTML(frontURL.current.value, backURL.current.value)}
-            onCopy={() => {
-              if (frontURL.current.value || backURL.current.value) {
-                toast.success(`HTML 태그를 복사했습니다.`);
-              } else {
-                toast.error("URL을 입력해 주세요");
-              }
-            }}
-          >
-            <Button
-              title={
-                <>
-                  <i className="fa fa-clipboard" />
-                  &nbsp;&nbsp; HTML 태그 복사
-                </>
-              }
-            />
-          </CopyToClipboard>
+          <input
+            type="text"
+            ref={copyCardRef}
+            value={newHTML(frontURL.current.value, backURL.current.value)}
+            // onCopy={() => {
+            //   if (frontURL.current.value || backURL.current.value) {
+            //     toast.success(`HTML 태그를 복사했습니다.`);
+            //   } else {
+            //     toast.error("URL을 입력해 주세요");
+            //   }
+            // }}
+            style={{ display: "none" }}
+            onChange={() => {}}
+          />
+          <Button
+            title={
+              <>
+                <i className="fa fa-clipboard" />
+                &nbsp;&nbsp; HTML 태그 복사
+              </>
+            }
+            onClick={copyCardUrl}
+          />
           <Button
             title={
               <>
