@@ -6,6 +6,7 @@ const itemSlice = createSlice({
     userData: {},
     frontItems: { todo: [], done: [] },
     frontIcons: { todo: [], done: [] },
+    optionItems: { todo: [], done: [] },
     isName: true,
     isTitle: true,
     isLevel: false,
@@ -19,6 +20,9 @@ const itemSlice = createSlice({
     },
     setFrontIcons(state, action) {
       state.frontIcons = action.payload.newFrontIcons;
+    },
+    setOptionItems(state, action) {
+      state.optionItems = action.payload.newOptionItems;
     },
     setIsName(state, action) {
       state.isName = action.payload.newIsName;
@@ -37,6 +41,7 @@ export const {
   setUserData,
   setFrontItems,
   setFrontIcons,
+  setOptionItems,
   setIsName,
   setIsTitle,
   setIsLevel,

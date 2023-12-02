@@ -4,16 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { setFrontIcons, setFrontItems } from "../../store/itemSlice";
+import {
+  setFrontIcons,
+  setFrontItems,
+  setOptionItems,
+} from "../../store/itemSlice";
 
 const MyDnd = function ({ title }) {
   const dispatch = useDispatch();
   var maxItems = 5;
+  if (title == "optionItems") {
+    maxItems = 8;
+  }
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.itemSlice.frontItems);
   } else if (title == "frontIcons") {
     items = useSelector((state) => state.itemSlice.frontIcons);
+  } else if (title == "optionItems") {
+    items = useSelector((state) => state.itemSlice.optionItems);
   }
 
   const setItem = function (item) {
@@ -27,6 +36,12 @@ const MyDnd = function ({ title }) {
       dispatch(
         setFrontIcons({
           newFrontIcons: item,
+        })
+      );
+    } else if (title == "optionItems") {
+      dispatch(
+        setOptionItems({
+          newOptionItems: item,
         })
       );
     }

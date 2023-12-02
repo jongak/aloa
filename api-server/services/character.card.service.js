@@ -56,6 +56,27 @@ const isJob = function (value) {
   return true;
 };
 
+const isGongElixer = function (elixer) {
+  const GongElixer = [
+    "공격력",
+    "마나",
+    "무기 공격력",
+    "무력화",
+    "물약중독",
+    "힘",
+    "민첩",
+    "지능",
+    "방랑자",
+    "생명의 축복",
+    "자원의 축복",
+    "탈출의 달인",
+    "폭발물 달인",
+    "회피의 달인",
+  ];
+  if (GongElixer.includes(elixer)) return true;
+  return false;
+};
+
 const NumberRegex = /[^0-9]/g;
 const CharacterCardService = {
   async getCardData(characterName) {
@@ -422,6 +443,17 @@ const CharacterCardService = {
                 );
                 elixirLevel += data[sub][Type]["Elixir01"]["level"];
               }
+              if (
+                data[sub][Type]["Elixir00"]["name"] &&
+                data[sub][Type]["Elixir00"]["name"]
+              ) {
+                if (isGongElixer(data[sub][Type]["Elixir00"]["name"])) {
+                  [data[sub][Type]["Elixir00"], data[sub][Type]["Elixir01"]] = [
+                    data[sub][Type]["Elixir01"],
+                    data[sub][Type]["Elixir00"],
+                  ];
+                }
+              }
             }
 
             if (Type == "투구" && isElixir) {
@@ -570,8 +602,9 @@ const CharacterCardService = {
                   ? dat["Element_005"]["value"]["Element_000"]["contentStr"]
                   : "";
               }
+
               [0, 1, 2].forEach((j) => {
-                if (!myEngravingList[`Element_00${j}`]) {
+                if (!myEngravingList || !myEngravingList[`Element_00${j}`]) {
                   return false;
                 }
                 const myEngraving =
@@ -702,7 +735,7 @@ const CharacterCardService = {
             } else if (element["Items"][2]["Name"].includes("있구나 6세트")) {
               AwakeName += "너계획";
             } else if (element["Items"][2]["Name"].includes("보면 6세트")) {
-              AwakeName += "알고";
+              AwakeName += "알고보면";
             }
           });
           if (AwakeName == "남바절") {
