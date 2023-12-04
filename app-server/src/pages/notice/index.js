@@ -29,7 +29,12 @@ const aloaNotice = function () {
       date: "2023.12.04.",
       time: "18:00",
       title: "v1.5 업데이트",
-      content: `카드 뒷면에 표시할 수 있는 옵션들을 추가하였습니다 / 만들어진 카드 목록을 열람할 수 있습니다 / 초월 아이콘 이미지 크기를 변경하여 밸런스를 맞췄습니다 / 서버에 저장했을 때의 카드 효과가 카드 목록에 동일하게 나타납니다`,
+      content: [
+        `카드 뒷면에 표시할 수 있는 옵션들을 추가하였습니다`,
+        `만들어진 카드 목록을 열람할 수 있습니다`,
+        `초월 아이콘 이미지 크기를 변경하여 밸런스를 맞췄습니다`,
+        `서버에 저장했을 때의 카드 효과가 카드 목록에 동일하게 나타납니다`,
+      ],
       img: "https://cdn.discordapp.com/attachments/1165250859400171590/1181149358444523580/backcard_options.png?ex=6580020f&is=656d8d0f&hm=7f5c212541ff7dab8bfd30e365704b1bd83fe296d549f6934c9008b741edbb2b&",
       img2: "https://cdn.discordapp.com/attachments/1165250859400171590/1181149358809423903/card_list_sample.png?ex=6580020f&is=656d8d0f&hm=b6621333aeb3b0688ae82a4e5a3b2d38ae39449626432aa96421eacc8889bf06&",
     },
@@ -447,7 +452,14 @@ const aloaNotice = function () {
                       <div className="board_item">
                         <div className="board_details">
                           <div className="content">
-                            <p>{item.content}</p>
+                            <p>
+                              {item.content.map((line, index) => (
+                                <span key={index}>
+                                  {line}
+                                  <br />
+                                </span>
+                              ))}
+                            </p>
                             <br />
                             <img
                               src={item.img}
