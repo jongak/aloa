@@ -181,6 +181,9 @@ const ShareCard = function () {
             onClick={handleServer}
           />
         </div>
+        <div className="userbody">
+          서버에 저장은 캐릭터당 하루에 한번만 가능합니다.
+        </div>
       </div>
       <h3>
         <i className="fa fa-server"></i> 서버상태 확인

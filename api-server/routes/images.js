@@ -48,6 +48,19 @@ const awsUpload = multer({
   }),
 });
 
+// 조건을 확인하고 파일 업로드를 실행하는 미들웨어
+router.get("/isMkOk/:id", async (req, res, next) => {
+  const id = req.params.id;
+  try {
+    // SaveCardModel.isMkOk 함수가 Promise를 반환한다고 가정
+    const result = await SaveCardModel.isMkOk(id);
+    res.json(result);
+    // 조건이 충족되면 다음 미들웨어로 이동
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/", awsUpload.array("image", 2), (req, res) => {
   // 업로드된 파일 목록은 req.files에서 사용 가능
   const uploadedFiles = req.files;
@@ -158,7 +171,7 @@ router.get("/list/:no?", async (req, res, next) => {
   const no = req.params.no ? req.params.no : 0;
 
   try {
-    const result = await SaveCardService.getList(no);
+    const result = await SaveCardService.getList(Number(no));
     res.json(result);
   } catch (err) {
     next(err);
