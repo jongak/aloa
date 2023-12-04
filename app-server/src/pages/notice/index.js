@@ -24,37 +24,49 @@ const aloaNotice = function () {
   const isDark = useSelector((state) => state.mainSlice.isDark);
 
   const noticeItem = [
-    { no: 1, title: "악추피 추가", content: "악추피가 추가되었습니다." },
     {
-      no: 2,
-      title: "악추피 입력이 추가되었습니다.",
-      content:
-        "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
+      no: 1,
+      date: "2023.12.04.",
+      time: "18:00",
+      title: "v1.5 업데이트",
+      content: `카드 뒷면에 표시할 수 있는 옵션들을 추가하였습니다 / 만들어진 카드 목록을 열람할 수 있습니다 / 초월 아이콘 이미지 크기를 변경하여 밸런스를 맞췄습니다 / 서버에 저장했을 때의 카드 효과가 카드 목록에 동일하게 나타납니다`,
+      img: "https://cdn.discordapp.com/attachments/1165250859400171590/1181149358444523580/backcard_options.png?ex=6580020f&is=656d8d0f&hm=7f5c212541ff7dab8bfd30e365704b1bd83fe296d549f6934c9008b741edbb2b&",
+      img2: "https://cdn.discordapp.com/attachments/1165250859400171590/1181149358809423903/card_list_sample.png?ex=6580020f&is=656d8d0f&hm=b6621333aeb3b0688ae82a4e5a3b2d38ae39449626432aa96421eacc8889bf06&",
     },
-    {
-      no: 3,
-      title: "악추피 입력이 추가되었습니다.",
-      content:
-        "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
-    },
-    {
-      no: 4,
-      title: "악추피 입력이 추가되었습니다.",
-      content:
-        "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
-    },
-    {
-      no: 5,
-      title: "악추피 입력이 추가되었습니다.",
-      content:
-        "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
-    },
-    {
-      no: 6,
-      title: "악추피 입력이 추가되었습니다.",
-      content:
-        "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
-    },
+    // {
+    //   no: 2,
+    //   date: "2023.12.01",
+    //   time: "13:00",
+    //   title: "v1.4 업데이트",
+    //   content:
+    //     "이벤트 어빌리티스톤 착용시 아바터 검색이 되지 않는 오류를 수정하였습니다.",
+    // },
+    // {
+    //   no: 3,
+    //   date: "2023.11.30",
+    //   time: "15:00",
+    //   title: "v1.3 업데이트",
+    //   content:
+    //     "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
+    // },
+    // {
+    //   no: 4,
+    //   title: "악추피 입력이 추가되었습니다.",
+    //   content:
+    //     "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
+    // },
+    // {
+    //   no: 5,
+    //   title: "악추피 입력이 추가되었습니다.",
+    //   content:
+    //     "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
+    // },
+    // {
+    //   no: 6,
+    //   title: "악추피 입력이 추가되었습니다.",
+    //   content:
+    //     "카드 앞면에 보여지는 스탯에 악마 대상 추가 데미지 일명 '악추피'가 추가되었습니다.<br>악추피는 로스트 아크 공식 홈페이지에서 제공해주지 않아 이용하실 분께서는 수치를 직접입력해 주시면 해당 값이 카드 전면에 보여집니다.",
+    // },
   ];
 
   function getPageList(totalPages, page, maxLength) {
@@ -199,7 +211,7 @@ const aloaNotice = function () {
 
   return (
     <>
-      <div className="main-banner container">
+      {/* <div className="main-banner container">
         <div className="row justify-content-center">
           <div className="option-area col-lg-10 col-md-10">
             <div className="progress">
@@ -411,7 +423,7 @@ const aloaNotice = function () {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="main-banner container">
         <div className="row justify-content-center">
@@ -422,21 +434,41 @@ const aloaNotice = function () {
               </div>
             </div>
             <div className="option-body">
-              <Accordion defaultActiveKey={"1"}>
-                {noticeItem.map((item) => {
+              <Accordion defaultActiveKey={1}>
+                {noticeItem.map((item) => (
                   <Accordion.Item key={item.no} eventKey={item.no}>
-                    <Accordion.Header>{item.title}</Accordion.Header>
+                    <Accordion.Header>
+                      {item.title}
+                      <div style={{ marginLeft: "20px", fontSize: "16px" }}>
+                        {item.date} {item.time}
+                      </div>
+                    </Accordion.Header>
                     <Accordion.Body>
                       <div className="board_item">
                         <div className="board_details">
                           <div className="content">
                             <p>{item.content}</p>
+                            <br />
+                            <img
+                              src={item.img}
+                              style={{
+                                width: "700px",
+                                border: "1px solid #000",
+                              }}
+                            />
+                            <img
+                              src={item.img2}
+                              style={{
+                                width: "700px",
+                                border: "1px solid #000",
+                              }}
+                            />
                           </div>
                         </div>
                       </div>
                     </Accordion.Body>
-                  </Accordion.Item>;
-                })}
+                  </Accordion.Item>
+                ))}
               </Accordion>
             </div>
             {/* <div className="pagination">
