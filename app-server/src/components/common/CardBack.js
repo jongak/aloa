@@ -1,6 +1,85 @@
 import { useSelector } from "react-redux";
 import OptionBox from "../item/OptionBox";
 
+const cardGrade = {
+  일반: 1,
+  고급: 2,
+  희귀: 3,
+  영웅: 4,
+  전설: 5,
+};
+
+const changeJobEng = {
+  "광전사의 비기": "비기",
+  광기: "광기",
+  "분노의 망치": "분망",
+  "중력 수련": "중수",
+  "고독한 기사": "고기",
+  "전투 태세": "전태",
+  "축복의 오라": "축오",
+  심판자: "심판자",
+  처단자: "처단자",
+  포식자: "포식자",
+  초심: "초심",
+  "오의 강화": "오의",
+  "충격 단련": "충단",
+  "극의: 체술": "체술",
+  역천지체: "역천",
+  세맥타통: "세맥",
+  절정: "절정",
+  절제: "절제",
+  일격필살: "일격",
+  오의난무: "오의",
+  "강화 무기": "강무",
+  핸드거너: "핸건",
+  "포격 강화": "포강",
+  "화력 강화": "화강",
+  "죽음의 습격": "죽습",
+  "두 번째 동료": "두동",
+  "아르데타인의 기술": "기술",
+  "진화의 유산": "유산",
+  피스메이커: "피메",
+  "사냥의 시간": "사시",
+  "황후의 은총": "황후",
+  "황제의 칙령": "황제",
+  "상급 소환사": "상소",
+  "넘치는 교감": "교감",
+  "절실한 구원": "절구",
+  "진실된 용맹": "용맹",
+  점화: "점화",
+  환류: "환류",
+  "완벽한 억제": "억제",
+  "멈출 수 없는 충동": "충동",
+  "잔재된 기운": "잔재",
+  버스트: "버스트",
+  "달의 소리": "달소",
+  갈증: "갈증",
+  "만월의 집행자": "만월",
+  "그믐의 경계": "그믐",
+  만개: "만개",
+  회귀: "회귀",
+  이슬비: "이슬비",
+  질풍노도: "질풍",
+};
+const equipQuality = function (qualityValue) {
+  if (qualityValue == 100) return "orange";
+  else if (qualityValue > 89) return "hotpink";
+  else if (qualityValue > 69) return "blue";
+  else if (qualityValue > 29) return "green";
+  else if (qualityValue > 9) return "yello";
+  else return "red";
+};
+
+const equipGrade = {
+  고대: "#bca37d",
+  유물: "#e25041",
+  전설: "#fba026",
+  영웅: "#7504fb",
+  희귀: "#2d82c9",
+  고급: "#60db6d",
+  일반: "#475577",
+};
+
 const CardBack = function ({
   characterNameRef,
   setIsLoading,
@@ -12,113 +91,11 @@ const CardBack = function ({
   const userData = useSelector((state) => state.itemSlice.userData);
   const isName = useSelector((state) => state.itemSlice.isName);
   const isLevel = useSelector((state) => state.itemSlice.isLevel);
-  const cardGrade = {
-    일반: 1,
-    고급: 2,
-    희귀: 3,
-    영웅: 4,
-    전설: 5,
-  };
-
-  const changeJobEng = {
-    "광전사의 비기": "비기",
-    광기: "광기",
-    "분노의 망치": "분망",
-    "중력 수련": "중수",
-    "고독한 기사": "고기",
-    "전투 태세": "전태",
-    "축복의 오라": "축오",
-    심판자: "심판자",
-    처단자: "처단자",
-    포식자: "포식자",
-    초심: "초심",
-    "오의 강화": "오의",
-    "충격 단련": "충단",
-    "극의: 체술": "체술",
-    역천지체: "역천",
-    세맥타통: "세맥",
-    절정: "절정",
-    절제: "절제",
-    일격필살: "일격",
-    오의난무: "오의",
-    "강화 무기": "강무",
-    핸드거너: "핸건",
-    "포격 강화": "포강",
-    "화력 강화": "화강",
-    "죽음의 습격": "죽습",
-    "두 번째 동료": "두동",
-    "아르데타인의 기술": "기술",
-    "진화의 유산": "유산",
-    피스메이커: "피메",
-    "사냥의 시간": "사시",
-    "황후의 은총": "황후",
-    "황제의 칙령": "황제",
-    "상급 소환사": "상소",
-    "넘치는 교감": "교감",
-    "절실한 구원": "절구",
-    "진실된 용맹": "용맹",
-    점화: "점화",
-    환류: "환류",
-    "완벽한 억제": "억제",
-    "멈출 수 없는 충동": "충동",
-    "잔재된 기운": "잔재",
-    버스트: "버스트",
-    "달의 소리": "달소",
-    갈증: "갈증",
-    "만월의 집행자": "만월",
-    "그믐의 경계": "그믐",
-    만개: "만개",
-    회귀: "회귀",
-    이슬비: "이슬비",
-    질풍노도: "질풍",
-  };
-
-  const equipQuality = function (qualityValue) {
-    if (qualityValue == 100) return "orange";
-    else if (qualityValue > 89) return "hotpink";
-    else if (qualityValue > 69) return "blue";
-    else if (qualityValue > 29) return "green";
-    else if (qualityValue > 9) return "yello";
-    else return "red";
-  };
-
-  const equipGrade = {
-    고대: "#bca37d",
-    유물: "#e25041",
-    전설: "#fba026",
-    영웅: "#7504fb",
-    희귀: "#2d82c9",
-    고급: "#60db6d",
-    일반: "#475577",
-  };
+  const optionItems = useSelector((state) => state.itemSlice.optionItems);
   if (!userData || !userData["ArmoryProfile"]) {
     return;
   }
-  const elements = [
-    {
-      id: "boxExlixer",
-      cardImg: "/assets/images/icons/exlixer.webp",
-      cardValue: "Lv" + userData["ArmoryEquipment"]["option"]["ElixirLevel"],
-    },
-    {
-      id: "boxCho",
-      cardImg: "/assets/images/cho/cho_5.png",
-      cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
-    },
-    {
-      id: "boxGem",
-      cardImg: "/assets/images/icons/10meol.webp",
-      cardValue:
-        `${userData["ArmoryGem"]["option"]["MeulNum"]}멸 ` +
-        `${userData["ArmoryGem"]["option"]["HongNum"]}홍 ` +
-        `Lv ${
-          userData["ArmoryGem"]["option"]["Level"]
-            ? userData["ArmoryGem"]["option"]["Level"]
-            : "0"
-        }`,
-      gridTwo: true,
-    },
-  ];
+
   return (
     <div className="cardCover back" ref={divRef} style={{ ...style }}>
       <div
@@ -137,7 +114,7 @@ const CardBack = function ({
         <div className="cardMiddle container">
           <div className="options row">
             <div className="options_left col-7">
-              <OptionBox elements={elements} />
+              <OptionBox elements={optionItems["done"]} />
 
               <div className="row stats">
                 <div className="col-10 back_stats_bg">

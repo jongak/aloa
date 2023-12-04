@@ -41,6 +41,7 @@ const capture = function () {
   const isShadow = useSelector((state) => state.captureSlice.isShadow);
   const frontItems = useSelector((state) => state.itemSlice.frontItems);
   const frontIcons = useSelector((state) => state.itemSlice.frontIcons);
+  const optionItems = useSelector((state) => state.itemSlice.optionItems);
 
   const holographicOptionColors = useRef([
     "#0077be",
@@ -54,6 +55,7 @@ const capture = function () {
   useEffect(() => {
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
+        console.log(res);
         dispatch(setUserData({ newUserData: res }));
         if (!res) {
           toast.error("서버에 문제가 생겼습니다.");
@@ -97,7 +99,7 @@ const capture = function () {
     if (isLoading) {
       setTimeout(fetchData, 50);
     }
-  }, [isLoading, isChanged, frontItems, frontIcons]);
+  }, [isLoading, isChanged, frontItems, frontIcons, optionItems]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
