@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import domtoimage from "dom-to-image";
 import Button from "../../components/common/Button";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import LootCard from "../../components/common/LootCard";
 import saveAs from "file-saver";
 import { toast } from "react-toastify";
@@ -22,9 +22,6 @@ const getData = async function (id) {
 
 const aloaNotice = function () {
   const isDark = useSelector((state) => state.mainSlice.isDark);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [visibleItems, setVisibleItems] = useState([]);
 
   const noticeItem = [
     { no: 1, title: "악추피 추가", content: "악추피가 추가되었습니다." },
@@ -60,27 +57,6 @@ const aloaNotice = function () {
     },
   ];
 
-  const limitPerPage = 3;
-
-  useEffect(() => {
-    const numberOfItems = noticeItem.length;
-    const totalPages = Math.ceil(numberOfItems / limitPerPage);
-    setTotalPages(totalPages);
-    showPage(1);
-  }, []); // 최초 로드 시 한 번만 실행
-
-  const showPage = (whichPage) => {
-    if (whichPage < 1 || whichPage > totalPages) return false;
-
-    setCurrentPage(whichPage);
-
-    const startIdx = (whichPage - 1) * limitPerPage;
-    const endIdx = whichPage * limitPerPage;
-
-    setVisibleItems(noticeItem.slice(startIdx, endIdx));
-
-    return true;
-  };
   function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
       return Array.from(Array(end - start + 1), (_, i) => i + start);
@@ -115,6 +91,112 @@ const aloaNotice = function () {
       range(totalPages - sideWidth + 1, totalPages)
     );
   }
+
+  var numberOfItems = noticeItem.length;
+  var limitPerPage = 3; //No. of cards to show per page
+  var totalPages = Math.ceil(numberOfItems / limitPerPage);
+  var paginationSize = 7; //pagination items to show
+  var currentPage;
+
+  function showPage(whichPage) {
+    if (whichPage < 1 || whichPage > totalPages) return false;
+
+    currentPage = whichPage;
+
+    // noticeItem
+    //   .hide()
+    //   .slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage)
+    //   .show();
+
+    // $(".pagination li").slice(1, -1).remove();
+
+    const pages = getPageList(totalPages, currentPage, paginationSize).forEach(
+      (item) => {
+        <li
+          key={item}
+          className={
+            item === currentPage ? "page-item current-page" : "page-item dots"
+          }
+          onClick={showPage(item)}
+        >
+          <Link className="page-link">item || ...</Link>
+        </li>;
+        // $("<li>")
+        //   .addClass("page-item")
+        //   .addClass(item ? "current-page" : "dots")
+        //   .toggleClass("active", item === currentPage)
+        //   .append(
+        //     $("<a>")
+        //       .addClass("page-link")
+        //       .attr({ href: "javascript:void(0)" })
+        //       .text(item || "...")
+        //   )
+        //   .insertBefore(".next-page");
+      }
+    );
+
+    // $(".previous-page").toggleClass("disable", currentPage === 1);
+    // $(".next-page").toggleClass("disable", currentPage === totalPages);
+    return (
+      <div className="pagination">
+        <li
+          className="page-item previous-page"
+          onClick={showPage(currentPage - 1)}
+        >
+          <a className="page-link" href="#">
+            Prev
+          </a>
+        </li>
+        {pages}
+        <li className="page-item next-page" onClick={showPage(currentPage + 1)}>
+          <a className="page-link" href="#">
+            Next
+          </a>
+        </li>
+      </div>
+    );
+  }
+
+  // $(".pagination").append(
+  //   $("<li>")
+  //     .addClass("page-item")
+  //     .addClass("previous-page")
+  //     .append(
+  //       $("<a>")
+  //         .addClass("page-link")
+  //         .attr({ href: "javascript:void(0)" })
+  //         .text("Prev")
+  //     ),
+  //   $("<li>")
+  //     .addClass("page-item")
+  //     .addClass("next-page")
+  //     .append(
+  //       $("<a>")
+  //         .addClass("page-link")
+  //         .attr({ href: "javascript:void(0)" })
+  //         .text("Next")
+  //     )
+  // );
+
+  // $(".card-content").show();
+  // showPage(1);
+
+  // $(document).on(
+  //   "click",
+  //   ".pagination li.current-page:not(.active)",
+  //   function () {
+  //     return showPage(+$(this).text());
+  //   }
+  // );
+
+  // $(".next-page").on("click", function () {
+  //   return showPage(currentPage + 1);
+  // });
+
+  // $(".previous-page").on("click", function () {
+  //   return showPage(currentPage - 1);
+  // });
+
   return (
     <>
       <div className="main-banner container">
@@ -342,7 +424,7 @@ const aloaNotice = function () {
             <div className="option-body">
               <Accordion defaultActiveKey={"1"}>
                 {noticeItem.map((item) => {
-                  <Accordion.Item eventKey={item.no}>
+                  <Accordion.Item key={item.no} eventKey={item.no}>
                     <Accordion.Header>{item.title}</Accordion.Header>
                     <Accordion.Body>
                       <div className="board_item">
@@ -357,7 +439,7 @@ const aloaNotice = function () {
                 })}
               </Accordion>
             </div>
-            <div className="pagination">
+            {/* <div className="pagination">
               <li className="page-item previous-page disable">
                 <a className="page-link" href="#">
                   Prev
@@ -398,7 +480,7 @@ const aloaNotice = function () {
                   Next
                 </a>
               </li>
-            </div>{" "}
+            </div>{" "} */}
           </div>
         </div>
       </div>
