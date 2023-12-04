@@ -230,7 +230,7 @@ router.get("/cardlist", async (req, res, next) => {
   }
 });
 
-// // 해당아이디 파일 삭제
+//  해당아이디 파일 삭제
 // router.delete("/:id", async (req, res, next) => {
 //   const id = req.params.id;
 
@@ -273,28 +273,28 @@ router.get("/cardlist", async (req, res, next) => {
 // });
 
 //  fileList.txt에 있는것 db에 저장
-router.get("/", async (req, res, next) => {
-  fs.readFile("fileList.txt", "utf8", async (err, data) => {
-    if (err) {
-      console.error("Error reading file:", err);
-      return next(err);
-    }
-    var tmp = data.split("\n");
+// router.get("/", async (req, res, next) => {
+//   fs.readFile("fileList.txt", "utf8", async (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       return next(err);
+//     }
+//     var tmp = data.split("\n");
 
-    try {
-      for (const id of tmp) {
-        if (id && id.split("_")[1].split(".")[0] == "front") {
-          CardInputModel.input(
-            decodeURIComponent(id.split("_")[0]),
-            id.split("_")[0],
-            id
-          );
-        }
-      }
-      res.send("ok");
-    } catch (err) {
-      next(err);
-    }
-  });
-});
+//     try {
+//       for (const id of tmp) {
+//         if (id && id.split("_")[1].split(".")[0] == "front") {
+//           CardInputModel.input(
+//             decodeURIComponent(id.split("_")[0]),
+//             id.split("_")[0],
+//             id
+//           );
+//         }
+//       }
+//       res.send("ok");
+//     } catch (err) {
+//       next(err);
+//     }
+//   });
+// });
 module.exports = router;
