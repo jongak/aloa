@@ -232,7 +232,7 @@ export default function LootCard(props) {
   if (!isLoaded) return null;
 
   return (
-    <section className="cards" id="opening">
+    <section className="cards" id="opening" style={style}>
       <div
         ref={cardRef}
         className={`
@@ -251,7 +251,6 @@ export default function LootCard(props) {
         `}
         style={{
           backgroundImage: `url(${img})`,
-          ...style,
         }}
       >
         <div></div>

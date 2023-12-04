@@ -18,6 +18,7 @@ import SetOption from "./pages/capture/SetOption";
 import NotFound from "./pages/notFound";
 import axios from "axios";
 import Login from "./pages/login";
+import SignUp from "./pages/signup";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
 
@@ -34,10 +35,11 @@ function App() {
               <Route path="set" element={<SetOption />} />
               <Route path="share" element={<ShareCard />} />
             </Route>
-            {/* <Route path="/notice" element={<Notice />} /> */}
+            <Route path="/notice" element={<Notice />} />
             <Route path="/list" element={<CardList />} />
             <Route path="/cards/:id" element={<GetCard />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="/*" element={<NotFound />}></Route>
           </Route>
         </Routes>

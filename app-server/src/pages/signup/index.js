@@ -8,19 +8,22 @@ import { Link } from "react-router-dom";
 import { signin } from "../../store/loginSlice";
 import Button from "../../components/common/Button";
 
-function Login() {
+function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const loginIdRef = useRef();
   const loginPwRef = useRef();
+  const loginNameRef = useRef();
 
   const isDark = useSelector((state) => state.mainSlice.isDark);
   const thema = useSelector((state) => state.mainSlice.thema);
+  const is_signed = useSelector((state) => state.loginSlice.is_signed);
 
-  const signIn = useCallback(async () => {
+  const signUp = useCallback(async () => {
     const loginId = loginIdRef.current.value;
     const loginPw = loginPwRef.current.value;
+    const loginName = loginNameRef.current.value;
 
     if (!loginId.trim()) {
       toast.error("아이디를 입력해주세요");
@@ -30,31 +33,30 @@ function Login() {
       toast.error("비밀번호를 입력해주세요");
       return;
     }
+    if (!loginName.trim()) {
+      toast.error("이름을 입력해주세요");
+      return;
+    }
 
     try {
-      const res = await axios.post("/login/", {
+      const res = await axios.post("/login/up", {
         login_id: loginId,
         password: await hasing(loginId + loginPw),
+        name: loginName,
       });
 
       if (res.data.ok) {
-        toast.success("로그인 성공!");
-        dispatch(
-          signin({ newUser: { name: res.data.name, role: res.data.role } })
-        );
+        toast.success("회원가입 성공!");
+        dispatch(signin({ newUser: { name: res.data.name, role: false } }));
         navigate("/");
         return;
-      } else {
-        toast.error("아이디 또는 비밀번호를 다시 확인해주세요.");
+      } else if (res.data.message == "중복아이디") {
+        toast.error("아이디를 사용할 수 없습니다.");
       }
     } catch (error) {
       toast.error("서버에 문제가 생겼습니다. 잠시후 다시 시도해주세요.");
     }
   }, [dispatch, navigate]);
-
-  const ingToggle = function () {
-    toast.error("서비스 준비예정입니다.");
-  };
 
   return (
     <div className="main-banner container">
@@ -75,7 +77,6 @@ function Login() {
               </>
             )}
           </div>
-
           <div className="form-outline">
             <input
               type="text"
@@ -84,7 +85,6 @@ function Login() {
               ref={loginIdRef}
             />
           </div>
-
           <div className="form-outline">
             <input
               type="password"
@@ -93,33 +93,22 @@ function Login() {
               ref={loginPwRef}
             />
           </div>
-
-          <div className="row mb-1 mt-4">
-            <div className="col d-flex justify-content-center">
-              <div className="text-center">
-                <p>
-                  비밀번호를 잊으셨나요? &nbsp;&nbsp;
-                  <Link onClick={ingToggle}>비밀번호 찾기</Link>
-                </p>
-              </div>
-            </div>
+          <div className="form-outline">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="이름"
+              ref={loginNameRef}
+            />
           </div>
-
-          <Button title={"로그인"} onClick={signIn} />
-
-          <div className="row mb-4 mt-1">
-            <div className="col d-flex justify-content-center">
-              <div className="text-center">
-                <p>
-                  회원이 아니신가요? &nbsp; <Link to="/signup">회원가입</Link>
-                </p>
-              </div>
-            </div>
-          </div>
+          <br />
+          <br />
+          <Button title={"회원가입"} onClick={signUp} />
+          <br /> <br />
         </div>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default SignUp;

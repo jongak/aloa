@@ -55,7 +55,6 @@ const capture = function () {
   useEffect(() => {
     if (characterNameRef.current) {
       getDataCard(characterNameRef.current).then((res) => {
-        console.log(res);
         dispatch(setUserData({ newUserData: res }));
         if (!res) {
           toast.error("서버에 문제가 생겼습니다.");
@@ -124,12 +123,47 @@ const capture = function () {
         backCanvasRef.toBlob(resolve);
       });
 
-      const encodedCharacterName = encodeURIComponent(characterNameRef.current);
-
       const formData = new FormData();
-      formData.append("image", frontBlob, `${encodedCharacterName}_front.png`);
-      formData.append("image", backBlob, `${encodedCharacterName}_back.png`);
+      let card_effect = JSON.stringify({
+        rarityPreset: rarityPreset,
+        holographicOptions:
+          rarityPreset === "custom" && isHolo
+            ? {
+                glow: isGlow,
+                color1: holographicOptionColors.current[0],
+                color2: holographicOptionColors.current[1],
+                color3: holographicOptionColors.current[2],
+                color4: holographicOptionColors.current[3],
+                color5: holographicOptionColors.current[4],
+              }
+            : null,
+        shineOptions:
+          rarityPreset === "custom" && isShine
+            ? {
+                color1: shineOptionColors.current[0],
+                color2: shineOptionColors.current[1],
+              }
+            : null,
+        shadowOptions:
+          rarityPreset === "custom" && isShadow
+            ? {
+                default: {
+                  color1: shadowOptionColors.current[0],
+                  color2: shadowOptionColors.current[1],
+                },
+                hover: {
+                  color1: shadowOptionColors.current[0],
+                  color2: shadowOptionColors.current[1],
+                },
+              }
+            : null,
+      });
 
+      formData.append("image", frontBlob, `loaf.png`);
+      formData.append("image", backBlob, `loab.png`);
+      formData.append("game", "loa");
+      formData.append("character_id", characterNameRef.current);
+      formData.append("card_effect", card_effect);
       const res = await axios.post("/images", formData, {
         headers: {
           "Content-Type": "multipart/form-data",

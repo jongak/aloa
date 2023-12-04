@@ -16,4 +16,7 @@ router.use("/images", imageRouter);
 const DBRouter = require("./db");
 router.use("/db", DBRouter);
 
+const loginRouter = require("./login");
+router.use("/login", loginRouter);
+
 module.exports = router;

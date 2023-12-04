@@ -10,6 +10,9 @@ const {
   DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
 var fs = require("fs");
+const CardInputModel = require("../models/card.input.model");
+const SaveCardModel = require("../models/save.card.model");
+const SaveCardService = require("../services/save.card.service");
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -26,11 +29,20 @@ const awsUpload = multer({
       const uniqueId =
         file.originalname.split(".")[0] +
         // "_" +
-        // Math.floor(Math.random() * 1000).toString() +
-        // Date.now() +
+        Math.floor(Math.random() * 10000).toString() +
+        Date.now() +
         "." +
         file.originalname.split(".").pop();
       // file.originalname.split(".").pop();
+
+      // 여기서 파일 이름을 req 객체에 저장
+      if (file.originalname.split(".")[0] == "loaf") {
+        req.frontKey = uniqueId;
+      }
+      if (file.originalname.split(".")[0] == "loab") {
+        req.backKey = uniqueId;
+      }
+
       cb(null, uniqueId);
     },
   }),
@@ -39,6 +51,16 @@ const awsUpload = multer({
 router.post("/", awsUpload.array("image", 2), (req, res) => {
   // 업로드된 파일 목록은 req.files에서 사용 가능
   const uploadedFiles = req.files;
+
+  // SaveCardModel.saveCard로 들어가기 전에
+  // req.frontKey와 req.backKey를 사용하여 front_KEY와 back_KEY를 설정
+  SaveCardModel.saveCard({
+    game: req.body.game,
+    character_id: req.body.character_id,
+    front_KEY: req.frontKey,
+    back_KEY: req.backKey,
+    card_effect: req.body.card_effect,
+  });
 
   // 각 파일의 S3 URL을 추출하여 배열에 저장
   const fileUrls = uploadedFiles.map((file) => file.location);
@@ -55,8 +77,21 @@ const s3Client = new S3Client({
   },
 });
 
-router.get("/front/:id", async (req, res, next) => {
+router.get("/effect/:id/:no?", async (req, res, next) => {
   const id = req.params.id;
+  const no = req.params.no ? req.params.no : 0;
+
+  try {
+    const result = await SaveCardService.getEffect(id, no);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/front/:id/:no?", async (req, res, next) => {
+  const id = req.params.id;
+  const no = req.params.no ? req.params.no : 0;
 
   var bucketParams = {
     Bucket: "aloa-bucket",
@@ -64,7 +99,12 @@ router.get("/front/:id", async (req, res, next) => {
   if (id == "abcd123456789") {
     bucketParams["Key"] = "server_status.png";
   } else {
-    bucketParams["Key"] = encodeURIComponent(id) + "_front.png";
+    const cards = await SaveCardService.getCards(id, "front");
+    var cardurl = cards[0].front_KEY;
+    if (no < cards.length) {
+      cardurl = cards[no].front_KEY;
+    }
+    bucketParams["Key"] = cardurl;
   }
 
   try {
@@ -83,13 +123,20 @@ router.get("/front/:id", async (req, res, next) => {
   }
 });
 
-router.get("/back/:id", async (req, res, next) => {
+router.get("/back/:id/:no?", async (req, res, next) => {
   const id = req.params.id;
+  const no = req.params.no ? req.params.no : 0;
+
+  const cards = await SaveCardService.getCards(id, "back");
 
   const bucketParams = {
     Bucket: "aloa-bucket",
-    Key: encodeURIComponent(id) + "_back.png",
   };
+  var cardurl = cards[0].back_KEY;
+  if (no < cards.length) {
+    cardurl = cards[no].back_KEY;
+  }
+  bucketParams["Key"] = cardurl;
 
   try {
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
@@ -107,6 +154,30 @@ router.get("/back/:id", async (req, res, next) => {
   }
 });
 
+router.get("/list/:no?", async (req, res, next) => {
+  const no = req.params.no ? req.params.no : 0;
+
+  try {
+    const result = await SaveCardService.getList(no);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+const isCardImg = function (key) {
+  if (key.indexOf("_front.png") != -1 || key.indexOf("_back.png") != -1) {
+    if (
+      key != "6cde1952be6d1c20.pdf" &&
+      key != "2c40027e88855869.pdf" &&
+      key != "server_status.png"
+    ) {
+      return true;
+    }
+  }
+  return false;
+};
+
 router.get("/cardlist", async (req, res, next) => {
   const command = new ListObjectsV2Command({
     Bucket: "aloa-bucket",
@@ -122,17 +193,8 @@ router.get("/cardlist", async (req, res, next) => {
         await s3Client.send(command);
 
       const contentsList = Contents.map((c) => {
-        if (
-          c["Key"].indexOf("_front.png") == -1 &&
-          c["Key"].indexOf("_back.png") == -1
-        ) {
-          if (
-            c["Key"] != "6cde1952be6d1c20.pdf" &&
-            c["Key"] != "2c40027e88855869.pdf" &&
-            c["Key"] != "server_status.png"
-          ) {
-            return c["Key"];
-          }
+        if (isCardImg(c["Key"])) {
+          return c["Key"];
         }
         return false;
       })
@@ -172,7 +234,7 @@ router.get("/cardlist", async (req, res, next) => {
 //   }
 // });
 
-// // fileList.txt에 있는것들삭제
+// fileList.txt에 있는것들삭제
 // router.delete("/", async (req, res, next) => {
 //   fs.readFile("fileList.txt", "utf8", async (err, data) => {
 //     if (err) {
@@ -197,4 +259,29 @@ router.get("/cardlist", async (req, res, next) => {
 //   });
 // });
 
+//  fileList.txt에 있는것 db에 저장
+router.get("/", async (req, res, next) => {
+  fs.readFile("fileList.txt", "utf8", async (err, data) => {
+    if (err) {
+      console.error("Error reading file:", err);
+      return next(err);
+    }
+    var tmp = data.split("\n");
+
+    try {
+      for (const id of tmp) {
+        if (id && id.split("_")[1].split(".")[0] == "front") {
+          CardInputModel.input(
+            decodeURIComponent(id.split("_")[0]),
+            id.split("_")[0],
+            id
+          );
+        }
+      }
+      res.send("ok");
+    } catch (err) {
+      next(err);
+    }
+  });
+});
 module.exports = router;

@@ -50,12 +50,12 @@ function Header() {
                   <li className="ripple">
                     <Link to="/capture">카드 만들기</Link>
                   </li>
-                  {/* <li className="ripple">
-                    <Link to="/cards">카드확인</Link>
+                  <li className="ripple">
+                    <Link to="/list">카드 목록</Link>
                   </li>
                   <li className="ripple">
-                    <Link to="/aa">회원가입</Link>
-                  </li> */}
+                    <Link to="/notice">공지</Link>
+                  </li>
                 </ul>
                 <Link className="menu-trigger" onClick={menuToggle}>
                   <span>Menu</span>
@@ -106,6 +106,16 @@ function Header() {
             <li className="ripple">
               <Link to="/capture" onClick={closeMenu}>
                 카드만들기
+              </Link>
+            </li>
+            <li className="ripple">
+              <Link to="/list" onClick={closeMenu}>
+                카드 목록
+              </Link>
+            </li>
+            <li className="ripple">
+              <Link to="/notice" onClick={closeMenu}>
+                공지
               </Link>
             </li>
           </ul>

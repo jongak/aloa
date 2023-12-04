@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import domtoimage from "dom-to-image";
 import Button from "../../components/common/Button";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,8 +9,8 @@ import axios from "axios";
 
 const getData = async function (id) {
   try {
-    const res = await axios.get(`/images/front/${id}`);
-    return res.data.error;
+    const res = await axios.get(`/images/effect/${id}/0`);
+    return JSON.parse(res.data);
   } catch (err) {
     console.error(err);
   }
@@ -21,6 +21,7 @@ const GetCard = function () {
   const navigate = useNavigate();
   const copyLinkRef = useRef({ value: "" });
   const copyHTMLRef = useRef({ value: "" });
+  const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
 
   const copyLinkUrl = function () {
     copyLinkRef.current.focus();
@@ -60,12 +61,21 @@ const GetCard = function () {
     });
   };
 
-  getData(id).then((res) => {
-    if (res) {
-      navigate("../capture");
-      toast.error("카드를 먼저 만들어 주세요");
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getData(id);
+      if (res) {
+        setEffectRef(res);
+      } else {
+        navigate("../capture");
+        toast.error("카드를 먼저 만들어 주세요");
+      }
+    };
+
+    if (id) {
+      fetchData();
     }
-  });
+  }, [id]); // id가 변경될 때마다 useEffect를 실행
 
   const openPdfInNewTab = () => {
     const newWindow = window.open(
@@ -104,13 +114,13 @@ const GetCard = function () {
               {/* 나중에 db에 저장된 커스텀모드 불러오기 가능해야할듯 */}
               <LootCard
                 img={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
-                rarityPreset={"holographic"}
+                {...effectRef}
                 size={{ height: 400, width: 300 }}
               />
 
               <LootCard
                 img={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                rarityPreset={"holographic"}
+                {...effectRef}
                 size={{ height: 400, width: 300 }}
               />
             </div>
