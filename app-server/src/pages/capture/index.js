@@ -115,6 +115,16 @@ const capture = function () {
 
   const handleServer = async () => {
     try {
+      const res1 = await axios.get(
+        "/images/isMkOk/" + characterNameRef.current
+      );
+
+      if (!res1.data) {
+        toast.error(`한시간에 한번만 가능합니다.`);
+        navigate("../capture");
+        return;
+      }
+
       const frontBlob = await new Promise((resolve) => {
         frontCanvasRef.toBlob(resolve);
       });

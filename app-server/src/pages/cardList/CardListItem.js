@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const getData = async function (id) {
   try {
@@ -13,6 +14,7 @@ const getData = async function (id) {
 
 const CardListItem = function ({ character_id }) {
   const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +41,12 @@ const CardListItem = function ({ character_id }) {
           <h5 style={{ color: "var(--my--dark-heading)" }}>로스트아크</h5>
         </div>
       </div>
-      <div className="option-body">
+      <div
+        className="option-body"
+        onClick={() => {
+          navigate("/cards/" + character_id);
+        }}
+      >
         <div
           className="col-sm-12"
           style={{

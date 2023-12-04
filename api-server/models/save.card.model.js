@@ -11,6 +11,25 @@ const SaveCardModel = {
       throw new Error("DB Error", { cause: err });
     }
   },
+  //카드url 리스트 확보
+  async isMkOk(character_id, conn = pool) {
+    try {
+      const sql = `select updated_at from cards where character_id = ? ORDER BY updated_at DESC`;
+      const [data] = await conn.query(sql, [character_id]);
+
+      if (!data[0]) return true;
+      const currentTime = new Date();
+      const targetDate = new Date(data[0]["updated_at"]);
+      // const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+      const oneDayInMilliseconds = 60 * 60 * 1000;
+      const timeDifference = targetDate - currentTime;
+      const isWithin24Hours = Math.abs(timeDifference) > oneDayInMilliseconds;
+
+      return isWithin24Hours;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
 
   //카드url 리스트 확보
   async getCards(character_id, card, conn = pool) {
