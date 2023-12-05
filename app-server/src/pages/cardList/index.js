@@ -39,7 +39,10 @@ const cardList = function () {
       </div>
       <div
         className="buttonCover"
-        style={{ display: "flex", justifyContent: "center", gap: "20px" }}
+        style={{
+          gap: "20px",
+          marginTop: "20px",
+        }}
       >
         <Button
           onClick={() => {

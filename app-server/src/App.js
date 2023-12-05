@@ -19,6 +19,8 @@ import NotFound from "./pages/notFound";
 import axios from "axios";
 import Login from "./pages/login";
 import SignUp from "./pages/signup";
+import Current from "./pages/getCard/Current";
+import History from "./pages/getCard/History";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
 
@@ -37,7 +39,10 @@ function App() {
             </Route>
             <Route path="/notice" element={<Notice />} />
             <Route path="/list" element={<CardList />} />
-            <Route path="/cards/:id" element={<GetCard />} />
+            <Route path="/cards/:id" element={<GetCard />}>
+              <Route index element={<Current />} />
+              <Route path="history" element={<History />} />
+            </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/*" element={<NotFound />}></Route>
