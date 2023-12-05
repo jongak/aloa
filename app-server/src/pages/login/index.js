@@ -40,7 +40,9 @@ function Login() {
       if (res.data.ok) {
         toast.success("로그인 성공!");
         dispatch(
-          signin({ newUser: { name: res.data.name, role: res.data.role } })
+          signin({
+            newUser: { name: res.data.name, is_manager: res.data.role },
+          })
         );
         navigate("/");
         return;
