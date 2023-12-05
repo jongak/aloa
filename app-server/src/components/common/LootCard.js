@@ -16,6 +16,7 @@ export default function LootCard(props) {
     className = "",
     style = {}, //메인div관련 stlye
     rarityPreset = "custom",
+    onClickHandler = null,
   } = props;
   const rareCards = useMemo(() => ["legendary", "holographic"], []);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -232,7 +233,12 @@ export default function LootCard(props) {
   if (!isLoaded) return null;
 
   return (
-    <section className="cards" id="opening" style={style}>
+    <section
+      className="cards"
+      id="opening"
+      style={style}
+      onClick={onClickHandler}
+    >
       <div
         ref={cardRef}
         className={`

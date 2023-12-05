@@ -2481,12 +2481,12 @@ Notice
       }
 
       > span {
-        color: var(--my--light--text);
+        color: #393c42;
         display: block;
         clear: both;
         padding: 0.25em 0;
         margin: 0.5em 0;
-        background: var(--my--no--border);
+        background: #fff;
         position: relative;
         z-index: 1;
         border-radius: 5px;
@@ -2793,6 +2793,7 @@ list
 }
 .option-area.list .card-cover section:last-child {
   right: 0px;
+  z-index: 4;
 }
 
 .option-area.history .card-cover section:first-child {
@@ -2801,6 +2802,10 @@ list
 }
 .option-area.history .card-cover section:last-child {
   right: 5%;
+}
+
+.item .small_image {
+  display: none;
 }
 
 @media (max-width: 1200px) {
@@ -2812,22 +2817,50 @@ list
   }
 }
 @media (max-width: 992px) {
-  .option-area.list .card-cover section:first-child,
-  .option-area.history .card-cover section:first-child {
+  .option-area.list .card-cover section:first-child {
     left: 5%;
   }
-  .option-area.list .card-cover section:last-child,
-  .option-area.history .card-cover section:last-child {
+  .option-area.list .card-cover section:nth-last-child() {
     right: 5%;
   }
 }
 @media (max-width: 768px) {
-  .option-area.list .card-cover section:first-child,
-  .option-area.history .card-cover section:first-child {
+  .option-area.list .card-cover section:first-child {
     left: 0px;
   }
-  .option-area.list .card-cover section:last-child,
-  .option-area.history .card-cover section:last-child {
+  .option-area.list .card-cover section:last-child {
     right: 0px;
+  }
+}
+@media (max-width: 576px) {
+  .image {
+    display: none;
+  }
+  .item {
+    padding-top: 50px;
+  }
+
+  .item .details .card-cover {
+    border: 0px;
+    background-color: var(--my--dark--background);
+    margin: 0px;
+    width: 100%;
+    border-radius: 0;
+  }
+  .item .small_image {
+    display: block;
+    position: relative;
+  }
+  .item .small_image span {
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    width: 128px;
+
+    color: var(--my--no--text);
+    display: block;
+    clear: both;
+
+    z-index: 1;
   }
 }

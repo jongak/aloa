@@ -11,7 +11,7 @@ const SaveCardModel = {
       throw new Error("DB Error", { cause: err });
     }
   },
-  //카드url 리스트 확보
+  //24시간 제한
   async isMkOk(character_id, conn = pool) {
     try {
       const sql = `select updated_at from cards where character_id = ? ORDER BY updated_at DESC`;
@@ -20,8 +20,8 @@ const SaveCardModel = {
       if (!data[0]) return true;
       const currentTime = new Date();
       const targetDate = new Date(data[0]["updated_at"]);
-      // const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-      const oneDayInMilliseconds = 60 * 60 * 1000;
+      const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+      // const oneDayInMilliseconds = 60 * 60 * 1000;
       const timeDifference = targetDate - currentTime;
       const isWithin24Hours = Math.abs(timeDifference) > oneDayInMilliseconds;
 
@@ -51,7 +51,7 @@ const SaveCardModel = {
       throw new Error("DB Error", { cause: err });
     }
   },
-  //카드 이펙트 리스트 확보
+  //카드 리스트 확보
   async getList(no, conn = pool) {
     try {
       const sql = `select character_id from cards ORDER BY updated_at DESC`;
@@ -60,6 +60,21 @@ const SaveCardModel = {
       const uniqueData = [...set];
       const sliceData = uniqueData.slice(no * 6, (no + 1) * 6);
       return sliceData;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+  //카드 이펙트 리스트 확보
+  async getNumList(character_id, conn = pool) {
+    try {
+      const sql = `select updated_at from cards where character_id = ? ORDER BY updated_at DESC`;
+      const [data] = await conn.query(sql, [character_id]);
+      const newData = data.map((time) => {
+        const originalDate = new Date(time["updated_at"]);
+        const newDate = new Date(originalDate.getTime() + 9 * 60 * 60 * 1000);
+        return newDate;
+      });
+      return newData;
     } catch (err) {
       throw new Error("DB Error", { cause: err });
     }

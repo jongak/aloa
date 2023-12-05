@@ -120,7 +120,7 @@ const capture = function () {
       );
 
       if (!res1.data) {
-        toast.error(`한시간에 한번만 가능합니다.`);
+        toast.error(`하루에 한번만 가능합니다.`);
         navigate("../capture");
         return;
       }

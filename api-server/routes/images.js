@@ -89,6 +89,16 @@ const s3Client = new S3Client({
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
+router.get("/numlist/:id", async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    const result = await SaveCardService.getNumList(id);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get("/effect/:id/:no?", async (req, res, next) => {
   const id = req.params.id;

@@ -1,16 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import domtoimage from "dom-to-image";
-import Button from "../../components/common/Button";
-import { useNavigate, useParams } from "react-router-dom";
-import LootCard from "../../components/common/LootCard";
-import saveAs from "file-saver";
-import { toast } from "react-toastify";
+import { useNavigate, useParams } from "react-router";
+import HistoryItem from "./HistoryItem";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const getData = async function (id) {
   try {
-    const res = await axios.get(`/images/effect/${id}/0`);
-    return JSON.parse(res.data);
+    const res = await axios.get(`/images/numlist/${id}`);
+    return res.data;
   } catch (err) {
     console.error(err);
   }
@@ -19,15 +16,13 @@ const getData = async function (id) {
 const History = function () {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
-  const isDark = "dark";
-  const cardRef = useRef();
+  const [numList, setNumList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await getData(id);
       if (res) {
-        setEffectRef(res);
+        setNumList(res);
       } else {
         navigate("../capture");
         toast.error("카드를 먼저 만들어 주세요");
@@ -47,34 +42,11 @@ const History = function () {
         </div>
       </div>
       <div className="option-body history">
-        <div className="item">
-          <div className="image">
-            <div>
-              <img
-                className="notice_dot"
-                src={`/assets/images/logo/logo_mark_${isDark}.png`}
-              />
-              <span>23.11.30.</span>
-              <span>15:53</span>
-            </div>
-          </div>
-          <div className="details">
-            <div className="card-cover col-sm-12 mt-3">
-              {/* 나중에 db에 저장된 커스텀모드 불러오기 가능해야할듯 */}
-              <LootCard
-                img={process.env.REACT_APP_API_SERVER + "/images/front/" + id}
-                {...effectRef}
-                size={{ height: 400, width: 300 }}
-              />
-
-              <LootCard
-                img={process.env.REACT_APP_API_SERVER + "/images/back/" + id}
-                {...effectRef}
-                size={{ height: 400, width: 300 }}
-              />
-            </div>
-          </div>
-        </div>
+        {numList.map((element, index) => {
+          return (
+            <HistoryItem key={"history" + index} index={index} time={element} />
+          );
+        })}
       </div>
     </div>
   );
