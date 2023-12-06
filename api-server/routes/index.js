@@ -19,4 +19,7 @@ router.use("/db", DBRouter);
 const loginRouter = require("./login");
 router.use("/login", loginRouter);
 
+const noticeRouter = require("./notice");
+router.use("/notice", noticeRouter);
+
 module.exports = router;
