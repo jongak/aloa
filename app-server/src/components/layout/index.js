@@ -1,15 +1,50 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsThemaOpen } from "../../store/mainSlice";
 import { ToastContainer } from "react-toastify";
+import { useCookies } from "react-cookie";
+import { signin, signout } from "../../store/loginSlice";
 
 function Layout() {
   const isDark = useSelector((state) => state.mainSlice.isDark);
   const thema = useSelector((state) => state.mainSlice.thema);
   const dispatch = useDispatch();
+  const is_signed = useSelector((state) => state.loginSlice.is_signed);
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
+  const name = useSelector((state) => state.loginSlice.name);
+
+  // 기존 쿠키 저장
+  const [cookies, setCookies, removeCookies] = useCookies(["id"]);
+
+  const logOut = function () {
+    dispatch(signout());
+    removeCookies("is_signed");
+    removeCookies("name");
+    removeCookies("is_manager");
+    setCookies("is_signed", false, { path: "/" });
+  };
+
+  useEffect(() => {
+    if (cookies.is_signed && cookies.name) {
+      dispatch(
+        signin({
+          newUser: { name: cookies.name, is_manager: cookies.is_manager },
+        })
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    if (is_signed) {
+      setCookies("is_signed", true, { path: "/" });
+      setCookies("is_manager", is_manager, { path: "/" });
+      setCookies("name", name, { path: "/" });
+    }
+  }, [is_signed]);
+
   return (
     <div
       className={`App ${isDark} a${thema}`}
@@ -17,7 +52,7 @@ function Layout() {
         dispatch(setIsThemaOpen({ newIsThemaOpen: true }));
       }}
     >
-      <Header />
+      <Header logOut={logOut} />
       <ToastContainer
         position="top-right" // 알람 위치 지정
         autoClose={6000} // 자동 off 시간

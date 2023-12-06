@@ -25,6 +25,26 @@ const SaveCardService = {
       pool.releaseConnection(conn);
     }
   },
+  async getNumList(character_id) {
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+
+      const cards = await SaveCardModel.getNumList(character_id);
+
+      await conn.commit();
+      // return { ...data, ok: true };
+      return cards;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
   async getEffect(character_id, no) {
     const conn = await pool.getConnection();
     try {

@@ -1010,6 +1010,7 @@ capture
   border-radius: 12px;
   padding-left: 0px;
   padding-right: 0px;
+  margin-bottom: 20px;
 }
 
 .option-area .progress {
@@ -1071,6 +1072,13 @@ capture
   width: 360px;
   background-color: var(--my--very--dark--background--hover);
   height: 2px;
+}
+.option-area .inner h1,
+.option-area .inner h2,
+.option-area .inner h3,
+.option-area .inner h4,
+.option-area .inner h5 {
+  color: var(--my--dark-heading);
 }
 .option-area .option-body h3 {
   padding-top: 50px;
@@ -1196,6 +1204,23 @@ capture
   margin-bottom: 30px;
 }
 
+.option-area.getCard .inner .my_button {
+  margin: 0px;
+  position: absolute;
+  right: 30px;
+}
+@media (max-width: 768px) {
+  .option-area.getCard .inner .my_button {
+    position: static;
+    margin-left: 30px;
+  }
+}
+@media (max-width: 400px) {
+  .option-area.getCard .inner .my_button {
+    margin-left: -10px;
+  }
+}
+
 .option-body.share .userRow .find-input .form-control {
   margin: 0px;
   width: 60%;
@@ -1210,8 +1235,12 @@ capture
   text-align: center;
 }
 
-.option-body .userRow .buttonCover {
+.buttonCover {
   display: flex;
+  justify-content: center;
+}
+
+.option-body .userRow .buttonCover {
   flex-wrap: wrap;
   justify-content: space-around;
   width: 80%;
@@ -2192,6 +2221,11 @@ mycol
     width: 90%;
   }
 }
+@media (max-width: 576px) {
+  .lg-mycol-11 {
+    width: 100%;
+  }
+}
 
 .toastPosition {
   position: absolute;
@@ -2430,9 +2464,8 @@ Notice
   display: flex;
   max-width: 1000px;
   margin: 0 auto;
-
   .image {
-    padding: 1em 2em;
+    padding: 1em 10px;
 
     > div {
       position: relative;
@@ -2448,12 +2481,12 @@ Notice
       }
 
       > span {
-        color: var(--my--light--text);
+        color: #393c42;
         display: block;
         clear: both;
         padding: 0.25em 0;
         margin: 0.5em 0;
-        background: var(--my--no--border);
+        background: #fff;
         position: relative;
         z-index: 1;
         border-radius: 5px;
@@ -2479,9 +2512,8 @@ Notice
       background-color: var(--my--background);
       border: 1px solid var(--my--heading);
       border-radius: 0.5em;
-      padding: 1.5em;
-      margin: 1em 0;
-
+      margin: 40px 10px;
+      width: 96%;
       > h1 {
         color: var(--my--yes--heading);
         font-size: 1.4em;
@@ -2504,8 +2536,7 @@ Notice
       height: 100%;
       border-left: 1px solid var(--my--thema);
       position: absolute;
-      top: -2em;
-      left: -4.35em;
+      left: -40px;
     }
   }
 }
@@ -2665,4 +2696,111 @@ login
 }
 .login-container .my_button a {
   font-size: 18px;
+}
+
+/*
+---------------------------------------------
+list
+--------------------------------------------- 
+*/
+
+.option-area.list .progress {
+  padding: 10px 0px;
+  height: auto;
+}
+
+.option-area.list .inner {
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+
+.option-area.list .card-cover,
+.option-area.history .card-cover {
+  display: flex;
+  position: relative;
+  height: 450px;
+}
+
+.option-area.list .card-cover section,
+.option-area.history .card-cover section {
+  position: absolute;
+}
+
+.option-area.list .card-cover section:first-child {
+  left: 0px;
+  z-index: 5;
+}
+.option-area.list .card-cover section:last-child {
+  right: 0px;
+  z-index: 4;
+}
+
+.option-area.history .card-cover section:first-child {
+  left: 5%;
+  z-index: 5;
+}
+.option-area.history .card-cover section:last-child {
+  right: 5%;
+}
+
+.item .small_image {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .option-area.history .card-cover section:first-child {
+    left: 0px;
+  }
+  .option-area.history .card-cover section:last-child {
+    right: 0px;
+  }
+}
+@media (max-width: 992px) {
+  .option-area.list .card-cover section:first-child {
+    left: 5%;
+  }
+  .option-area.list .card-cover section:nth-last-child() {
+    right: 5%;
+  }
+}
+@media (max-width: 768px) {
+  .option-area.list .card-cover section:first-child {
+    left: 0px;
+  }
+  .option-area.list .card-cover section:last-child {
+    right: 0px;
+  }
+}
+@media (max-width: 576px) {
+  .image {
+    display: none;
+  }
+  .item {
+    padding-top: 50px;
+  }
+
+  .item .details .card-cover {
+    border: 0px;
+    background-color: var(--my--dark--background);
+    margin: 0px;
+    width: 100%;
+    border-radius: 0;
+  }
+  .item .small_image {
+    display: block;
+    position: relative;
+  }
+  .item .small_image span {
+    position: absolute;
+    top: -6px;
+    right: 20px;
+    width: 128px;
+
+    color: var(--my--no--text);
+    display: block;
+    clear: both;
+
+    z-index: 1;
+  }
 }

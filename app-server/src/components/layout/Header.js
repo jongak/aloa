@@ -5,12 +5,14 @@ import ThemaToggle from "./ThemaToggle";
 import DarkToggle from "./DarkToggle";
 import { useState } from "react";
 
-function Header() {
+function Header({ logOut }) {
   const dispatch = useDispatch();
   const isDark = useSelector((state) => state.mainSlice.isDark);
   const thema = useSelector((state) => state.mainSlice.thema);
   const isThemaOpen = useSelector((state) => state.mainSlice.isThemaOpen);
   const [isMenu, setMenu] = useState();
+  const name = useSelector((state) => state.loginSlice.name);
+  const is_signed = useSelector((state) => state.loginSlice.is_signed);
 
   const menuToggle = () => {
     setMenu(!isMenu);
@@ -43,7 +45,14 @@ function Header() {
                     alt=""
                   />
                 </Link>
+                <div style={{ color: "#fff" }}>{name}</div>
                 <ul className="nav">
+                  <li
+                    className="ripple"
+                    style={is_signed ? {} : { display: "none" }}
+                  >
+                    <Link onClick={logOut}>로그아웃</Link>
+                  </li>
                   <li className="ripple">
                     <Link to="/">홈</Link>
                   </li>

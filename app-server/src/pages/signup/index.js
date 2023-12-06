@@ -47,7 +47,9 @@ function SignUp() {
 
       if (res.data.ok) {
         toast.success("회원가입 성공!");
-        dispatch(signin({ newUser: { name: res.data.name, role: false } }));
+        signin({
+          newUser: { name: res.data.name, is_manager: res.data.role },
+        });
         navigate("/");
         return;
       } else if (res.data.message == "중복아이디") {
