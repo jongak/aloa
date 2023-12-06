@@ -2581,8 +2581,8 @@ Notice
     flex-grow: 1;
 
     > div {
-      background-color: var(--my--background);
-      border: 1px solid var(--my--heading);
+      /* background-color: var(--my--background); */
+      /* border: 1px solid var(--my--heading); */
       border-radius: 0.5em;
       padding: 1.5em;
       margin: 1em 0;
@@ -2599,11 +2599,17 @@ Notice
 
       > p {
         color: var(--my--no--text);
+        /* color: #fff; */
         margin: 0;
         padding: 0;
         line-height: 150%;
         font-size: 20px;
       }
+    }
+  }
+  @media (max-width: 576px) {
+    .board_details > div {
+      width: 96%;
     }
   }
 }
