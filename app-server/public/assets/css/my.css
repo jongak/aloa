@@ -2555,6 +2555,8 @@ Notice
       border-radius: 0.5em;
       padding: 1.5em;
       margin: 1em 0;
+      width: 80%;
+      margin: 10px auto;
 
       > h1 {
         color: var(--my--yes--heading);
@@ -2575,94 +2577,32 @@ Notice
   }
 }
 /* pagination */
-
-@import url("https://fonts.googleapis.com/css?family=Lato:700");
-
-.App {
-  --wht: #fff;
-  --blk: rgb(0, 0, 0);
-  --accent: #3ac8ff;
-
-  --grad: linear-gradient(45deg, darken(--accent, 15), --accent);
-  --gradh: linear-gradient(45deg, darken(--accent, 10), --accent);
-}
-body {
-  font-family: "Lato", sans-serif;
-}
-
 .pagination {
-  --wht: #fff;
-  --blk: rgb(0, 0, 0);
-  --accent: #3ac8ff;
-
-  --grad: linear-gradient(45deg, darken(--accent, 15), --accent);
-  --gradh: linear-gradient(45deg, darken(--accent, 10), --accent);
-
-  overflow: hidden;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
-  font-size: 1.5em;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.pagination .pagination-list {
   display: flex;
-  position: relative;
-  user-select: none;
-
-  .nav-btn {
-    font-family: Font Awesome\5 Free;
-    font-weight: 900;
-    background: --grad;
-    display: inline-block;
-    padding: 18px 24px;
-    color: #fff;
-    z-index: 2;
-    cursor: pointer;
-    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    transition: all 300ms ease;
-
-    &:hover {
-      background: --gradh;
-      text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
-    }
-
-    &.next {
-      position: absolute;
-      right: 0;
-    }
-
-    &.prev::before {
-      content: "\f053";
-    }
-    &.next::before {
-      content: "\f054";
-    }
-  }
-
-  .nav-pages {
-    margin: 0;
-    padding: 0;
-    left: 0;
-    transition: left 300ms ease;
-    position: absolute;
-    width: max-content;
-
-    li {
-      list-style: none;
-      display: inline-block;
-      padding: 18px 10px;
-      border-right: 1px solid #eee;
-      color: rgba(0, 0, 0, 0.25);
-      text-align: center;
-      cursor: pointer;
-
-      &.active,
-      &:hover {
-        color: rgba(0, 0, 0, 0.9);
-      }
-    }
+}
+.pagination .pagination-list .page-item .page-link {
+  background-color: var(--my--button--background);
+  border: 1px solid var(--my--button--border);
+  color: var(--my--button--color);
+}
+.pagination .pagination-list .page-item.active .page-link {
+  background-color: var(--my--background--hover);
+}
+.pagination .pagination-list .page-item .page-link:focus {
+  box-shadow: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .pagination .pagination-list .page-item .page-link:hover {
+    background-color: var(--my--button--hover--background--background);
+    border: 1px solid var(--my--button--hover--border);
+    color: var(--my--button--hover--color);
   }
 }
-
 /*
 ---------------------------------------------
 login
