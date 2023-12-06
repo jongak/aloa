@@ -2,12 +2,12 @@ const pool = require("./pool");
 
 const noticeModel = {
   // 공지사항 가져오기
-  async getNotice(no, conn = pool) {
+  async getNotice(no, max_num, conn = pool) {
     try {
       const sql = `select * from notice ORDER BY no desc`;
       const [data] = await conn.query(sql);
-      const result = data.slice((no - 1) * 3, no * 3);
-      return [...result];
+      const result = data.slice((no - 1) * max_num, no * max_num);
+      return result;
     } catch (err) {
       throw new Error("DB Error", { cause: err });
     }
@@ -17,7 +17,7 @@ const noticeModel = {
     try {
       const sql = `select COUNT(no) as count from notice`;
       const [data] = await conn.query(sql);
-      return data;
+      return data[0]["count"];
     } catch (err) {
       throw new Error("DB Error", { cause: err });
     }

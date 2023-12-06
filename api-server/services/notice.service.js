@@ -2,17 +2,17 @@ const pool = require("../models/pool");
 const noticeModel = require("../models/notice.model");
 
 const NoticeService = {
-  async getNotice(no) {
+  async getNotice(no, max_num) {
     const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
-      const data = await noticeModel.getNotice(no);
-      // const count = await noticeModel.getCount();
+      const data = await noticeModel.getNotice(no, max_num);
+      const count = await noticeModel.getCount();
       // DB에 작업 반영
       await conn.commit();
-      // return { data: data, count: count };
-      return data;
+      return { data: data, count: count };
+      // return data;
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
