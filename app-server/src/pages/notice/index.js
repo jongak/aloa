@@ -30,6 +30,7 @@ const aloaNotice = function () {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getNotice(currentPage);
+
       if (res) {
         setNoticeList(res);
       }

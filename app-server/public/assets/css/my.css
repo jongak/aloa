@@ -2575,37 +2575,6 @@ Notice
       }
     }
   }
-
-  .board_details {
-    position: relative;
-    flex-grow: 1;
-
-    > div {
-      background-color: var(--my--background);
-      border: 1px solid var(--my--heading);
-      border-radius: 0.5em;
-      padding: 1.5em;
-      margin: 1em 0;
-      width: 80%;
-      margin: 10px auto;
-
-      > h1 {
-        color: var(--my--yes--heading);
-        font-size: 1.4em;
-        margin: 0;
-        padding: 0 0 0.5em 0;
-        letter-spacing: 0.1em;
-      }
-
-      > p {
-        color: var(--my--no--text);
-        margin: 0;
-        padding: 0;
-        line-height: 150%;
-        font-size: 20px;
-      }
-    }
-  }
 }
 /* pagination */
 .pagination {
