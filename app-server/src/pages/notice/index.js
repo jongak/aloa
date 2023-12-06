@@ -6,16 +6,7 @@ import axios from "axios";
 
 const getNotice = async function (page) {
   try {
-    const res = await axios.get(`/notice/notice/${page}`);
-    return res.data;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-const getCount = async function () {
-  try {
-    const res = await axios.get("/notice/total");
+    const res = await axios.get(`/notice/${page}`);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -30,19 +21,14 @@ const aloaNotice = function () {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getNotice(currentPage);
+
       if (res) {
-        setNoticeList(res);
+        setNoticeList(res["data"]);
+        numberOfItems.current = res["count"];
       }
     };
     fetchData();
   }, [currentPage]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const total = await getCount();
-      numberOfItems.current = total;
-    };
-    fetchData();
-  }, []);
 
   function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
