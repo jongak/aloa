@@ -89,22 +89,36 @@ const aloaNotice = function () {
           <div className="option-body">
             <Accordion defaultActiveKey={0}>
               {noticeList.map((item, index) => (
-                <Accordion.Item key={item.no} eventKey={index}>
+                <Accordion.Item key={"accitem" + item["no"]} eventKey={index}>
                   <Accordion.Header>
-                    {item.title}
+                    {item["title"]}
                     <div style={{ marginLeft: "20px", fontSize: "16px" }}>
-                      {item.date} {item.time}
+                      {item["date"]} {item["time"]}
                     </div>
                   </Accordion.Header>
                   <Accordion.Body>
                     <div className="board_item">
                       <div className="board_details">
                         <div className="content">
-                          {item.content.split("\n").map((e) => (
-                            <p key={e} style={{ textAlign: "left" }}>
-                              {e}
+                          {item["content"].split("\n").map((element, index) => (
+                            <p
+                              key={"contentitem" + index}
+                              style={{ textAlign: "left" }}
+                            >
+                              {element}
                             </p>
                           ))}
+                          {item["image"]
+                            ? item["image"]
+                                .split("\n")
+                                .map((element, index) => (
+                                  <img
+                                    key={"contentimg" + index}
+                                    src={`${process.env.REACT_APP_API_SERVER}/notice/img/${element}`}
+                                    style={{ widht: "80%" }}
+                                  ></img>
+                                ))
+                            : ""}
                         </div>
                       </div>
                     </div>
