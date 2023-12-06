@@ -8,8 +8,10 @@ const NoticeService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
       const data = await noticeModel.getNotice(no);
+      // const count = await noticeModel.getCount();
       // DB에 작업 반영
       await conn.commit();
+      // return { data: data, count: count };
       return data;
     } catch (err) {
       // DB 작업 취소
