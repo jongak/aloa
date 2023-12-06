@@ -28,7 +28,7 @@ router.get("/img/:id", async (req, res, next) => {
 
   var bucketParams = {
     Bucket: "aloa-bucket",
-    Key: id,
+    Key: "aloa-notice/" + id,
   };
 
   try {

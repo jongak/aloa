@@ -4,7 +4,7 @@ const noticeModel = {
   // 공지사항 가져오기
   async getNotice(no, max_num, conn = pool) {
     try {
-      const sql = `select * from notice ORDER BY no desc`;
+      const sql = `select * from notice WHERE title IS NOT NULL ORDER BY no DESC`;
       const [data] = await conn.query(sql);
       const result = data.slice((no - 1) * max_num, no * max_num);
       return result;
