@@ -108,6 +108,7 @@ const aloaNotice = function () {
                               {element}
                             </p>
                           ))}
+                          <br />
                           {item["image"]
                             ? item["image"]
                                 .split("\n")
