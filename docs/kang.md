@@ -75,6 +75,8 @@ json, blob, string ..
 
 ### dnd
 
+### Accordion
+
 ### css animate
 
 ### bootstrap
