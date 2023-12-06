@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -46,22 +46,26 @@ const MyDnd = function ({ title }) {
       );
     }
   };
-  const onDragEnd = (DropResult) => {
-    const { source, destination } = DropResult;
-    if (!destination) return;
+  const onDragEnd = useCallback(
+    (DropResult) => {
+      const { source, destination } = DropResult;
+      if (!destination) return;
 
-    const scourceKey = source.droppableId;
-    const destinationKey = destination.droppableId;
+      const scourceKey = source.droppableId;
+      const destinationKey = destination.droppableId;
 
-    const _items = JSON.parse(JSON.stringify(items));
-    const [targetItem] = _items[scourceKey].splice(source.index, 1);
-    _items[destinationKey].splice(destination.index, 0, targetItem);
-    if (_items["done"].length <= maxItems) {
-      setItem(_items);
-    } else {
-      toast.error(`${maxItems + 1}개 이상은 넣을수 없습니다.`);
-    }
-  };
+      const _items = JSON.parse(JSON.stringify(items));
+      const [targetItem] = _items[scourceKey].splice(source.index, 1);
+      _items[destinationKey].splice(destination.index, 0, targetItem);
+      if (_items["done"].length <= maxItems) {
+        setItem(_items);
+      } else {
+        toast.error(`${maxItems + 1}개 이상은 넣을수 없습니다.`);
+      }
+      return;
+    },
+    [items]
+  );
 
   // --- requestAnimationFrame 초기화
   const [enabled, setEnabled] = useState(false);
