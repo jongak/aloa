@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const getData = async function (id) {
   try {
@@ -15,6 +16,7 @@ const getData = async function (id) {
 const CardListItem = function ({ character_id }) {
   const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
   const navigate = useNavigate();
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +39,9 @@ const CardListItem = function ({ character_id }) {
       <div
         className="option-body"
         onClick={() => {
-          navigate("/cards/" + character_id);
+          if (is_manager) {
+            navigate("/cards/" + character_id);
+          }
         }}
       >
         <div className="card-cover">
