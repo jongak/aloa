@@ -105,7 +105,7 @@ const aloaNotice = function () {
                               key={"contentitem" + index}
                               style={{ textAlign: "left" }}
                             >
-                              {element}
+                              - {element}
                             </p>
                           ))}
                           <br />
