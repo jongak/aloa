@@ -1,8 +1,9 @@
 import { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 
 import axios from "axios";
+import NoticeList from "./NoticeList";
 
 const getNotice = async function (page) {
   try {
@@ -13,7 +14,7 @@ const getNotice = async function (page) {
   }
 };
 
-const aloaNotice = function () {
+const AloaNotice = function () {
   const [currentPage, setCurrentPage] = useState(1);
   const [noticeList, setNoticeList] = useState([]);
   const numberOfItems = useRef(0);
@@ -78,93 +79,12 @@ const aloaNotice = function () {
     showPage(page);
   };
   return (
-    <div className="main-banner container">
-      <div className="row justify-content-center">
-        <div className="option-area col-lg-10 col-md-10">
-          <div className="progress">
-            <div className="inner notice_title">
-              <h3>공지 사항</h3>
-            </div>
-          </div>
-          <div className="option-body">
-            <Accordion defaultActiveKey={0}>
-              {noticeList.map((item, index) => (
-                <Accordion.Item key={"accitem" + item["no"]} eventKey={index}>
-                  <Accordion.Header>
-                    {item["title"]}
-                    <div style={{ marginLeft: "20px", fontSize: "16px" }}>
-                      {item["date"]} {item["time"]}
-                    </div>
-                  </Accordion.Header>
-                  <Accordion.Body>
-                    <div className="board_item">
-                      <div className="board_details">
-                        <div className="content">
-                          {item["content"].split("\n").map((element, index) => (
-                            <p
-                              key={"contentitem" + index}
-                              style={{ textAlign: "left" }}
-                            >
-                              - {element}
-                            </p>
-                          ))}
-                          <br />
-                          {item["image"]
-                            ? item["image"]
-                                .split("\n")
-                                .map((element, index) => (
-                                  <img
-                                    key={"contentimg" + index}
-                                    src={`${process.env.REACT_APP_API_SERVER}/notice/img/${element}`}
-                                    style={{ widht: "80%" }}
-                                  ></img>
-                                ))
-                            : ""}
-                        </div>
-                      </div>
-                    </div>
-                  </Accordion.Body>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-          </div>
-          <div className="pagination">
-            <ul className="pagination-list">
-              <li
-                className={`page-item previous-page ${
-                  currentPage === 1 ? "disable" : ""
-                }`}
-                onClick={() => handlePageClick(currentPage - 1)}
-              >
-                <Link className="page-link">Prev</Link>
-              </li>
-              {getPageList(totalPages, currentPage, paginationSize).map(
-                (item, index) => (
-                  <li
-                    key={index}
-                    className={`page-item ${item ? "current-page" : "dots"} ${
-                      item === currentPage ? "active" : ""
-                    }`}
-                    onClick={() => showPage(item)}
-                  >
-                    <Link className="page-link">{item || "..."}</Link>
-                  </li>
-                )
-              )}
-              <li
-                className={`page-item next-page ${
-                  currentPage === totalPages ? "disable" : ""
-                }`}
-                onClick={() => handlePageClick(currentPage + 1)}
-              >
-                <Link className="page-link">Next</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      {/* <NoticeList /> */}
+
+      <Outlet />
+    </>
   );
 };
 
-export default aloaNotice;
+export default AloaNotice;
