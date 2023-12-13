@@ -290,16 +290,12 @@ Header Style
   background-color: var(--my--very--dark--nav--hover);
 }
 
-/* .header-area .main-nav .nav li a.active {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-} */
 .menu {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 66;
 }
 .isMenu {
@@ -310,16 +306,16 @@ Header Style
   top: 0;
   left: 0; */
   background-color: var(--my--background-opacity66);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 .menu ul {
   position: fixed;
   bottom: 80px;
   right: 0;
   background-color: var(--my--very--dark--background);
-  width: 100vw;
-  padding: 0 20px 40px;
+  width: 100%;
+  padding: 5px 10px 40px;
   animation: menu 0.3s;
 }
 @keyframes menu {
@@ -331,7 +327,6 @@ Header Style
   }
 }
 .menu ul li {
-  padding: 4px;
   border-bottom: 1px solid var(--my--dark--background);
   align-self: center;
 }
@@ -815,65 +810,25 @@ Banner Style
 */
 
 .main-banner {
-  /* background-image: url(../images/banner-bg_2.png); */
-  /* border-radius: 0px 0px 150px 150px; */
-  /* background-position: center bottom; */
-  /* background-repeat: no-repeat; */
-  /* background-size: cover; */
-  /* padding: 65px 0px; */
   margin-top: 100px;
 }
-
-.main-banner .caption img {
-  width: 300px;
-  margin-bottom: 24px;
-}
-/* .main-banner .caption h6 {
-  font-size: 20px;
-  text-transform: uppercase;
-  color: #fff;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-} */
-
-/* .main-banner .caption h2 {
-  font-size: 48px;
-  color: #fff;
-  margin-top: 20px;
-  position: relative;
-  padding-bottom: 5px;
-  margin-bottom: 40px;
-} */
-
-/* .main-banner .caption h2:after {
-  position: absolute;
-  background-image: url(../images/caption-dec.png);
-  width: 202px;
-  height: 12px;
-  content: "";
-  left: 125px;
-  bottom: 0;
-} */
-
-/* .main-banner .caption p {
-  color: #fff;
-  margin-bottom: 70px;
-} */
 
 .main-banner .caption .logo {
   display: flex;
   width: 400px;
-  margin: 0 auto;
+  height: 160px;
+  margin: 10px auto;
 }
 .main-banner .caption .logo img:first-child {
-  width: 30%;
-  height: 100%;
+  width: 120px;
+  height: 148px;
 }
 .main-banner .caption .logo img:nth-child(2) {
-  width: 70%;
-  height: 100%;
+  width: 280px;
+  height: 76px;
+
   margin-left: 18px;
-  margin-top: 12%;
+  margin-top: 48px;
 }
 
 .main-banner .caption form {
@@ -916,16 +871,12 @@ Banner Style
   border-radius: 0px 25px 25px 0px;
   display: block;
 }
-.main-banner .caption form .my_button a i.fa {
-  /* color: var(--my--white); */
-}
 
 @media (max-width: 768px) {
   .main-banner {
     margin-top: 0px;
   }
   .main-banner .caption .logo {
-    width: 200px;
     margin-top: 50px;
   }
 }
@@ -960,9 +911,12 @@ Footer Style
 footer {
   margin-top: 150px;
   background-color: var(--my--very--dark--background);
-  min-height: 100px;
+
   box-shadow: 0px -1px 9px 2px var(--my--very--dark--background);
   z-index: 1;
+
+  min-height: 100px;
+  max-height: 160px;
 }
 
 footer p {
@@ -985,7 +939,8 @@ footer p a:hover {
 
 @media (max-width: 768px) {
   footer {
-    min-height: 160px;
+    min-height: 100px;
+    height: 160px;
   }
 }
 
@@ -996,7 +951,12 @@ main
 */
 
 .myCards {
-  margin-top: 10%;
+  margin-top: 100px;
+}
+
+.myCards > div {
+  max-height: 440px;
+  min-height: 440px;
 }
 
 /* 
@@ -1462,25 +1422,10 @@ card-area
 }
 .card-view {
   position: sticky;
-  top: 10%;
+  top: 100px;
+
+  max-height: 880px;
 }
-/* .card-area section {
-  position: sticky;
-  top: 10%;
-}
-.card-area section:nth-child(2) {
-  position: sticky;
-  top: 48%;
-}
-@media (max-width: 768px) {
-  .card-area section {
-    position: relative;
-    margin-left: 0px;
-  }
-  .card-area section:nth-child(2) {
-    margin-top: 88px;
-  }
-} */
 
 /* 
 ---------------------------------------------
@@ -2712,7 +2657,7 @@ list
 
 .option-area.list .progress {
   padding: 10px 0px;
-  height: auto;
+  height: 60px;
 }
 
 .option-area.list .inner {
@@ -2725,7 +2670,7 @@ list
 .option-area.history .card-cover {
   display: flex;
   position: relative;
-  height: 450px;
+  min-height: 450px;
 }
 
 .option-area.list .card-cover section,
