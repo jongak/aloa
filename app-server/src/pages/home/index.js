@@ -77,13 +77,13 @@ function Home() {
             </div>
           </div>
           <div className="myCards row">
-            <div className="col-xl-4 col-lg-6 col-sm-12 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample1.png"}
                 size={{ height: 400, width: 300 }}
               />
             </div>
-            <div className="col-xl-4  col-lg-6 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample2.png"}
                 size={{ height: 400, width: 300 }}
@@ -111,14 +111,14 @@ function Home() {
                 }}
               />
             </div>
-            <div className="col-xl-4  col-lg-6 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample3.png"}
                 rarityPreset="legendary"
                 size={{ height: 400, width: 300 }}
               />
             </div>
-            <div className="col-xl-4 col-lg-6 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample4.png"}
                 holographicOptions={{
@@ -146,7 +146,7 @@ function Home() {
                 size={{ height: 400, width: 300 }}
               />
             </div>
-            <div className="col-xl-4  col-lg-6 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample5.png"}
                 size={{ height: 400, width: 300 }}
@@ -170,7 +170,7 @@ function Home() {
                 }}
               />
             </div>
-            <div className="col-xl-4  col-lg-6 mb-5">
+            <div className="col-xl-4 col-lg-6">
               <LootCard
                 img={"/assets/images/sample6.png"}
                 rarityPreset="holographic"

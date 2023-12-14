@@ -454,11 +454,6 @@
   transform: translate3d(0.1px, 0.1px, 0.1px);
 }
 
-@media screen and (min-width: 600px) {
-  .cards {
-    flex-direction: row;
-  }
-}
 .cards .card-holo:nth-child(2),
 .cards .card-holo:nth-child(2):before,
 .cards .card-holo:nth-child(2):after {

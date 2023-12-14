@@ -14,9 +14,9 @@ const CharacterModel = {
       // "combat-skills%2B" +
       "engravings%2B" +
       "cards%2B" +
-      "gems%2B";
-    // "colosseums%2B" +
-    // "collectibles";
+      "gems%2B" +
+      // "colosseums%2B" +
+      "collectibles";
     const headers = {
       accept: "application/json",
       authorization: `bearer ${process.env.REACT_APP_LOSTARK_API_KEY}`,

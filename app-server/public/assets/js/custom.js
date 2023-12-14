@@ -19,13 +19,13 @@
   });
 
   var width = $(window).width();
-  $(window).resize(function () {
-    if (width > 767 && $(window).width() < 767) {
-      location.reload();
-    } else if (width < 767 && $(window).width() > 767) {
-      location.reload();
-    }
-  });
+  // $(window).resize(function () {
+  //   if (width > 767 && $(window).width() < 767) {
+  //     location.reload();
+  //   } else if (width < 767 && $(window).width() > 767) {
+  //     location.reload();
+  //   }
+  // });
 
   const elem = document.querySelector(".trending-box");
   const filtersElem = document.querySelector(".trending-filter");

@@ -5,11 +5,12 @@ const itemSlice = createSlice({
   initialState: {
     userData: {},
     frontItems: { todo: [], done: [] },
-    frontIcons: { todo: [], done: [] },
-    optionItems: { todo: [], done: [] },
+    frontIcons: { todoCombat: [], todoNaesil: [], done: [] },
+    optionItems: { todoCombat: [], todoNaesil: [], done: [] },
     isName: true,
     isTitle: true,
     isLevel: false,
+    acc: "-",
   },
   reducers: {
     setUserData(state, action) {
@@ -33,6 +34,9 @@ const itemSlice = createSlice({
     setIsLevel(state, action) {
       state.isLevel = action.payload.newIsLevel;
     },
+    setAcc(state, action) {
+      state.acc = action.payload.newAcc;
+    },
   },
 });
 
@@ -45,4 +49,5 @@ export const {
   setIsName,
   setIsTitle,
   setIsLevel,
+  setAcc,
 } = itemSlice.actions;

@@ -318,6 +318,7 @@ const CharacterCardService = {
           statName: "",
           statValue: 0,
         },
+        Collectibles: {},
       };
 
       // Object.keys(res).forEach((sub) => {
@@ -758,6 +759,19 @@ const CharacterCardService = {
             }
           }
           data[sub] = { ...res[sub], AwakeCount, AwakeName };
+        } else if (sub == "Collectibles") {
+          var dat = {};
+          res[sub].forEach((element) => {
+            var tmp = {
+              Point: element["Point"],
+              MaxPoint: element["MaxPoint"],
+              Per: ((element["Point"] / element["MaxPoint"]) * 100).toFixed(0),
+              Percent: (element["Point"] / element["MaxPoint"]).toFixed(2),
+            };
+            dat[element["Type"]] = tmp;
+          });
+
+          data[sub] = { ...dat };
         }
       });
 
