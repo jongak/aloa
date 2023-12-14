@@ -247,7 +247,8 @@ const capture = function () {
             style={{
               position: "absolute",
               left: "-3000px",
-              // marginLeft: "-100px",
+              // left: "600px",
+              // zIndex: 1000,
             }}
           />
           <CardBack
@@ -256,8 +257,9 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              left: "-3000px",
-              // marginLeft: "-100px",
+              // left: "-3000px",
+              left: "600px",
+              zIndex: 1000,
             }}
           />
         </div>

@@ -412,9 +412,146 @@
   padding-left: 5px;
   padding-right: 5px;
 }
-/* .cardMiddle .title .info_icons .icons_table img {
-  width: 70%;
-} */
+
+.cardCover.front .icon_img_cover {
+  height: 64px;
+  overflow: hidden;
+}
+
+.cardCover.front .icon_img {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 64px;
+  height: 64px;
+}
+
+.cardCover.front .icon_img.mococo {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -276px;
+}
+
+.cardCover.front .icon_img.islandSoul {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -76px;
+}
+
+.cardCover.front .icon_img.masterpiece {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -544px;
+  background-position-y: -520px;
+  margin-left: 20px;
+}
+
+.cardCover.front .icon_img.giantHeart {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -616px;
+  background-position-y: -516px;
+  margin: 0 10px;
+  /* rotate: 40deg; */
+}
+
+.cardCover.front .icon_img.igneaToken {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: 0px;
+}
+
+.cardCover.front .icon_img.adventure {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -342px;
+  margin: 0 20px;
+}
+.cardCover.front .icon_img.leaf {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -142px;
+}
+.cardCover.front .icon_img.orpeus {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -210px;
+}
+.cardCover.front .icon_img.orgel {
+  width: 774px;
+  height: 1000px;
+  background-position-x: 8px;
+  background-position-y: -650px;
+}
+
+.cardCover.back .icon_img.mococo {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -276px;
+}
+
+.cardCover.back .icon_img.islandSoul {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -76px;
+}
+
+.cardCover.back .icon_img.masterpiece {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -542px;
+  background-position-y: -520px;
+  margin-left: 20px;
+}
+
+.cardCover.back .icon_img.giantHeart {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -616px;
+  background-position-y: -516px;
+  margin: 0 10px;
+  /* rotate: 40deg; */
+}
+
+.cardCover.back .icon_img.igneaToken {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: 0px;
+}
+
+.cardCover.back .icon_img.adventure {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -342px;
+  margin: 0 20px;
+}
+.cardCover.back .icon_img.leaf {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -142px;
+}
+.cardCover.back .icon_img.orpeus {
+  width: 774px;
+  height: 1000px;
+  background-position-x: -702px;
+  background-position-y: -210px;
+}
+.cardCover.back .icon_img.orgel {
+  width: 774px;
+  height: 1000px;
+  background-position-x: 8px;
+  background-position-y: -650px;
+}
 
 .cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
   border-radius: 20px;
@@ -445,6 +582,14 @@
   .info_icons
   .icons_table
   .icons_table_tr
+  .icons_table_badge.right-15 {
+  right: -15px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
   .icons_table_badge.right-20 {
   right: -20px;
 }
@@ -461,6 +606,14 @@
   .info_icons
   .icons_table
   .icons_table_tr
+  .icons_table_badge.right-45 {
+  right: -45px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
   .icons_table_badge.right--5 {
   right: +5px;
 }
@@ -471,6 +624,30 @@
   .icons_table_tr
   .icons_table_badge.right--10 {
   right: +10px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right--20 {
+  right: +20px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right--25 {
+  right: +25px;
+}
+.cardMiddle
+  .title
+  .info_icons
+  .icons_table
+  .icons_table_tr
+  .icons_table_badge.right--30 {
+  right: +30px;
 }
 
 .cardCover.back .cardBottom .card_awakename {

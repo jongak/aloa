@@ -424,6 +424,12 @@ Header Style
   display: inline !important;
 }
 
+@media (min-width: 768px) {
+  .menu {
+    display: none;
+  }
+}
+
 /* 
 ---------------------------------------------
 myDarkToggle
@@ -680,28 +686,7 @@ myThema
       animation: none;
     }
   }
-  /* .header-area .main-nav .border-button {
-    position: absolute;
-    top: 150px;
-    right: 70px;
-  } */
-  /* .header-area.header-sticky .nav li a:hover,
-  .header-area.header-sticky .nav li a.active {
-    color: #ee626b !important;
-    opacity: 1;
-  } */
-  /* .header-area.header-sticky .nav li.search-icon a {
-    width: 100%;
-  } */
-  /* .header-area .nav li:last-child a {
-    background-color: transparent !important;
-    font-weight: 300 !important;
-    text-transform: capitalize !important;
-  } */
 
-  /* .header-area .container {
-    padding: 0px;
-  } */
   .header-area .logo {
     margin-left: 0px;
     /* margin-top: 30px; */
@@ -1042,13 +1027,14 @@ capture
 }
 .option-area .option-body h3 {
   padding-top: 50px;
+  padding-bottom: 20px;
   color: var(--my--heading);
   text-align: center;
 }
 
 .option-area .option-body .find-input {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: center;
   align-items: center;
   display: inline-flex;
@@ -1123,9 +1109,6 @@ capture
   margin: 10px;
 }
 
-.option-area .option-body .accordion {
-  margin-top: 30px;
-}
 .option-area .option-body .my_button {
   margin: 30px 10px;
 }
@@ -1334,9 +1317,8 @@ capture
     margin: 2rem;
   }
   .option-area .option-body h3 {
-    padding-top: 50px;
-    padding-left: 50px;
     text-align: left;
+    padding-left: 50px;
   }
 }
 
@@ -1422,9 +1404,23 @@ card-area
 }
 .card-view {
   position: sticky;
-  top: 100px;
+  top: 80px;
 
   max-height: 880px;
+}
+
+@media (max-width: 1200px) {
+  .card-area {
+    padding: 0px;
+    right: -12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-area {
+    margin-left: 0px;
+    right: 0px;
+  }
 }
 
 /* 
@@ -2356,20 +2352,7 @@ colorcover
 Notice
 --------------------------------------------- 
 */
-/* body {
-  background: #3b4262;
-  color: #ffffff;
-  font-family: arial, sans-serif;
-} */
-.option-area .inner.notice_title {
-  /* justify-content: start; */
-  /* padding-left: 42px; */
-}
-/* .option-area .inner.notice_title h3 {
-  font-size: 42px;
-  font-weight: 800;
-  line-height: 36px;
-} */
+
 .notice_box::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */
 }

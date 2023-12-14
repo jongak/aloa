@@ -244,7 +244,7 @@ const SelectValue = function () {
       ],
     };
     const newFrontIcons = {
-      todo: [
+      todoCombat: [
         {
           id: "WeaponQuality",
           title: "무기 품질",
@@ -252,7 +252,7 @@ const SelectValue = function () {
           value: userData["ArmoryEquipment"]["무기"]["qualityValue"],
           cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
           cardValue: userData["ArmoryEquipment"]["무기"]["qualityValue"],
-          spanRight: "--5",
+          spanRight: "--20",
         },
         {
           id: "TenMeul",
@@ -271,6 +271,107 @@ const SelectValue = function () {
           cardValue: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
         },
       ],
+      todoNaesil: [
+        {
+          id: "Mococo",
+          title: "모코코 씨앗",
+          body: "수집한 모코코 씨앗의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["모코코 씨앗"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["모코코 씨앗"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "mococo",
+        },
+        {
+          id: "IslandSoul",
+          title: "섬의 마음",
+          body: "수집한 섬의 마음의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["섬의 마음"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["섬의 마음"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "islandSoul",
+        },
+        {
+          id: "Masterpiece",
+          title: "위대한 미술품",
+          body: "수집한 위대한 미술품의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["위대한 미술품"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["위대한 미술품"]["Per"],
+          size: 4,
+          spanRight: "-15",
+          sprite: "masterpiece",
+        },
+        {
+          id: "GiantHeart",
+          title: "거인의 심장",
+          body: "수집한 거인의 심장의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["거인의 심장"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["거인의 심장"]["Per"],
+          size: 4,
+          spanRight: "-15",
+          sprite: "giantHeart",
+        },
+        {
+          id: "IgneaToken",
+          title: "이그네아의 징표",
+          body: "수집한 이그네아의 징표의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "igneaToken",
+        },
+        {
+          id: "Adventure",
+          title: "항해 모험물",
+          body: "수집한 항해 모험물의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["항해 모험물"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["항해 모험물"]["Per"],
+          size: 4,
+          spanRight: "-10",
+          sprite: "adventure",
+        },
+        {
+          id: "Leaf",
+          title: "세계수의 잎",
+          body: "수집한 세계수의 잎의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["세계수의 잎"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["세계수의 잎"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "leaf",
+        },
+        {
+          id: "Orpeus",
+          title: "오르페우스의 별",
+          body: "수집한 오르페우스의 별의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "orpeus",
+        },
+        {
+          id: "Orgel",
+          title: "기억의 오르골",
+          body: "수집한 기억의 오르골의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["기억의 오르골"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["기억의 오르골"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "orgel",
+        },
+      ],
       done: [
         {
           id: "WeaponGrade",
@@ -279,6 +380,7 @@ const SelectValue = function () {
           value: "+" + userData["ArmoryEquipment"]["무기"]["ItemGrade"],
           cardImg: userData["ArmoryEquipment"]["무기"]["Icon"],
           cardValue: "+" + userData["ArmoryEquipment"]["무기"]["ItemGrade"],
+          spanRight: "--10",
         },
         {
           id: "AbilityStone",
@@ -314,7 +416,6 @@ const SelectValue = function () {
                   "level"
                 ]
               : "-",
-          iconSize: 16,
           spanRight:
             userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
               "level"
@@ -330,7 +431,6 @@ const SelectValue = function () {
           cardImg: "/assets/images/icons/exlixer.webp",
           cardValue: userData["ArmoryEquipment"]["option"]["ElixirLevel"],
           size: 3,
-          iconSize: 23,
         },
         {
           id: "AwakeCount",
@@ -339,7 +439,7 @@ const SelectValue = function () {
           value: userData["ArmoryCard"]["AwakeCount"],
           cardImg: "/assets/images/icons/card.png",
           cardValue: userData["ArmoryCard"]["AwakeCount"],
-          spanRight: "--5",
+          size: 3,
         },
         {
           id: "TransGrade",
@@ -349,7 +449,6 @@ const SelectValue = function () {
           cardImg: "/assets/images/cho/cho_5.png",
           cardValue: userData["ArmoryEquipment"]["option"]["TransLevel"],
           size: 3,
-          iconSize: 26,
           spanRight: userData["ArmoryEquipment"]["option"]["TransLevel"]
             ? "-10"
             : "",
@@ -357,7 +456,7 @@ const SelectValue = function () {
       ],
     };
     const newOptionItems = {
-      todo: [
+      todoCombat: [
         {
           id: "boxExlixer01",
           title: "투구 특옵",
@@ -501,6 +600,112 @@ const SelectValue = function () {
           cardValue: "-",
         },
       ],
+      todoNaesil: [
+        {
+          id: "boxMococo",
+          title: "모코코 씨앗",
+          body: "수집한 모코코 씨앗의 갯수 입니다.",
+          value:
+            userData["Collectibles"]["모코코 씨앗"]["Point"] +
+            "/" +
+            userData["Collectibles"]["모코코 씨앗"]["MaxPoint"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue:
+            userData["Collectibles"]["모코코 씨앗"]["Point"] +
+            "/" +
+            userData["Collectibles"]["모코코 씨앗"]["MaxPoint"],
+          sprite: "mococo",
+        },
+        {
+          id: "IslandSoul",
+          title: "섬의 마음",
+          body: "수집한 섬의 마음의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["섬의 마음"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["섬의 마음"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "islandSoul",
+        },
+        {
+          id: "Masterpiece",
+          title: "위대한 미술품",
+          body: "수집한 위대한 미술품의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["위대한 미술품"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["위대한 미술품"]["Per"],
+          size: 4,
+          spanRight: "-15",
+          sprite: "masterpiece",
+        },
+        {
+          id: "GiantHeart",
+          title: "거인의 심장",
+          body: "수집한 거인의 심장의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["거인의 심장"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["거인의 심장"]["Per"],
+          size: 4,
+          spanRight: "-15",
+          sprite: "giantHeart",
+        },
+        {
+          id: "IgneaToken",
+          title: "이그네아의 징표",
+          body: "수집한 이그네아의 징표의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "igneaToken",
+        },
+        {
+          id: "Adventure",
+          title: "항해 모험물",
+          body: "수집한 항해 모험물의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["항해 모험물"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["항해 모험물"]["Per"],
+          size: 4,
+          spanRight: "-10",
+          sprite: "adventure",
+        },
+        {
+          id: "Leaf",
+          title: "세계수의 잎",
+          body: "수집한 세계수의 잎의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["세계수의 잎"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["세계수의 잎"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "leaf",
+        },
+        {
+          id: "Orpeus",
+          title: "오르페우스의 별",
+          body: "수집한 오르페우스의 별의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "orpeus",
+        },
+        {
+          id: "Orgel",
+          title: "기억의 오르골",
+          body: "수집한 기억의 오르골의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["기억의 오르골"]["Per"],
+          cardImg: "/assets/images/icons/sprite_profile.png",
+          cardValue: userData["Collectibles"]["기억의 오르골"]["Per"],
+          size: 3,
+          spanRight: "-15",
+          sprite: "orgel",
+        },
+      ],
+
       done: [
         {
           id: "boxExlixer",
@@ -604,19 +809,39 @@ const SelectValue = function () {
             </div>
           </Accordion.Body>
         </Accordion.Item>
+      </Accordion>
+      <Accordion>
         <Accordion.Item eventKey="2">
-          <Accordion.Header>앞면 아이콘 활성화</Accordion.Header>
+          <Accordion.Header>앞면 아이콘 활성화 (전투) </Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
-              <MyDnd title="frontIcons" />
+              <MyDnd title="frontIconsCombat" />
             </div>
           </Accordion.Body>
         </Accordion.Item>
         <Accordion.Item eventKey="3">
-          <Accordion.Header>뒷면 내용 활성화</Accordion.Header>
+          <Accordion.Header>앞면 아이콘 활성화 (내실) </Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
-              <MyDnd title="optionItems" />
+              <MyDnd title="frontIconsNaesil" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
+      <Accordion>
+        <Accordion.Item eventKey="4">
+          <Accordion.Header>뒷면 내용 활성화 (전투)</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="optionItemsCombat" />
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+        <Accordion.Item eventKey="5">
+          <Accordion.Header>뒷면 내용 활성화 (내실)</Accordion.Header>
+          <Accordion.Body>
+            <div className="userRow">
+              <MyDnd title="optionItemsNaesil" />
             </div>
           </Accordion.Body>
         </Accordion.Item>

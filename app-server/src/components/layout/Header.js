@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsDark, setIsThemaOpen } from "../../store/mainSlice";
 import ThemaToggle from "./ThemaToggle";
 import DarkToggle from "./DarkToggle";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header({ logOut }) {
   const dispatch = useDispatch();
