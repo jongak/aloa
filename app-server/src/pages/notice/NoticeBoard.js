@@ -1,7 +1,10 @@
 import DataTable, { ExpanderComponentProps } from "react-data-table-component";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, version } from "react";
+import Accordion from "react-bootstrap/Accordion";
 
 import axios from "axios";
+import Button from "../../components/common/Button";
+import { useSelector } from "react-redux";
 
 const getNotice = async function (page) {
   try {
@@ -13,6 +16,8 @@ const getNotice = async function (page) {
 };
 
 const NoticeBoard = function () {
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [noticeList, setNoticeList] = useState([]);
   const numberOfItems = useRef(0);
@@ -97,7 +102,7 @@ const NoticeBoard = function () {
       selector: (row) => row.content,
       sortable: true,
       center: 1,
-      maxWidth: "20px",
+      maxWidth: "200px",
     },
     {
       name: "사진",
@@ -117,7 +122,7 @@ const NoticeBoard = function () {
     {
       name: "시간",
       selector: (row) => row.time,
-      sortable: true,
+      sortable: false,
       center: 1,
       maxWidth: "40px",
     },
@@ -128,12 +133,24 @@ const NoticeBoard = function () {
       ["title", "content", "image", "date", "time"],
       2
     );
+    const [article, setArticle] = useState(detail);
+
+    const updateHandler = async function (e) {
+      e.preventDefault();
+      const index = data.no;
+      const result = await axios.put(
+        `/notice/fix/${index}`,
+        JSON.parse(article)
+      );
+      console.log(result.data);
+      setArticle(result.data);
+    };
     return (
-      <form>
+      <form onSubmit={updateHandler}>
         <div>
           <textarea
-            value={detail}
-            // onChange={(e) => setArticle(e.target.value)}
+            value={article}
+            onChange={(e) => setArticle(e.target.value)}
             style={{ width: "100%", height: "200px" }}
           ></textarea>
         </div>
@@ -141,6 +158,43 @@ const NoticeBoard = function () {
       </form>
     );
   };
+  // notice 추가하기
+  const versionRef = useRef("");
+  const contentRef = useRef("");
+  const imageRef = useRef("");
+  const dateRef = useRef("");
+  const timeRef = useRef("");
+  const createToggle = async function () {
+    const version = versionRef.current.value;
+    const content = contentRef.current.value;
+    const image = imageRef.current.value;
+    const date = dateRef.current.value;
+    const time = timeRef.current.value;
+    // console.log(version, content, image, date, time);
+    try {
+      const res = await axios.post("/notice/new", {
+        title: version,
+        content: content,
+        image: image,
+        date: date,
+        time: time,
+      });
+      // console.log({
+      //   title: version,
+      //   content: content,
+      //   image: image,
+      //   date: date,
+      //   time: time,
+      // });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  if (!is_manager) {
+    return;
+  }
   return (
     <div>
       <h1>Temp</h1>
@@ -151,7 +205,7 @@ const NoticeBoard = function () {
             columns={columns}
             data={noticeList}
             defaultSortFieldID={1}
-            pagination
+            // pagination
             // paginationComponent={showPage}
             // selectableRows
             expandOnRowClicked
@@ -163,6 +217,46 @@ const NoticeBoard = function () {
           />
         </div>
       </div>
+
+      <Accordion>
+        <Accordion.Item>
+          <Accordion.Header>추가하기</Accordion.Header>
+          <Accordion.Body>
+            <div className="board_item">
+              <div className="board_details">
+                <div className="content">
+                  <form>
+                    <div>
+                      <input
+                        type="text"
+                        ref={versionRef}
+                        placeholder="version"
+                      />
+                    </div>
+                    <div>
+                      <textarea
+                        type="text"
+                        ref={contentRef}
+                        placeholder="내용"
+                      />
+                    </div>
+                    <div>
+                      <textarea type="text" ref={imageRef} placeholder="사진" />
+                    </div>
+                    <div>
+                      <input type="text" ref={dateRef} placeholder="날짜" />
+                    </div>
+                    <div>
+                      <input type="text" ref={timeRef} placeholder="시간" />
+                    </div>
+                    <Button onClick={createToggle} title={"추가"} />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </div>
   );
 };
