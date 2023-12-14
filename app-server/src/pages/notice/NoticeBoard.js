@@ -142,7 +142,7 @@ const NoticeBoard = function () {
         `/notice/fix/${index}`,
         JSON.parse(article)
       );
-      console.log(result.data);
+      // console.log(result.data);
       setArticle(result.data);
     };
     return (
