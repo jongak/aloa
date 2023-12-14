@@ -25,7 +25,7 @@ const noticeModel = {
   //notice 추가하기
   async newNotice(article, conn = pool) {
     try {
-      const sql = `insert into test set ?`;
+      const sql = `insert into notice set ?`;
       const [data] = await conn.query(sql, article);
       return data.insertId;
     } catch (err) {
