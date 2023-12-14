@@ -46,5 +46,25 @@ router.get("/img/:id", async (req, res, next) => {
     next(err);
   }
 });
-
+//공지 등록
+router.post("/new", async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const result = await NoticeService.newNotice(req.body);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+//공지 수정
+router.put("/fix/:index", async (req, res, next) => {
+  try {
+    const index = Number(req.params.index);
+    const article = req.body;
+    const result = await NoticeService.updateNotice(index, article);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;

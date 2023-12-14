@@ -22,6 +22,26 @@ const noticeModel = {
       throw new Error("DB Error", { cause: err });
     }
   },
+  //notice 추가하기
+  async newNotice(article, conn = pool) {
+    try {
+      const sql = `insert into notice set ?`;
+      const [data] = await conn.query(sql, article);
+      return data.insertId;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+  //notice 수정하기
+  async updateNotice(no, article, conn = pool) {
+    try {
+      const sql = `update notice set ? where no = ?`;
+      const [result] = await conn.query(sql, [article, no]);
+      return result.affectedRows;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
 };
 
 module.exports = noticeModel;

@@ -22,6 +22,52 @@ const NoticeService = {
       pool.releaseConnection(conn);
     }
   },
+  async newNotice(article) {
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+      const notice = {
+        title: article.title,
+        content: article.content,
+        image: article.image,
+        date: article.date,
+        time: article.time,
+      };
+      const data = await noticeModel.newNotice(notice);
+      // DB에 작업 반영
+      await conn.commit();
+      return data;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
+  async updateNotice(index, article, no, max_num) {
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+
+      await noticeModel.updateNotice(index, article);
+      const result = await NoticeService.getNotice(no, max_num);
+      // DB에 작업 반영
+      await conn.commit();
+      console.log(result);
+      return result;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
 };
 
 module.exports = NoticeService;
