@@ -168,7 +168,7 @@ const NoticeList = function () {
         </div>
       </div>
 
-      <Outlet />
+      <Outlet context={{ noticeList }} />
     </>
   );
 };

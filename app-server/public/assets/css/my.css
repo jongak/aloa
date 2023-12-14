@@ -2541,6 +2541,17 @@ Notice
         line-height: 150%;
         font-size: 20px;
       }
+
+      > .board_setting input {
+        width: 300px;
+      }
+      > .board_setting textarea {
+        width: 300px;
+        height: 150px;
+      }
+      > .board_setting div:nth-child(3) textarea {
+        height: 80px;
+      }
     }
   }
   @media (max-width: 576px) {
