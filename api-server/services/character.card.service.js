@@ -765,9 +765,8 @@ const CharacterCardService = {
             var tmp = {
               Point: element["Point"],
               MaxPoint: element["MaxPoint"],
-              Per:
-                Math.round((element["Point"] / element["MaxPoint"]) * 100) +
-                "%",
+              Per: ((element["Point"] / element["MaxPoint"]) * 100).toFixed(0),
+              Percent: (element["Point"] / element["MaxPoint"]).toFixed(2),
             };
             dat[element["Type"]] = tmp;
           });

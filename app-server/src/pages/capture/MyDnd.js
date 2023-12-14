@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
+  setAcc,
   setFrontIcons,
   setFrontItems,
   setOptionItems,
 } from "../../store/itemSlice";
 
-const MyDnd = function ({ title }) {
+const MyDnd = function ({ title, onclick }) {
   const dispatch = useDispatch();
   var maxItems = 5;
-  if (title == "optionItems") {
+  if (title == "optionItemsCombat" || title == "optionItemsNaesil") {
     maxItems = 8;
   }
   var items = [];
@@ -131,6 +132,21 @@ const MyDnd = function ({ title }) {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                             className="drag-item ripple"
+                            onClick={
+                              item.onclick
+                                ? () => {
+                                    const userInput =
+                                      window.prompt("악추피를 입력하세요");
+                                    if (userInput == null || isNaN(userInput)) {
+                                      toast.error("숫자를 입력하셔야 합니다.");
+                                      return;
+                                    }
+                                    dispatch(
+                                      setAcc({ newAcc: userInput + "%" })
+                                    );
+                                  }
+                                : () => {}
+                            }
                           >
                             <div className="item-title">{item.title}</div>
                             <div className="item-value">

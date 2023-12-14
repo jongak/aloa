@@ -1781,6 +1781,14 @@ mycol
   flex: 0 0 auto;
   width: 12.5%;
 }
+.mycol-3_3 {
+  flex: 0 0 auto;
+  width: 13.889%;
+}
+.mycol-3_6 {
+  flex: 0 0 auto;
+  width: 15.278%;
+}
 .mycol-4 {
   flex: 0 0 auto;
   width: 16.667%;

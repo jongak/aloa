@@ -149,7 +149,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
   flex-direction: row;
   justify-content: center;
 }
@@ -159,7 +160,7 @@
   margin-left: 16px;
 }
 .cardCover.back .cardMiddle .options_left .option_item div {
-  display: inline-block;
+  /* display: inline-block; */
   text-align: center;
   font-size: 22px;
 }
@@ -167,11 +168,11 @@
 .cardCover.back .cardMiddle .options_left .option_box {
   background-color: #80808038;
   border-radius: 6px;
-  margin: 20px 8px;
+  margin: 16px 8px;
   margin-top: 0px;
   font-size: 16px;
   font-weight: 700;
-  height: 200px;
+  height: 208px;
   overflow: hidden;
 
   display: grid;
@@ -186,7 +187,7 @@
 .cardCover.back .cardMiddle .options_left .option_box .option_item.icon {
   justify-content: flex-start;
 }
-.cardCover.back .cardMiddle .options_left .option_box .option_item.icon div {
+.cardCover.back .cardMiddle .options_left .option_box .option_item.icon > div {
   margin-left: 16px;
   font-size: 20px;
 }
@@ -358,7 +359,7 @@
   padding: 0 10px;
   margin-left: -16px;
 }
-.cardMiddle .title .lvl .equipments_lvl sub {
+.cardMiddle sub {
   /* font-size: 12px; */
   line-height: 32px;
 }
@@ -431,131 +432,129 @@
   background-position-x: -702px;
   background-position-y: -276px;
 }
-
 .cardCover.front .icon_img.islandSoul {
   width: 774px;
   height: 1000px;
-  background-position-x: -702px;
+  background-position-x: -714px;
   background-position-y: -76px;
 }
-
 .cardCover.front .icon_img.masterpiece {
   width: 774px;
   height: 1000px;
   background-position-x: -544px;
   background-position-y: -520px;
-  margin-left: 20px;
 }
-
 .cardCover.front .icon_img.giantHeart {
   width: 774px;
   height: 1000px;
   background-position-x: -616px;
   background-position-y: -516px;
-  margin: 0 10px;
-  /* rotate: 40deg; */
 }
-
 .cardCover.front .icon_img.igneaToken {
   width: 774px;
   height: 1000px;
-  background-position-x: -702px;
+  background-position-x: -710px;
   background-position-y: 0px;
 }
-
 .cardCover.front .icon_img.adventure {
   width: 774px;
   height: 1000px;
   background-position-x: -702px;
   background-position-y: -342px;
-  margin: 0 20px;
 }
 .cardCover.front .icon_img.leaf {
   width: 774px;
   height: 1000px;
-  background-position-x: -702px;
+  background-position-x: -706px;
   background-position-y: -142px;
 }
 .cardCover.front .icon_img.orpeus {
   width: 774px;
   height: 1000px;
-  background-position-x: -702px;
+  background-position-x: -706px;
   background-position-y: -210px;
 }
 .cardCover.front .icon_img.orgel {
   width: 774px;
   height: 1000px;
-  background-position-x: 8px;
+  background-position-x: 6px;
   background-position-y: -650px;
 }
 
+.cardCover.back .icon_img_cover {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.cardCover.back .icon_img {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 40px;
+  height: 40px;
+}
 .cardCover.back .icon_img.mococo {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -702px;
-  background-position-y: -276px;
+  background-position-x: -438px;
+  background-position-y: -172px;
 }
 
 .cardCover.back .icon_img.islandSoul {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -702px;
-  background-position-y: -76px;
+  background-position-x: -442px;
+  background-position-y: -44px;
 }
 
 .cardCover.back .icon_img.masterpiece {
-  width: 774px;
+  width: 450px;
   height: 1000px;
-  background-position-x: -542px;
-  background-position-y: -520px;
-  margin-left: 20px;
+  background-position-x: -316px;
+  background-position-y: -296px;
 }
 
 .cardCover.back .icon_img.giantHeart {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -616px;
-  background-position-y: -516px;
-  margin: 0 10px;
-  /* rotate: 40deg; */
+  background-position-x: -386px;
+  background-position-y: -320px;
 }
 
 .cardCover.back .icon_img.igneaToken {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -702px;
+  background-position-x: -440px;
   background-position-y: 0px;
 }
 
 .cardCover.back .icon_img.adventure {
-  width: 774px;
+  width: 450px;
   height: 1000px;
-  background-position-x: -702px;
-  background-position-y: -342px;
-  margin: 0 20px;
+  background-position-x: -408px;
+  background-position-y: -198px;
 }
 .cardCover.back .icon_img.leaf {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -702px;
-  background-position-y: -142px;
+  background-position-x: -440px;
+  background-position-y: -90px;
 }
 .cardCover.back .icon_img.orpeus {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: -702px;
-  background-position-y: -210px;
+  background-position-x: -440px;
+  background-position-y: -130px;
 }
 .cardCover.back .icon_img.orgel {
-  width: 774px;
+  width: 483px;
   height: 1000px;
-  background-position-x: 8px;
-  background-position-y: -650px;
+  background-position-x: 4px;
+  background-position-y: -406px;
 }
 
 .cardMiddle .title .info_icons .icons_table .icons_table_tr .icons_table_badge {
   border-radius: 20px;
-  padding: 1px 7px 7px 7px;
   line-height: 022px;
   font-weight: 700;
   font-size: 22px;

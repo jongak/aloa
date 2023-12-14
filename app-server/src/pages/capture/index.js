@@ -257,9 +257,9 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              // left: "-3000px",
-              left: "600px",
-              zIndex: 1000,
+              left: "-3000px",
+              // left: "600px",
+              // zIndex: 1000,
             }}
           />
         </div>

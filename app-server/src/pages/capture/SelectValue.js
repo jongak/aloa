@@ -6,6 +6,7 @@ import ToggleButton from "../../components/common/ToggleButton";
 import MyDnd from "./MyDnd";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setAcc,
   setFrontIcons,
   setFrontItems,
   setOptionItems,
@@ -63,8 +64,10 @@ const shortElixer = function (elixer) {
 const SelectValue = function () {
   const { setPage, characterNameRef, setIsChanged, isChanged } =
     useOutletContext();
-
+  const acc = useSelector((state) => state.itemSlice.acc);
   const userData = useSelector((state) => state.itemSlice.userData);
+  const frontItems = useSelector((state) => state.itemSlice.frontItems);
+  const optionItems = useSelector((state) => state.itemSlice.optionItems);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -82,6 +85,15 @@ const SelectValue = function () {
     const newFrontItems = {
       todo: [
         {
+          id: "Acc",
+          title: "악마 추가피해옵션",
+          body: "클릭해서 악추피값을 입력해 주세요",
+          value: acc,
+          cardTitle: "악추피",
+          cardValue: acc,
+          onclick: true,
+        },
+        {
           id: "MeulLevel",
           title: "멸화레벨 평균",
           body: "멸화의 보석의 평균값 입니다.",
@@ -89,7 +101,6 @@ const SelectValue = function () {
           cardTitle: "멸화",
           cardValue: userData["ArmoryGem"]["option"]["MeulLevel"],
         },
-
         {
           id: "HongLevel",
           title: "홍염레벨 평균",
@@ -177,14 +188,6 @@ const SelectValue = function () {
           value: userData["ArmoryProfile"]["TownLevel"],
           cardTitle: "영지",
           cardValue: `Lv ${userData["ArmoryProfile"]["TownLevel"]}`,
-        },
-        {
-          id: "Acc",
-          title: "악마 추가피해옵션",
-          body: "카드효과의 악마추가피해증가 입니다.",
-          value: "지원안함",
-          cardTitle: "악추피",
-          cardValue: "-",
         },
       ],
       done: [
@@ -276,32 +279,32 @@ const SelectValue = function () {
           id: "Mococo",
           title: "모코코 씨앗",
           body: "수집한 모코코 씨앗의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["모코코 씨앗"]["Per"],
+          value: userData["Collectibles"]["모코코 씨앗"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["모코코 씨앗"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "mococo",
         },
         {
           id: "IslandSoul",
           title: "섬의 마음",
           body: "수집한 섬의 마음의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["섬의 마음"]["Per"],
+          value: userData["Collectibles"]["섬의 마음"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["섬의 마음"]["Per"],
-          size: 3,
-          spanRight: "-15",
+          size: "3",
+          spanRight: "-10",
           sprite: "islandSoul",
         },
         {
           id: "Masterpiece",
           title: "위대한 미술품",
           body: "수집한 위대한 미술품의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["위대한 미술품"]["Per"],
+          value: userData["Collectibles"]["위대한 미술품"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["위대한 미술품"]["Per"],
-          size: 4,
+          size: "3_3",
           spanRight: "-15",
           sprite: "masterpiece",
         },
@@ -309,32 +312,32 @@ const SelectValue = function () {
           id: "GiantHeart",
           title: "거인의 심장",
           body: "수집한 거인의 심장의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["거인의 심장"]["Per"],
+          value: userData["Collectibles"]["거인의 심장"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["거인의 심장"]["Per"],
-          size: 4,
-          spanRight: "-15",
+          size: "3_3",
+          spanRight: "-10",
           sprite: "giantHeart",
         },
         {
           id: "IgneaToken",
           title: "이그네아의 징표",
           body: "수집한 이그네아의 징표의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          value: userData["Collectibles"]["이그네아의 징표"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["이그네아의 징표"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "igneaToken",
         },
         {
           id: "Adventure",
           title: "항해 모험물",
           body: "수집한 항해 모험물의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["항해 모험물"]["Per"],
+          value: userData["Collectibles"]["항해 모험물"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["항해 모험물"]["Per"],
-          size: 4,
+          size: "3_3",
           spanRight: "-10",
           sprite: "adventure",
         },
@@ -342,33 +345,33 @@ const SelectValue = function () {
           id: "Leaf",
           title: "세계수의 잎",
           body: "수집한 세계수의 잎의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["세계수의 잎"]["Per"],
+          value: userData["Collectibles"]["세계수의 잎"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["세계수의 잎"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "leaf",
         },
         {
           id: "Orpeus",
           title: "오르페우스의 별",
           body: "수집한 오르페우스의 별의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          value: userData["Collectibles"]["오르페우스의 별"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["오르페우스의 별"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "orpeus",
         },
         {
           id: "Orgel",
           title: "기억의 오르골",
           body: "수집한 기억의 오르골의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["기억의 오르골"]["Per"],
+          value: userData["Collectibles"]["기억의 오르골"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["기억의 오르골"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "orgel",
         },
       ],
@@ -457,6 +460,14 @@ const SelectValue = function () {
     };
     const newOptionItems = {
       todoCombat: [
+        {
+          id: "boxAcc",
+          title: "악추피",
+          body: "클릭해서 악추피값을 입력해 주세요",
+          value: acc,
+          cardValue: acc,
+          onclick: true,
+        },
         {
           id: "boxExlixer01",
           title: "투구 특옵",
@@ -592,49 +603,37 @@ const SelectValue = function () {
                 userData["ArmoryEquipment"]["장갑"]["Elixir00"]["level"]
               : "-",
         },
-        {
-          id: "acc",
-          title: "악추피",
-          body: "악마 추가 피해를 입력해야 합니다.",
-          value: "지원안함",
-          cardValue: "-",
-        },
       ],
+
       todoNaesil: [
         {
           id: "boxMococo",
           title: "모코코 씨앗",
-          body: "수집한 모코코 씨앗의 갯수 입니다.",
-          value:
-            userData["Collectibles"]["모코코 씨앗"]["Point"] +
-            "/" +
-            userData["Collectibles"]["모코코 씨앗"]["MaxPoint"],
+          body: "수집한 모코코 씨앗의 수집 진행률 입니다.",
+          value: userData["Collectibles"]["모코코 씨앗"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
-          cardValue:
-            userData["Collectibles"]["모코코 씨앗"]["Point"] +
-            "/" +
-            userData["Collectibles"]["모코코 씨앗"]["MaxPoint"],
+          cardValue: userData["Collectibles"]["모코코 씨앗"]["Per"],
           sprite: "mococo",
         },
         {
           id: "IslandSoul",
           title: "섬의 마음",
           body: "수집한 섬의 마음의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["섬의 마음"]["Per"],
+          value: userData["Collectibles"]["섬의 마음"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["섬의 마음"]["Per"],
-          size: 3,
-          spanRight: "-15",
+          size: "3",
+          spanRight: "-10",
           sprite: "islandSoul",
         },
         {
           id: "Masterpiece",
           title: "위대한 미술품",
           body: "수집한 위대한 미술품의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["위대한 미술품"]["Per"],
+          value: userData["Collectibles"]["위대한 미술품"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["위대한 미술품"]["Per"],
-          size: 4,
+          size: "3_3",
           spanRight: "-15",
           sprite: "masterpiece",
         },
@@ -642,32 +641,32 @@ const SelectValue = function () {
           id: "GiantHeart",
           title: "거인의 심장",
           body: "수집한 거인의 심장의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["거인의 심장"]["Per"],
+          value: userData["Collectibles"]["거인의 심장"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["거인의 심장"]["Per"],
-          size: 4,
-          spanRight: "-15",
+          size: "3_3",
+          spanRight: "-10",
           sprite: "giantHeart",
         },
         {
           id: "IgneaToken",
           title: "이그네아의 징표",
           body: "수집한 이그네아의 징표의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["이그네아의 징표"]["Per"],
+          value: userData["Collectibles"]["이그네아의 징표"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["이그네아의 징표"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "igneaToken",
         },
         {
           id: "Adventure",
           title: "항해 모험물",
           body: "수집한 항해 모험물의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["항해 모험물"]["Per"],
+          value: userData["Collectibles"]["항해 모험물"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["항해 모험물"]["Per"],
-          size: 4,
+          size: "3_3",
           spanRight: "-10",
           sprite: "adventure",
         },
@@ -675,33 +674,33 @@ const SelectValue = function () {
           id: "Leaf",
           title: "세계수의 잎",
           body: "수집한 세계수의 잎의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["세계수의 잎"]["Per"],
+          value: userData["Collectibles"]["세계수의 잎"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["세계수의 잎"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "leaf",
         },
         {
           id: "Orpeus",
           title: "오르페우스의 별",
           body: "수집한 오르페우스의 별의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["오르페우스의 별"]["Per"],
+          value: userData["Collectibles"]["오르페우스의 별"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["오르페우스의 별"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "orpeus",
         },
         {
           id: "Orgel",
           title: "기억의 오르골",
           body: "수집한 기억의 오르골의 수집 진행률 입니다.",
-          value: userData["Collectibles"]["기억의 오르골"]["Per"],
+          value: userData["Collectibles"]["기억의 오르골"]["Per"] + "%",
           cardImg: "/assets/images/icons/sprite_profile.png",
           cardValue: userData["Collectibles"]["기억의 오르골"]["Per"],
           size: 3,
-          spanRight: "-15",
+          spanRight: "-10",
           sprite: "orgel",
         },
       ],
@@ -765,6 +764,75 @@ const SelectValue = function () {
       })
     );
   }, [userData]);
+
+  useEffect(() => {
+    if (!frontItems["todo"] || acc === "-") {
+      return;
+    }
+
+    const todoTemp = frontItems["todo"].map((e) => {
+      if (e["id"] === "Acc") {
+        return {
+          ...e,
+          cardValue: acc,
+          value: acc,
+        };
+      }
+      return e;
+    });
+
+    const doneTemp = frontItems["done"].map((e) => {
+      if (e["id"] === "Acc") {
+        return {
+          ...e,
+          cardValue: acc,
+          value: acc,
+        };
+      }
+      return e;
+    });
+
+    const todoCombatTemp = optionItems["todoCombat"].map((e) => {
+      if (e["id"] === "boxAcc") {
+        return {
+          ...e,
+          cardValue: "악추피: " + acc,
+          value: acc,
+        };
+      }
+      return e;
+    });
+    const todoNaesilTemp = optionItems["todoNaesil"].map((e) => {
+      if (e["id"] === "boxAcc") {
+        return {
+          ...e,
+          cardValue: "악추피: " + acc,
+          value: acc,
+        };
+      }
+      return e;
+    });
+
+    const donebTemp = optionItems["done"].map((e) => {
+      if (e["id"] === "boxAcc") {
+        return {
+          ...e,
+          cardValue: "악추피: " + acc,
+          value: acc,
+        };
+      }
+      return e;
+    });
+
+    const newFrontItems = { todo: todoTemp, done: doneTemp };
+    const newOptionItems = {
+      todoCombat: todoCombatTemp,
+      todoNaesil: todoNaesilTemp,
+      done: donebTemp,
+    };
+    dispatch(setFrontItems({ newFrontItems }));
+    dispatch(setOptionItems({ newOptionItems }));
+  }, [acc]);
 
   // if (!userData["ArmoryEquipment"]) {
   //   return;
