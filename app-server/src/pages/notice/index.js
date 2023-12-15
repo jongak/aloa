@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import Accordion from "react-bootstrap/Accordion";
 
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const getNotice = async function (page) {
   try {
@@ -14,6 +15,8 @@ const getNotice = async function (page) {
 };
 
 const NoticeList = function () {
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [noticeList, setNoticeList] = useState([]);
   const numberOfItems = useRef(0);
@@ -85,6 +88,11 @@ const NoticeList = function () {
             <div className="progress">
               <div className="inner notice_title">
                 <h3>공지 사항</h3>
+                <span className={is_manager ? "" : "isMenu"}>
+                  <Link to="/notice/setting">
+                    <i className="fa fa-gear"></i>
+                  </Link>
+                </span>
               </div>
             </div>
             <div className="option-body">

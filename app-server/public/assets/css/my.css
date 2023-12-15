@@ -712,6 +712,7 @@ myThema
     bottom: 4px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    display: none;
   }
 
   .header-area .menu-trigger {
@@ -2394,6 +2395,13 @@ Notice
     0 1px 2px 0 rgba(0, 0, 0, 0.04);
   height: 50vh;
   overflow-y: scroll;
+}
+.notice_title span {
+  font-size: 24px;
+  line-height: 30px;
+  a {
+    color: var(--my--yes--border);
+  }
 }
 /* 타임라인 */
 .item {
