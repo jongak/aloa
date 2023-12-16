@@ -712,6 +712,7 @@ myThema
     bottom: 4px;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    display: none;
   }
 
   .header-area .menu-trigger {
@@ -2395,6 +2396,13 @@ Notice
   height: 50vh;
   overflow-y: scroll;
 }
+.notice_title span {
+  font-size: 24px;
+  line-height: 30px;
+  a {
+    color: var(--my--yes--border);
+  }
+}
 /* 타임라인 */
 .item {
   display: flex;
@@ -2540,6 +2548,17 @@ Notice
         padding: 0;
         line-height: 150%;
         font-size: 20px;
+      }
+
+      > .board_setting input {
+        width: 300px;
+      }
+      > .board_setting textarea {
+        width: 300px;
+        height: 150px;
+      }
+      > .board_setting div:nth-child(3) textarea {
+        height: 80px;
       }
     }
   }
