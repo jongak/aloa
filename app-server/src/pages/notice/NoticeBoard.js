@@ -120,6 +120,30 @@ const NoticeBoard = function () {
     }
   };
 
+  const customStyles = {
+    rows: {
+      style: {
+        minHeight: "72px", // override the row height
+        justifyContent: "center",
+      },
+    },
+    headCells: {
+      style: {
+        paddingLeft: "8px", // override the cell padding for head cells
+        paddingRight: "8px",
+        fontSize: "16px",
+        fontWeight: "700",
+      },
+    },
+    cells: {
+      style: {
+        paddingLeft: "8px", // override the cell padding for data cells
+        paddingRight: "8px",
+        fontSize: "16px",
+      },
+    },
+  };
+
   if (!is_manager) {
     return;
   }
@@ -140,6 +164,7 @@ const NoticeBoard = function () {
             expandableRows
             expandableRowsComponent={ExpandedComponent}
             responsive
+            customStyles={customStyles}
             // subHeader
             // subHeaderComponent={subHeaderComponentMemo}
           />
