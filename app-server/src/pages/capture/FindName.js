@@ -50,6 +50,20 @@ const FindName = function () {
 
   const onClickButtonChange = async (e) => {
     e.preventDefault();
+
+    let now = new Date();
+
+    const week = ["일", "월", "화", "수", "목", "금", "토"];
+    let dayOfweek = week[now.getDay()];
+    let hours = now.getHours();
+
+    console.log(dayOfweek, hours);
+
+    if (dayOfweek == "수" && (hours > 5 || hours < 10)) {
+      toast.error("로아 서버 점검중입니다. 끝나고 이용해 주세요");
+      return;
+    }
+
     var tmp = await getData(userName.current.value);
     if (tmp) {
       setUserList(tmp);
