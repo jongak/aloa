@@ -17,6 +17,20 @@ const CardListItem = function ({ character_id }) {
   const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
   const navigate = useNavigate();
   const is_manager = useSelector((state) => state.loginSlice.is_manager);
+  const [zIndex, setZIndex] = useState([5, 4]);
+
+  const onClickHandle = function () {
+    var newZIndex = [zIndex[1], zIndex[0]];
+
+    setZIndex(newZIndex);
+  };
+
+  const leftStyle = {
+    zIndex: zIndex[0],
+  };
+  const rightStyle = {
+    zIndex: zIndex[1],
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +67,8 @@ const CardListItem = function ({ character_id }) {
             rarityPreset={"holographic"}
             size={{ height: 400, width: 300 }}
             {...effectRef}
+            style={leftStyle}
+            onClickHandler={onClickHandle}
           />
 
           <LootCard
@@ -62,6 +78,8 @@ const CardListItem = function ({ character_id }) {
             rarityPreset={"holographic"}
             size={{ height: 400, width: 300 }}
             {...effectRef}
+            style={rightStyle}
+            onClickHandler={onClickHandle}
           />
         </div>
       </div>
