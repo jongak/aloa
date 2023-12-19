@@ -120,7 +120,7 @@ function Header({ logOut }) {
                 카드만들기
               </Link>
             </li>
-            <li className="ripple">
+            <li className="ripple" style={is_signed ? {} : { display: "none" }}>
               <Link to="/list" onClick={closeMenu}>
                 카드 목록
               </Link>

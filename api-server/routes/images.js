@@ -53,7 +53,8 @@ router.get("/isMkOk/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     // SaveCardModel.isMkOk 함수가 Promise를 반환한다고 가정
-    const result = await SaveCardModel.isMkOk(id);
+    const result = true;
+    // const result = await SaveCardModel.isMkOk(id);
     res.json(result);
     // 조건이 충족되면 다음 미들웨어로 이동
   } catch (err) {
