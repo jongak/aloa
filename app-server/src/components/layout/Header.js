@@ -59,7 +59,10 @@ function Header({ logOut }) {
                   <li className="ripple">
                     <Link to="/capture">카드 만들기</Link>
                   </li>
-                  <li className="ripple">
+                  <li
+                    className="ripple"
+                    style={is_signed ? {} : { display: "none" }}
+                  >
                     <Link to="/list">카드 목록</Link>
                   </li>
                   <li className="ripple">
