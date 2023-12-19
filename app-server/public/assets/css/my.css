@@ -2484,6 +2484,9 @@ Notice
     }
   }
 }
+.cfvlby {
+  justify-content: center;
+}
 /* 게시판 */
 .board_item {
   display: flex;
