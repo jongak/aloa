@@ -80,12 +80,12 @@ const SaveCardService = {
       if (no < pids.length) {
         element = pids[no];
       }
-      // if (element["front_KEY"]) {
-      //   await TableModel.deleteImg(element["front_KEY"]);
-      // }
-      // if (element["back_KEY"]) {
-      //   await TableModel.deleteImg(element["back_KEY"]);
-      // }
+      if (element["front_KEY"]) {
+        await TableModel.deleteImg(element["front_KEY"]);
+      }
+      if (element["back_KEY"]) {
+        await TableModel.deleteImg(element["back_KEY"]);
+      }
       if (element["id"]) {
         await TableModel.deleteSQL(element["id"]);
       }
