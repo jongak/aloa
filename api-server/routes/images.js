@@ -203,7 +203,54 @@ const isCardImg = function (key) {
   }
   return false;
 };
+const isnewCardImg = function (key) {
+  if (key.startsWith("loaf") || key.startsWith("loab")) {
+    return true;
+  }
+  return false;
+};
 
+// 직전 데이터
+// router.get("/cardlist", async (req, res, next) => {
+//   const command = new ListObjectsV2Command({
+//     Bucket: "aloa-bucket",
+//     MaxKeys: 100, // 예시로 100개씩 가져오도록 설정
+//   });
+
+//   try {
+//     let isTruncated = true;
+//     let contents = "";
+
+//     while (isTruncated) {
+//       const { Contents, IsTruncated, NextContinuationToken } =
+//         await s3Client.send(command);
+
+//       const contentsList = Contents.map((c) => {
+//         if (isCardImg(c["Key"])) {
+//           return c["Key"];
+//         }
+//         return false;
+//       })
+//         .filter(Boolean)
+//         .join("\n");
+//       if (contentsList) {
+//         contents += contentsList + "\n";
+//       }
+
+//       isTruncated = IsTruncated;
+//       if (isTruncated) {
+//         command.input.ContinuationToken = NextContinuationToken;
+//       }
+//     }
+//     fs.appendFile("fileList.txt", contents, function (err) {
+//       res.send("ok");
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+// 복구
 router.get("/cardlist", async (req, res, next) => {
   const command = new ListObjectsV2Command({
     Bucket: "aloa-bucket",
@@ -218,26 +265,33 @@ router.get("/cardlist", async (req, res, next) => {
       const { Contents, IsTruncated, NextContinuationToken } =
         await s3Client.send(command);
 
-      const contentsList = Contents.map((c) => {
-        if (isCardImg(c["Key"])) {
-          return c["Key"];
+      const contentsDic = {};
+      Contents.map((c) => {
+        if (isnewCardImg(c["Key"])) {
+          const targetDate = new Date(c["LastModified"]);
+          const conditionMet =
+            targetDate < new Date("2023-12-20T10:00:00.000Z");
+          if (conditionMet) {
+            if (contentsDic[c["LastModified"]]) {
+              contentsDic[c["LastModified"]].append(c["Key"]);
+            } else {
+              contentsDic[c["LastModified"]] = c["Key"];
+            }
+          }
         }
         return false;
-      })
-        .filter(Boolean)
-        .join("\n");
-      if (contentsList) {
-        contents += contentsList + "\n";
-      }
+      });
+      console.log(contentsDic);
 
       isTruncated = IsTruncated;
       if (isTruncated) {
         command.input.ContinuationToken = NextContinuationToken;
       }
     }
-    fs.appendFile("fileList.txt", contents, function (err) {
-      res.send("ok");
-    });
+    // fs.appendFile("fileList.txt", contents, function (err) {
+    //   res.send("ok");
+    // });
+    res.send("ok");
   } catch (err) {
     next(err);
   }
