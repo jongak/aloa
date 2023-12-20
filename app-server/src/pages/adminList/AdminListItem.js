@@ -15,10 +15,20 @@ const getData = async function (id) {
   }
 };
 
+const removeData = async function (id, no) {
+  try {
+    const res = await axios.delete(`/images/${id}/${no}`);
+    return JSON.parse(res.data);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const AdminListItem = function ({ character_id }) {
   const [effectRef, setEffectRef] = useState({ rarityPreset: "holographic" });
   const [id, setId] = useState(character_id);
   const navigate = useNavigate();
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const [zIndex, setZIndex] = useState([5, 4]);
 
@@ -67,13 +77,28 @@ const AdminListItem = function ({ character_id }) {
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm("정말 삭제합니까?")) {
+      removeData(id, 0);
+      toast.error("삭제되었습니다.");
+      setIsDeleted(true);
+    } else {
+      toast.error("취소합니다.");
+    }
+  };
+
+  if (isDeleted) {
+    return null; // 아무것도 렌더링하지 않음
+  }
+
   return (
     <div className="option-area list lg-mycol-11">
       <div className="progress">
         <div className="inner">
           <h5>로스트아크</h5>
           <h5>{id}</h5>
-          <Button style={{}} title={"변경"} onClick={handleChange} />
+          <Button title={"변경"} onClick={handleChange} />
+          <Button title={"삭제"} onClick={handleDelete} />
         </div>
       </div>
       <div
