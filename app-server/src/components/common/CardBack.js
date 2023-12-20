@@ -60,6 +60,8 @@ const changeJobEng = {
   회귀: "회귀",
   이슬비: "이슬비",
   질풍노도: "질풍",
+  "수라의 길": "수라",
+  권왕파천무: "권왕",
 };
 const equipQuality = function (qualityValue) {
   if (qualityValue == 100) return "orange";

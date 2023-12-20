@@ -40,6 +40,7 @@ const change = {
   스페셜리스트: "specialist",
   "전사(여)": "warrior-female",
   "전사(남)": "warrior-male",
+  브레이커: "breaker",
 };
 
 const getData = async function (url) {
