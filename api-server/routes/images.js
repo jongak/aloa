@@ -53,7 +53,8 @@ router.get("/isMkOk/:id", async (req, res, next) => {
   const id = req.params.id;
   try {
     // SaveCardModel.isMkOk 함수가 Promise를 반환한다고 가정
-    const result = await SaveCardModel.isMkOk(id);
+    const result = true;
+    // const result = await SaveCardModel.isMkOk(id);
     res.json(result);
     // 조건이 충족되면 다음 미들웨어로 이동
   } catch (err) {
@@ -119,18 +120,19 @@ router.get("/front/:id/:no?", async (req, res, next) => {
   var bucketParams = {
     Bucket: "aloa-bucket",
   };
-  if (id == "abcd123456789") {
-    bucketParams["Key"] = "server_status.png";
-  } else {
-    const cards = await SaveCardService.getCards(id, "front");
-    var cardurl = cards[0].front_KEY;
-    if (no < cards.length) {
-      cardurl = cards[no].front_KEY;
-    }
-    bucketParams["Key"] = cardurl;
-  }
 
   try {
+    if (id == "abcd123456789") {
+      bucketParams["Key"] = "server_status.png";
+    } else {
+      const cards = await SaveCardService.getCards(id, "front");
+      var cardurl = cards[0].front_KEY;
+      if (no < cards.length) {
+        cardurl = cards[no].front_KEY;
+      }
+      bucketParams["Key"] = cardurl;
+    }
+
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
     const inputStream = data.Body;
 
@@ -155,13 +157,14 @@ router.get("/back/:id/:no?", async (req, res, next) => {
   const bucketParams = {
     Bucket: "aloa-bucket",
   };
-  var cardurl = cards[0].back_KEY;
-  if (no < cards.length) {
-    cardurl = cards[no].back_KEY;
-  }
-  bucketParams["Key"] = cardurl;
 
   try {
+    var cardurl = cards[0].back_KEY;
+    if (no < cards.length) {
+      cardurl = cards[no].back_KEY;
+    }
+    bucketParams["Key"] = cardurl;
+
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
     const inputStream = data.Body;
 

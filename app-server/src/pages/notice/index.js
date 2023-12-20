@@ -96,7 +96,34 @@ const NoticeList = function () {
               </div>
             </div>
             <div className="option-body">
-              <Accordion defaultActiveKey={0}>
+              <Accordion defaultActiveKey={["eee", 0]}>
+                <Accordion.Item eventKey={"eee"}>
+                  <Accordion.Header>긴급공지</Accordion.Header>
+                  <Accordion.Body>
+                    <div className="board_item">
+                      <div className="board_details">
+                        <div className="content">
+                          <p style={{ textAlign: "left" }}>
+                            지금 서버 접속자가 많아서 카드생성이 안됩니다..
+                          </p>
+                          <br />
+                          <p style={{ textAlign: "left" }}>
+                            특히 아래 사진이 안보인다면, 이미지 서버가 아예
+                            먹통인거에요
+                          </p>
+                          <br />
+                          <img
+                            src={
+                              process.env.REACT_APP_API_SERVER +
+                              "/images/front/abcd123456789"
+                            }
+                            style={{ width: "80%" }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
                 {noticeList.map((item, index) => (
                   <Accordion.Item key={"accitem" + item["no"]} eventKey={index}>
                     <Accordion.Header>
