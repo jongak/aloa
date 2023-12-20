@@ -269,26 +269,28 @@ router.get("/cardlist", async (req, res, next) => {
           const targetDate = new Date(c["LastModified"]);
           const conditionMet =
             targetDate < new Date("2023-12-20T10:00:00.000Z");
+          const ss = String(c["LastModified"]).split(".")[0];
           if (conditionMet) {
-            if (contentsDic[c["LastModified"]]) {
-              contentsDic[c["LastModified"]].push(c["Key"]);
+            if (contentsDic[ss]) {
+              contentsDic[ss].push(c["Key"]);
             } else {
-              contentsDic[c["LastModified"]] = c["Key"];
+              contentsDic[ss] = [c["Key"]];
             }
           }
         }
         return false;
       });
-      console.log(contentsDic);
 
       isTruncated = IsTruncated;
       if (isTruncated) {
         command.input.ContinuationToken = NextContinuationToken;
       }
     }
-    // fs.appendFile("fileList.txt", contents, function (err) {
-    //   res.send("ok");
-    // });
+    const dataToAppend = JSON.stringify(contentsDic, null, 2);
+    fs.appendFile("fileList.txt", dataToAppend + "\n", function (err) {
+      if (err) throw err;
+      console.log("Data has been appended to fileList.txt");
+    });
     res.send("ok");
   } catch (err) {
     next(err);
@@ -354,6 +356,53 @@ router.get("/cardlist", async (req, res, next) => {
 //             id.split("_")[0],
 //             id
 //           );
+//         }
+//       }
+//       res.send("ok");
+//     } catch (err) {
+//       next(err);
+//     }
+//   });
+// });
+
+//복구
+// router.get("/", async (req, res, next) => {
+//   fs.readFile("fileList.txt", "utf8", async (err, data) => {
+//     if (err) {
+//       console.error("Error reading file:", err);
+//       return next(err);
+//     }
+//     const contentsDic = JSON.parse(data);
+//     var ss = 0;
+//     var bb = 0;
+//     try {
+//       for (var key in contentsDic) {
+//         if (contentsDic[key].length == 2) {
+//           if (contentsDic[key][0].startsWith("loaf")) {
+//             CardInputModel.newInput(
+//               "inf" + String(ss),
+//               contentsDic[key][0],
+//               contentsDic[key][1],
+//               key
+//             );
+//           } else {
+//             CardInputModel.newInput(
+//               "inf" + String(ss),
+//               contentsDic[key][1],
+//               contentsDic[key][0],
+//               key
+//             );
+//           }
+//           ss += 1;
+//         } else {
+//           contentsDic[key].forEach((e) => {
+//             if (e.startsWith("loaf")) {
+//               CardInputModel.newInput("ins" + String(bb), e, "", key);
+//             } else {
+//               CardInputModel.newInput("ins" + String(bb), "", e, key);
+//             }
+//             bb += 1;
+//           });
 //         }
 //       }
 //       res.send("ok");
