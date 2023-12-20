@@ -61,7 +61,7 @@ function Header({ logOut }) {
                   </li>
                   <li
                     className="ripple"
-                    style={is_signed ? {} : { display: "none" }}
+                    // style={is_signed ? {} : { display: "none" }}
                   >
                     <Link to="/list">카드 목록</Link>
                   </li>
@@ -120,7 +120,10 @@ function Header({ logOut }) {
                 카드만들기
               </Link>
             </li>
-            <li className="ripple" style={is_signed ? {} : { display: "none" }}>
+            <li
+              className="ripple"
+              // style={is_signed ? {} : { display: "none" }}
+            >
               <Link to="/list" onClick={closeMenu}>
                 카드 목록
               </Link>
