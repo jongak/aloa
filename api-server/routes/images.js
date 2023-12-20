@@ -259,13 +259,11 @@ router.get("/cardlist", async (req, res, next) => {
 
   try {
     let isTruncated = true;
-    let contents = "";
-
+    const contentsDic = {};
     while (isTruncated) {
       const { Contents, IsTruncated, NextContinuationToken } =
         await s3Client.send(command);
 
-      const contentsDic = {};
       Contents.map((c) => {
         if (isnewCardImg(c["Key"])) {
           const targetDate = new Date(c["LastModified"]);
@@ -273,7 +271,7 @@ router.get("/cardlist", async (req, res, next) => {
             targetDate < new Date("2023-12-20T10:00:00.000Z");
           if (conditionMet) {
             if (contentsDic[c["LastModified"]]) {
-              contentsDic[c["LastModified"]].append(c["Key"]);
+              contentsDic[c["LastModified"]].push(c["Key"]);
             } else {
               contentsDic[c["LastModified"]] = c["Key"];
             }
