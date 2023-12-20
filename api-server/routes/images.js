@@ -62,6 +62,16 @@ router.get("/isMkOk/:id", async (req, res, next) => {
   }
 });
 
+router.post("/change", async (req, res, next) => {
+  // req.body = {cur_id,new_id,no}
+  try {
+    const result = await SaveCardService.changeName(req.body);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/", awsUpload.array("image", 2), (req, res) => {
   // 업로드된 파일 목록은 req.files에서 사용 가능
   const uploadedFiles = req.files;
@@ -95,6 +105,18 @@ router.get("/numlist/:id", async (req, res, next) => {
 
   try {
     const result = await SaveCardService.getNumList(id);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete("/:id/:no?", async (req, res, next) => {
+  const id = req.params.id;
+  const no = req.params.no ? req.params.no : 0;
+
+  try {
+    const result = await SaveCardService.deleteCards(id, no);
     res.json(result);
   } catch (err) {
     next(err);

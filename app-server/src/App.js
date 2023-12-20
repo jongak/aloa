@@ -24,6 +24,8 @@ import SignUp from "./pages/signup";
 import Current from "./pages/getCard/Current";
 import History from "./pages/getCard/History";
 
+import AdminList from "./pages/adminList";
+
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
 
 function App() {
@@ -48,6 +50,7 @@ function App() {
               <Route index element={<Current />} />
               <Route path="history" element={<History />} />
             </Route>
+            <Route path="/adminlist/:no" element={<AdminList />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/*" element={<NotFound />}></Route>

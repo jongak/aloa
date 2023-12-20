@@ -1,5 +1,6 @@
 const pool = require("../models/pool");
 const SaveCardModel = require("../models/save.card.model");
+const TableModel = require("../models/db.table.model");
 require("date-utils");
 
 const SaveCardService = {
@@ -69,6 +70,66 @@ const SaveCardService = {
       pool.releaseConnection(conn);
     }
   },
+  async deleteCards(character_id, no) {
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+      const pids = await SaveCardModel.getCardPids(character_id);
+      var element = pids[0];
+      if (no < pids.length) {
+        element = pids[no];
+      }
+      if (element["front_KEY"]) {
+        await TableModel.deleteImg(element["front_KEY"]);
+      }
+      if (element["back_KEY"]) {
+        await TableModel.deleteImg(element["back_KEY"]);
+      }
+      if (element["id"]) {
+        await TableModel.deleteSQL(element["id"]);
+      }
+
+      await conn.commit();
+      // return { ...data, ok: true };
+      return pids;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
+  async changeName(article) {
+    // article = {cur_id,new_id,no}
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+      const pids = await SaveCardModel.getCardPids(article["cur_id"]);
+      var element = pids[0];
+      if (article.no < pids.length) {
+        element = pids[article.no];
+      }
+
+      if (element["id"]) {
+        await TableModel.changeName(element["id"], article["new_id"]);
+      }
+
+      await conn.commit();
+      // return { ...data, ok: true };
+      return true;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
   async getCards(character_id, card) {
     const conn = await pool.getConnection();
     try {
@@ -96,10 +157,11 @@ const SaveCardService = {
       await conn.beginTransaction();
 
       const data = await SaveCardModel.getList(no);
+      const maxNo = await SaveCardModel.getMaxList();
 
       await conn.commit();
       // return { ...data, ok: true };
-      return data;
+      return { data: data, maxNo: maxNo };
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
