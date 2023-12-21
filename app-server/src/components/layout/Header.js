@@ -68,7 +68,7 @@ function Header({ logOut }) {
                   </li>
                   <li
                     className="ripple"
-                    // style={is_manager ? {} : { display: "none" }}
+                    style={is_manager ? {} : { display: "none" }}
                   >
                     <Link to="/list">카드 목록</Link>
                   </li>
@@ -129,7 +129,7 @@ function Header({ logOut }) {
             </li>
             <li
               className="ripple"
-              // style={is_manager ? {} : { display: "none" }}
+              style={is_manager ? {} : { display: "none" }}
             >
               <Link to="/list" onClick={closeMenu}>
                 카드 목록
