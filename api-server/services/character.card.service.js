@@ -725,6 +725,12 @@ const CharacterCardService = {
               } else {
                 AwakeName += "세우";
               }
+            } else if (element["Items"][2]["Name"].includes("플라티나")) {
+              if (AwakeName == "부르") {
+                AwakeName = "플라부르";
+              } else {
+                AwakeName += "플라";
+              }
             } else if (element["Items"][2]["Name"].includes("운명 2세트")) {
               AwakeName += "라제";
             } else if (element["Items"][2]["Name"].includes("있도다 3세트")) {
