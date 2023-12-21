@@ -13,6 +13,7 @@ function Header({ logOut }) {
   const [isMenu, setMenu] = useState();
   const name = useSelector((state) => state.loginSlice.name);
   const is_signed = useSelector((state) => state.loginSlice.is_signed);
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
 
   const menuToggle = () => {
     setMenu(!isMenu);
@@ -53,6 +54,12 @@ function Header({ logOut }) {
                   >
                     <Link onClick={logOut}>로그아웃</Link>
                   </li>
+                  <li
+                    className="ripple"
+                    style={is_manager ? {} : { display: "none" }}
+                  >
+                    <Link to="/adminlist/0">관리자 목록</Link>
+                  </li>
                   <li className="ripple">
                     <Link to="/">홈</Link>
                   </li>
@@ -61,7 +68,7 @@ function Header({ logOut }) {
                   </li>
                   <li
                     className="ripple"
-                    // style={is_signed ? {} : { display: "none" }}
+                    // style={is_manager ? {} : { display: "none" }}
                   >
                     <Link to="/list">카드 목록</Link>
                   </li>
@@ -122,7 +129,7 @@ function Header({ logOut }) {
             </li>
             <li
               className="ripple"
-              // style={is_signed ? {} : { display: "none" }}
+              // style={is_manager ? {} : { display: "none" }}
             >
               <Link to="/list" onClick={closeMenu}>
                 카드 목록

@@ -23,6 +23,7 @@ function Home() {
   const queryRef = useRef("");
   const navigate = useNavigate();
   const isDark = useSelector((state) => state.mainSlice.isDark);
+  const is_manager = useSelector((state) => state.loginSlice.is_manager);
 
   const handleOnKeyPress = (e) => {
     if (e.key === "Enter") {
@@ -35,7 +36,7 @@ function Home() {
 
     if (queryRef.current.value) {
       var tmp = await getData(queryRef.current.value);
-      if (tmp) {
+      if (tmp || is_manager) {
         navigate(`/cards/${queryRef.current.value}`);
       } else {
         toast.error(`잘못된 아이디 입니다.`);

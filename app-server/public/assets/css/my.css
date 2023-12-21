@@ -86,7 +86,7 @@
   --my--light--text: #393c42;
 
   --my--background: #393c42;
-  --my--background-hover: #717779;
+  --my--background--hover: #717779;
   --my--background-opacity9: rgba(57, 60, 66, 0.9);
   --my--background-opacity66: rgba(57, 60, 66, 0.66);
   --my--text: #f7f7f7;
@@ -128,7 +128,7 @@
   --my--light--text: #717779;
 
   --my--background: #fff;
-  --my--background-hover: var(--my--thema);
+  --my--background--hover: var(--my--thema);
   --my--background-opacity9: rgb(247, 247, 247, 0.9);
   --my--background-opacity66: rgb(247, 247, 247, 0.66);
   --my--text: #393c42;
@@ -2702,11 +2702,11 @@ list
 }
 
 .option-area.history .card-cover section:first-child {
-  left: 5%;
+  left: 40px;
   z-index: 5;
 }
 .option-area.history .card-cover section:last-child {
-  right: 5%;
+  right: 40px;
 }
 
 .item .small_image {

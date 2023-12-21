@@ -20,7 +20,7 @@ const cardList = function () {
     const fetchData = async () => {
       const res = await getData(no);
       if (res) {
-        setCardList(res);
+        setCardList(res["data"]);
       }
     };
 

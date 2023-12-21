@@ -41,6 +41,17 @@ const SaveCardModel = {
       throw new Error("DB Error", { cause: err });
     }
   },
+  //카드pid 리스트 확보
+  async getCardPids(character_id, conn = pool) {
+    try {
+      const sql = `select id,front_KEY,back_KEY from cards where character_id = ? ORDER BY updated_at DESC`;
+      const [data] = await conn.query(sql, [character_id]);
+      return data;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+
   //카드 이펙트 리스트 확보
   async getEffects(character_id, conn = pool) {
     try {
@@ -60,6 +71,19 @@ const SaveCardModel = {
       const uniqueData = [...set];
       const sliceData = uniqueData.slice(no * 6, (no + 1) * 6);
       return sliceData;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+
+  //카드 리스트 확보
+  async getMaxList(conn = pool) {
+    try {
+      const sql = `select character_id from cards ORDER BY updated_at DESC`;
+      const [data] = await conn.query(sql);
+      const set = new Set(data.map((item) => item.character_id));
+      const uniqueData = [...set];
+      return Math.floor((uniqueData.length - 1) / 6);
     } catch (err) {
       throw new Error("DB Error", { cause: err });
     }
