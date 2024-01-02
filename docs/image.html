@@ -1,0 +1,152 @@
+<!-- var images = [
+        "https://lh3.google.com/u/0/d/10HMr_BQabMpQ9sD4xBhyQLcplrGlKep5=w2560-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1LhFz_YyMggYAJR39tZ9LKTR0jHbmiYIx=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1pk_m8yONqDWaQXVfnki6_2furyVwnz6U=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1zy0KGiXRglQvgWBsu-IWN2yo1cpoqJBj=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1KG4A-4UOp5C6bSi-jyQJQDFi4yQYRHWR=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1an2Bx0FfFgSVetYF72Fv4K-gk73Pe3J6=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1vK8ztGuIT4D6lW58f7v368g5VMeK7Pks=w1928-h1330-iv3",
+      ]; -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @media (prefers-color-scheme: light) {
+        body {
+          --my--background: white;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          --my--background: black;
+        }
+      }
+      body {
+        background-color: var(--my--background);
+      }
+
+      .Slidesbackground {
+        margin: 0;
+        padding: 0;
+      }
+      .slideshow-image {
+        border-radius: 3%;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .mySlides {
+        border-radius: 3%;
+        width: 700px;
+        height: 380px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.5);
+      }
+
+      .slideshow-container {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        margin: auto;
+      }
+
+      .fade {
+        animation-name: fade;
+        animation-duration: 1.5s;
+      }
+
+      button {
+        background: none;
+        border: none;
+        font-size: 30px; /* 버튼 텍스트 크기 조절 */
+        cursor: pointer;
+      }
+      @keyframes fade {
+        from {
+          opacity: 0.4;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <span class="slideshow-container">
+      <button onclick="prev();">&#9665;</button>
+
+      <div class="Slidesbackground" id="slidesContainer"></div>
+
+      <button onclick="next();">&#9655;</button>
+    </span>
+
+    <script>
+      var slideIndex = 0;
+      var intervalId; // 타이머 ID를 저장할 변수
+      var images = [
+        "https://lh3.google.com/u/0/d/1NNnAg50JCe4PN8dH7VRtR4tvzsFXuvk3=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1u5VOK5pEFnd1Z37rwrkFHxqEbZAzmSSG=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/17GaVhZqIvio0jBs9dEbh50biX60W0kGN=w1928-h1330-iv2",
+        "https://lh3.google.com/u/0/d/1JcAX_x-mGwhTWNg0vkmty6q5N8BlQfF8=w2200-h1173-iv1",
+      ];
+
+      function showSlides() {
+        var i;
+        var slidesContainer = document.getElementById("slidesContainer");
+        slidesContainer.innerHTML = ""; // 이미지를 다시 그리기 전에 비우기
+
+        for (i = 0; i < images.length; i++) {
+          var slide = document.createElement("div");
+          slide.className = "mySlides fade";
+          var img = document.createElement("img");
+          img.src = images[i];
+          img.className = "slideshow-image";
+          slide.appendChild(img);
+          slidesContainer.appendChild(slide);
+        }
+
+        var slides = document.getElementsByClassName("mySlides");
+
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+
+        if (slideIndex == -1) {
+          slideIndex = slides.length - 1;
+        } else if (slideIndex == slides.length) {
+          slideIndex = 0;
+        }
+
+        slides[slideIndex].style.display = "block";
+        slideIndex++;
+      }
+
+      function prev() {
+        slideIndex -= 2; // 이전 이미지로 가기 위해 조정
+        showSlides();
+
+        // 현재의 타이머 중지하고 새로운 타이머 설정
+        clearInterval(intervalId);
+        intervalId = setInterval(showSlides, 5000);
+      }
+
+      function next() {
+        showSlides();
+
+        // 현재의 타이머 중지하고 새로운 타이머 설정
+        clearInterval(intervalId);
+        intervalId = setInterval(showSlides, 5000);
+      }
+
+      // 초기 타이머 설정
+      showSlides();
+      intervalId = setInterval(showSlides, 5000);
+    </script>
+  </body>
+</html>
