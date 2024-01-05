@@ -68,7 +68,7 @@ const UserService = {
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
-      const data = await LoginModel.getSlt();
+      const data = await LoginModel.getSlt(conn);
       await conn.commit();
       return data;
     } catch (err) {

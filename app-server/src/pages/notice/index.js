@@ -96,8 +96,8 @@ const NoticeList = function () {
               </div>
             </div>
             <div className="option-body">
-              <Accordion defaultActiveKey={["eee", 0]}>
-                <Accordion.Item eventKey={"eee"}>
+              <Accordion defaultActiveKey={[0]}>
+                {/* <Accordion.Item eventKey={"eee"}>
                   <Accordion.Header>긴급공지</Accordion.Header>
                   <Accordion.Body>
                     <div className="board_item">
@@ -123,7 +123,7 @@ const NoticeList = function () {
                       </div>
                     </div>
                   </Accordion.Body>
-                </Accordion.Item>
+                </Accordion.Item> */}
                 {noticeList.map((item, index) => (
                   <Accordion.Item key={"accitem" + item["no"]} eventKey={index}>
                     <Accordion.Header>

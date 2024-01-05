@@ -32,7 +32,7 @@ const SaveCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      const cards = await SaveCardModel.getNumList(character_id);
+      const cards = await SaveCardModel.getNumList(character_id, conn);
 
       await conn.commit();
       // return { ...data, ok: true };
@@ -52,7 +52,7 @@ const SaveCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      const cards = await SaveCardModel.getEffects(character_id);
+      const cards = await SaveCardModel.getEffects(character_id, conn);
       var cardurl = cards[0].card_effect;
       if (no < cards.length) {
         cardurl = cards[no].card_effect;
@@ -75,7 +75,7 @@ const SaveCardService = {
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
-      const pids = await SaveCardModel.getCardPids(character_id);
+      const pids = await SaveCardModel.getCardPids(character_id, conn);
       var element = pids[0];
       if (no < pids.length) {
         element = pids[no];
@@ -87,7 +87,7 @@ const SaveCardService = {
         await TableModel.deleteImg(element["back_KEY"]);
       }
       if (element["id"]) {
-        await TableModel.deleteSQL(element["id"]);
+        await TableModel.deleteSQL(element["id"], conn);
       }
 
       await conn.commit();
@@ -108,14 +108,14 @@ const SaveCardService = {
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
-      const pids = await SaveCardModel.getCardPids(article["cur_id"]);
+      const pids = await SaveCardModel.getCardPids(article["cur_id"], conn);
       var element = pids[0];
       if (article.no < pids.length) {
         element = pids[article.no];
       }
 
       if (element["id"]) {
-        await TableModel.changeName(element["id"], article["new_id"]);
+        await TableModel.changeName(element["id"], article["new_id"], conn);
       }
 
       await conn.commit();
@@ -136,7 +136,7 @@ const SaveCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      const data = await SaveCardModel.getCards(character_id, card);
+      const data = await SaveCardModel.getCards(character_id, card, conn);
 
       await conn.commit();
       // return { ...data, ok: true };
@@ -156,8 +156,8 @@ const SaveCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      const data = await SaveCardModel.getList(no);
-      const maxNo = await SaveCardModel.getMaxList();
+      const data = await SaveCardModel.getList(no, conn);
+      const maxNo = await SaveCardModel.getMaxList(conn);
 
       await conn.commit();
       // return { ...data, ok: true };

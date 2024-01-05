@@ -12,7 +12,7 @@ const s3Client = new S3Client({
 
 const TableModel = {
   // 닉네임중복검사
-  async TableModel(article, conn = pool) {
+  async TableModel(conn = pool) {
     try {
       // article = {login_id,password}
       const sql = `
@@ -25,7 +25,7 @@ const TableModel = {
     }
   },
 
-  async deleteImg(id, conn = pool) {
+  async deleteImg(id) {
     const bucketParams = {
       Bucket: "aloa-bucket",
       Key: encodeURIComponent(id),

@@ -7,8 +7,8 @@ const NoticeService = {
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
-      const data = await noticeModel.getNotice(no, max_num);
-      const count = await noticeModel.getCount();
+      const data = await noticeModel.getNotice(no, max_num, conn);
+      const count = await noticeModel.getCount(conn);
       // DB에 작업 반영
       await conn.commit();
       return { data: data, count: count };
@@ -34,7 +34,7 @@ const NoticeService = {
         date: article.date,
         time: article.time,
       };
-      const data = await noticeModel.newNotice(notice);
+      const data = await noticeModel.newNotice(notice, conn);
       // DB에 작업 반영
       await conn.commit();
       return data;
@@ -53,7 +53,7 @@ const NoticeService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      await noticeModel.updateNotice(index, article);
+      await noticeModel.updateNotice(index, article, conn);
       const result = await NoticeService.getNotice(no, max_num);
       // DB에 작업 반영
       await conn.commit();
