@@ -444,7 +444,7 @@ myDarkToggle
   position: relative;
 }
 .myDarkToggle i {
-  font-size: 2em;
+  font-size: 36px;
   padding: 5px;
   position: absolute;
 }
@@ -826,13 +826,13 @@ Banner Style
 .main-banner .caption form input {
   max-width: 600px;
   width: 100%;
-  height: 50px;
+  height: 2.75rem;
   outline: none;
   border-radius: 25px;
   background-color: var(--my--light--background);
   border: var(--my--heading) 1px solid;
   padding: 0px 25px;
-  font-size: 20px;
+  font-size: 1.25rem;
   color: var(--my--light--text);
 }
 
@@ -843,14 +843,14 @@ Banner Style
   top: 0;
 }
 .main-banner .caption form .my_button_rev a {
-  width: 80px;
-  height: 50px;
+  width: 5rem;
+  height: 2.75rem;
   line-height: 50px;
 
   font-size: 1.25rem;
   text-transform: uppercase;
   font-weight: 500;
-  padding: 0px 25px;
+  padding: 0px 1.5rem;
 
   /* background-color: #393c42; */
   border-color: var(--my--heading);
@@ -1066,10 +1066,10 @@ capture
 .option-area .userRow {
   background-color: var(--my--button--background);
   text-align: center;
-  margin: 2rem 1rem;
+  margin: 32px 16px;
   /* box-shadow: 3px 4px 20px 2px var(--my--shadow); */
-  padding-top: 60px;
-  padding-bottom: 20px;
+  padding-top: 3.5rem;
+  padding-bottom: 1.25rem;
   position: relative;
   width: auto;
   box-shadow:
@@ -1315,7 +1315,7 @@ capture
 
 @media (min-width: 992px) {
   .option-area .userRow {
-    margin: 2rem;
+    margin: 32px;
   }
   .option-area .option-body h3 {
     text-align: left;
@@ -1325,7 +1325,7 @@ capture
 
 @media (min-width: 1400px) {
   .option-area .userRow {
-    margin: 2rem;
+    margin: 32px;
     text-align: left;
   }
   .option-area .userRow .userItem {
@@ -1539,7 +1539,7 @@ card
 }
 .my-card-img {
   width: 3rem;
-  height: 54px;
+  height: 3.25rem;
   position: absolute;
   left: 14px;
   top: 16px;
@@ -1568,6 +1568,7 @@ card
   color: var(--my--no--text);
   display: inline-block;
   margin-left: 0.5rem;
+  font-size: 0.875rem;
 }
 
 @media (min-width: 992px) {
@@ -1702,7 +1703,7 @@ dnd
 }
 
 .drag-cover .drag-body {
-  padding: 1rem;
+  padding: 16px;
   box-sizing: border-box;
 }
 .drag-cover .drag-body.todo {
@@ -1737,6 +1738,7 @@ dnd
   font-size: 18px;
 }
 .drag-cover .drag-item .item-value {
+  font-size: 16px;
   color: var(--my--text);
   position: absolute;
   right: 12px;
@@ -2243,13 +2245,13 @@ accodion
   --bs-accordion-inner-border-radius: 0px;
   /* 제목의  padding */
   --bs-accordion-btn-padding-x: 50px;
-  --bs-accordion-btn-padding-y: 1rem;
+  --bs-accordion-btn-padding-y: 16px;
   /* 제목의 색 */
   --bs-accordion-btn-color: var(--my--text);
   /* 활성화 안된 제목의배경 색 */
   --bs-accordion-btn-bg: var(--my--dark--background);
   --bs-accordion-btn-icon: null;
-  --bs-accordion-btn-icon-width: 1.25rem;
+  --bs-accordion-btn-icon-width: 20px;
   --bs-accordion-btn-icon-transform: rotate(-180deg);
   --bs-accordion-btn-icon-transition: transform 0.3s ease-in-out;
   --bs-accordion-btn-active-icon: null;

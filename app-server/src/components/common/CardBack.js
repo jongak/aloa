@@ -114,12 +114,12 @@ const CardBack = function ({
           </span>
         </div>
         <div className="cardMiddle container">
-          <div className="options row">
-            <div className="options_left col-7">
+          <div className="options">
+            <div className="options_left mycol-14">
               <OptionBox elements={optionItems["done"]} />
 
-              <div className="row stats">
-                <div className="col-10 back_stats_bg">
+              <div className="stats">
+                <div className="mycol-20 back_stats_bg">
                   <span id="back_characterlevel">
                     {userData && userData["ArmoryEngraving"]["JobEffects"][0]
                       ? changeJobEng[
@@ -133,15 +133,15 @@ const CardBack = function ({
                       : "소드마스터"}
                   </span>
                 </div>
-                <div className="col-10 back_stats_bg">
+                <div className="mycol-20 back_stats_bg">
                   <span>{userData["MainStat"]["statName"]}</span>
                   <span>{userData["MainStat"]["statValue"]}</span>
                 </div>
-                <div className="col-10 back_stats_bg">
+                <div className="mycol-20 back_stats_bg">
                   <span>{userData["SubStat"]["statName"]}</span>
                   <span>{userData["SubStat"]["statValue"]}</span>
                 </div>
-                <div className="col-10 back_stats_bg">
+                <div className="mycol-20 back_stats_bg">
                   <span>길드</span>
                   <span className="back_guildname">
                     {isName ? userData["ArmoryProfile"]["GuildName"] : "-"}
@@ -196,8 +196,8 @@ const CardBack = function ({
                 </ul>
               </div>
             </div>
-            <div className="col-1"></div>
-            <div className="options_right col-2 ">
+            <div className="mycol-2"></div>
+            <div className="options_right mycol-4 ">
               <div className="equipments">
                 <ul>
                   {[
@@ -244,7 +244,7 @@ const CardBack = function ({
                 </ul>
               </div>
             </div>
-            <div className="options_right col-2 ">
+            <div className="options_right mycol-4">
               <div className="accessory">
                 <ul>
                   {userData && userData["ArmoryEquipment"]
@@ -330,33 +330,31 @@ const CardBack = function ({
           </div>
 
           <div className="card_container container">
-            <div className="row align-items-end">
-              {userData && userData["ArmoryCard"]["Cards"] ? (
-                userData["ArmoryCard"]["Cards"].map((item) => (
-                  <div
-                    key={item.Name + Math.floor(Math.random() * 10000)}
-                    className="card_slot col-2"
-                  >
-                    <img
-                      className="card_grade"
-                      src={`/assets/images/card/card_grade_${
-                        cardGrade[item.Grade]
-                      }.png`}
-                    />
-                    <img
-                      className="card_awake"
-                      src={`/assets/images/card/card_awake_${item.AwakeCount}.png`}
-                    />
+            {userData && userData["ArmoryCard"]["Cards"] ? (
+              userData["ArmoryCard"]["Cards"].map((item) => (
+                <div
+                  key={item.Name + Math.floor(Math.random() * 10000)}
+                  className="card_slot mycol-4"
+                >
+                  <img
+                    className="card_grade"
+                    src={`/assets/images/card/card_grade_${
+                      cardGrade[item.Grade]
+                    }.png`}
+                  />
+                  <img
+                    className="card_awake"
+                    src={`/assets/images/card/card_awake_${item.AwakeCount}.png`}
+                  />
 
-                    <img src={item.Icon} />
-                  </div>
-                ))
-              ) : (
-                <div className="col-2 card_slot">
-                  <div id="card_none"></div>
+                  <img src={item.Icon} />
                 </div>
-              )}
-            </div>
+              ))
+            ) : (
+              <div className="card_slot mycol-4">
+                <div id="card_none"></div>
+              </div>
+            )}
           </div>
         </div>
       </div>

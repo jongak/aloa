@@ -247,7 +247,7 @@ const SelectValue = function () {
       ],
     };
     const newFrontIcons = {
-      todoCombat: [
+      "todo Combat": [
         {
           id: "WeaponQuality",
           title: "무기 품질",
@@ -274,7 +274,7 @@ const SelectValue = function () {
           cardValue: userData["ArmoryGem"]["option"]["TenHong"] + " ea",
         },
       ],
-      todoNaesil: [
+      "todo Naesil": [
         {
           id: "Mococo",
           title: "모코코 씨앗",
@@ -459,7 +459,7 @@ const SelectValue = function () {
       ],
     };
     const newOptionItems = {
-      todoCombat: [
+      "todo Combat": [
         {
           id: "boxAcc",
           title: "악추피",
@@ -605,7 +605,7 @@ const SelectValue = function () {
         },
       ],
 
-      todoNaesil: [
+      "todo Naesil": [
         {
           id: "boxMococo",
           title: "모코코 씨앗",
@@ -792,7 +792,7 @@ const SelectValue = function () {
       return e;
     });
 
-    const todoCombatTemp = optionItems["todoCombat"].map((e) => {
+    const todoCombatTemp = optionItems["todo Combat"].map((e) => {
       if (e["id"] === "boxAcc") {
         return {
           ...e,
@@ -802,7 +802,7 @@ const SelectValue = function () {
       }
       return e;
     });
-    const todoNaesilTemp = optionItems["todoNaesil"].map((e) => {
+    const todoNaesilTemp = optionItems["todo Naesil"].map((e) => {
       if (e["id"] === "boxAcc") {
         return {
           ...e,
@@ -826,8 +826,8 @@ const SelectValue = function () {
 
     const newFrontItems = { todo: todoTemp, done: doneTemp };
     const newOptionItems = {
-      todoCombat: todoCombatTemp,
-      todoNaesil: todoNaesilTemp,
+      "todo Combat": todoCombatTemp,
+      "todo Naesil": todoNaesilTemp,
       done: donebTemp,
     };
     dispatch(setFrontItems({ newFrontItems }));

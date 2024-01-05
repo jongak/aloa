@@ -87,8 +87,14 @@
   padding: 0 40px;
 }
 
+.cardMiddle .options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .cardCover.back .cardMiddle {
   padding-top: 40px;
+  height: 80%;
 }
 
 .cardMiddle .cardImgs {
@@ -238,11 +244,15 @@
 .cardCover.back .cardMiddle .options_left .engravings ul li {
   margin-right: 4px;
 }
+.cardCover.back .cardMiddle .options_right {
+  padding: 12px;
+}
 
 .cardCover.back .cardMiddle .options_right .equipments ul li,
 .cardCover.back .cardMiddle .options_right .accessory ul li {
   margin-bottom: 8px;
   position: relative;
+  height: 75px;
 }
 
 .cardCover.back .cardMiddle .options_right .equipments ul li span,
@@ -666,12 +676,14 @@
 }
 .cardCover.back .cardBottom .card_container {
   width: 90%;
-  padding: 10px 20px;
+  padding: 10px 8px;
   background: #80808038;
   border-radius: 8px;
   position: absolute;
   left: 5%;
   bottom: 32px;
+  display: flex;
+  align-items: flex-end;
 }
 .cardCover.back .cardBottom .card_container .card_slot {
   padding: 0 4px;

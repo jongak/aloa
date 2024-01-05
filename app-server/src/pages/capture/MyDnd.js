@@ -96,13 +96,13 @@ const MyDnd = function ({ title, onclick }) {
         }}
       >
         {Object.keys(items).map((key) => {
-          if (title == "frontIconsCombat" && key == "todoNaesil") {
+          if (title == "frontIconsCombat" && key == "todo Naesil") {
             return false;
-          } else if (title == "frontIconsNaesil" && key == "todoCombat") {
+          } else if (title == "frontIconsNaesil" && key == "todo Combat") {
             return false;
-          } else if (title == "optionItemsCombat" && key == "todoNaesil") {
+          } else if (title == "optionItemsCombat" && key == "todo Naesil") {
             return false;
-          } else if (title == "optionItemsNaesil" && key == "todoCombat") {
+          } else if (title == "optionItemsNaesil" && key == "todo Combat") {
             return false;
           }
 
