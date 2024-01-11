@@ -25,6 +25,7 @@ import Current from "./pages/getCard/Current";
 import History from "./pages/getCard/History";
 
 import AdminList from "./pages/adminList";
+import NewCapture from "./pages/newCapture";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_SERVER;
 
@@ -41,6 +42,7 @@ function App() {
               <Route path="set" element={<SetOption />} />
               <Route path="share" element={<ShareCard />} />
             </Route>
+            <Route path="/newcap" element={<NewCapture />} />
             <Route path="/notice" element={<NoticeList />}>
               {/* <Route index element={<NoticeList />} /> */}
               <Route path="setting" element={<NoticeBoard />} />

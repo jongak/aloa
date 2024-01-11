@@ -2771,3 +2771,63 @@ list
     z-index: 1;
   }
 }
+
+.main-banner.new {
+  margin-top: 0px;
+}
+
+.main-banner.new .progress {
+  position: fixed;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-banner.new .inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  margin-left: 50px;
+
+  align-items: start;
+
+  transform: rotate(0);
+  position: relative;
+  gap: 22px;
+}
+.main-banner.new .inner .dot-wrapper {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  gap: 12px;
+  flex-basis: 100px;
+
+  position: relative;
+}
+.main-banner.new .inner .dot-wrapper .dot {
+  position: fixed;
+  left: -14px;
+
+  width: 10px;
+  height: 10px;
+  background: var(--my--very--dark--background--hover);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.main-banner.new .vertical-bar {
+  position: absolute;
+  left: 40px;
+  width: 2px;
+  background-color: var(--my--very--dark--background--hover);
+  height: 100%;
+}
+
+.main-banner.new .option-area {
+  height: 1000px;
+}
