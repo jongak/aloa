@@ -174,7 +174,7 @@ router.get("/back/:id/:no?", async (req, res, next) => {
   const id = req.params.id;
   const no = req.params.no ? req.params.no : 0;
 
-  console.log(1);
+  // console.log(1);
   const cards = await SaveCardService.getCards(id, "back");
 
   const bucketParams = {
@@ -182,7 +182,7 @@ router.get("/back/:id/:no?", async (req, res, next) => {
   };
 
   try {
-    console.log(2);
+    // console.log(2);
     var cardurl = cards[0].back_KEY;
     if (no < cards.length) {
       cardurl = cards[no].back_KEY;
@@ -190,7 +190,7 @@ router.get("/back/:id/:no?", async (req, res, next) => {
     bucketParams["Key"] = cardurl;
 
     const data = await s3Client.send(new GetObjectCommand(bucketParams));
-    console.log(3);
+    // console.log(3);
     const inputStream = data.Body;
 
     // Front 이미지를 클라이언트로 스트리밍합니다.
@@ -198,10 +198,10 @@ router.get("/back/:id/:no?", async (req, res, next) => {
       "Content-Disposition",
       `attachment; filename=${encodeURIComponent("back.png")}`
     );
-    console.log(4);
+    // console.log(4);
     res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
     inputStream.pipe(res);
-    console.log(5);
+    // console.log(5);
   } catch (err) {
     next(err);
   }
