@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router({ mergeParams: true });
 
-const userRouter = require("./users");
-router.use("/user", userRouter);
+const fileRouter = require("./file");
+router.use("/file", fileRouter);
 
 const characterRouter = require("./character");
 router.use("/character", characterRouter);

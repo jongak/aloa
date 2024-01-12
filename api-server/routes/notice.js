@@ -4,7 +4,7 @@ var router = express.Router();
 const NoticeService = require("../services/notice.service");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
-router.get("/:no?", async (req, res, next) => {
+router.get("/list/:no?", async (req, res, next) => {
   const no = req.params.no ? req.params.no : 1;
 
   try {
@@ -47,21 +47,31 @@ router.get("/img/:id", async (req, res, next) => {
   }
 });
 //공지 등록
-router.post("/new", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    console.log(req.body);
-    const result = await NoticeService.newNotice(req.body);
+    const result = await NoticeService.postNotice(req.body);
     res.json(result);
   } catch (err) {
     next(err);
   }
 });
 //공지 수정
-router.put("/fix/:index", async (req, res, next) => {
+router.put("/:index", async (req, res, next) => {
   try {
     const index = Number(req.params.index);
     const article = req.body;
-    const result = await NoticeService.updateNotice(index, article);
+    const result = await NoticeService.putNotice(index, article);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+//공지 수정
+router.delete("/:index", async (req, res, next) => {
+  try {
+    const index = Number(req.params.index);
+    const article = req.body;
+    const result = await NoticeService.deleteNotice(index, article);
     res.json(result);
   } catch (err) {
     next(err);

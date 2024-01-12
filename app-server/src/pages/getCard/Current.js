@@ -79,7 +79,7 @@ const Current = function () {
 
   const openPdfInNewTab = () => {
     const newWindow = window.open(
-      process.env.REACT_APP_API_SERVER + "/user/file/1",
+      process.env.REACT_APP_API_SERVER + "/file/1",
       "_blank"
     );
     if (newWindow) {

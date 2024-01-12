@@ -23,7 +23,7 @@ const noticeModel = {
     }
   },
   //notice 추가하기
-  async newNotice(article, conn = pool) {
+  async postNotice(article, conn = pool) {
     try {
       const sql = `insert into notice set ?`;
       const [data] = await conn.query(sql, article);
@@ -33,10 +33,20 @@ const noticeModel = {
     }
   },
   //notice 수정하기
-  async updateNotice(no, article, conn = pool) {
+  async putNotice(no, article, conn = pool) {
     try {
       const sql = `update notice set ? where no = ?`;
       const [result] = await conn.query(sql, [article, no]);
+      return result.affectedRows;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+  //notice 수정하기
+  async deleteNotice(no, conn = pool) {
+    try {
+      const sql = `delete from notice where no = ?`;
+      const [result] = await conn.query(sql, [no]);
       return result.affectedRows;
     } catch (err) {
       throw new Error("DB Error", { cause: err });

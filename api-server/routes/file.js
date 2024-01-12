@@ -2,14 +2,6 @@ const { GetObjectCommand, S3Client } = require("@aws-sdk/client-s3");
 var express = require("express");
 var router = express.Router();
 
-router.get("/", function (req, res, next) {
-  try {
-    res.send("respond with a resource");
-  } catch (err) {
-    next(err);
-  }
-});
-
 const s3Client = new S3Client({
   region: "ap-northeast-2",
   credentials: {
@@ -18,7 +10,7 @@ const s3Client = new S3Client({
   },
 });
 
-router.get("/file/:id", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
   var bucketParams = {
     Bucket: "aloa-bucket",
@@ -48,7 +40,7 @@ router.get("/file/:id", async (req, res, next) => {
   }
 });
 
-router.get("/img", async (req, res, next) => {
+router.get("/server", async (req, res, next) => {
   const bucketParams = {
     Bucket: "aloa-bucket",
     Key: "server_status.png",
@@ -61,7 +53,7 @@ router.get("/img", async (req, res, next) => {
     // Front 이미지를 클라이언트로 스트리밍합니다.
     res.setHeader(
       "Content-Disposition",
-      `attachment; filename='server_status.png'}`
+      `attachment; filename=server_status.png`
     );
     res.setHeader("Content-Type", "image/png"); // 파일 타입에 따라 수정
     inputStream.pipe(res);

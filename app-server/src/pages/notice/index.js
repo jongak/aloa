@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 
 const getNotice = async function (page) {
   try {
-    const res = await axios.get(`/notice/${page}`);
+    const res = await axios.get(`/notice/list/${page}`);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -19,6 +19,7 @@ const NoticeList = function () {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [noticeList, setNoticeList] = useState([]);
+  const [isChanged, setIsChanged] = useState(false);
   const numberOfItems = useRef(0);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ const NoticeList = function () {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, isChanged]);
 
   function getPageList(totalPages, page, maxLength) {
     function range(start, end) {
@@ -96,7 +97,7 @@ const NoticeList = function () {
               </div>
             </div>
             <div className="option-body">
-              <Accordion defaultActiveKey={[0]}>
+              <Accordion defaultActiveKey={["eee", 0]}>
                 <Accordion.Item eventKey={"eee"}>
                   <Accordion.Header>긴급공지</Accordion.Header>
                   <Accordion.Body>
@@ -203,7 +204,7 @@ const NoticeList = function () {
         </div>
       </div>
 
-      <Outlet context={{ noticeList }} />
+      <Outlet context={{ noticeList, setIsChanged, isChanged }} />
     </>
   );
 };

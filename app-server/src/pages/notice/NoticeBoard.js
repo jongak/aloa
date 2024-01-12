@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router";
 import DataTable, { ExpanderComponentProps } from "react-data-table-component";
 import { useEffect, useRef, useState, version } from "react";
+import { toast } from "react-toastify";
 import Accordion from "react-bootstrap/Accordion";
 
 import axios from "axios";
@@ -8,7 +9,7 @@ import Button from "../../components/common/Button";
 import { useSelector } from "react-redux";
 
 const NoticeBoard = function () {
-  const { noticeList } = useOutletContext();
+  const { noticeList, setIsChanged, isChanged } = useOutletContext();
   const is_manager = useSelector((state) => state.loginSlice.is_manager);
   const columns = [
     {
@@ -66,11 +67,21 @@ const NoticeBoard = function () {
     const updateHandler = async function (e) {
       e.preventDefault();
       const index = data.no;
-      const result = await axios.put(
-        `/notice/fix/${index}`,
+      const result = await axios.put(`/notice/${index}`, JSON.parse(article));
+      toast.success("수정완료");
+      setIsChanged(!isChanged);
+      setArticle(result.data);
+    };
+
+    const deleteHandler = async function (e) {
+      e.preventDefault();
+      const index = data.no;
+      const result = await axios.delete(
+        `/notice/${index}`,
         JSON.parse(article)
       );
-      // console.log(result.data);
+      toast.success("삭제완료");
+      setIsChanged(!isChanged);
       setArticle(result.data);
     };
     return (
@@ -83,6 +94,7 @@ const NoticeBoard = function () {
           ></textarea>
         </div>
         <button type="submit">수정</button>
+        <button onClick={deleteHandler}>삭제</button>
       </form>
     );
   };
@@ -92,6 +104,7 @@ const NoticeBoard = function () {
   const imageRef = useRef("");
   const dateRef = useRef("");
   const timeRef = useRef("");
+
   const createToggle = async function () {
     const version = versionRef.current.value;
     const content = contentRef.current.value;
@@ -100,20 +113,15 @@ const NoticeBoard = function () {
     const time = timeRef.current.value;
     // console.log(version, content, image, date, time);
     try {
-      const res = await axios.post("/notice/new", {
+      const res = await axios.post("/notice/", {
         title: version,
         content: content,
         image: image,
         date: date,
         time: time,
       });
-      // console.log({
-      //   title: version,
-      //   content: content,
-      //   image: image,
-      //   date: date,
-      //   time: time,
-      // });
+      setIsChanged(!isChanged);
+      toast.success("등록완료");
       return res.data;
     } catch (err) {
       console.log(err);

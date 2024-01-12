@@ -44,7 +44,6 @@ function App() {
             </Route>
             <Route path="/newcap" element={<NewCapture />} />
             <Route path="/notice" element={<NoticeList />}>
-              {/* <Route index element={<NoticeList />} /> */}
               <Route path="setting" element={<NoticeBoard />} />
             </Route>
             <Route path="/list" element={<CardList />} />

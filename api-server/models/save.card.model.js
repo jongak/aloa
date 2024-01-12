@@ -21,7 +21,7 @@ const SaveCardModel = {
       const currentTime = new Date();
       const targetDate = new Date(data[0]["updated_at"]);
       const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
-      // const oneDayInMilliseconds = 60 * 60 * 1000;
+      // const oneHourInMilliseconds = 60 * 60 * 1000;
       const timeDifference = targetDate - currentTime;
       const isWithin24Hours = Math.abs(timeDifference) > oneDayInMilliseconds;
 

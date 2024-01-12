@@ -63,7 +63,7 @@ const AdminListItem = function ({ character_id }) {
         toast.error("취소했습니다.");
         return;
       }
-      const res = await axios.post(`/images/change`, {
+      const res = await axios.patch(`/images/name`, {
         cur_id: id,
         new_id: new_id,
         no: 0,

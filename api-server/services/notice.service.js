@@ -22,7 +22,7 @@ const NoticeService = {
       pool.releaseConnection(conn);
     }
   },
-  async newNotice(article) {
+  async postNotice(article) {
     const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
@@ -34,7 +34,7 @@ const NoticeService = {
         date: article.date,
         time: article.time,
       };
-      const data = await noticeModel.newNotice(notice, conn);
+      const data = await noticeModel.postNotice(notice, conn);
       // DB에 작업 반영
       await conn.commit();
       return data;
@@ -47,18 +47,35 @@ const NoticeService = {
       pool.releaseConnection(conn);
     }
   },
-  async updateNotice(index, article, no, max_num) {
+  async putNotice(index, article) {
     const conn = await pool.getConnection();
     try {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      await noticeModel.updateNotice(index, article, conn);
-      const result = await NoticeService.getNotice(no, max_num);
+      const data = await noticeModel.putNotice(index, article, conn);
       // DB에 작업 반영
       await conn.commit();
-      console.log(result);
-      return result;
+      return data;
+    } catch (err) {
+      // DB 작업 취소
+      await conn.rollback();
+      throw new Error("Service Error", { cause: err });
+    } finally {
+      // 커넥션 반납
+      pool.releaseConnection(conn);
+    }
+  },
+  async deleteNotice(index) {
+    const conn = await pool.getConnection();
+    try {
+      // 트랜젝션 작업 시작
+      await conn.beginTransaction();
+
+      const data = await noticeModel.deleteNotice(index, conn);
+      // DB에 작업 반영
+      await conn.commit();
+      return data;
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
