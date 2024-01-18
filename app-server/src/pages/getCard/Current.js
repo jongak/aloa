@@ -12,7 +12,7 @@ const getData = async function (id) {
     const res = await axios.get(`/images/effect/${id}/0`);
     return JSON.parse(res.data);
   } catch (err) {
-    console.error(err);
+    // console.error(err);
   }
 };
 

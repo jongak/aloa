@@ -52,10 +52,14 @@ const SaveCardService = {
       // 트랜젝션 작업 시작
       await conn.beginTransaction();
 
-      const cards = await SaveCardModel.getEffects(character_id, conn);
-      var cardurl = cards[0].card_effect;
-      if (no < cards.length) {
-        cardurl = cards[no].card_effect;
+      var cards = await SaveCardModel.getEffects(character_id, conn);
+      if (!cards.length) {
+        cards = await SaveCardModel.getEffects("송도나봉선", conn);
+      } else {
+        var cardurl = cards[0].card_effect;
+        if (no < cards.length) {
+          cardurl = cards[no].card_effect;
+        }
       }
 
       await conn.commit();

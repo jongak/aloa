@@ -138,9 +138,13 @@ router.get("/front/:id/:no?", async (req, res, next) => {
       bucketParams["Key"] = "server_status.png";
     } else {
       const cards = await SaveCardService.getCards(id, "front");
-      var cardurl = cards[0].front_KEY;
-      if (no < cards.length) {
-        cardurl = cards[no].front_KEY;
+      if (!cards.length) {
+        cardurl = "loafsample.png";
+      } else {
+        var cardurl = cards[0].front_KEY;
+        if (no < cards.length) {
+          cardurl = cards[no].front_KEY;
+        }
       }
       bucketParams["Key"] = cardurl;
     }
@@ -173,9 +177,13 @@ router.get("/back/:id/:no?", async (req, res, next) => {
 
   try {
     // console.log(2);
-    var cardurl = cards[0].back_KEY;
-    if (no < cards.length) {
-      cardurl = cards[no].back_KEY;
+    if (!cards.length) {
+      cardurl = "loabsample.png";
+    } else {
+      var cardurl = cards[0].back_KEY;
+      if (no < cards.length) {
+        cardurl = cards[no].back_KEY;
+      }
     }
     bucketParams["Key"] = cardurl;
 
