@@ -13,6 +13,9 @@ var fs = require("fs");
 const CardInputModel = require("../models/card.input.model");
 const SaveCardModel = require("../models/save.card.model");
 const SaveCardService = require("../services/save.card.service");
+const timeout = require("connect-timeout");
+
+const Mytimeout = timeout("10s");
 
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -125,7 +128,7 @@ router.get("/effect/:id/:no?", async (req, res, next) => {
   }
 });
 
-router.get("/front/:id/:no?", async (req, res, next) => {
+router.get("/front/:id/:no?", Mytimeout, async (req, res, next) => {
   const id = req.params.id;
   const no = req.params.no ? req.params.no : 0;
 
@@ -164,7 +167,7 @@ router.get("/front/:id/:no?", async (req, res, next) => {
   }
 });
 
-router.get("/back/:id/:no?", async (req, res, next) => {
+router.get("/back/:id/:no?", Mytimeout, async (req, res, next) => {
   const id = req.params.id;
   const no = req.params.no ? req.params.no : 0;
 
