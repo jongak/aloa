@@ -52,6 +52,17 @@ const SaveCardModel = {
     }
   },
 
+  //카드  확보
+  async getCharacter(character_id, conn = pool) {
+    try {
+      const sql = `select id from cards where character_id = ? ORDER BY updated_at DESC`;
+      const [data] = await conn.query(sql, [character_id]);
+      return data.length;
+    } catch (err) {
+      throw new Error("DB Error", { cause: err });
+    }
+  },
+
   //카드 이펙트 리스트 확보
   async getEffects(character_id, conn = pool) {
     try {

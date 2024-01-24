@@ -333,7 +333,7 @@ const CharacterService = {
       // });
 
       // const dat = JSON.parse(res["ArmoryEquipment"][0]);
-      console.log(res["ArmoryEquipment"][12]["Tooltip"]);
+      // console.log(res["ArmoryEquipment"][12]["Tooltip"]);
 
       // DB에 작업 반영
       // await conn.commit();

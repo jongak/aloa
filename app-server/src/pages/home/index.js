@@ -9,11 +9,11 @@ import LootCard from "../../components/common/LootCard";
 
 const getData = async function (id) {
   try {
-    const res = await axios.get(`/character/characters/${id}`);
+    const res = await axios.get(`/images/character/${id}`);
     if (res.data.ok) {
-      return res.data.data;
+      return true;
     }
-    return;
+    return false;
   } catch (err) {
     console.error(err);
   }
@@ -39,9 +39,8 @@ function Home() {
       if (tmp || is_manager) {
         navigate(`/cards/${queryRef.current.value}`);
       } else {
-        toast.error(`잘못된 아이디 입니다.`);
-        queryRef.current.value = "";
-        queryRef.current.focus();
+        toast.error(`카드를 먼저 만들어 주세요`);
+        navigate(`/capture`);
       }
     } else {
       toast.error(`아이디를 입력해 주세요`);

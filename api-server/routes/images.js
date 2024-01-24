@@ -116,6 +116,17 @@ router.delete("/:id/:no?", async (req, res, next) => {
   }
 });
 
+router.get("/character/:id", async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    const result = await SaveCardService.getCharacter(id);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/effect/:id/:no?", async (req, res, next) => {
   const id = req.params.id;
   const no = req.params.no ? req.params.no : 0;
