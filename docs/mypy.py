@@ -1,20 +1,35 @@
-def B(a):
-    if(type(a) == "<class 'str'>"):
-        return a
-    else:
-        return 
+import sys, math
+sys.setrecursionlimit(10**9)
+input = sys.stdin.readline
 
+T = list(input())
+P = list(input())
 
-A = list(map(B,input().split()))
+N = len(T)-1
+M = len(P)-1
 
-A = input()
-print(type(A))
+table = [0 for _ in range(M)]
 
-["12345","12345","abcde"]
-(int("12345"), )
+j = 0
+for i in range(1, M):
+    while(j > 0 and P[i] != P[j]):
+        j = table[j-1]
+    if(P[i] == P[j]):
+        j+=1
+        table[i] = j
 
-#   12345\n
-#   12345\n
-#   abcde\n
-
-print(A)
+ans = []
+j = 0
+for i in range(N):
+    while(j > 0 and T[i] != P[j]):
+        j = table[j-1]
+    if T[i] == P[j]:
+        if j == M-1:
+            ans.append(i-M+2)
+            j = table[j]
+        else:
+            j+=1
+    
+print(len(ans))
+for i in ans:
+    print(i)

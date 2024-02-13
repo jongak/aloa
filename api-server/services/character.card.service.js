@@ -127,6 +127,7 @@ const CharacterCardService = {
             qualityValue: "", //품질
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           투구: {
             Name: "", //이름
@@ -140,6 +141,7 @@ const CharacterCardService = {
             Elixir01: { name: "", level: "" },
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           상의: {
             Name: "", //이름
@@ -153,6 +155,7 @@ const CharacterCardService = {
             Elixir01: { name: "", level: "" },
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           하의: {
             Name: "", //이름
@@ -166,6 +169,7 @@ const CharacterCardService = {
             Elixir01: { name: "", level: "" },
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           장갑: {
             Name: "", //이름
@@ -179,6 +183,7 @@ const CharacterCardService = {
             Elixir01: { name: "", level: "" },
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           어깨: {
             Name: "", //이름
@@ -192,6 +197,7 @@ const CharacterCardService = {
             Elixir01: { name: "", level: "" },
             SetName: "",
             SetLevel: "",
+            HighLevel: 0,
           },
           목걸이: {
             Name: "", //이름
@@ -349,6 +355,12 @@ const CharacterCardService = {
             data[sub][Type]["Icon"] = res[sub][element]["Icon"];
             data[sub][Type]["Grade"] = res[sub][element]["Grade"];
             const dat = JSON.parse(res[sub][i]["Tooltip"]);
+            Object.keys(dat).forEach((element_index, idx) => {
+              var element_value = dat[element_index]["value"];
+              if (typeof element_value == "string") {
+                1;
+              }
+            });
 
             if (
               ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
@@ -476,6 +488,14 @@ const CharacterCardService = {
             if (
               ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
             ) {
+              var isHigh = false;
+              if (
+                typeof dat[`Element_005`]["value"] == "string" &&
+                dat[`Element_005`]["value"].indexOf("상급 재련") != -1
+              ) {
+                isHigh = true;
+              }
+
               data[sub][Type]["qualityValue"] =
                 dat["Element_001"]["value"]["qualityValue"];
               if (Type != "무기") {
@@ -500,6 +520,9 @@ const CharacterCardService = {
                 dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["type"] ==
                   "IndentStringGroup"
               ) {
+                whereSet += 1;
+              }
+              if (isHigh) {
                 whereSet += 1;
               }
               var mySetOption =
@@ -529,6 +552,15 @@ const CharacterCardService = {
                     data[sub][Type]["SetName"]
                   ] = 1;
                 }
+              }
+              //TODO: 상위재련 이후 다른 스펙업 나올때 여기 확인해볼것
+
+              if (isHigh) {
+                data[sub][Type]["HighLevel"] = Number(
+                  dat[`Element_005`]["value"]
+                    .split("[상급 재련]</FONT> <FONT COLOR='#FFD200'>")[1]
+                    .split("</FONT>단계</FONT>")[0]
+                );
               }
             } else if (Type == "목걸이") {
               data[sub][Type]["qualityValue"] =

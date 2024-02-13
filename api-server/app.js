@@ -69,10 +69,27 @@ app.use("/api", (req, res, next) => {
   res.json({ error: { message: "404::존재하지 않는 API입니다." } });
 });
 
+// 언젠가 500에러가 안뜨게 해놨었는데 그걸 못찾아서 그냥 500에러뜨면 pm2 restart를 해줌
+// const pm2 = require("pm2");
+// function restartPM2() {
+//   pm2.connect(function (err) {
+//     if (err) {
+//       console.error(err);
+//       process.exit(2);
+//     }
+
+//     pm2.restart("aloa", function (err, proc) {
+//       pm2.disconnect();
+//       if (err) throw err;
+//     });
+//   });
+// }
+
 // 500 에러 처리
 app.use((err, req, res, next) => {
   console.error(err.stack);
   console.error(err.cause);
+  // restartPM2();
   res.json({
     error: {
       message: "500::요청을 처리할 수 없습니다. 잠시 후 다시 요청해 주세요.",
