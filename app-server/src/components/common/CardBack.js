@@ -233,6 +233,17 @@ const CardBack = function ({
                           }}
                         ></div>
                       </div>
+                      {item["HighLevel"] === 20 ? (
+                        <img
+                          id="back_equipment_high"
+                          src={`/assets/images/high20.png`}
+                        />
+                      ) : item["HighLevel"] >= 10 && item["HighLevel"] < 20 ? (
+                        <img
+                          id="back_equipment_high"
+                          src={`/assets/images/high10.png`}
+                        />
+                      ) : null}
                       {item["TransGrade"] ? (
                         <img
                           id="back_equipment_trans"

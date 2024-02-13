@@ -286,7 +286,13 @@
   .equipments
   ul
   li
-  #back_equipment_trans {
+  #back_equipment_high {
+  width: 46px;
+  position: absolute;
+  top: 38px;
+  left: -7px;
+}
+#back_equipment_trans {
   width: 48px;
   height: 36px;
   position: absolute;
