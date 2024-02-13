@@ -359,6 +359,72 @@ const CharacterCardService = {
               var element_value = dat[element_index]["value"];
               if (typeof element_value == "string") {
                 1;
+              } else if (
+                ["투구", "상의", "하의", "장갑", "어깨"].includes(Type)
+              ) {
+                Object.keys(element_value).forEach((element_index, idx) => {
+                  // console.log(element_value[element_index]);
+                  if (element_index == "Element_000") {
+                    var Tooltip = element_value[element_index]["topStr"];
+                    if (Tooltip) {
+                      if (Tooltip.indexOf("[초월]") != -1) {
+                        data[sub][Type]["TransGrade"] = Number(
+                          Tooltip.substr(
+                            Tooltip.indexOf("<FONT COLOR='#FFD200'>") + 22,
+                            1
+                          )
+                        );
+                        data[sub][Type]["TransLevel"] = Number(
+                          Tooltip.substr(Tooltip.indexOf("</img>") + 6)
+                        );
+                        transGrade += data[sub][Type]["TransGrade"];
+                        transLevel += data[sub][Type]["TransLevel"];
+                      } else if (Tooltip.indexOf("엘릭서 효과") != -1) {
+                        var ElixirTooltip =
+                          element_value[element_index]["contentStr"];
+                        if (ElixirTooltip) {
+                          const Elixir00Tooltip =
+                            ElixirTooltip["Element_000"][
+                              "contentStr"
+                            ].substring(4);
+                          data[sub][Type]["Elixir00"]["name"] =
+                            Elixir00Tooltip.substring(
+                              Elixir00Tooltip.indexOf("</FONT>") + 8,
+                              Elixir00Tooltip.indexOf(" <FONT color='#FFD200'>")
+                            );
+                          data[sub][Type]["Elixir00"]["level"] = Number(
+                            Elixir00Tooltip.substr(
+                              Elixir00Tooltip.indexOf(
+                                "<FONT color='#FFD200'>Lv."
+                              ) + 25,
+                              1
+                            )
+                          );
+                          elixirLevel += data[sub][Type]["Elixir00"]["level"];
+                        }
+                        const Elixir01Tooltip =
+                          ElixirTooltip["Element_001"]["contentStr"].substring(
+                            4
+                          );
+
+                        data[sub][Type]["Elixir01"]["name"] =
+                          Elixir01Tooltip.substring(
+                            Elixir01Tooltip.indexOf("</FONT>") + 8,
+                            Elixir01Tooltip.indexOf(" <FONT color='#FFD200'>")
+                          );
+                        data[sub][Type]["Elixir01"]["level"] = Number(
+                          Elixir01Tooltip.substr(
+                            Elixir01Tooltip.indexOf(
+                              "<FONT color='#FFD200'>Lv."
+                            ) + 25,
+                            1
+                          )
+                        );
+                        elixirLevel += data[sub][Type]["Elixir01"]["level"];
+                      }
+                    }
+                  }
+                });
               }
             });
 
@@ -377,85 +443,7 @@ const CharacterCardService = {
               if (data[sub][Type]["ItemGrade"] == 25) {
                 whereElixir -= 1;
               }
-              var TransTooltip =
-                dat[`Element_00${whereElixir - 1}`]["value"]["Element_000"];
-              var ElixirTooltip =
-                dat[`Element_00${whereElixir}`]["value"]["Element_000"];
 
-              if (
-                isTrans &&
-                (!TransTooltip ||
-                  !TransTooltip["topStr"] ||
-                  (TransTooltip["topStr"] &&
-                    TransTooltip["topStr"].indexOf("초월") == -1))
-              ) {
-                isTrans = false;
-                whereElixir -= 1;
-                ElixirTooltip = TransTooltip;
-                TransTooltip = undefined;
-              }
-
-              if (
-                isElixir &&
-                (!ElixirTooltip ||
-                  !ElixirTooltip["topStr"] ||
-                  (ElixirTooltip["topStr"] &&
-                    ElixirTooltip["topStr"].indexOf("엘릭서") == -1))
-              ) {
-                isElixir = false;
-                whereElixir -= 1;
-                ElixirTooltip = undefined;
-              }
-              if (isTrans) TransTooltip = TransTooltip["topStr"];
-
-              if (isTrans) {
-                data[sub][Type]["TransGrade"] = Number(
-                  TransTooltip.substr(
-                    TransTooltip.indexOf("<FONT COLOR='#FFD200'>") + 22,
-                    1
-                  )
-                );
-                data[sub][Type]["TransLevel"] = Number(
-                  TransTooltip.substr(TransTooltip.indexOf("</img>") + 6)
-                );
-                transGrade += data[sub][Type]["TransGrade"];
-                transLevel += data[sub][Type]["TransLevel"];
-              }
-              if (isElixir && ElixirTooltip["contentStr"]["Element_000"]) {
-                const Elixir00Tooltip =
-                  ElixirTooltip["contentStr"]["Element_000"][
-                    "contentStr"
-                  ].substring(4);
-
-                data[sub][Type]["Elixir00"]["name"] = Elixir00Tooltip.substring(
-                  Elixir00Tooltip.indexOf("</FONT>") + 8,
-                  Elixir00Tooltip.indexOf(" <FONT color='#FFD200'>")
-                );
-                data[sub][Type]["Elixir00"]["level"] = Number(
-                  Elixir00Tooltip.substr(
-                    Elixir00Tooltip.indexOf("<FONT color='#FFD200'>Lv.") + 25,
-                    1
-                  )
-                );
-                elixirLevel += data[sub][Type]["Elixir00"]["level"];
-              }
-              if (isElixir && ElixirTooltip["contentStr"]["Element_001"]) {
-                const Elixir01Tooltip =
-                  ElixirTooltip["contentStr"]["Element_001"][
-                    "contentStr"
-                  ].substring(4);
-                data[sub][Type]["Elixir01"]["name"] = Elixir01Tooltip.substring(
-                  Elixir01Tooltip.indexOf("</FONT>") + 8,
-                  Elixir01Tooltip.indexOf(" <FONT color='#FFD200'>")
-                );
-                data[sub][Type]["Elixir01"]["level"] = Number(
-                  Elixir01Tooltip.substr(
-                    Elixir01Tooltip.indexOf("<FONT color='#FFD200'>Lv.") + 25,
-                    1
-                  )
-                );
-                elixirLevel += data[sub][Type]["Elixir01"]["level"];
-              }
               if (
                 data[sub][Type]["Elixir00"]["name"] &&
                 data[sub][Type]["Elixir00"]["name"]

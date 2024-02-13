@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 const getDataCard = async function (id) {
   try {
     const res = await axios.get(`/character/carddata/${id}`);
-    console.log(res.data.data);
+    // console.log(res.data.data);
     if (res.data.ok) {
       return res.data.data;
     }
