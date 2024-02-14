@@ -128,6 +128,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           투구: {
             Name: "", //이름
@@ -142,6 +143,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           상의: {
             Name: "", //이름
@@ -156,6 +158,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           하의: {
             Name: "", //이름
@@ -170,6 +173,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           장갑: {
             Name: "", //이름
@@ -184,6 +188,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           어깨: {
             Name: "", //이름
@@ -198,6 +203,7 @@ const CharacterCardService = {
             SetName: "",
             SetLevel: "",
             HighLevel: 0,
+            ItemLevel: "",
           },
           목걸이: {
             Name: "", //이름
@@ -326,7 +332,6 @@ const CharacterCardService = {
         },
         Collectibles: {},
       };
-
       // Object.keys(res).forEach((sub) => {
       //   console.log(sub);
       // });
@@ -355,16 +360,27 @@ const CharacterCardService = {
             data[sub][Type]["Icon"] = res[sub][element]["Icon"];
             data[sub][Type]["Grade"] = res[sub][element]["Grade"];
             const dat = JSON.parse(res[sub][i]["Tooltip"]);
-            Object.keys(dat).forEach((element_index, idx) => {
-              var element_value = dat[element_index]["value"];
+            // 데이터 확인용
+            data[sub][Type]["aa"] = dat;
+
+            Object.keys(dat).forEach((element_idx) => {
+              var element_value = dat[element_idx]["value"];
               if (typeof element_value == "string") {
-                1;
-              } else if (
-                ["투구", "상의", "하의", "장갑", "어깨"].includes(Type)
-              ) {
-                Object.keys(element_value).forEach((element_index, idx) => {
-                  // console.log(element_value[element_index]);
-                  if (element_index == "Element_000") {
+                if (element_value.indexOf("상급 재련") != -1) {
+                  data[sub][Type]["HighLevel"] = Number(
+                    element_value
+                      .split("[상급 재련]</FONT> <FONT COLOR='#FFD200'>")[1]
+                      .split("</FONT>단계</FONT>")[0]
+                  );
+                }
+              } else {
+                Object.keys(element_value).forEach((element_index) => {
+                  if (
+                    ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(
+                      Type
+                    ) &&
+                    element_index == "Element_000"
+                  ) {
                     var Tooltip = element_value[element_index]["topStr"];
                     if (Tooltip) {
                       if (Tooltip.indexOf("[초월]") != -1) {
@@ -421,8 +437,132 @@ const CharacterCardService = {
                           )
                         );
                         elixirLevel += data[sub][Type]["Elixir01"]["level"];
+                      } else if (Tooltip.indexOf("연성 추가 효과") != -1) {
+                        if (Tooltip) {
+                          data[sub]["option"]["ElixirName"] = Tooltip.substring(
+                            Tooltip.indexOf("><FONT SIZE='12'") + 33,
+                            Tooltip.indexOf(")</FONT>") - 5
+                          );
+                        }
+                      }
+                    } else {
+                      // console.log(element_value[element_index]);
+                      if (
+                        element_value[element_index].indexOf(
+                          "세트 효과 레벨"
+                        ) != -1
+                      ) {
+                        var mySetOption = element_value["Element_001"];
+                        data[sub][Type]["SetName"] = mySetOption.split(
+                          " <FONT COLOR='#FFD200'>Lv."
+                        )[0];
+                        data[sub][Type]["SetLevel"] = Number(
+                          mySetOption.split(" <FONT COLOR='#FFD200'>Lv.")[1][0]
+                        );
+                        if (
+                          data[sub]["option"]["SetNames"][
+                            data[sub][Type]["SetName"]
+                          ]
+                        ) {
+                          data[sub]["option"]["SetNames"][
+                            data[sub][Type]["SetName"]
+                          ] += 1;
+                        } else {
+                          data[sub]["option"]["SetNames"][
+                            data[sub][Type]["SetName"]
+                          ] = 1;
+                        }
                       }
                     }
+                  }
+                  if (
+                    ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(
+                      Type
+                    ) &&
+                    element_index == "leftStr2"
+                  ) {
+                    Tooltip = element_value[element_index];
+                    data[sub][Type]["ItemLevel"] = Tooltip.substring(
+                      Tooltip.indexOf("<FONT SIZE='14'>아이템 레벨") + 23,
+                      Tooltip.indexOf("(티어 3)</FONT>") - 1
+                    );
+                  } else if (
+                    [
+                      "무기",
+                      "투구",
+                      "상의",
+                      "하의",
+                      "장갑",
+                      "어깨",
+                      "목걸이",
+                    ].includes(Type) &&
+                    element_index == "qualityValue"
+                  ) {
+                    data[sub][Type][element_index] =
+                      element_value[element_index];
+                    if (Type != "무기" && Type != "목걸이") {
+                      data[sub]["option"]["ArmourAvg"] +=
+                        element_value[element_index];
+                    }
+                    if (Type == "목걸이") {
+                      data[sub]["option"]["AccAvg"] +=
+                        element_value[element_index];
+                    }
+                  } else if (
+                    ["귀걸이", "반지"].includes(Type) &&
+                    element_index == "qualityValue"
+                  ) {
+                    var isExisted = 0;
+                    if (data[sub][Type][isExisted]["Name"]) {
+                      isExisted = 1;
+                    }
+
+                    data[sub][Type][isExisted]["Name"] =
+                      res[sub][element]["Name"];
+                    data[sub][Type][isExisted]["Icon"] =
+                      res[sub][element]["Icon"];
+                    data[sub][Type][isExisted]["Grade"] =
+                      res[sub][element]["Grade"];
+                    data[sub][Type][isExisted][element_index] =
+                      element_value[element_index];
+                    data[sub]["option"]["AccAvg"] +=
+                      element_value[element_index];
+
+                    const ringTooltip =
+                      dat["Element_005"]["value"]["Element_001"];
+                    data[sub][Type][isExisted]["Stats"][
+                      dat["Element_005"]["value"]["Element_001"].substring(
+                        0,
+                        ringTooltip.indexOf("+") - 1
+                      )
+                    ] = Number(ringTooltip.substr(ringTooltip.indexOf("+")));
+
+                    [0, 1, 2].forEach((j) => {
+                      if (
+                        !dat["Element_006"]["value"]["Element_000"] ||
+                        !dat["Element_006"]["value"]["Element_000"][
+                          "contentStr"
+                        ][`Element_00${j}`]
+                      ) {
+                        return false;
+                      }
+                      const myEngraving =
+                        dat["Element_006"]["value"]["Element_000"][
+                          "contentStr"
+                        ][`Element_00${j}`]["contentStr"];
+                      data[sub][Type][isExisted][`engravings0${j}`]["name"] =
+                        myEngraving.substring(
+                          myEngraving.indexOf("<FONT COLOR") + 22,
+                          myEngraving.indexOf("</FONT>")
+                        );
+                      data[sub][Type][isExisted][`engravings0${j}`]["level"] =
+                        Number(
+                          myEngraving.substr(
+                            myEngraving.indexOf("활성도 +") + 5,
+                            1
+                          )
+                        );
+                    });
                   }
                 });
               }
@@ -437,13 +577,6 @@ const CharacterCardService = {
             }
 
             if (["투구", "상의", "하의", "장갑", "어깨"].includes(Type)) {
-              var isTrans = true;
-              var isElixir = true;
-              var whereElixir = 9;
-              if (data[sub][Type]["ItemGrade"] == 25) {
-                whereElixir -= 1;
-              }
-
               if (
                 data[sub][Type]["Elixir00"]["name"] &&
                 data[sub][Type]["Elixir00"]["name"]
@@ -457,106 +590,6 @@ const CharacterCardService = {
               }
             }
 
-            if (Type == "투구" && isElixir) {
-              var myElixir = "";
-
-              myElixir =
-                dat[
-                  `Element_0${whereElixir + 1 > 9 ? "" : "0"}${whereElixir + 1}`
-                ]["value"]["Element_000"]["topStr"];
-
-              if (myElixir) {
-                data[sub]["option"]["ElixirName"] = myElixir.substring(
-                  myElixir.indexOf("><FONT SIZE='12'") + 33,
-                  myElixir.indexOf(")</FONT>") - 5
-                );
-              }
-            }
-
-            if (
-              ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)
-            ) {
-              var isHigh = false;
-              if (
-                typeof dat[`Element_005`]["value"] == "string" &&
-                dat[`Element_005`]["value"].indexOf("상급 재련") != -1
-              ) {
-                isHigh = true;
-              }
-
-              data[sub][Type]["qualityValue"] =
-                dat["Element_001"]["value"]["qualityValue"];
-              if (Type != "무기") {
-                data[sub]["option"]["ArmourAvg"] +=
-                  dat["Element_001"]["value"]["qualityValue"];
-              }
-
-              var whereSet = 8;
-              if (data[sub][Type]["ItemGrade"] == 25) {
-                whereSet -= 1;
-              }
-              if (Type != "무기") {
-                if (isElixir) {
-                  whereSet += 1;
-                }
-                if (isTrans) {
-                  whereSet += 1;
-                }
-              }
-              if (
-                ["투구", "장갑"].includes(Type) &&
-                dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["type"] ==
-                  "IndentStringGroup"
-              ) {
-                whereSet += 1;
-              }
-              if (isHigh) {
-                whereSet += 1;
-              }
-              var mySetOption =
-                dat[`Element_0${whereSet > 9 ? "" : "0"}${whereSet}`]["value"][
-                  "Element_001"
-                ];
-              if (!mySetOption) {
-                1;
-              } else if (Type == "무기" && mySetOption.indexOf("장갑") != -1) {
-                //에스더면
-                isEsdo = true;
-              } else {
-                data[sub][Type]["SetName"] = mySetOption.split(
-                  " <FONT COLOR='#FFD200'>Lv."
-                )[0];
-                data[sub][Type]["SetLevel"] = Number(
-                  mySetOption.split(" <FONT COLOR='#FFD200'>Lv.")[1][0]
-                );
-                if (
-                  data[sub]["option"]["SetNames"][data[sub][Type]["SetName"]]
-                ) {
-                  data[sub]["option"]["SetNames"][
-                    data[sub][Type]["SetName"]
-                  ] += 1;
-                } else {
-                  data[sub]["option"]["SetNames"][
-                    data[sub][Type]["SetName"]
-                  ] = 1;
-                }
-              }
-              //TODO: 상위재련 이후 다른 스펙업 나올때 여기 확인해볼것
-
-              if (isHigh) {
-                data[sub][Type]["HighLevel"] = Number(
-                  dat[`Element_005`]["value"]
-                    .split("[상급 재련]</FONT> <FONT COLOR='#FFD200'>")[1]
-                    .split("</FONT>단계</FONT>")[0]
-                );
-              }
-            } else if (Type == "목걸이") {
-              data[sub][Type]["qualityValue"] =
-                dat["Element_001"]["value"]["qualityValue"];
-              data[sub]["option"]["AccAvg"] +=
-                dat["Element_001"]["value"]["qualityValue"];
-            }
-
             if (Type == "목걸이") {
               const myStats =
                 dat["Element_005"]["value"]["Element_001"].split("<BR>");
@@ -568,51 +601,6 @@ const CharacterCardService = {
               });
             }
 
-            if (["귀걸이", "반지"].includes(Type)) {
-              var isExisted = 0;
-              if (data[sub][Type][isExisted]["Name"]) {
-                isExisted = 1;
-              }
-
-              data[sub][Type][isExisted]["Name"] = res[sub][element]["Name"];
-              data[sub][Type][isExisted]["Icon"] = res[sub][element]["Icon"];
-              data[sub][Type][isExisted]["Grade"] = res[sub][element]["Grade"];
-              data[sub][Type][isExisted]["qualityValue"] =
-                dat["Element_001"]["value"]["qualityValue"];
-              data[sub]["option"]["AccAvg"] +=
-                dat["Element_001"]["value"]["qualityValue"];
-
-              const ringTooltip = dat["Element_005"]["value"]["Element_001"];
-              data[sub][Type][isExisted]["Stats"][
-                dat["Element_005"]["value"]["Element_001"].substring(
-                  0,
-                  ringTooltip.indexOf("+") - 1
-                )
-              ] = Number(ringTooltip.substr(ringTooltip.indexOf("+")));
-
-              [0, 1, 2].forEach((j) => {
-                if (
-                  !dat["Element_006"]["value"]["Element_000"] ||
-                  !dat["Element_006"]["value"]["Element_000"]["contentStr"][
-                    `Element_00${j}`
-                  ]
-                ) {
-                  return false;
-                }
-                const myEngraving =
-                  dat["Element_006"]["value"]["Element_000"]["contentStr"][
-                    `Element_00${j}`
-                  ]["contentStr"];
-                data[sub][Type][isExisted][`engravings0${j}`]["name"] =
-                  myEngraving.substring(
-                    myEngraving.indexOf("<FONT COLOR") + 22,
-                    myEngraving.indexOf("</FONT>")
-                  );
-                data[sub][Type][isExisted][`engravings0${j}`]["level"] = Number(
-                  myEngraving.substr(myEngraving.indexOf("활성도 +") + 5, 1)
-                );
-              });
-            }
             if (["목걸이", "어빌리티 스톤"].includes(Type)) {
               var myEngravingList;
               if (dat["Element_006"]["value"]["Element_000"]) {

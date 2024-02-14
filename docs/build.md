@@ -19,6 +19,23 @@ $pm2 kill
 $sudo fuser -k 80/tcp
 ```
 
+#### 메모리 스왑 확인
+
+```
+free
+```
+
+메모리 확인
+
+```
+sudo dd if=/dev/zero of=/swapfile bs=128M count=16
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+```
+
+스왑 설정
+
 #### git pull
 
 현재 사용자가 root일 경우
