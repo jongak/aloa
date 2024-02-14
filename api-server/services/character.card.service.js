@@ -399,44 +399,50 @@ const CharacterCardService = {
                         var ElixirTooltip =
                           element_value[element_index]["contentStr"];
                         if (ElixirTooltip) {
-                          const Elixir00Tooltip =
-                            ElixirTooltip["Element_000"][
+                          if (ElixirTooltip["Element_000"]) {
+                            const Elixir00Tooltip =
+                              ElixirTooltip["Element_000"][
+                                "contentStr"
+                              ].substring(4);
+                            data[sub][Type]["Elixir00"]["name"] =
+                              Elixir00Tooltip.substring(
+                                Elixir00Tooltip.indexOf("</FONT>") + 8,
+                                Elixir00Tooltip.indexOf(
+                                  " <FONT color='#FFD200'>"
+                                )
+                              );
+                            data[sub][Type]["Elixir00"]["level"] = Number(
+                              Elixir00Tooltip.substr(
+                                Elixir00Tooltip.indexOf(
+                                  "<FONT color='#FFD200'>Lv."
+                                ) + 25,
+                                1
+                              )
+                            );
+                            elixirLevel += data[sub][Type]["Elixir00"]["level"];
+                          }
+                        }
+                        if (ElixirTooltip["Element_001"]) {
+                          const Elixir01Tooltip =
+                            ElixirTooltip["Element_001"][
                               "contentStr"
                             ].substring(4);
-                          data[sub][Type]["Elixir00"]["name"] =
-                            Elixir00Tooltip.substring(
-                              Elixir00Tooltip.indexOf("</FONT>") + 8,
-                              Elixir00Tooltip.indexOf(" <FONT color='#FFD200'>")
+
+                          data[sub][Type]["Elixir01"]["name"] =
+                            Elixir01Tooltip.substring(
+                              Elixir01Tooltip.indexOf("</FONT>") + 8,
+                              Elixir01Tooltip.indexOf(" <FONT color='#FFD200'>")
                             );
-                          data[sub][Type]["Elixir00"]["level"] = Number(
-                            Elixir00Tooltip.substr(
-                              Elixir00Tooltip.indexOf(
+                          data[sub][Type]["Elixir01"]["level"] = Number(
+                            Elixir01Tooltip.substr(
+                              Elixir01Tooltip.indexOf(
                                 "<FONT color='#FFD200'>Lv."
                               ) + 25,
                               1
                             )
                           );
-                          elixirLevel += data[sub][Type]["Elixir00"]["level"];
+                          elixirLevel += data[sub][Type]["Elixir01"]["level"];
                         }
-                        const Elixir01Tooltip =
-                          ElixirTooltip["Element_001"]["contentStr"].substring(
-                            4
-                          );
-
-                        data[sub][Type]["Elixir01"]["name"] =
-                          Elixir01Tooltip.substring(
-                            Elixir01Tooltip.indexOf("</FONT>") + 8,
-                            Elixir01Tooltip.indexOf(" <FONT color='#FFD200'>")
-                          );
-                        data[sub][Type]["Elixir01"]["level"] = Number(
-                          Elixir01Tooltip.substr(
-                            Elixir01Tooltip.indexOf(
-                              "<FONT color='#FFD200'>Lv."
-                            ) + 25,
-                            1
-                          )
-                        );
-                        elixirLevel += data[sub][Type]["Elixir01"]["level"];
                       } else if (Tooltip.indexOf("연성 추가 효과") != -1) {
                         if (Tooltip) {
                           data[sub]["option"]["ElixirName"] = Tooltip.substring(
