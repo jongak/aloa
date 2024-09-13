@@ -14,7 +14,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 
-var indexRouter = require("./routes/index");
+var indexRouter = require("./handler/index");
 
 var app = express();
 
@@ -30,43 +30,43 @@ app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 app.use(cors());
 app.use("/api", indexRouter);
 
-var proxy = require("html2canvas-proxy");
-const request = require("request");
+// var proxy = require("html2canvas-proxy");
+// const request = require("request");
 
-app.use("/api", proxy(), (req, res, next) => {
-  // 프록시 서버 미들웨어
-  switch (req.query.responseType) {
-    case "blob":
-      req.pipe(request(req.query.url).on("error", next)).pipe(res);
-      break;
-    case "text":
-    default:
-      request(
-        { url: req.query.url, encoding: "binary" },
-        (error, response, body) => {
-          if (error) {
-            return next(error);
-          }
-          res.send(
-            `
-            data:${response.headers["content-type"]}; base64,
-            ${Buffer.from(body, "binary").toString("base64")}`
-          );
-        }
-      );
-      break;
-  }
-});
-
-// React용 fallback 추가
-app.use("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
-});
+// app.use("/api", proxy(), (req, res, next) => {
+//   // 프록시 서버 미들웨어
+//   switch (req.query.responseType) {
+//     case "blob":
+//       req.pipe(request(req.query.url).on("error", next)).pipe(res);
+//       break;
+//     case "text":
+//     default:
+//       request(
+//         { url: req.query.url, encoding: "binary" },
+//         (error, response, body) => {
+//           if (error) {
+//             return next(error);
+//           }
+//           res.send(
+//             `
+//             data:${response.headers["content-type"]}; base64,
+//             ${Buffer.from(body, "binary").toString("base64")}`
+//           );
+//         }
+//       );
+//       break;
+//   }
+// });
 
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
   console.error(404, req.url);
   res.json({ error: { message: "404::존재하지 않는 API입니다." } });
+});
+
+// React용 fallback 추가
+app.use("/", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
 });
 
 // 언젠가 500에러가 안뜨게 해놨었는데 그걸 못찾아서 그냥 500에러뜨면 pm2 restart를 해줌
@@ -87,12 +87,13 @@ app.use("/api", (req, res, next) => {
 
 // 500 에러 처리
 app.use((err, req, res, next) => {
-  console.error(err.stack);
+  // console.error(err.stack);
   console.error(err.cause);
   // restartPM2();
+
   res.json({
     error: {
-      message: "500::요청을 처리할 수 없습니다. 잠시 후 다시 요청해 주세요.",
+      message: `500::${err.cause}`,
     },
   });
 });

@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
 
-const CharacterService = require("../services/character.service");
-const CharacterCardService = require("../services/character.card.service");
+const CharacterService = require("../oldServices/character.service");
+const CharacterCardService = require("../oldServices/character.card.service");
 
 router.get("/:name", async (req, res, next) => {
   const characterName = req.params.name;

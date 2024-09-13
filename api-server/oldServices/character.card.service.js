@@ -1,5 +1,5 @@
-const pool = require("../models/pool");
-const CharacterModel = require("../models/character.model");
+const pool = require("../repo/pool");
+const CharacterModel = require("../oldModels/character.model");
 
 const isJob = function (value) {
   const il = [

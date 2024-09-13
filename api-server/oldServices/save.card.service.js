@@ -1,6 +1,6 @@
-const pool = require("../models/pool");
-const SaveCardModel = require("../models/save.card.model");
-const TableModel = require("../models/db.table.model");
+const pool = require("../oldModels/pool");
+const SaveCardModel = require("../oldModels/save.card.model");
+const TableModel = require("../oldModels/db.table.model");
 require("date-utils");
 
 const SaveCardService = {

@@ -1,5 +1,5 @@
-const LoginModel = require("../models/user.LoginModel");
-const pool = require("../models/pool");
+const LoginModel = require("../oldModels/user.LoginModel");
+const pool = require("../oldModels/pool");
 require("date-utils");
 
 const UserService = {

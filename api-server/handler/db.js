@@ -1,5 +1,5 @@
 var express = require("express");
-const DbService = require("../services/db.table.service");
+const DbService = require("../oldServices/db.table.service");
 var router = express.Router();
 
 // 인증번호받기

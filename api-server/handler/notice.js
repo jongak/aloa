@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const NoticeService = require("../services/notice.service");
+const NoticeService = require("../oldServices/notice.service");
 const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 
 router.get("/list/:no?", async (req, res, next) => {

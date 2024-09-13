@@ -1,5 +1,5 @@
-const TableModel = require("../models/db.table.model");
-const pool = require("../models/pool");
+const TableModel = require("../oldModels/db.table.model");
+const pool = require("../oldModels/pool");
 require("date-utils");
 
 const DbService = {

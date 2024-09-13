@@ -1,5 +1,5 @@
-const pool = require("../models/pool");
-const noticeModel = require("../models/notice.model");
+const pool = require("../oldModels/pool");
+const noticeModel = require("../oldModels/notice.model");
 
 const NoticeService = {
   async getNotice(no, max_num) {

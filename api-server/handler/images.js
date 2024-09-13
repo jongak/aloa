@@ -10,9 +10,8 @@ const {
   DeleteObjectCommand,
 } = require("@aws-sdk/client-s3");
 var fs = require("fs");
-const CardInputModel = require("../models/card.input.model");
-const SaveCardModel = require("../models/save.card.model");
-const SaveCardService = require("../services/save.card.service");
+const SaveCardModel = require("../oldModels/save.card.model");
+const SaveCardService = require("../oldServices/save.card.service");
 const timeout = require("connect-timeout");
 
 const Mytimeout = timeout("10s");
