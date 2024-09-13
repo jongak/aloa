@@ -1,35 +1,18 @@
-import sys, math
-sys.setrecursionlimit(10**9)
-input = sys.stdin.readline
+from scipy.optimize import fsolve
 
-T = list(input())
-P = list(input())
+def f(x, y):
+    return 2 * x ** 3 + y ** 3 + x * y - 6
 
-N = len(T)-1
-M = len(P)-1
+def g(x, y):
+    return x ** 3 - y ** 3 + x * y - 4
 
-table = [0 for _ in range(M)]
+# 초기 추정치 설정
+initial_guess = [1, 1]
 
-j = 0
-for i in range(1, M):
-    while(j > 0 and P[i] != P[j]):
-        j = table[j-1]
-    if(P[i] == P[j]):
-        j+=1
-        table[i] = j
+# 연립 방정식의 해를 찾기 위해 fsolve 함수 사용
+solution = fsolve(lambda xy: [f(xy[0], xy[1]), g(xy[0], xy[1])], initial_guess)
 
-ans = []
-j = 0
-for i in range(N):
-    while(j > 0 and T[i] != P[j]):
-        j = table[j-1]
-    if T[i] == P[j]:
-        if j == M-1:
-            ans.append(i-M+2)
-            j = table[j]
-        else:
-            j+=1
-    
-print(len(ans))
-for i in ans:
-    print(i)
+print("x =", solution[0])
+print("y =", solution[1])
+
+print(f(1.4195854493300972,0.3890631854729336))
