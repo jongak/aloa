@@ -4,10 +4,11 @@ class CharacterGetCharacterInfoModel extends Copyable {
   constructor(data) {
     super();
     this.ArmoryProfile = new ArmoryProfile(data.ArmoryProfile);
-    this.ArmoryEquipment = new ArmoryEquipment(data.ArmoryEquipment);
-    this.ArmoryEngraving = new ArmoryEngraving(data.ArmoryEngraving);
+    this.ArmoryEquipment = new ArmoryEquipment(data.parseArmoryEquipment);
+    this.ArmoryEngraving = new ArmoryEngraving(data.parseArmoryEngraving);
+    this.ArmoryGem = new ArmoryGem(data.parseArmoryGem);
     this.ArmoryCard = new ArmoryCard(data.parseArmoryCard);
-    this.ArmoryGem = new ArmoryGem(data.ArmoryGem);
+    this.ArkPassive = new ArkPassive(data.parseArkPassive);
   }
 }
 
@@ -75,15 +76,21 @@ class ArmoryProfile extends Copyable {
 class ArmoryEquipment extends Copyable {
   constructor(data) {
     super();
+    this.전체_초월_등급 = data.전체_초월_등급;
+    this.전체_초월_레벨 = data.전체_초월_레벨;
+    this.엘릭서_효과 = data.엘릭서_효과;
+    this.엘릭서_레벨 = data.엘릭서_레벨;
+    this.방어구_품질 = data.방어구_품질;
+    this.악세_품질 = data.악세_품질;
+    this.악세 = data.악세;
+    this.장비 = data.장비;
   }
 }
 
 class ArmoryEngraving extends Copyable {
   constructor(data) {
     super();
-    this.ArkPassiveEffects = this._parseArkPassiveEffects(
-      data.ArkPassiveEffects
-    );
+    this.ArkPassiveEffects = this._parseArkPassiveEffects(data);
   }
 
   _parseArkPassiveEffects(arr) {
@@ -97,6 +104,25 @@ class ArmoryEngraving extends Copyable {
   }
 }
 
+class ArmoryGem extends Copyable {
+  constructor(data) {
+    super();
+    this.option = data.option;
+    // option: {
+    //       TenGup: 0,
+    //       TenJak: 0,
+    //       GupLevel: 0,
+    //       MeulNum: 0,
+    //       HongLevel: 0,
+    //       HongNum: 0,
+    //       level: 0,
+    //       num: 0,
+    //     }
+    this.Gems = data.Gems;
+    // Gems: [{ name: 0, isGup: 0, isMeul: 0, isJak: 0, isHong: 0, level: 0 }];
+  }
+}
+
 class ArmoryCard extends Copyable {
   constructor(data) {
     super();
@@ -106,12 +132,12 @@ class ArmoryCard extends Copyable {
   }
 }
 
-class ArmoryGem extends Copyable {
+class ArkPassive extends Copyable {
   constructor(data) {
     super();
-    this.Cards = data.Cards;
-    this.AwakeCount = data.AwakeCount;
-    this.AwakeName = data.AwakeName;
+    this.진화 = data.진화;
+    this.깨달음 = data.깨달음;
+    this.도약 = data.도약;
   }
 }
 

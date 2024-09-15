@@ -482,6 +482,7 @@ const CharacterCardService = {
                     }
                   }
                   if (
+                    // TODO:
                     ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(
                       Type
                     ) &&

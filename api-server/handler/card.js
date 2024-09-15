@@ -22,6 +22,10 @@ router.get("/characterInfo/:name", hCardCharacterInfo);
 // api/card/characterInfoRaw/:name
 router.get("/characterInfoRaw/:name", hCardCharacterInfoRaw);
 
+// 캐릭터명으로 아크패시브 여부 검색
+// api/card/isArkPassive/:name
+router.get("/isArkPassive/:name", hCardIsArkPassive);
+
 //=====================핸들러======================
 //=================================================
 
@@ -69,6 +73,18 @@ async function hCardCharacterInfoRaw(req, res, next) {
   const characterName = req.params.name;
   try {
     const result = await CharacterService.getCharacterInfoRaw(characterName);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// 캐릭터명으로 아크패시브 여부 검색
+// api/card/isArkPassive/:name
+async function hCardIsArkPassive(req, res, next) {
+  const characterName = req.params.name;
+  try {
+    const result = await CharacterService.isArkPassive(characterName);
     res.json(result);
   } catch (err) {
     next(err);
