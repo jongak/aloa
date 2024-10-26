@@ -1,5 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { setCharacterId } from "../../store/itemSlice";
 
 const change = {
   기상술사: "aeromancer",
@@ -40,18 +42,33 @@ const change = {
 };
 
 const UserItem = function (props) {
-  const { characterNameRef, character } = props;
-  const { CharacterClassName, CharacterLevel, CharacterName, ItemMaxLevel } =
-    character;
-  const isDark = useSelector((state) => state.mainSlice.isDark);
+  const { character } = props;
+  const {
+    CharacterClassName,
+    CharacterLevel,
+    CharacterName,
+    ItemMaxLevel,
+    isArkPassive,
+  } = character;
+  const isDark = useSelector((state) => state.isDark);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const onClickButtonChange = () => {
-    characterNameRef.current = CharacterName;
-    navigate("./select");
+    if (isArkPassive) {
+      dispatch(setCharacterId({ newCharacterId: CharacterName }));
+      navigate("./select");
+    } else {
+      toast.error("아크패시브가 켜진 캐릭터만 이용가능합니다.");
+    }
   };
 
   return (
-    <div className="my-card userItem ripple" onClick={onClickButtonChange}>
+    <div
+      className={`my-card userItem ripple ${
+        isArkPassive ? "cursor-pointer arkPassive" : ""
+      }`}
+      onClick={onClickButtonChange}
+    >
       <div
         className="my-card-img class"
         style={{
@@ -62,7 +79,9 @@ const UserItem = function (props) {
       />
 
       <div className="my-card-body">
-        <p className="my-card-title">{CharacterName}</p>
+        <p className="my-card-title">
+          {CharacterName} {isArkPassive ? <>아크패시브</> : <></>}
+        </p>
         <p className="my-card-text">{CharacterClassName}</p>
         <p className="my-card-text">{CharacterLevel}</p>
         <p className="my-card-text">{ItemMaxLevel}</p>

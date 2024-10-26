@@ -3,30 +3,30 @@ import { useEffect, useRef, useState } from "react";
 import LootCard from "../../components/common/LootCard";
 import CardFront from "../../components/common/CardFront";
 import CardBack from "../../components/common/CardBack";
-import { Outlet, useNavigate } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../../store/itemSlice";
+import { setCharacterId, setUserData } from "../../store/itemSlice";
 import saveAs from "file-saver";
 import { toast } from "react-toastify";
 
 const getDataCard = async function (id) {
   try {
-    const res = await axios.get(`/character/carddata/${id}`);
-    console.log(res.data.data);
-    if (res.data.ok) {
-      return res.data.data;
-    }
-    return;
+    const res = await axios.get(`/card/characterInfo/${id}`);
+    console.log(res.data);
+    return res.data;
   } catch (err) {
     console.error(err);
   }
 };
 
 const capture = function () {
+  //10.26 작성
+  const location = useLocation();
+  const characterId = useSelector((state) => state.characterId);
+
   const frontRef = useRef(null);
   const backRef = useRef(null);
-  const [page, setPage] = useState("find");
   const [frontCanvasRef, setFrontCanvasRef] = useState();
   const [backCanvasRef, setBackCanvasRef] = useState();
   const [isLoading, setIsLoading] = useState(false);
@@ -54,17 +54,18 @@ const capture = function () {
   const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
   const shadowOptionColors = useRef(["#6dd5ed", "#2193b0"]);
   useEffect(() => {
-    if (characterNameRef.current) {
-      getDataCard(characterNameRef.current).then((res) => {
-        dispatch(setUserData({ newUserData: res }));
+    if (characterId && characterId != "") {
+      getDataCard(characterId).then((res) => {
         if (!res) {
           toast.error("서버에 문제가 생겼습니다.");
-          characterNameRef.current = "";
+          dispatch(setCharacterId({ newCharacterId: "" }));
           navigate("./");
+        } else {
+          dispatch(setUserData({ newUserData: res }));
         }
       });
     }
-  }, [characterNameRef.current]);
+  }, [characterId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -101,96 +102,96 @@ const capture = function () {
     }
   }, [isLoading, isChanged, frontItems, frontIcons, optionItems]);
 
-  const handleFrontDown = async () => {
-    frontCanvasRef.toBlob(function (blob) {
-      saveAs(blob, "CardFront.png");
-    });
-  };
-  const handleBackDown = async () => {
-    backCanvasRef.toBlob(function (blob) {
-      if (blob !== null) {
-        saveAs(blob, "CardBack.png");
-      }
-    });
-  };
+  // const handleFrontDown = async () => {
+  //   frontCanvasRef.toBlob(function (blob) {
+  //     saveAs(blob, "CardFront.png");
+  //   });
+  // };
+  // const handleBackDown = async () => {
+  //   backCanvasRef.toBlob(function (blob) {
+  //     if (blob !== null) {
+  //       saveAs(blob, "CardBack.png");
+  //     }
+  //   });
+  // };
 
-  const handleServer = async () => {
-    try {
-      const res1 = await axios.get(
-        "/images/isMkOk/" + characterNameRef.current
-      );
+  // const handleServer = async () => {
+  //   try {
+  //     const res1 = await axios.get(
+  //       "/images/isMkOk/" + characterNameRef.current
+  //     );
 
-      if (!res1.data) {
-        toast.error(`하루에 한번만 가능합니다.`);
-        navigate("../capture");
-        return;
-      }
+  //     if (!res1.data) {
+  //       toast.error(`하루에 한번만 가능합니다.`);
+  //       navigate("../capture");
+  //       return;
+  //     }
 
-      const frontBlob = await new Promise((resolve) => {
-        frontCanvasRef.toBlob(resolve);
-      });
+  //     const frontBlob = await new Promise((resolve) => {
+  //       frontCanvasRef.toBlob(resolve);
+  //     });
 
-      const backBlob = await new Promise((resolve) => {
-        backCanvasRef.toBlob(resolve);
-      });
+  //     const backBlob = await new Promise((resolve) => {
+  //       backCanvasRef.toBlob(resolve);
+  //     });
 
-      const formData = new FormData();
-      let card_effect = JSON.stringify({
-        rarityPreset: rarityPreset,
-        holographicOptions:
-          rarityPreset === "custom" && isHolo
-            ? {
-                glow: isGlow,
-                color1: holographicOptionColors.current[0],
-                color2: holographicOptionColors.current[1],
-                color3: holographicOptionColors.current[2],
-                color4: holographicOptionColors.current[3],
-                color5: holographicOptionColors.current[4],
-              }
-            : null,
-        shineOptions:
-          rarityPreset === "custom" && isShine
-            ? {
-                color1: shineOptionColors.current[0],
-                color2: shineOptionColors.current[1],
-              }
-            : null,
-        shadowOptions:
-          rarityPreset === "custom" && isShadow
-            ? {
-                default: {
-                  color1: shadowOptionColors.current[0],
-                  color2: shadowOptionColors.current[1],
-                },
-                hover: {
-                  color1: shadowOptionColors.current[0],
-                  color2: shadowOptionColors.current[1],
-                },
-              }
-            : null,
-      });
+  //     const formData = new FormData();
+  //     let card_effect = JSON.stringify({
+  //       rarityPreset: rarityPreset,
+  //       holographicOptions:
+  //         rarityPreset === "custom" && isHolo
+  //           ? {
+  //               glow: isGlow,
+  //               color1: holographicOptionColors.current[0],
+  //               color2: holographicOptionColors.current[1],
+  //               color3: holographicOptionColors.current[2],
+  //               color4: holographicOptionColors.current[3],
+  //               color5: holographicOptionColors.current[4],
+  //             }
+  //           : null,
+  //       shineOptions:
+  //         rarityPreset === "custom" && isShine
+  //           ? {
+  //               color1: shineOptionColors.current[0],
+  //               color2: shineOptionColors.current[1],
+  //             }
+  //           : null,
+  //       shadowOptions:
+  //         rarityPreset === "custom" && isShadow
+  //           ? {
+  //               default: {
+  //                 color1: shadowOptionColors.current[0],
+  //                 color2: shadowOptionColors.current[1],
+  //               },
+  //               hover: {
+  //                 color1: shadowOptionColors.current[0],
+  //                 color2: shadowOptionColors.current[1],
+  //               },
+  //             }
+  //           : null,
+  //     });
 
-      formData.append("image", frontBlob, `loaf.png`);
-      formData.append("image", backBlob, `loab.png`);
-      formData.append("game", "loa");
-      formData.append("character_id", characterNameRef.current);
-      formData.append("card_effect", card_effect);
-      const res = await axios.post("/images", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+  //     formData.append("image", frontBlob, `loaf.png`);
+  //     formData.append("image", backBlob, `loab.png`);
+  //     formData.append("game", "loa");
+  //     formData.append("character_id", characterNameRef.current);
+  //     formData.append("card_effect", card_effect);
+  //     const res = await axios.post("/images", formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
 
-      if (res.data.ok) {
-        // console.log("Images uploaded:", res.data.data);
-        toast.success(`서버에 저장 완료`);
-        navigate("../cards/" + characterNameRef.current);
-      }
-    } catch (error) {
-      // console.error("Error uploading images:", error);
-      toast.error(`서버에 저장 실패`);
-    }
-  };
+  //     if (res.data.ok) {
+  //       // console.log("Images uploaded:", res.data.data);
+  //       toast.success(`서버에 저장 완료`);
+  //       navigate("../cards/" + characterNameRef.current);
+  //     }
+  //   } catch (error) {
+  //     // console.error("Error uploading images:", error);
+  //     toast.error(`서버에 저장 실패`);
+  //   }
+  // };
   const setOptionStates = {
     isChanged,
     holographicOptionColors,
@@ -200,29 +201,55 @@ const capture = function () {
     // holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
-  const shareCardActions = { handleFrontDown, handleBackDown, handleServer };
+  // const shareCardActions = { handleFrontDown, handleBackDown, handleServer };
 
   return (
     <div className="main-banner container">
+      <div className="debug">
+        <div
+          onClick={() => {
+            console.log(location.pathname);
+          }}
+        >
+          {characterId}
+        </div>
+      </div>
       <div className="row justify-content-center">
         <div className="option-area col-md-7">
           <div className="progress">
             <div className="inner">
-              <div className={`dot-wrapper ${page == "find" ? "active" : ""}`}>
+              <div
+                className={`dot-wrapper ${
+                  location.pathname == "/capture" ||
+                  location.pathname == "/capture/"
+                    ? "active"
+                    : ""
+                }`}
+              >
                 <div className="dot"></div>
                 <span className="step-text">캐릭터 고르기</span>
               </div>
               <div
-                className={`dot-wrapper ${page == "select" ? "active" : ""}`}
+                className={`dot-wrapper ${
+                  location.pathname == "/capture/select" ? "active" : ""
+                }`}
               >
                 <div className="dot"></div>
                 <span className="step-text">내용 정하기</span>
               </div>
-              <div className={`dot-wrapper ${page == "set" ? "active" : ""}`}>
+              <div
+                className={`dot-wrapper ${
+                  location.pathname == "/capture/set" ? "active" : ""
+                }`}
+              >
                 <div className="dot"></div>
                 <span className="step-text">카드 효과</span>
               </div>
-              <div className={`dot-wrapper ${page == "share" ? "active" : ""}`}>
+              <div
+                className={`dot-wrapper ${
+                  location.pathname == "/capture/share" ? "active" : ""
+                }`}
+              >
                 <div className="dot"></div>
                 <span className="step-text">공유 하기</span>
               </div>
@@ -232,41 +259,37 @@ const capture = function () {
 
           <Outlet
             context={{
-              setPage,
               characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
-              ...shareCardActions,
+              // ...shareCardActions,
             }}
           />
         </div>
+
         <div style={{ position: "absolute" }}>
           <CardFront
-            characterNameRef={characterNameRef}
             divRef={frontRef}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
               left: "-3000px",
-              // left: "600px",
+              // right: "-100px",
               // zIndex: 1000,
             }}
           />
           <CardBack
-            characterNameRef={characterNameRef}
             divRef={backRef}
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
               left: "-3000px",
-              // left: "600px",
+              // left: "900px",
               // zIndex: 1000,
             }}
           />
         </div>
-
         <div className="card-area col-md-5 ">
-          {/* {cardImgMemo} */}
           <div className="card-view">
             <LootCard
               img={"/assets/images/card_example_f.png"}

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setIsThemaOpen, setThema } from "../../store/mainSlice";
+import { setThema } from "../../store/mainSlice";
 
 const ThemaToggle = function (props) {
   const { options } = props;

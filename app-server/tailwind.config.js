@@ -1,9 +1,9 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  prefix: "tw-",
-  content: ["./public/index.{html,js}", "./src/*/.{js,jsx,ts,tsx}"],
-  /*theme: {
+  content: [
+    "./src/**/*.{html,js,jsx,ts,tsx}", // Tailwind가 적용될 파일 경로를 명시
+  ],
+  theme: {
     extend: {},
   },
-  plugins: [],*/
+  plugins: [],
 };

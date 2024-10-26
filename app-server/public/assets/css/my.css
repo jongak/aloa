@@ -173,6 +173,10 @@ iframe,
 .App * {
   transition: all 0.3s;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
 /* 
 ---------------------------------------------
 Header Style
@@ -1484,7 +1488,7 @@ button
 
 .my_button.notClicked a,
 .my_button.notClicked a:hover {
-  cursor: auto;
+  cursor: not-allowed;
   background-color: var(--my--button--hover--background);
   color: var(--my--button--hover--color);
   border: 0px solid var(--my--button--hover--border);
@@ -1492,7 +1496,7 @@ button
 
 .my_button_rev.notClicked a,
 .my_button_rev.notClicked a:hover {
-  cursor: auto;
+  cursor: not-allowed;
   background-color: var(--my--button--hover--background);
   color: var(--my--button--hover--color);
   border: 0px solid var(--my--button--hover--border);
@@ -1531,7 +1535,7 @@ card
 .my-card {
   /* border: 1px solid var(--my--heading); */
   margin: 1%;
-  cursor: pointer;
+  /* cursor: pointer; */
   /* width: 25%; */
   display: inline-block;
   position: relative;
@@ -1544,6 +1548,10 @@ card
   left: 14px;
   top: 16px;
   background-size: cover;
+}
+
+.my-card.arkPassive .my-card-body {
+  border: 1px solid var(--my--thema);
 }
 
 .my-card-body {

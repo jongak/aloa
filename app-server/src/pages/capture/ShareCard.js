@@ -4,15 +4,10 @@ import { useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import CopyToClipboard from "react-copy-to-clipboard";
 import ToggleButton from "../../components/common/ToggleButton";
+import { useSelector } from "react-redux";
 
 const ShareCard = function () {
-  const {
-    setPage,
-    handleFrontDown,
-    handleBackDown,
-    handleServer,
-    characterNameRef,
-  } = useOutletContext();
+  const { handleFrontDown, handleBackDown, handleServer } = useOutletContext();
   const navigate = useNavigate();
 
   const copyLinkRef = useRef({ value: "" });
@@ -21,12 +16,11 @@ const ShareCard = function () {
   const frontURL = useRef({ value: "" });
   const backURL = useRef({ value: "" });
 
-  if (!characterNameRef.current) {
+  const characterId = useSelector((state) => state.itemSlice.characterId);
+
+  if (!characterId || characterId == "") {
     navigate("../");
   }
-  useEffect(() => {
-    setPage("share");
-  }, []);
 
   const openPdfInNewTab = () => {
     const newWindow = window.open(
@@ -107,9 +101,7 @@ const ShareCard = function () {
           <input
             className="form-control"
             ref={copyLinkRef}
-            value={
-              process.env.REACT_APP_SERVER + "cards/" + characterNameRef.current
-            }
+            value={process.env.REACT_APP_SERVER + "cards/" + characterId}
             onChange={() => {}}
           ></input>
           <CopyToClipboard
@@ -135,15 +127,15 @@ const ShareCard = function () {
             type="text"
             ref={copyHTMLRef}
             value={
-              `<a href='${process.env.REACT_APP_SERVER}cards/${characterNameRef.current}'> ` +
+              `<a href='${process.env.REACT_APP_SERVER}cards/${characterId}'> ` +
               `<img ` +
               `loading='lazy' ` +
-              `src='${process.env.REACT_APP_API_SERVER}/images/front/${characterNameRef.current}' ` +
+              `src='${process.env.REACT_APP_API_SERVER}/images/front/${characterId}' ` +
               `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
               `/> ` +
               `<img ` +
               `loading='lazy' ` +
-              `src='${process.env.REACT_APP_API_SERVER}/images/back/${characterNameRef.current}' ` +
+              `src='${process.env.REACT_APP_API_SERVER}/images/back/${characterId}' ` +
               `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
               `/> ` +
               `</a> ` +

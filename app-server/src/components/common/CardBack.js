@@ -83,7 +83,6 @@ const equipGrade = {
 };
 
 const CardBack = function ({
-  characterNameRef,
   setIsLoading,
   style,
   divRef,
@@ -94,7 +93,8 @@ const CardBack = function ({
   const isName = useSelector((state) => state.itemSlice.isName);
   const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const optionItems = useSelector((state) => state.itemSlice.optionItems);
-  if (!userData || !userData["ArmoryProfile"]) {
+  const tr = true;
+  if (tr || !userData || !userData["ArmoryProfile"]) {
     return;
   }
 
@@ -121,9 +121,9 @@ const CardBack = function ({
               <div className="stats">
                 <div className="mycol-20 back_stats_bg">
                   <span id="back_characterlevel">
-                    {userData && userData["ArmoryEngraving"]["JobEffects"][0]
+                    {userData && userData["ArmoryEngraving"]["JobEffects"]?.[0]
                       ? changeJobEng[
-                          userData["ArmoryEngraving"]["JobEffects"][0]["Name"]
+                          userData["ArmoryEngraving"]["JobEffects"]?.[0]["Name"]
                         ]
                       : "-"}
                   </span>
@@ -261,9 +261,9 @@ const CardBack = function ({
                   {userData && userData["ArmoryEquipment"]
                     ? [
                         userData["ArmoryEquipment"]["목걸이"],
-                        userData["ArmoryEquipment"]["귀걸이"][0],
+                        userData["ArmoryEquipment"]["귀걸이"]?.[0],
                         userData["ArmoryEquipment"]["귀걸이"][1],
-                        userData["ArmoryEquipment"]["반지"][0],
+                        userData["ArmoryEquipment"]["반지"]?.[0],
                         userData["ArmoryEquipment"]["반지"][1],
                       ].map((item) => (
                         <li key={item.Name + Math.floor(Math.random() * 10000)}>

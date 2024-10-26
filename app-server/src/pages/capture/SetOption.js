@@ -20,20 +20,15 @@ const SetOption = function () {
     shadowOptionColors,
     imgSrcRef,
     holoSrcRef,
-    setPage,
-    characterNameRef,
   } = useOutletContext();
+  const characterId = useSelector((state) => state.itemSlice.characterId);
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  if (!characterNameRef.current) {
+  if (!characterId || characterId == "") {
     navigate("../");
   }
-  useEffect(() => {
-    setPage("set");
-  }, []);
-
   return (
     <div className="option-body set">
       <h3>03. 카드 효과</h3>

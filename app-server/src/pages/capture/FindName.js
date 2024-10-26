@@ -6,47 +6,28 @@ import UserItem from "../../components/item/UserItem";
 import { toast } from "react-toastify";
 
 const serverList = [
-  "Lupeon",
-  "Kadan",
-  "Karmian",
-  "Silian",
-  "Aman",
-  "Kazeros",
-  "Avrelsud",
-  "Ninave",
+  "루페온",
+  "카단",
+  "카마인",
+  "실리안",
+  "아만",
+  "카제로스",
+  "아브렐슈드",
+  "니나브",
 ];
-
-const serverKor = {
-  Lupeon: "루페온",
-  Kadan: "카단",
-  Karmian: "카마인",
-  Silian: "실리안",
-  Aman: "아만",
-  Kazeros: "카제로스",
-  Avrelsud: "아브렐슈드",
-  Ninave: "니나브",
-};
 
 const getData = async function (id) {
   try {
-    const res = await axios.get(`/character/characters/${id}`);
-    if (res.data.ok) {
-      return res.data.data;
-    }
-    return;
+    const res = await axios.get(`/card/expedition/${id}`);
+    return res.data;
   } catch (err) {
     console.error(err);
   }
 };
 
 const FindName = function () {
-  const { setPage, characterNameRef } = useOutletContext();
   const userName = useRef();
   const [userList, setUserList] = useState([]);
-
-  useEffect(() => {
-    setPage("find");
-  }, []);
 
   const onClickButtonChange = async (e) => {
     e.preventDefault();
@@ -79,11 +60,7 @@ const FindName = function () {
       if (userList[server]) {
         ServerListCom = userList[server].map((character) => {
           return (
-            <UserItem
-              key={character["CharacterName"]}
-              character={character}
-              characterNameRef={characterNameRef}
-            />
+            <UserItem key={character["CharacterName"]} character={character} />
           );
         });
       }
@@ -114,7 +91,7 @@ const FindName = function () {
           key={userList["server"]}
           className={`userRow ${userList["server"]}`}
         >
-          <span className="server">{serverKor[userList["server"]]}</span>
+          <span className="server">{userList["server"]}</span>
           {AllListCom[userList["server"]]}
         </div>
 
@@ -122,7 +99,7 @@ const FindName = function () {
           if (AllListCom[server] && server != userList["server"])
             return (
               <div key={server} className={`userRow ${server}`}>
-                <span className="server">{serverKor[server]}</span>
+                <span className="server">{server}</span>
                 {AllListCom[server]}
               </div>
             );

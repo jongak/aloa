@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const itemSlice = createSlice({
   name: "review",
   initialState: {
+    characterId: "",
     userData: {},
     frontItems: { todo: [], done: [] },
     frontIcons: { todoCombat: [], todoNaesil: [], done: [] },
@@ -13,6 +14,9 @@ const itemSlice = createSlice({
     acc: "-",
   },
   reducers: {
+    setCharacterId(state, action) {
+      state.characterId = action.payload.newCharacterId;
+    },
     setUserData(state, action) {
       state.userData = action.payload.newUserData;
     },
@@ -42,6 +46,7 @@ const itemSlice = createSlice({
 
 export default itemSlice;
 export const {
+  setCharacterId,
   setUserData,
   setFrontItems,
   setFrontIcons,
