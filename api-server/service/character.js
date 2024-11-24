@@ -58,9 +58,13 @@ const CharacterService = {
           topItem = item;
         }
 
-        const isArkPassive = await CharacterService.isArkPassive(
-          item.CharacterName
-        );
+        let isArkPassive = false;
+
+        if (Number(item.ItemAvgLevel.replace(/,/g, "")) >= 1660) {
+          isArkPassive = await CharacterService.isArkPassive(
+            item.CharacterName
+          );
+        }
 
         if (serverData[serverName]) {
           serverData[serverName].push({

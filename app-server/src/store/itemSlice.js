@@ -15,10 +15,10 @@ const itemSlice = createSlice({
   },
   reducers: {
     setCharacterId(state, action) {
-      state.characterId = action.payload.newCharacterId;
+      state.characterId = action.payload;
     },
     setUserData(state, action) {
-      state.userData = action.payload.newUserData;
+      state.userData = action.payload;
     },
     setFrontItems(state, action) {
       state.frontItems = action.payload.newFrontItems;

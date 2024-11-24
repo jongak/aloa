@@ -13,17 +13,20 @@ import { toast } from "react-toastify";
 const getDataCard = async function (id) {
   try {
     const res = await axios.get(`/card/characterInfo/${id}`);
-    console.log(res.data);
-    return res.data;
+    if (res.status == 200) {
+      return res.data;
+    }
+    return null;
   } catch (err) {
     console.error(err);
+    return null;
   }
 };
 
 const capture = function () {
   //10.26 작성
   const location = useLocation();
-  const characterId = useSelector((state) => state.characterId);
+  const characterId = useSelector((state) => state.itemSlice.characterId);
 
   const frontRef = useRef(null);
   const backRef = useRef(null);
@@ -54,18 +57,29 @@ const capture = function () {
   const shineOptionColors = useRef(["#6dd5ed", "#2193b0"]);
   const shadowOptionColors = useRef(["#6dd5ed", "#2193b0"]);
   useEffect(() => {
-    if (characterId && characterId != "") {
-      getDataCard(characterId).then((res) => {
+    const fetchData = async () => {
+      try {
+        if (!characterId) return;
+
+        const res = await getDataCard(characterId);
         if (!res) {
           toast.error("서버에 문제가 생겼습니다.");
-          dispatch(setCharacterId({ newCharacterId: "" }));
+          dispatch(setCharacterId(""));
           navigate("./");
-        } else {
-          dispatch(setUserData({ newUserData: res }));
+          return;
         }
-      });
-    }
-  }, [characterId]);
+
+        dispatch(setUserData(res));
+      } catch (error) {
+        console.error("데이터 불러오기 실패:", error);
+        toast.error("서버에 문제가 생겼습니다.");
+        dispatch(setCharacterId(""));
+        navigate("./");
+      }
+    };
+
+    fetchData();
+  }, [characterId, dispatch, navigate]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -208,10 +222,11 @@ const capture = function () {
       <div className="debug">
         <div
           onClick={() => {
+            getDataCard(characterId);
             console.log(location.pathname);
           }}
         >
-          {characterId}
+          {characterId} 클릭
         </div>
       </div>
       <div className="row justify-content-center">
@@ -273,9 +288,9 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              left: "-3000px",
-              // right: "-100px",
-              // zIndex: 1000,
+              // left: "-3000px",
+              right: "-100px",
+              zIndex: 1000,
             }}
           />
           <CardBack

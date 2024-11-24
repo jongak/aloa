@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, memo, useMemo } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,12 +11,27 @@ import {
   setOptionItems,
 } from "../../store/itemSlice";
 
-const MyDnd = function ({ title, onclick }) {
+const DraggableItem = memo(function ({ item, provided, snapshot, onAccInput }) {
+  return (
+    <div
+      ref={provided.innerRef}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      className="drag-item ripple"
+      onClick={item.onclick ? onAccInput : undefined}
+    >
+      <div className="item-title">{item.title}</div>
+      <div className="item-value">{item.value || "없음"}</div>
+      <div className="item-body">{item.body}</div>
+    </div>
+  );
+});
+
+const MyDndComponent = function ({ title, onclick }) {
   const dispatch = useDispatch();
-  var maxItems = 5;
-  if (title == "optionItemsCombat" || title == "optionItemsNaesil") {
-    maxItems = 8;
-  }
+  const maxItems = useMemo(() => {
+    return ["optionItemsCombat", "optionItemsNaesil"].includes(title) ? 8 : 5;
+  }, [title]);
   var items = [];
   if (title == "frontItems") {
     items = useSelector((state) => state.itemSlice.frontItems);
@@ -26,27 +41,40 @@ const MyDnd = function ({ title, onclick }) {
     items = useSelector((state) => state.itemSlice.optionItems);
   }
 
-  const setItem = function (item) {
-    if (title == "frontItems") {
-      dispatch(
-        setFrontItems({
-          newFrontItems: item,
-        })
-      );
-    } else if (title == "frontIconsCombat" || title == "frontIconsNaesil") {
-      dispatch(
-        setFrontIcons({
-          newFrontIcons: item,
-        })
-      );
-    } else if (title == "optionItemsCombat" || title == "optionItemsNaesil") {
-      dispatch(
-        setOptionItems({
-          newOptionItems: item,
-        })
-      );
+  const handleAccInput = useCallback(() => {
+    const userInput = window.prompt("악추피를 입력하세요");
+    if (userInput == null || isNaN(userInput)) {
+      toast.error("숫자를 입력하셔야 합니다.");
+      return;
     }
-  };
+    dispatch(setAcc({ newAcc: `${userInput}%` }));
+  }, [dispatch]);
+
+  const setItem = useCallback(
+    (item) => {
+      if (title == "frontItems") {
+        dispatch(
+          setFrontItems({
+            newFrontItems: item,
+          })
+        );
+      } else if (title == "frontIconsCombat" || title == "frontIconsNaesil") {
+        dispatch(
+          setFrontIcons({
+            newFrontIcons: item,
+          })
+        );
+      } else if (title == "optionItemsCombat" || title == "optionItemsNaesil") {
+        dispatch(
+          setOptionItems({
+            newOptionItems: item,
+          })
+        );
+      }
+    },
+    [dispatch, title]
+  );
+
   const onDragEnd = useCallback(
     (DropResult) => {
       const { source, destination } = DropResult;
@@ -65,10 +93,9 @@ const MyDnd = function ({ title, onclick }) {
       }
       return;
     },
-    [items]
+    [items, maxItems, setItem]
   );
 
-  // --- requestAnimationFrame 초기화
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -83,7 +110,6 @@ const MyDnd = function ({ title, onclick }) {
   if (!enabled) {
     return null;
   }
-  // --- requestAnimationFrame 초기화 END
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
@@ -127,33 +153,12 @@ const MyDnd = function ({ title, onclick }) {
                     >
                       {(provided, snapshot) => {
                         return (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            className="drag-item ripple"
-                            onClick={
-                              item.onclick
-                                ? () => {
-                                    const userInput =
-                                      window.prompt("악추피를 입력하세요");
-                                    if (userInput == null || isNaN(userInput)) {
-                                      toast.error("숫자를 입력하셔야 합니다.");
-                                      return;
-                                    }
-                                    dispatch(
-                                      setAcc({ newAcc: userInput + "%" })
-                                    );
-                                  }
-                                : () => {}
-                            }
-                          >
-                            <div className="item-title">{item.title}</div>
-                            <div className="item-value">
-                              {item.value ? item.value : "없음"}
-                            </div>
-                            <div className="item-body">{item.body}</div>
-                          </div>
+                          <DraggableItem
+                            item={item}
+                            provided={provided}
+                            snapshot={snapshot}
+                            onAccInput={handleAccInput}
+                          />
                         );
                       }}
                     </Draggable>
@@ -168,4 +173,9 @@ const MyDnd = function ({ title, onclick }) {
     </DragDropContext>
   );
 };
+
+const MyDnd = memo(MyDndComponent);
+MyDnd.displayName = "MyDnd";
+DraggableItem.displayName = "DraggableItem";
+
 export default MyDnd;

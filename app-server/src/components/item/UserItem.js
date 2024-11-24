@@ -55,7 +55,7 @@ const UserItem = function (props) {
   const navigate = useNavigate();
   const onClickButtonChange = () => {
     if (isArkPassive) {
-      dispatch(setCharacterId({ newCharacterId: CharacterName }));
+      dispatch(setCharacterId(CharacterName));
       navigate("./select");
     } else {
       toast.error("아크패시브가 켜진 캐릭터만 이용가능합니다.");
