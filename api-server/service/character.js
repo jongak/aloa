@@ -58,19 +58,8 @@ const CharacterService = {
           topItem = item;
         }
 
-        let isArkPassive = false;
-
-        if (Number(item.ItemAvgLevel.replace(/,/g, "")) >= 1660) {
-          isArkPassive = await CharacterService.isArkPassive(
-            item.CharacterName
-          );
-        }
-
         if (serverData[serverName]) {
-          serverData[serverName].push({
-            ...item,
-            isArkPassive: isArkPassive,
-          });
+          serverData[serverName].push(item);
         }
       }
 
@@ -108,7 +97,15 @@ const CharacterService = {
         throw new Error("캐릭터 정보를 가져올 수 없습니다.");
       }
 
-      res.parseArmoryEquipment = _parseArmoryEquipment(res.ArmoryEquipment);
+      //250127 클래스 만으로 판단하고 있지만, 다른방법을 추가해야할지도?
+      //딜세팅 서폿이라든가..
+      const _딜러_여부 = !["도화가", "바드", "홀리나이트"].includes(
+        res.ArmoryProfile.CharacterClassName
+      );
+      res.parseArmoryEquipment = _parseArmoryEquipment(
+        res.ArmoryEquipment,
+        _딜러_여부
+      );
       res.parseArmoryEngraving = _parseArmoryEngraving(res.ArmoryEngraving);
       res.parseArmoryGem = _parseArmoryGem(res.ArmoryGem);
       res.parseArmoryCard = _parseArmoryCard(res.ArmoryCard);
@@ -121,7 +118,7 @@ const CharacterService = {
       throw new Error("Service Error", { cause: err });
     }
 
-    function _parseArmoryEquipment(row) {
+    function _parseArmoryEquipment(row, _딜러_여부 = true) {
       let 전체_초월_등급 = 0;
       let 전체_초월_레벨 = 0;
 
@@ -133,15 +130,50 @@ const CharacterService = {
 
       const 악세 = {
         목걸이: [
-          { Name: "", Icon: "", Grade: "", qualityValue: "", 연마_효과: [] },
+          {
+            Name: "",
+            Icon: "",
+            Grade: "",
+            qualityValue: 0,
+            statQuality: 0,
+            연마_효과: [],
+          },
         ],
         귀걸이: [
-          { Name: "", Icon: "", Grade: "", qualityValue: "", 연마_효과: [] },
-          { Name: "", Icon: "", Grade: "", qualityValue: "", 연마_효과: [] },
+          {
+            Name: "",
+            Icon: "",
+            Grade: "",
+            qualityValue: 0,
+            statQuality: 0,
+            연마_효과: [],
+          },
+          {
+            Name: "",
+            Icon: "",
+            Grade: "",
+            qualityValue: 0,
+            statQuality: 0,
+            연마_효과: [],
+          },
         ],
         반지: [
-          { Name: "", Icon: "", Grade: "", qualityValue: "", 연마_효과: [] },
-          { Name: "", Icon: "", Grade: "", qualityValue: "", 연마_효과: [] },
+          {
+            Name: "",
+            Icon: "",
+            Grade: "",
+            qualityValue: 0,
+            statQuality: 0,
+            연마_효과: [],
+          },
+          {
+            Name: "",
+            Icon: "",
+            Grade: "",
+            qualityValue: 0,
+            statQuality: 0,
+            연마_효과: [],
+          },
         ],
       };
       const 장비 = {
@@ -261,7 +293,7 @@ const CharacterService = {
             ["목걸이", "귀걸이", "반지"].includes(Type) &&
             "qualityValue" in element_value
           ) {
-            var isExisted = 0;
+            var isExisted = 0; //귀걸이 목걸이 처럼 2개 끼는 애들을 위해서
             if (악세[Type][isExisted].Name) {
               isExisted = 1;
             }
@@ -273,23 +305,34 @@ const CharacterService = {
               element_value["qualityValue"];
             악세_품질 += element_value["qualityValue"];
 
+            // 연마효과
             const Tooltip = dat["Element_005"]["value"]["Element_001"];
             const matches = [
               ...Tooltip.matchAll(/>([^>]+ \+)([\d.]+)([^\s<]*)/g),
             ];
-
             matches.forEach((match) => {
               const name = match[1].trim(); // 효과 이름과 + 기호 추출
               const value = match[2].trim(); // 숫자 추출
               const unit = match[3].trim(); // 단위 추출 ('%' 또는 빈 문자열 등)
+              const grade = _4T_악세_등급(name, value, unit, _딜러_여부);
 
               악세[Type][isExisted].연마_효과.push({
                 Name: name,
                 Value: `${value}${unit}`,
+                Grade: grade,
               });
             });
 
-            악세[Type][isExisted].연마_효과;
+            //힘민지 품질계산
+
+            const _연마_횟수 = 악세[Type][isExisted].연마_효과.length;
+            const Tooltip2 = dat["Element_004"]["value"]["Element_001"];
+            const matches2 = Tooltip2.match(/힘 \+(\d+)<BR>/);
+            악세[Type][isExisted]["statQuality"] = _4T_악세_품질_계산(
+              Type,
+              Number(matches2[1]),
+              _연마_횟수
+            );
           }
         });
         if (["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)) {
@@ -319,6 +362,118 @@ const CharacterService = {
         장비,
       };
     }
+
+    function _4T_악세_등급(name, value, unit, _딜러_여부 = true) {
+      const _4T_딜러_특옵 = {
+        // 목걸이
+        "추가 피해 +": ["0.70", "1.60", "2.60"],
+        "적에게 주는 피해 +": ["0.55", "1.20", "2.00"],
+
+        //귀걸이
+        "공격력 +": ["0.40", "0.95", "1.55"],
+        "무기 공격력 +": ["0.80", "1.80", "3.00"],
+
+        //반지
+        "치명타 적중률 +": ["0.40", "0.95", "1.55"],
+        "치명타 피해 +": ["1.10", "2.40", "4.00"],
+      };
+
+      const _4T_딜러_공용 = {
+        "공격력 +": ["80", "195", "390"],
+        "무기 공격력 +": ["195", "480", "960"],
+      };
+
+      const _4T_서폿_특옵 = {
+        // 목걸이
+        "세레나데, 신앙, 조화 게이지 획득량 +": ["1.60", "3.60", "6.00"],
+        "낙인력 +": ["2.15", "4.80", "8.00"],
+
+        //귀걸이
+        // 250117 일기준으로 서폿특옵은 유효가 없다고함.
+        "무기 공격력 +": ["0.80", "1.80", "3.00"],
+
+        //반지
+        "아군 공격력 강화 효과 +": ["1.35", "3.00", "5.00"],
+        "아군 피해량 강화 효과 +": ["2.00", "4.50", "7.50"],
+      };
+
+      const _4T_서폿_공용 = {
+        "무기 공격력 +": ["195", "480", "960"],
+        "최대 생명력 +": ["1300", "3250", "6500"],
+      };
+
+      var index = -1;
+      if (_딜러_여부) {
+        if (_4T_딜러_특옵[name]) {
+          index = _4T_딜러_특옵[name].findIndex((e) => e == value);
+          if (index != -1) {
+            return _악세_등급_계산(index, false);
+          }
+        }
+        if (_4T_딜러_공용[name]) {
+          index = _4T_딜러_공용[name].findIndex((e) => e == value);
+          return _악세_등급_계산(index, true);
+        }
+      } else {
+        if (_4T_서폿_특옵[name]) {
+          index = _4T_서폿_특옵[name].findIndex((e) => e == value);
+          if (index != -1) {
+            return _악세_등급_계산(index, false);
+          }
+        }
+        if (_4T_서폿_공용[name]) {
+          index = _4T_서폿_공용[name].findIndex((e) => e == value);
+          return _악세_등급_계산(index, true);
+        }
+      }
+
+      return "";
+    }
+
+    function _악세_등급_계산(index, _공용_여부 = false) {
+      if (index == -1) {
+        return "";
+      }
+
+      switch (index) {
+        case 0:
+          return _공용_여부 ? "공용 하" : "하";
+        case 1:
+          return _공용_여부 ? "공용 중" : "중";
+        case 2:
+          return _공용_여부 ? "공용 상" : "상";
+        default:
+          return "";
+      }
+    }
+
+    function _4T_악세_품질_계산(Type, stats, _연마_횟수) {
+      const _품질_최대 = {
+        목걸이: [15357, 15714, 16428, 17857],
+        귀걸이: [11944, 12222, 12778, 13889],
+        반지: [11091, 11349, 11865, 12897],
+      };
+      const _품질_최소 = {
+        목걸이: [12678, 13035, 13749, 15178],
+        귀걸이: [9861, 10139, 10695, 11806],
+        반지: [9156, 9414, 9930, 10962],
+      };
+
+      if (isNaN(stats)) {
+        return 0;
+      }
+
+      return (
+        // 소수점 이하 버림 처리를 위해 Math.floor 사용
+        Math.floor(
+          100 -
+            ((_품질_최대[Type][_연마_횟수] - stats) /
+              (_품질_최대[Type][_연마_횟수] - _품질_최소[Type][_연마_횟수])) *
+              100
+        )
+      );
+    }
+
     function _parseArmoryEngraving(row) {
       const downEngraving = {
         유물: "전설",

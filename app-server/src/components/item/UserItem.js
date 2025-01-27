@@ -39,34 +39,24 @@ const change = {
   "전사(여)": "warrior-female",
   "전사(남)": "warrior-male",
   브레이커: "breaker",
+  환수사: "wildsoul",
 };
 
 const UserItem = function (props) {
   const { character } = props;
-  const {
-    CharacterClassName,
-    CharacterLevel,
-    CharacterName,
-    ItemMaxLevel,
-    isArkPassive,
-  } = character;
+  const { CharacterClassName, CharacterLevel, CharacterName, ItemMaxLevel } =
+    character;
   const isDark = useSelector((state) => state.isDark);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onClickButtonChange = () => {
-    if (isArkPassive) {
-      dispatch(setCharacterId(CharacterName));
-      navigate("./select");
-    } else {
-      toast.error("아크패시브가 켜진 캐릭터만 이용가능합니다.");
-    }
+    dispatch(setCharacterId(CharacterName));
+    navigate("./select");
   };
 
   return (
     <div
-      className={`my-card userItem ripple ${
-        isArkPassive ? "cursor-pointer arkPassive" : ""
-      }`}
+      className={`my-card userItem ripple cursor-pointer`}
       onClick={onClickButtonChange}
     >
       <div
@@ -79,9 +69,7 @@ const UserItem = function (props) {
       />
 
       <div className="my-card-body">
-        <p className="my-card-title">
-          {CharacterName} {isArkPassive ? <>아크패시브</> : <></>}
-        </p>
+        <p className="my-card-title">{CharacterName}</p>
         <p className="my-card-text">{CharacterClassName}</p>
         <p className="my-card-text">{CharacterLevel}</p>
         <p className="my-card-text">{ItemMaxLevel}</p>
