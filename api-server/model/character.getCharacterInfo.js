@@ -82,8 +82,11 @@ class ArmoryEquipment extends Copyable {
     this.엘릭서_레벨 = data.엘릭서_레벨;
     this.방어구_품질 = data.방어구_품질;
     this.악세_품질 = data.악세_품질;
+    this.악세_스탯_품질 = data.악세_스탯_품질;
     this.악세 = data.악세;
     this.장비 = data.장비;
+    this.어빌리티_스톤 = data.어빌리티_스톤;
+    this.팔찌 = data.팔찌;
   }
 }
 
@@ -91,6 +94,7 @@ class ArmoryEngraving extends Copyable {
   constructor(data) {
     super();
     this.ArkPassiveEffects = this._parseArkPassiveEffects(data);
+    this.EngravingSum = data.EngravingSum;
   }
 
   _parseArkPassiveEffects(arr) {

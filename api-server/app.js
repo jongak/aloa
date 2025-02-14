@@ -58,6 +58,11 @@ app.use("/api", proxy(), (req, res, next) => {
   }
 });
 
+// React용 fallback 추가
+app.use("/", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
+});
+
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
   console.error(404, req.url);

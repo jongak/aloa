@@ -83,15 +83,6 @@ const SelectValue = function () {
     const newFrontItems = {
       todo: [
         {
-          id: "Acc",
-          title: "악마 추가피해옵션",
-          body: "클릭해서 악추피값을 입력해 주세요",
-          value: acc,
-          cardTitle: "악추피",
-          cardValue: acc,
-          onclick: true,
-        },
-        {
           id: "MeulLevel",
           title: "겁화레벨 평균",
           body: "겁화의 보석의 평균값 입니다.",
@@ -124,6 +115,24 @@ const SelectValue = function () {
           cardTitle: "악세품질",
           cardValue: userData["ArmoryEquipment"]["악세_품질"],
           size: 5,
+        },
+        {
+          id: "AccStatQualityAvg",
+          title: "악세서리 힘민지 품질 평균",
+          body: "악세서리 힘민지 품질의 평균값 입니다.",
+          value: userData["ArmoryEquipment"]["악세_스탯_품질"],
+          cardTitle: "스탯품질",
+          cardValue: userData["ArmoryEquipment"]["악세_스탯_품질"],
+          size: 5,
+        },
+        {
+          id: "ElixirName",
+          title: "엘릭서 특수옵션",
+          body: "엘릭서 특수옵션 입니다.",
+          value: userData["ArmoryEquipment"]["엘릭서_효과"],
+          cardTitle: "엘릭서",
+          cardValue: userData["ArmoryEquipment"]["엘릭서_효과"],
+          size: 4,
         },
         // {
         //   id: "StatsSumBracelet",
@@ -179,15 +188,7 @@ const SelectValue = function () {
           cardTitle: "보석",
           cardValue: userData["ArmoryGem"]["option"]["level"],
         },
-        {
-          id: "ElixirName",
-          title: "엘릭서 특수옵션",
-          body: "엘릭서 특수옵션 입니다.",
-          value: userData["ArmoryEquipment"]["엘릭서_효과"],
-          cardTitle: "엘릭서",
-          cardValue: userData["ArmoryEquipment"]["엘릭서_효과"],
-          size: 4,
-        },
+
         {
           id: "AwakeName",
           title: "카드세트 옵션",
@@ -197,6 +198,16 @@ const SelectValue = function () {
           cardValue: userData["ArmoryCard"]["AwakeName"],
           size: 5,
         },
+        {
+          id: "EngravingSum",
+          title: "유각 합",
+          body: "유각의 합계 입니다.",
+          value: userData["ArmoryEngraving"]["EngravingSum"],
+          cardTitle: "유각",
+          cardValue: userData["ArmoryEngraving"]["EngravingSum"] + " 장",
+          size: 4,
+        },
+
         // {
         //   id: "jobEngraving",
         //   title: "직업각인",
@@ -235,16 +246,46 @@ const SelectValue = function () {
           title: "10레벨 겁화 갯수",
           body: "10레벨 겁화 갯수 입니다.",
           value: userData["ArmoryGem"]["option"]["TenGup"] + " ea",
-          cardImg: "/assets/images/icons/10meol.webp",
+          cardImg: "/assets/images/icons/10gup.webp",
           cardValue: userData["ArmoryGem"]["option"]["TenGup"] + " ea",
+          size: 3,
         },
         {
           id: "TenJak",
           title: "10레벨 작열 갯수",
           body: "10레벨 작열 갯수 입니다.",
           value: userData["ArmoryGem"]["option"]["TenJak"] + " ea",
-          cardImg: "/assets/images/icons/10hong.webp",
+          cardImg: "/assets/images/icons/10jak.webp",
           cardValue: userData["ArmoryGem"]["option"]["TenJak"] + " ea",
+          size: 3,
+        },
+        {
+          id: "ElixirLevel",
+          title: "엘릭서 레벨합",
+          body: "엘릭서 강화의 총 레벨 합입니다.",
+          value: userData["ArmoryEquipment"]["엘릭서_레벨"],
+          cardImg: "/assets/images/icons/엘릭서.png",
+          cardValue: userData["ArmoryEquipment"]["엘릭서_레벨"],
+          size: 3,
+        },
+        {
+          id: "TransGrade",
+          title: "초월 각성 합",
+          body: "초월의 각성단계 합입니다.",
+          value: userData["ArmoryEquipment"]["전체_초월_레벨"],
+          cardImg: "/assets/images/icons/초월5.png",
+          cardValue: userData["ArmoryEquipment"]["전체_초월_레벨"],
+          size: 3,
+          spanRight: userData["ArmoryEquipment"]["전체_초월_레벨"] ? "-10" : "",
+        },
+        {
+          id: "AwakeCount",
+          title: "카드 각성 합",
+          body: "카드의 각성단계 합입니다.",
+          value: userData["ArmoryCard"]["AwakeCount"],
+          cardImg: "/assets/images/icons/card.png",
+          cardValue: userData["ArmoryCard"]["AwakeCount"],
+          size: 3,
         },
       ],
       "todo Naesil": [],
@@ -360,87 +401,73 @@ const SelectValue = function () {
             "+" + userData["ArmoryEquipment"]["장비"]["무기"]["아이템_레벨"],
           spanRight: "--10",
         },
-        // {
-        //   id: "AbilityStone",
-        //   title: "어빌리티 스톤",
-        //   body: "어빌리티 스톤 입니다.",
-        //   value:
-        //     userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
-        //       "level"
-        //     ] +
-        //     " " +
-        //     userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings01"][
-        //       "level"
-        //     ] +
-        //     " " +
-        //     userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
-        //       "level"
-        //     ],
+        {
+          id: "ArkPassiveJin",
+          title: "진화 아크 패시브 포인트",
+          body: "아크패시브 진화 포인트 입니다.",
+          value: userData["ArkPassive"]["진화"],
+          cardImg: "/assets/images/icons/앜패진화.png",
+          cardValue: userData["ArkPassive"]["진화"],
+          size: 3,
+        },
+        {
+          id: "ArkPassiveGgae",
+          title: "깨달음 아크 패시브 포인트",
+          body: "아크패시브 깨달음 포인트 입니다.",
+          value: userData["ArkPassive"]["깨달음"],
+          cardImg: "/assets/images/icons/앜패깨달음.png",
+          cardValue: userData["ArkPassive"]["깨달음"],
+          size: 3,
+        },
+        {
+          id: "ArkPassiveDoe",
+          title: "도약 아크 패시브 포인트",
+          body: "아크패시브 도약 포인트 입니다.",
+          value: userData["ArkPassive"]["도약"],
+          cardImg: "/assets/images/icons/앜패도약.png",
+          cardValue: userData["ArkPassive"]["도약"],
+          size: 3,
+        },
+        {
+          id: "AbilityStone",
+          title: "어빌리티 스톤",
+          body: "어빌리티 스톤 입니다.",
+          value:
+            userData["ArmoryEquipment"]["어빌리티_스톤"]["engravings00"][
+              "level"
+            ] +
+            " " +
+            userData["ArmoryEquipment"]["어빌리티_스톤"]["engravings01"][
+              "level"
+            ],
 
-        //   cardImg: userData["ArmoryEquipment"]["어빌리티 스톤"]["Icon"],
-        //   cardValue:
-        //     userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
-        //       "level"
-        //     ] != ""
-        //       ? userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
-        //           "level"
-        //         ] +
-        //         " " +
-        //         userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings01"][
-        //           "level"
-        //         ] +
-        //         " " +
-        //         userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings02"][
-        //           "level"
-        //         ]
-        //       : "-",
-        //   spanRight:
-        //     userData["ArmoryEquipment"]["어빌리티 스톤"]["engravings00"][
-        //       "level"
-        //     ] != ""
-        //       ? false
-        //       : "--10",
-        // },
-        {
-          id: "ElixirLevel",
-          title: "엘릭서 레벨합",
-          body: "엘릭서 강화의 총 레벨 합입니다.",
-          value: userData["ArmoryEquipment"]["엘릭서_레벨"],
-          cardImg: "/assets/images/icons/exlixer.webp",
-          cardValue: userData["ArmoryEquipment"]["엘릭서_레벨"],
+          cardImg: userData["ArmoryEquipment"]["어빌리티_스톤"]["Icon"],
+          cardValue:
+            userData["ArmoryEquipment"]["어빌리티_스톤"]["engravings00"][
+              "level"
+            ] != ""
+              ? userData["ArmoryEquipment"]["어빌리티_스톤"]["engravings00"][
+                  "level"
+                ] +
+                " " +
+                userData["ArmoryEquipment"]["어빌리티_스톤"]["engravings01"][
+                  "level"
+                ]
+              : "-",
           size: 3,
-        },
-        {
-          id: "AwakeCount",
-          title: "카드 각성 합",
-          body: "카드의 각성단계 합입니다.",
-          value: userData["ArmoryCard"]["AwakeCount"],
-          cardImg: "/assets/images/icons/card.png",
-          cardValue: userData["ArmoryCard"]["AwakeCount"],
-          size: 3,
-        },
-        {
-          id: "TransGrade",
-          title: "초월 각성 합",
-          body: "초월의 각성단계 합입니다.",
-          value: userData["ArmoryEquipment"]["전체_초월_레벨"],
-          cardImg: "/assets/images/cho/cho_5.png",
-          cardValue: userData["ArmoryEquipment"]["전체_초월_레벨"],
-          size: 3,
-          spanRight: userData["ArmoryEquipment"]["전체_초월_레벨"] ? "-10" : "",
         },
       ],
     };
     const newOptionItems = {
       "todo Combat": [
-        {
-          id: "boxAcc",
-          title: "악추피",
-          body: "클릭해서 악추피값을 입력해 주세요",
-          value: acc,
-          cardValue: acc,
-          onclick: true,
-        },
+        // {
+        //   id: "boxAcc",
+        //   title: "악추피",
+        //   body: "클릭해서 악추피값을 입력해 주세요",
+        //   value: acc,
+        //   cardValue: acc,
+        //   onclick: true,
+        // },
         {
           id: "boxExlixer01",
           title: "투구 특옵",
@@ -477,30 +504,30 @@ const SelectValue = function () {
           title: "상의 특옵",
           body: "상의에 붙은 엘릭서 특수옵션 입니다.",
           value:
-            userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["레벨"]
               : "없음",
           cardValue:
-            userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["상의"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["상의"]["Elixir01"]["레벨"]
               : "-",
         },
         {
@@ -508,30 +535,30 @@ const SelectValue = function () {
           title: "하의 특옵",
           body: "하의에 붙은 엘릭서 특수옵션 입니다.",
           value:
-            userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["레벨"]
               : "없음",
           cardValue:
-            userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["하의"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["하의"]["Elixir01"]["레벨"]
               : "-",
         },
         {
@@ -539,30 +566,30 @@ const SelectValue = function () {
           title: "견갑 특옵",
           body: "견갑에 붙은 엘릭서 특수옵션 입니다.",
           value:
-            userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["레벨"]
               : "없음",
           cardValue:
-            userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["어깨"]["Elixir01"]["레벨"]
               : "-",
         },
         {
@@ -570,30 +597,30 @@ const SelectValue = function () {
           title: "장갑 특옵",
           body: "장갑에 붙은 엘릭서 특수옵션 입니다.",
           value:
-            userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["레벨"]
               : "없음",
           cardValue:
-            userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["레벨"]
               : "-",
         },
       ],
@@ -704,7 +731,7 @@ const SelectValue = function () {
           title: "엘릭서 레벨합",
           body: "엘릭서 강화의 총 레벨 합입니다.",
           value: "Lv" + userData["ArmoryEquipment"]["엘릭서_레벨"],
-          cardImg: "/assets/images/icons/exlixer.webp",
+          cardImg: "/assets/images/icons/엘릭서.png",
           cardValue: "Lv" + userData["ArmoryEquipment"]["엘릭서_레벨"],
         },
         {
@@ -712,25 +739,25 @@ const SelectValue = function () {
           title: "초월 각성 합",
           body: "초월의 각성단계 합입니다.",
           value: userData["ArmoryEquipment"]["전체_초월_레벨"],
-          cardImg: "/assets/images/cho/cho_5.png",
+          cardImg: "/assets/images/icons/초월5.png",
           cardValue: userData["ArmoryEquipment"]["전체_초월_레벨"],
         },
         {
           id: "boxGem",
           title: "보석",
-          body: "겁화(멸화),작열(홍염)의 갯수와 평균레벨 입니다.",
+          body: "겁화,작열의 갯수와 평균레벨 입니다.",
           value:
-            `${userData["ArmoryGem"]["option"]["GupNum"]}멸 ` +
-            `${userData["ArmoryGem"]["option"]["JakNum"]}홍 ` +
+            `${userData["ArmoryGem"]["option"]["GupNum"]}겁 ` +
+            `${userData["ArmoryGem"]["option"]["JakNum"]}작 ` +
             `Lv ${
               userData["ArmoryGem"]["option"]["GupLevel"]
                 ? userData["ArmoryGem"]["option"]["GupLevel"]
                 : "0"
             }`,
-          cardImg: "/assets/images/icons/10meol.webp",
+          cardImg: "/assets/images/icons/10gup.webp",
           cardValue:
-            `${userData["ArmoryGem"]["option"]["GupNum"]}멸 ` +
-            `${userData["ArmoryGem"]["option"]["JakNum"]}홍 ` +
+            `${userData["ArmoryGem"]["option"]["GupNum"]}겁 ` +
+            `${userData["ArmoryGem"]["option"]["JakNum"]}작 ` +
             `Lv ${
               userData["ArmoryGem"]["option"]["GupLevel"]
                 ? userData["ArmoryGem"]["option"]["GupLevel"]
@@ -879,14 +906,14 @@ const SelectValue = function () {
             </div>
           </Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="3">
+        {/* <Accordion.Item eventKey="3">
           <Accordion.Header>앞면 아이콘 활성화 (내실) </Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
               <MyDnd title="frontIconsNaesil" />
             </div>
           </Accordion.Body>
-        </Accordion.Item>
+        </Accordion.Item> */}
       </Accordion>
       <Accordion>
         <Accordion.Item eventKey="4">
@@ -897,14 +924,14 @@ const SelectValue = function () {
             </div>
           </Accordion.Body>
         </Accordion.Item>
-        <Accordion.Item eventKey="5">
+        {/* <Accordion.Item eventKey="5">
           <Accordion.Header>뒷면 내용 활성화 (내실)</Accordion.Header>
           <Accordion.Body>
             <div className="userRow">
               <MyDnd title="optionItemsNaesil" />
             </div>
           </Accordion.Body>
-        </Accordion.Item>
+        </Accordion.Item> */}
       </Accordion>
       <Button href="../" title={"이전"} />
       <Button href="../set" title={"다음"} />

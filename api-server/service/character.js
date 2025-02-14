@@ -127,6 +127,7 @@ const CharacterService = {
 
       let 방어구_품질 = 0;
       let 악세_품질 = 0;
+      let 악세_스탯_품질 = 0;
 
       const 악세 = {
         목걸이: [
@@ -184,6 +185,21 @@ const CharacterService = {
         장갑: {},
         어깨: {},
       };
+      const 어빌리티_스톤 = {
+        Name: "",
+        Icon: "",
+        Grade: "",
+        engravings00: { name: "", level: "" },
+        engravings01: { name: "", level: "" },
+        engravings02: { name: "", level: "" },
+        levelBonus: 0,
+      };
+      const 팔찌 = {
+        Name: "",
+        Icon: "",
+        Grade: "",
+        effects: "",
+      };
 
       row.forEach((element, i) => {
         const Type = element.Type;
@@ -203,6 +219,7 @@ const CharacterService = {
           레벨: "",
         };
         let 아이템_레벨;
+        let 아이템_등급;
 
         const dat = JSON.parse(element.Tooltip);
 
@@ -212,6 +229,12 @@ const CharacterService = {
             return;
           }
           if (typeof element_value == "string") {
+            if (
+              ["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type) &&
+              dat_idx == "Element_000"
+            ) {
+              아이템_등급 = Number(element_value.match(/\+(\d+)/)[1]);
+            }
             if (element_value.indexOf("상급 재련") != -1) {
               상급_재련 = Number(
                 element_value.match(
@@ -304,7 +327,6 @@ const CharacterService = {
             악세[Type][isExisted]["qualityValue"] =
               element_value["qualityValue"];
             악세_품질 += element_value["qualityValue"];
-
             // 연마효과
             const Tooltip = dat["Element_005"]["value"]["Element_001"];
             const matches = [
@@ -333,6 +355,56 @@ const CharacterService = {
               Number(matches2[1]),
               _연마_횟수
             );
+            악세_스탯_품질 += 악세[Type][isExisted]["statQuality"];
+          } else if (Type == "어빌리티 스톤" && dat_idx == "Element_006") {
+            어빌리티_스톤["Name"] = element["Name"];
+            어빌리티_스톤["Icon"] = element["Icon"];
+            어빌리티_스톤["Grade"] = element["Grade"];
+
+            var myEngravingList;
+            if (dat["Element_006"]["value"]["Element_000"]) {
+              myEngravingList =
+                dat["Element_006"]["value"]["Element_000"]["contentStr"];
+            }
+
+            [0, 1, 2].forEach((j) => {
+              if (!myEngravingList || !myEngravingList[`Element_00${j}`]) {
+                return;
+              }
+              const engravingText =
+                myEngravingList[`Element_00${j}`]["contentStr"];
+
+              // 각인 이름과 레벨 추출을 위한 정규식
+              const matches = engravingText.match(
+                /\[<FONT COLOR='#[A-F0-9]+'>([^<]+)<\/FONT>\].*?Lv\.(\d+)/
+              );
+
+              if (matches) {
+                어빌리티_스톤[`engravings0${j}`] = {
+                  name: matches[1], // 각인 이름
+                  level: Number(matches[2]), // 각인 레벨
+                };
+              }
+            });
+
+            // 레벨 보너스 파싱
+            if (myEngravingList && myEngravingList["Element_003"]) {
+              const bonusText = myEngravingList["Element_003"]["contentStr"];
+              const bonusMatch = bonusText.match(
+                /레벨 보너스.*?기본 공격력 \+(\d+\.\d+)%/
+              );
+              if (bonusMatch) {
+                어빌리티_스톤["levelBonus"] = Number(bonusMatch[1]);
+              }
+            }
+          } else if (Type == "팔찌" && dat_idx == "Element_004") {
+            팔찌["Name"] = element["Name"];
+            팔찌["Icon"] = element["Icon"];
+            팔찌["Grade"] = element["Grade"];
+
+            const effectText = dat["Element_004"]["value"]["Element_001"];
+
+            팔찌["effects"] = effectText;
           }
         });
         if (["무기", "투구", "상의", "하의", "장갑", "어깨"].includes(Type)) {
@@ -348,9 +420,13 @@ const CharacterService = {
             Elixir00,
             Elixir01,
             아이템_레벨,
+            아이템_등급,
           };
         }
       });
+      방어구_품질 = 방어구_품질 / 5;
+      악세_품질 = 악세_품질 / 5;
+      악세_스탯_품질 = 악세_스탯_품질 / 5;
       return {
         전체_초월_등급,
         전체_초월_레벨,
@@ -358,8 +434,11 @@ const CharacterService = {
         엘릭서_레벨,
         방어구_품질,
         악세_품질,
+        악세_스탯_품질,
         악세,
         장비,
+        어빌리티_스톤,
+        팔찌,
       };
     }
 
@@ -480,12 +559,24 @@ const CharacterService = {
         전설: "영웅",
       };
 
-      const ret = row.ArkPassiveEffects.map((element) => ({
-        ...element,
-        Grade:
-          element.Level == 0 ? downEngraving[element.Grade] : element.Grade,
-        Level: element.Level == 0 ? 4 : element.Level,
-      }));
+      let EngravingSum = 0;
+
+      const ret = row.ArkPassiveEffects.map((element) => {
+        const retElement = {
+          ...element,
+          Grade:
+            element.Level == 0 ? downEngraving[element.Grade] : element.Grade,
+          Level: element.Level == 0 ? 4 : element.Level,
+        };
+
+        if (retElement.Grade == "유물") {
+          EngravingSum += retElement.Level * 5;
+        }
+
+        return retElement;
+      });
+
+      ret["EngravingSum"] = EngravingSum;
       return ret;
     }
 
@@ -565,59 +656,97 @@ const CharacterService = {
       });
       row.Effects.forEach((element) => {
         if (!element["Items"][2]) {
-          1;
-        } else if (element["Items"][2]["Name"].includes("하는 빛 6세트")) {
+          return;
+        } else if (
+          element["Items"][2]["Name"].includes("세상을 구하는 빛 6세트")
+        ) {
           AwakeName += "세구빛";
-        } else if (element["Items"][2]["Name"].includes("군단장 6세트")) {
-          AwakeName += "암구빛";
-        } else if (element["Items"][2]["Name"].includes("절벽 6세트")) {
+        } else if (element["Items"][2]["Name"].includes("알고 보면 6세트")) {
+          AwakeName += "알고보면";
+        } else if (
+          element["Items"][2]["Name"].includes("너는 계획이 다 있구나 6세트")
+        ) {
+          AwakeName += "너계획";
+        } else if (
+          element["Items"][2]["Name"].includes("남겨진 바람의 절벽 6세트")
+        ) {
           AwakeName += "남바절";
-        } else if (element["Items"][2]["Name"].includes("달인 6세트")) {
+        } else if (element["Items"][2]["Name"].includes("창의 달인 6세트")) {
           AwakeName += "창의달인";
-        } else if (element["Items"][2]["Name"].includes("오리라 3세트")) {
-          if (AwakeName == "라제") {
+        } else if (
+          element["Items"][2]["Name"].includes("카제로스의 군단장 6세트")
+        ) {
+          AwakeName += "암구빛";
+        } else if (
+          element["Items"][2]["Name"].includes("힘찬 화염의 숨결 6세트")
+        ) {
+          AwakeName += "화구빛";
+        } else if (
+          element["Items"][2]["Name"].includes("거센 파도의 숨결 6세트")
+        ) {
+          AwakeName += "수구빛";
+        } else if (
+          element["Items"][2]["Name"].includes("날랜 뇌전의 숨결 6세트")
+        ) {
+          AwakeName += "뇌구빛";
+        } else if (
+          element["Items"][2]["Name"].includes("피어나는 화염의 가호 6세트")
+        ) {
+          AwakeName += "화바절";
+        } else if (
+          element["Items"][2]["Name"].includes("노래하는 파도의 가호 6세트")
+        ) {
+          AwakeName += "수바절";
+        } else if (
+          element["Items"][2]["Name"].includes("몰아치는 뇌전의 가호 6세트")
+        ) {
+          AwakeName += "뇌바절";
+        } else if (
+          element["Items"][2]["Name"].includes("굳센 대지의 숨결 6세트")
+        ) {
+          AwakeName += "토구빛";
+        } else if (
+          element["Items"][2]["Name"].includes("잠재우는 대지의 가호 6세트")
+        ) {
+          AwakeName += "토바절";
+        } else if (
+          element["Items"][2]["Name"].includes("세 우마르가 오리라 3세트")
+        ) {
+          if (AwakeName == "라제니스의 운명 2세트") {
             AwakeName = "세우라제";
           } else {
             AwakeName += "세우";
           }
-        } else if (element["Items"][2]["Name"].includes("플라티나")) {
-          if (AwakeName == "부르") {
+        } else if (
+          element["Items"][2]["Name"].includes("플라티나의 주민들 3세트")
+        ) {
+          if (AwakeName == "부르는 소리 있도다 3세트") {
             AwakeName = "플라부르";
           } else {
             AwakeName += "플라";
           }
-        } else if (element["Items"][2]["Name"].includes("운명 2세트")) {
+        } else if (
+          element["Items"][2]["Name"].includes("라제니스의 운명 2세트")
+        ) {
           AwakeName += "라제";
-        } else if (element["Items"][2]["Name"].includes("있도다 3세트")) {
+        } else if (
+          element["Items"][2]["Name"].includes("부르는 소리 있도다 3세트")
+        ) {
           AwakeName += "부르";
         } else if (element["Items"][2]["Name"].includes("운명의 별 5세트")) {
           AwakeName += "운명";
-        } else if (element["Items"][2]["Name"].includes("있구나 6세트")) {
-          AwakeName += "너계획";
-        } else if (element["Items"][2]["Name"].includes("보면 6세트")) {
-          AwakeName += "알고보면";
         }
       });
-      if (AwakeName == "남바절") {
-        if (AwakeCount < 12) {
-          AwakeCount = 0;
-        } else if (AwakeCount < 18) {
-          AwakeCount = 12;
-        } else if (AwakeCount < 30) {
-          AwakeCount = 18;
-        }
-      } else {
-        if (AwakeCount < 12) {
-          AwakeCount = 0;
-        } else if (AwakeCount < 18) {
-          AwakeCount = 12;
-        } else if (AwakeCount < 25) {
-          AwakeCount = 18;
-        } else if (AwakeCount < 30) {
-          AwakeCount = 25;
-        }
-      }
 
+      if (AwakeCount < 12) {
+        AwakeCount = 0;
+      } else if (AwakeCount < 18) {
+        AwakeCount = 12;
+      } else if (AwakeCount < 24) {
+        AwakeCount = 18;
+      } else if (AwakeCount < 30) {
+        AwakeCount = 24;
+      }
       return { Cards, AwakeCount, AwakeName };
     }
 

@@ -18,11 +18,11 @@ const DraggableItem = memo(function ({ item, provided, snapshot, onAccInput }) {
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       className="drag-item ripple"
-      onClick={item.onclick ? onAccInput : undefined}
+      onClick={item?.onclick ? onAccInput : undefined}
     >
-      <div className="item-title">{item.title}</div>
-      <div className="item-value">{item.value || "없음"}</div>
-      <div className="item-body">{item.body}</div>
+      <div className="item-title">{item?.title}</div>
+      <div className="item-value">{item?.value || "없음"}</div>
+      <div className="item-body">{item?.body}</div>
     </div>
   );
 });
@@ -147,8 +147,8 @@ const MyDndComponent = function ({ title, onclick }) {
                   </div>
                   {items[key].map((item, index) => (
                     <Draggable
-                      key={item.id}
-                      draggableId={item.id}
+                      key={item?.id ?? ""}
+                      draggableId={item?.id ?? ""}
                       index={index}
                     >
                       {(provided, snapshot) => {

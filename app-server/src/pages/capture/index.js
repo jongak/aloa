@@ -299,7 +299,8 @@ const capture = function () {
             style={{
               position: "absolute",
               left: "-3000px",
-              // left: "900px",
+              // right: "-100px",
+
               // zIndex: 1000,
             }}
           />
