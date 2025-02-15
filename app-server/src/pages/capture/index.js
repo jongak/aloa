@@ -35,7 +35,6 @@ const capture = function () {
   const [isLoading, setIsLoading] = useState(false);
   const [isChanged, setIsChanged] = useState(true);
   const rarityPreset = useSelector((state) => state.captureSlice.rarityPreset);
-  const characterNameRef = useRef();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -116,18 +115,18 @@ const capture = function () {
     }
   }, [isLoading, isChanged, frontItems, frontIcons, optionItems]);
 
-  // const handleFrontDown = async () => {
-  //   frontCanvasRef.toBlob(function (blob) {
-  //     saveAs(blob, "CardFront.png");
-  //   });
-  // };
-  // const handleBackDown = async () => {
-  //   backCanvasRef.toBlob(function (blob) {
-  //     if (blob !== null) {
-  //       saveAs(blob, "CardBack.png");
-  //     }
-  //   });
-  // };
+  const handleFrontDown = async () => {
+    frontCanvasRef.toBlob(function (blob) {
+      saveAs(blob, `${characterId}_front.png`);
+    });
+  };
+  const handleBackDown = async () => {
+    backCanvasRef.toBlob(function (blob) {
+      if (blob !== null) {
+        saveAs(blob, `${characterId}_back.png`);
+      }
+    });
+  };
 
   // const handleServer = async () => {
   //   try {
@@ -215,7 +214,7 @@ const capture = function () {
     // holoSrcRef,
   };
   const setOptionActions = { setIsChanged };
-  // const shareCardActions = { handleFrontDown, handleBackDown, handleServer };
+  const shareCardActions = { handleFrontDown, handleBackDown };
 
   return (
     <div className="main-banner container">
@@ -225,9 +224,7 @@ const capture = function () {
             getDataCard(characterId);
             console.log(location.pathname);
           }}
-        >
-          {characterId} 클릭
-        </div>
+        ></div>
       </div>
       <div className="row justify-content-center">
         <div className="option-area col-md-7">
@@ -274,10 +271,9 @@ const capture = function () {
 
           <Outlet
             context={{
-              characterNameRef,
               ...setOptionActions,
               ...setOptionStates,
-              // ...shareCardActions,
+              ...shareCardActions,
             }}
           />
         </div>
@@ -288,9 +284,9 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              // left: "-3000px",
-              left: "-100px",
-              zIndex: 1000,
+              left: "-3000px",
+              // left: "-100px",
+              // zIndex: 1000,
             }}
           />
           <CardBack
@@ -298,8 +294,8 @@ const capture = function () {
             setIsLoading={setIsLoading}
             style={{
               position: "absolute",
-              // left: "-3000px",
-              // right: "-100px",
+              left: "-3000px",
+              // left: "-100px",
               // zIndex: 1000,
             }}
           />

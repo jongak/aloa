@@ -138,6 +138,7 @@ const CharacterService = {
             qualityValue: 0,
             statQuality: 0,
             연마_효과: [],
+            연마_효과_단축: "",
           },
         ],
         귀걸이: [
@@ -148,6 +149,7 @@ const CharacterService = {
             qualityValue: 0,
             statQuality: 0,
             연마_효과: [],
+            연마_효과_단축: "",
           },
           {
             Name: "",
@@ -156,6 +158,7 @@ const CharacterService = {
             qualityValue: 0,
             statQuality: 0,
             연마_효과: [],
+            연마_효과_단축: "",
           },
         ],
         반지: [
@@ -166,6 +169,7 @@ const CharacterService = {
             qualityValue: 0,
             statQuality: 0,
             연마_효과: [],
+            연마_효과_단축: "",
           },
           {
             Name: "",
@@ -174,6 +178,7 @@ const CharacterService = {
             qualityValue: 0,
             statQuality: 0,
             연마_효과: [],
+            연마_효과_단축: "",
           },
         ],
       };
@@ -356,6 +361,41 @@ const CharacterService = {
               _연마_횟수
             );
             악세_스탯_품질 += 악세[Type][isExisted]["statQuality"];
+
+            const _연마_효과과_정렬 = (a, b) => {
+              const 등급_가중치 = {
+                상: 6,
+                중: 5,
+                하: 4,
+                "공용 상": 3,
+                "공용 중": 2,
+                "공용 하": 1,
+                "": 0,
+              };
+              return 등급_가중치[b.Grade] - 등급_가중치[a.Grade];
+            };
+
+            악세[Type][isExisted]["연마_효과"] =
+              악세[Type][isExisted]["연마_효과"].sort(_연마_효과과_정렬);
+
+            악세[Type][isExisted]["연마_효과_단축"] = 악세[Type][isExisted][
+              "연마_효과"
+            ]
+              .map((element, index) => {
+                if (element.Grade.includes("공용")) {
+                  if (
+                    index == 2 &&
+                    !악세[Type][isExisted]["연마_효과"][1].Grade?.includes(
+                      "공용"
+                    )
+                  ) {
+                    return element.Grade.replace("공용 ", "");
+                  }
+                  return "";
+                }
+                return element.Grade;
+              })
+              .join("");
           } else if (Type == "어빌리티 스톤" && dat_idx == "Element_006") {
             어빌리티_스톤["Name"] = element["Name"];
             어빌리티_스톤["Icon"] = element["Icon"];

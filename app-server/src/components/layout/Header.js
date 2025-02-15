@@ -66,9 +66,9 @@ function Header({ logOut }) {
                   <li className="ripple">
                     <Link to="/capture">카드 만들기</Link>
                   </li>
-                  <li className="ripple">
+                  {/* <li className="ripple">
                     <Link to="/list">카드 목록</Link>
-                  </li>
+                  </li> */}
                   <li className="ripple">
                     <Link to="/notice">공지</Link>
                   </li>

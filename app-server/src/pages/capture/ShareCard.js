@@ -97,7 +97,7 @@ const ShareCard = function () {
           />
         </div>
 
-        <div className="find-input">
+        {/* <div className="find-input">
           <input
             className="form-control"
             ref={copyLinkRef}
@@ -119,9 +119,9 @@ const ShareCard = function () {
               }
             />
           </CopyToClipboard>
-        </div>
+        </div> */}
 
-        <div className="find-input">
+        {/* <div className="find-input">
           <input
             className="form-control"
             type="text"
@@ -160,8 +160,8 @@ const ShareCard = function () {
               }
             />
           </CopyToClipboard>
-        </div>
-
+        </div> */}
+        {/* 
         <div className="find-input">
           <Button
             title={
@@ -175,9 +175,9 @@ const ShareCard = function () {
         </div>
         <div className="userbody">
           서버에 저장은 캐릭터당 하루에 한번만 가능합니다.
-        </div>
+        </div> */}
       </div>
-      <h3>
+      {/* <h3>
         <i className="fa fa-server"></i> 서버상태 확인
       </h3>
       <div className="userRow">
@@ -224,7 +224,7 @@ const ShareCard = function () {
             onClick={openPdfInNewTab}
           />
         </div>
-      </div>
+      </div> */}
       <Button href="../set" title={"이전"} />
       <Button isClickable={false} title={"다음"} />
     </div>

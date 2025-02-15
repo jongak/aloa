@@ -83,6 +83,15 @@ const equipGrade = {
   일반: "#475577",
 };
 
+const AccGrade = {
+  상: "#fba026",
+  중: "#7504fb",
+  하: "#2d82c9",
+  "공용 상": "#fba026",
+  "공용 중": "#7504fb",
+  "공용 하": "#2d82c9",
+};
+
 const CardBack = function ({
   setIsLoading,
   style,
@@ -186,38 +195,19 @@ const CardBack = function ({
               <div className="row engravings">
                 <ul>
                   {userData ? (
-                    userData["ArmoryEngraving"]["ArkPassiveEffects"].map(
+                    userData["ArmoryEngraving"]["ArkPassiveEffects"]?.map(
                       (item) => (
                         <li
                           className="engraving_item"
                           key={item.Name + Math.floor(Math.random() * 10000)}
-                          style={{ position: "relative", marginRight: "8px" }}
+                          style={{ marginRight: "8px" }}
                         >
-                          <img
-                            className="engraving full"
-                            src={`/img/engraving/${item.Name}.png`}
-                            style={{ position: "relative", zIndex: 2 }}
-                          />
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: "-2px",
-                              right: "-4px",
-                              width: "24px",
-                              height: "52px",
-                              borderRadius: "0 52px 52px 0",
-                              opacity: "0.8",
-                              zIndex: 1,
-                              overflow: "hidden",
-                            }}
-                          >
+                          <img src={`/img/engraving/${item.Name}.png`} />
+                          <div className="engraving_grade">
                             <div
                               style={{
-                                width: "100%",
-                                height: "100%",
                                 background: equipGrade[item.Grade],
                                 transform: `scaleY(${item.Level / 4})`,
-                                transformOrigin: "bottom",
                               }}
                             />
                           </div>
@@ -341,6 +331,40 @@ const CardBack = function ({
                               }}
                             ></div>
                           </div>
+                          <ul
+                            style={{
+                              position: "absolute",
+                              right: "0",
+                              top: "0",
+                            }}
+                          >
+                            {item["연마_효과"]?.map(
+                              (element, index) =>
+                                element.Grade && (
+                                  <span
+                                    className="accessory_up_badge"
+                                    key={
+                                      "grade" +
+                                      index +
+                                      Math.floor(Math.random() * 10000)
+                                    }
+                                    style={{
+                                      backgroundColor: AccGrade[element.Grade],
+                                      width: element.Grade.includes("공용")
+                                        ? "8px"
+                                        : "12px",
+                                      height: element.Grade.includes("공용")
+                                        ? "8px"
+                                        : "12px",
+                                      borderRadius: "50%",
+                                      left: element.Grade.includes("공용")
+                                        ? "2px"
+                                        : "",
+                                    }}
+                                  ></span>
+                                )
+                            )}
+                          </ul>
                         </li>
                       ))
                     : ""}

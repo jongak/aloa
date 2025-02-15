@@ -132,27 +132,11 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
                       style={{ marginBottom: "8px" }}
                     >
                       <img src={`/img/engraving/${item.Name}.png`} />
-                      <div
-                        className="engraving_grade"
-                        style={{
-                          position: "absolute",
-                          top: "-2px",
-                          right: "-4px",
-                          width: "24px",
-                          height: "52px",
-                          borderRadius: "0 52px 52px 0",
-                          opacity: "0.8",
-                          zIndex: 1,
-                          overflow: "hidden",
-                        }}
-                      >
+                      <div className="engraving_grade">
                         <div
                           style={{
-                            width: "100%",
-                            height: "100%",
                             background: engravingGradeColor[item.Grade],
                             transform: `scaleY(${item.Level / 4})`,
-                            transformOrigin: "bottom",
                           }}
                         />
                       </div>

@@ -473,30 +473,30 @@ const SelectValue = function () {
           title: "투구 특옵",
           body: "투구에 붙은 엘릭서 특수옵션 입니다.",
           value:
-            userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["레벨"]
               : "없음",
           cardValue:
-            userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["효과"] &&
+            userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["효과"] &&
             !isGongElixer(
-              userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["효과"]
+              userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["효과"]
             )
               ? shortElixer(
-                  userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"][
+                  userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"][
                     "효과"
                   ]
                 ) +
                 " " +
-                userData["ArmoryEquipment"]["장비"]["투구"]["Elixir00"]["레벨"]
+                userData["ArmoryEquipment"]["장비"]["투구"]["Elixir01"]["레벨"]
               : "-",
         },
         {
@@ -622,6 +622,56 @@ const SelectValue = function () {
                 " " +
                 userData["ArmoryEquipment"]["장비"]["장갑"]["Elixir01"]["레벨"]
               : "-",
+        },
+        {
+          id: "boxAcc01",
+          title: "목걸이 연마",
+          body: "목걸이에 붙은 연마 효과 입니다.",
+          value:
+            userData["ArmoryEquipment"]["악세"]["목걸이"][0]["연마_효과_단축"],
+          cardValue:
+            "목걸이: " +
+            userData["ArmoryEquipment"]["악세"]["목걸이"][0]["연마_효과_단축"],
+        },
+        {
+          id: "boxAcc02",
+          title: "귀걸이 연마 1",
+          body: "귀걸이에 붙은 연마 효과 입니다.",
+          value:
+            userData["ArmoryEquipment"]["악세"]["귀걸이"][0]["연마_효과_단축"],
+          cardValue:
+            "귀걸이: " +
+            userData["ArmoryEquipment"]["악세"]["귀걸이"][0]["연마_효과_단축"],
+        },
+        {
+          id: "boxAcc03",
+          title: "귀걸이 연마 2",
+          body: "귀걸이에 붙은 연마 효과 입니다.",
+          value:
+            userData["ArmoryEquipment"]["악세"]["귀걸이"][1]["연마_효과_단축"],
+          cardValue:
+            "귀걸이: " +
+            userData["ArmoryEquipment"]["악세"]["귀걸이"][1]["연마_효과_단축"],
+        },
+        {
+          id: "boxAcc04",
+          title: "반지 연마 1",
+          body: "반지에 붙은 연마 효과 입니다.",
+          value:
+            userData["ArmoryEquipment"]["악세"]["반지"][0]["연마_효과_단축"],
+          cardValue:
+            "반지: " +
+            userData["ArmoryEquipment"]["악세"]["반지"][0]["연마_효과_단축"],
+        },
+        {
+          id: "boxAcc05",
+          title: "반지 연마 2",
+          body: "반지에 붙은 연마 효과 입니다.",
+          value:
+            userData["ArmoryEquipment"]["악세"]["반지"][1]["연마_효과_단축"],
+          cardValue:
+            "반지: " +
+            userData["ArmoryEquipment"]["악세"]["반지"][1]["연마_효과_단축"],
         },
       ],
 

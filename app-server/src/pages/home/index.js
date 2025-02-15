@@ -34,19 +34,22 @@ function Home() {
   const handleButtonClick = async (e) => {
     e.preventDefault();
 
-    if (queryRef.current.value) {
-      var tmp = await getData(queryRef.current.value);
-      if (tmp || is_manager) {
-        navigate(`/cards/${queryRef.current.value}`);
-      } else {
-        toast.error(`카드를 먼저 만들어 주세요`);
-        navigate(`/capture`);
-      }
-    } else {
-      toast.error(`아이디를 입력해 주세요`);
-      queryRef.current.value = "";
-      queryRef.current.focus();
-    }
+    toast.error(`기존카드 검색기능은 준비중입니다.`);
+    navigate(`/capture`);
+
+    // if (queryRef.current.value) {
+    //   var tmp = await getData(queryRef.current.value);
+    //   if (tmp || is_manager) {
+    //     navigate(`/cards/${queryRef.current.value}`);
+    //   } else {
+    //     toast.error(`카드를 먼저 만들어 주세요`);
+    //     navigate(`/capture`);
+    //   }
+    // } else {
+    //   toast.error(`아이디를 입력해 주세요`);
+    //   queryRef.current.value = "";
+    //   queryRef.current.focus();
+    // }
   };
   return (
     <>
