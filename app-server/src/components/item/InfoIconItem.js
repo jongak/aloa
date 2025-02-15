@@ -14,7 +14,7 @@ const InfoTableItem = function ({ element }) {
       </div>
       <div
         className={`icons_table_badge ${spanRight ? "right" + spanRight : ""}`}
-        style={{ padding: sprite ? "0px 7px 0px 7px" : "1px 7px 7px 7px" }}
+        style={{ padding: sprite ? "0px 7px 0px 7px" : "1px 7px 2px 7px" }}
       >
         {cardValue ? (
           <>

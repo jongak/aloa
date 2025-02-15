@@ -45,9 +45,9 @@ const change = {
 
 const engravingGradeColor = {
   // TODO:색찾아서 넣기
-  유물: "red",
-  전설: "orange",
-  영웅: "purple",
+  유물: "#e25041",
+  전설: "#fba026",
+  영웅: "#7504fb",
 };
 
 const getData = async function (url) {
@@ -126,20 +126,35 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
               {userData ? (
                 userData["ArmoryEngraving"]["ArkPassiveEffects"]?.map(
                   (item) => (
-                    <li key={item.Name} style={{ position: "relative" }}>
-                      <img
-                        className="engraving"
-                        src={`/img/engraving/${item.Name}.png`}
-                      />
+                    <li
+                      className="engraving_item"
+                      key={item.Name}
+                      style={{ marginBottom: "8px" }}
+                    >
+                      <img src={`/img/engraving/${item.Name}.png`} />
                       <div
+                        className="engraving_grade"
                         style={{
                           position: "absolute",
-                          top: 0,
-                          right: "-5px",
-                          color: engravingGradeColor[item.Grade],
+                          top: "-2px",
+                          right: "-4px",
+                          width: "24px",
+                          height: "52px",
+                          borderRadius: "0 52px 52px 0",
+                          opacity: "0.8",
+                          zIndex: 1,
+                          overflow: "hidden",
                         }}
                       >
-                        {item.Level}
+                        <div
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            background: engravingGradeColor[item.Grade],
+                            transform: `scaleY(${item.Level / 4})`,
+                            transformOrigin: "bottom",
+                          }}
+                        />
                       </div>
                     </li>
                   )

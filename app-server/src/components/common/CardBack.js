@@ -162,7 +162,10 @@ const CardBack = function ({
                 </div>
                 <div className="mycol-20 back_stats_bg">
                   <span>깨달음</span>
-                  <span className="back_guildname">
+                  <span
+                    className="back_guildname"
+                    style={{ marginLeft: "-20px" }}
+                  >
                     {isName ? userData["ArkPassive"]["깨달음"] : "-"}
                   </span>
                 </div>
@@ -185,11 +188,39 @@ const CardBack = function ({
                   {userData ? (
                     userData["ArmoryEngraving"]["ArkPassiveEffects"].map(
                       (item) => (
-                        <li key={item.Name + Math.floor(Math.random() * 10000)}>
+                        <li
+                          className="engraving_item"
+                          key={item.Name + Math.floor(Math.random() * 10000)}
+                          style={{ position: "relative", marginRight: "8px" }}
+                        >
                           <img
                             className="engraving full"
                             src={`/img/engraving/${item.Name}.png`}
+                            style={{ position: "relative", zIndex: 2 }}
                           />
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "-2px",
+                              right: "-4px",
+                              width: "24px",
+                              height: "52px",
+                              borderRadius: "0 52px 52px 0",
+                              opacity: "0.8",
+                              zIndex: 1,
+                              overflow: "hidden",
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: "100%",
+                                height: "100%",
+                                background: equipGrade[item.Grade],
+                                transform: `scaleY(${item.Level / 4})`,
+                                transformOrigin: "bottom",
+                              }}
+                            />
+                          </div>
                         </li>
                       )
                     )
@@ -252,16 +283,26 @@ const CardBack = function ({
                           }}
                         ></div>
                       </div>
-                      {item["상급_재련"] === 20 ? (
+                      {item["상급_재련"] === 40 ? (
                         <img
                           id="back_equipment_high"
                           src={`/assets/images/icons/상재20.png`}
                         />
-                      ) : item["상급_재련"] >= 10 && item["상급_재련"] < 20 ? (
-                        <img
-                          id="back_equipment_high"
-                          src={`/assets/images/icons/상재10.png`}
-                        />
+                      ) : item["상급_재련"] >= 10 && item["상급_재련"] < 40 ? (
+                        <>
+                          <img
+                            id="back_equipment_high"
+                            src={`/assets/images/icons/상재10.png`}
+                          />
+                          <span
+                            className="equipment_high_badge"
+                            style={{
+                              backgroundColor: `#8FB8D4`,
+                            }}
+                          >
+                            {item["상급_재련"]}
+                          </span>
+                        </>
                       ) : null}
                       {item["초월_등급"] ? (
                         <img
