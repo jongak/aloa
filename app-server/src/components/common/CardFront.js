@@ -52,7 +52,6 @@ const engravingGradeColor = {
 
 const getData = async function (url) {
   try {
-    console.log(url);
     const res = await axios.get(`?url=${url}`);
     return res.data;
   } catch (err) {
@@ -72,15 +71,48 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
   const [characterImage, setCharacterImage] = useState("");
 
   useEffect(() => {
-    if (userData && userData["ArmoryProfile"]) {
-      setIsLoading(false);
-      getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
-        setCharacterImage(res);
-      });
-      setTimeout(() => {
-        setIsLoading(true);
-      }, 500);
-    }
+    let isSubscribed = true;
+    let timeoutId = null;
+
+    const loadCharacterImage = async () => {
+      if (!userData || !userData["ArmoryProfile"]) return;
+
+      try {
+        setIsLoading(false);
+        const imageData = await getData(
+          userData["ArmoryProfile"]["CharacterImage"]
+        );
+
+        if (isSubscribed) {
+          setCharacterImage(imageData);
+          timeoutId = setTimeout(() => {
+            if (isSubscribed) {
+              setIsLoading(true);
+            }
+          }, 500);
+        }
+      } catch (error) {
+        console.error("Failed to load character image:", error);
+      }
+    };
+
+    loadCharacterImage();
+
+    return () => {
+      isSubscribed = false;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      setCharacterImage("");
+
+      if (characterImage) {
+        const img = new Image();
+        img.src = characterImage;
+        img.onload = () => {
+          img.src = "";
+        };
+      }
+    };
   }, [userData]);
 
   if (!userData || !userData["ArmoryProfile"]) {

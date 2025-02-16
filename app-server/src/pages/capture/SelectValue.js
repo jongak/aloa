@@ -11,6 +11,7 @@ import {
   setFrontItems,
   setOptionItems,
 } from "../../store/itemSlice";
+import { toast } from "react-toastify";
 
 const shortEngrav = function (eng) {
   if (eng == "아르데타인의 기술") {
@@ -72,8 +73,10 @@ const SelectValue = function () {
   const navigate = useNavigate();
 
   if (!characterId || characterId == "") {
-    console.log(characterId);
-    navigate("../../capture");
+    toast.error("아이디가 없습니다.");
+    setTimeout(() => {
+      navigate("../");
+    }, 10);
   }
 
   useEffect(() => {

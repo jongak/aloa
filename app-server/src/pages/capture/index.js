@@ -24,7 +24,6 @@ const getDataCard = async function (id) {
 };
 
 const capture = function () {
-  //10.26 작성
   const location = useLocation();
   const characterId = useSelector((state) => state.itemSlice.characterId);
 
@@ -78,7 +77,7 @@ const capture = function () {
     };
 
     fetchData();
-  }, [characterId, dispatch, navigate]);
+  }, [characterId]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,13 +106,15 @@ const capture = function () {
 
       setFrontCanvasRef(frontCanvas);
       setBackCanvasRef(backCanvas);
+
+      // 캔버스 참조 제거
+      frontCanvas.remove();
+      backCanvas.remove();
       // setIsLoading(false); // 이미지 생성 및 캔버스화 완료 후 로딩 상태를 false로 변경
       // setIsCardReady(true); // 카드 생성이 완료됨
     };
-    if (isLoading) {
-      setTimeout(fetchData, 50);
-    }
-  }, [isLoading, isChanged, frontItems, frontIcons, optionItems]);
+    setTimeout(fetchData, 50);
+  }, [isChanged, frontItems, frontIcons, optionItems]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {

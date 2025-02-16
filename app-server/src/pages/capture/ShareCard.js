@@ -7,72 +7,75 @@ import ToggleButton from "../../components/common/ToggleButton";
 import { useSelector } from "react-redux";
 
 const ShareCard = function () {
-  const { handleFrontDown, handleBackDown, handleServer } = useOutletContext();
+  const { handleFrontDown, handleBackDown } = useOutletContext();
   const navigate = useNavigate();
 
-  const copyLinkRef = useRef({ value: "" });
-  const copyHTMLRef = useRef({ value: "" });
+  // const copyLinkRef = useRef({ value: "" });
+  // const copyHTMLRef = useRef({ value: "" });
 
-  const frontURL = useRef({ value: "" });
-  const backURL = useRef({ value: "" });
+  // const frontURL = useRef({ value: "" });
+  // const backURL = useRef({ value: "" });
 
   const characterId = useSelector((state) => state.itemSlice.characterId);
 
   if (!characterId || characterId == "") {
-    navigate("../");
+    toast.error("아이디가 없습니다.");
+    setTimeout(() => {
+      navigate("../");
+    }, 10);
   }
 
-  const openPdfInNewTab = () => {
-    const newWindow = window.open(
-      process.env.REACT_APP_API_SERVER + "/file/2",
-      "_blank"
-    );
-    if (newWindow) {
-      newWindow.focus();
-    } else {
-      toast.error(
-        "팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요."
-      );
-    }
-  };
+  // const openPdfInNewTab = () => {
+  //   const newWindow = window.open(
+  //     process.env.REACT_APP_API_SERVER + "/file/2",
+  //     "_blank"
+  //   );
+  //   if (newWindow) {
+  //     newWindow.focus();
+  //   } else {
+  //     toast.error(
+  //       "팝업이 차단되었습니다. 팝업 차단을 해제하고 다시 시도하세요."
+  //     );
+  //   }
+  // };
 
-  const newHTML = function (front, back) {
-    const frontImgTag = front
-      ? `<img ` +
-        `loading='lazy' ` +
-        `src='${front}' ` +
-        `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
-        `/> `
-      : "";
-    const backImgTag = back
-      ? `<img ` +
-        `loading='lazy' ` +
-        `src='${back}' ` +
-        `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
-        `/> `
-      : "";
-    return (
-      `<a href='${process.env.REACT_APP_SERVER}'> ` +
-      frontImgTag +
-      backImgTag +
-      `</a> ` +
-      `<div> ` +
-      `더많은 카드를 만들기 위해서 <a href='${process.env.REACT_APP_SERVER}'>ALOA</a> 방문 ` +
-      `</div> `
-    );
-  };
+  // const newHTML = function (front, back) {
+  //   const frontImgTag = front
+  //     ? `<img ` +
+  //       `loading='lazy' ` +
+  //       `src='${front}' ` +
+  //       `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
+  //       `/> `
+  //     : "";
+  //   const backImgTag = back
+  //     ? `<img ` +
+  //       `loading='lazy' ` +
+  //       `src='${back}' ` +
+  //       `style='height: 400px; width: 300px; aspect-ratio: 300 / 400' ` +
+  //       `/> `
+  //     : "";
+  //   return (
+  //     `<a href='${process.env.REACT_APP_SERVER}'> ` +
+  //     frontImgTag +
+  //     backImgTag +
+  //     `</a> ` +
+  //     `<div> ` +
+  //     `더많은 카드를 만들기 위해서 <a href='${process.env.REACT_APP_SERVER}'>ALOA</a> 방문 ` +
+  //     `</div> `
+  //   );
+  // };
 
-  const copyCardUrl = function () {
-    navigator.clipboard
-      .writeText(newHTML(frontURL.current.value, backURL.current.value))
-      .then(() => {
-        if (frontURL.current.value || backURL.current.value) {
-          toast.success(`HTML 태그를 복사했습니다.`);
-        } else {
-          toast.error("URL을 입력해 주세요");
-        }
-      });
-  };
+  // const copyCardUrl = function () {
+  //   navigator.clipboard
+  //     .writeText(newHTML(frontURL.current.value, backURL.current.value))
+  //     .then(() => {
+  //       if (frontURL.current.value || backURL.current.value) {
+  //         toast.success(`HTML 태그를 복사했습니다.`);
+  //       } else {
+  //         toast.error("URL을 입력해 주세요");
+  //       }
+  //     });
+  // };
 
   return (
     <div className="option-body share">

@@ -2368,6 +2368,25 @@ Notice
 --------------------------------------------- 
 */
 
+.option-body.notice .userRow .userbody img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(100%);
+  margin-right: 10px;
+  margin-bottom: 4px;
+}
+
+.App.light .option-body.notice .userRow .userbody img {
+  /* 라이트 모드에서는 원래 색상 유지 */
+  filter: none;
+  -webkit-filter: none;
+}
+
+.option-body.notice .userRow .userbody a {
+  color: var(--my--text);
+  font-weight: 400;
+}
+
 .notice_box::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */
 }

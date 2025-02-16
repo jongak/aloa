@@ -10,6 +10,7 @@ import {
   setFramePreset,
   setRarityPreset,
 } from "../../store/captureSlice";
+import { toast } from "react-toastify";
 
 const SetOption = function () {
   const {
@@ -27,8 +28,12 @@ const SetOption = function () {
   const navigate = useNavigate();
 
   if (!characterId || characterId == "") {
-    navigate("../");
+    toast.error("아이디가 없습니다.");
+    setTimeout(() => {
+      navigate("../");
+    }, 10);
   }
+
   return (
     <div className="option-body set">
       <h3>03. 카드 효과</h3>

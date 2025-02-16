@@ -166,7 +166,7 @@ const CardBack = function ({
                 <div className="mycol-20 back_stats_bg">
                   <span>진화</span>
                   <span className="back_guildname">
-                    {isName ? userData["ArkPassive"]["진화"] : "-"}
+                    {userData["ArkPassive"]["진화"]}
                   </span>
                 </div>
                 <div className="mycol-20 back_stats_bg">
@@ -175,13 +175,13 @@ const CardBack = function ({
                     className="back_guildname"
                     style={{ marginLeft: "-20px" }}
                   >
-                    {isName ? userData["ArkPassive"]["깨달음"] : "-"}
+                    {userData["ArkPassive"]["깨달음"]}
                   </span>
                 </div>
                 <div className="mycol-20 back_stats_bg">
                   <span>도약</span>
                   <span className="back_guildname">
-                    {isName ? userData["ArkPassive"]["도약"] : "-"}
+                    {userData["ArkPassive"]["도약"]}
                   </span>
                 </div>
                 <div className="mycol-20 back_stats_bg">
