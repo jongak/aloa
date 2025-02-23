@@ -52,7 +52,7 @@ const engravingGradeColor = {
 
 const getData = async function (url) {
   try {
-    const res = await axios.get(`?url=${url}`);
+    const res = await axios.get(`/proxy?url=${url}`);
     return res.data;
   } catch (err) {
     console.error(err);
@@ -72,7 +72,6 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
 
   useEffect(() => {
     let isSubscribed = true;
-    let timeoutId = null;
 
     const loadCharacterImage = async () => {
       if (!userData || !userData["ArmoryProfile"]) return;
@@ -85,7 +84,7 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
 
         if (isSubscribed) {
           setCharacterImage(imageData);
-          timeoutId = setTimeout(() => {
+          setTimeout(() => {
             if (isSubscribed) {
               setIsLoading(true);
             }
@@ -100,9 +99,7 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
 
     return () => {
       isSubscribed = false;
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
+
       setCharacterImage("");
 
       if (characterImage) {

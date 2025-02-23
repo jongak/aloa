@@ -104,17 +104,17 @@ const CardBack = function ({
   const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const optionItems = useSelector((state) => state.itemSlice.optionItems);
 
-  useEffect(() => {
-    if (userData && userData["ArmoryProfile"]) {
-      setIsLoading(false);
-      // getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
-      //   imgRef.current = res;
-      // });
-      setTimeout(() => {
-        setIsLoading(true);
-      }, 500);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData && userData["ArmoryProfile"]) {
+  //     setIsLoading(false);
+  //     // getData(userData["ArmoryProfile"]["CharacterImage"]).then((res) => {
+  //     //   imgRef.current = res;
+  //     // });
+  //     setTimeout(() => {
+  //       setIsLoading(true);
+  //     }, 500);
+  //   }
+  // }, [userData]);
 
   if (!userData || !userData["ArmoryProfile"]) {
     return;

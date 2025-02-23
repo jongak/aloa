@@ -33,7 +33,7 @@ app.use(cookieParser());
 // 서버가 다르면 추가
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "build")));
 // app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 
 app.use("/api", indexRouter);
@@ -52,7 +52,7 @@ const request = require("request");
 //   next(); // URL이 있으면 다음 미들웨어로
 // });
 
-app.use("/api", proxy(), (req, res, next) => {
+app.use("/api/proxy", proxy(), (req, res, next) => {
   // 프록시 서버 미들웨어
   switch (req.query.responseType) {
     case "blob":
@@ -77,15 +77,11 @@ app.use("/api", proxy(), (req, res, next) => {
   }
 });
 
-// React용 fallback 추가
-app.use("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
-});
-
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
-  console.error(404, req.url);
-  res.json({ error: { message: "404::존재하지 않는 API입니다." } });
+  return res.status(404).json({
+    error: { message: "404::존재하지 않는 API입니다." },
+  });
 });
 
 // React용 fallback 추가
@@ -111,14 +107,12 @@ app.use("/", (req, res, next) => {
 
 // 500 에러 처리
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  console.error(err.cause);
+  // console.error(err.stack);
+  // console.error(err.cause);
   // restartPM2();
 
-  res.json({
-    error: {
-      message: `500::${err.cause}`,
-    },
+  return res.status(500).json({
+    error: { message: `500::${err.cause}` },
   });
 });
 

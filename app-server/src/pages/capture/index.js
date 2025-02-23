@@ -114,7 +114,7 @@ const capture = function () {
       // setIsCardReady(true); // 카드 생성이 완료됨
     };
     setTimeout(fetchData, 50);
-  }, [isChanged, frontItems, frontIcons, optionItems]);
+  }, [isLoading, isChanged, frontItems, frontIcons, optionItems]);
 
   const handleFrontDown = async () => {
     frontCanvasRef.toBlob(function (blob) {
