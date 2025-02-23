@@ -1,6 +1,8 @@
 # 서비스 진행할때 지우기
-.env
-.env.development
-.env.local
-.env.production
+# .env
+# .env.development
+# .env.local
+# .env.production
 .greenlockrc
+
+/build

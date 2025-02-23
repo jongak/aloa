@@ -89,6 +89,7 @@ const capture = function () {
         scale: 2,
         allowTaint: true,
         useCORS: true,
+        logging: false,
       });
       frontCanvas.style.setProperty("width", "300px");
       frontCanvas.style.setProperty("height", "400px");
@@ -100,6 +101,7 @@ const capture = function () {
         scale: 2,
         allowTaint: true,
         useCORS: true,
+        logging: false,
       });
       backCanvas.style.setProperty("width", "300px");
       backCanvas.style.setProperty("height", "400px");
