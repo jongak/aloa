@@ -1,4 +1,3 @@
-const pool = require("../repo/pool");
 const getExpedition = require("../repo/character.getExpedition");
 const CharacterGetExpeditionModel = require("../model/character.getExpedition");
 const getCharacterInfo = require("../repo/character.getCharacterInfo");

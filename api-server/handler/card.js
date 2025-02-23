@@ -1,9 +1,6 @@
 var express = require("express");
 var router = express.Router();
 
-const CharacterService2 = require("../oldServices/character.service");
-// const CharacterCardService = require("../services/character.card.service");
-
 const CharacterService = require("../service/character");
 
 // 캐릭터명으로 원정대 검색
