@@ -53,6 +53,7 @@ const request = require("request");
 // });
 
 app.use("/api/proxy", proxy(), (req, res, next) => {
+  console.log("test");
   // 프록시 서버 미들웨어
   switch (req.query.responseType) {
     case "blob":
