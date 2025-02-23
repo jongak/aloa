@@ -9,6 +9,7 @@ workspace2
 **/.env.development
 **/.env.local
 **/.env.production
+**/.env.test
 
 # 오피스 임시파일
 ~$*
