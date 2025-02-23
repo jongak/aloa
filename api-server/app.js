@@ -18,8 +18,32 @@ var indexRouter = require("./handler/index");
 
 var app = express();
 
+const fs = require("fs");
+
+// logs 디렉토리가 없으면 생성
+const logsDir = path.join(__dirname, "logs");
+if (!fs.existsSync(logsDir)) {
+  fs.mkdirSync(logsDir);
+}
+// 로그 파일 스트림 생성
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "logs", "access.log"),
+  { flags: "a" } // 'a' flag는 append 모드
+);
+
+// 파일에는 'combined' 포맷으로 저장
 app.use(
-  logger("dev", {
+  logger("combined", {
+    skip: function (req, res) {
+      return !req.originalUrl.startsWith("/api");
+    },
+    stream: accessLogStream,
+  })
+);
+
+// 콘솔에는 'dev' 또는 'dev' 포맷으로 출력
+app.use(
+  logger(process.env.NODE_ENV === "production" ? "dev" : "dev", {
     skip: function (req, res) {
       return !req.originalUrl.startsWith("/api");
     },
