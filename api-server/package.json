@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "start": "cross-env NODE_ENV=production pm2 start ./bin/www --name 'aloa'",
     "dev": "cross-env NODE_ENV=development nodemon ./bin/www",
-    "local": "cross-env NODE_ENV=local nodemon ./bin/www"
+    "local": "cross-env NODE_ENV=local nodemon ./bin/www",
+    "stop": "pm2 stop aloa",
+    "restart": "pm2 restart aloa",
+    "delete": "pm2 delete aloa",
+    "logs": "pm2 logs aloa"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.454.0",
