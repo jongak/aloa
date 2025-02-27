@@ -109,9 +109,9 @@ app.use("/api", (req, res, next) => {
 });
 
 // React용 fallback 추가
-app.use("/", (req, res, next) => {
-  res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
-});
+// app.use("/", (req, res, next) => {
+//   res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
+// });
 
 // 언젠가 500에러가 안뜨게 해놨었는데 그걸 못찾아서 그냥 500에러뜨면 pm2 restart를 해줌
 // const pm2 = require("pm2");
