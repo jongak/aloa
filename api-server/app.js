@@ -103,9 +103,10 @@ app.use("/api/proxy", proxy(), (req, res, next) => {
 
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
-  return res.status(404).json({
-    error: { message: "404::존재하지 않는 API입니다." },
-  });
+  return res.status(200);
+  // return res.status(404).json({
+  //   error: { message: "404::존재하지 않는 API입니다." },
+  // });
 });
 
 // React용 fallback 추가
