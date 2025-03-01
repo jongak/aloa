@@ -60,6 +60,11 @@ app.use(cors());
 // app.use(express.static(path.join(__dirname, "build")));
 // app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 
+// 200 응답 핸들러 추가
+app.get('/api', (req, res) => {
+  res.status(200).json({ status: 'success', message: 'API is running' });
+});
+
 app.use("/api", indexRouter);
 
 var proxy = require("html2canvas-proxy");
