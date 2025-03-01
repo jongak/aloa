@@ -18,6 +18,11 @@ var indexRouter = require("./handler/index");
 
 var app = express();
 
+// 개발 환경에서만 API 문서 제공
+if (process.env.ENV_NAME === 'development') {
+  app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
+}
+
 const fs = require("fs");
 
 // logs 디렉토리가 없으면 생성

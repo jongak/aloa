@@ -16,7 +16,7 @@ function Footer() {
           <p>
             Copyright © 2023 ALOA Team &nbsp;&nbsp;
             {process.env.REACT_APP_VERSION} 
-            {process.env.ENV_NAME == "production" ? "r" : "t"}
+            {process.env.REACT_APP_ENV_NAME == "production" ? "r" : "t"}
             &nbsp;&nbsp;
             <Link onClick={copyTextUrl}>문의하기</Link>
           </p>
