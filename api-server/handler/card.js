@@ -60,6 +60,7 @@ async function hCardCharacterInfo(req, res, next) {
     const result = await CharacterService.getCharacterInfo(characterName);
     res.json(result);
   } catch (err) {
+    console.log(err)
     next(err);
   }
 }

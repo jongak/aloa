@@ -19,7 +19,7 @@ var indexRouter = require("./handler/index");
 var app = express();
 
 // 개발 환경에서만 API 문서 제공
-if (process.env.ENV_NAME === 'development') {
+if (process.env.ENV_NAME === "development") {
   app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 }
 
@@ -63,8 +63,14 @@ app.use(cookieParser());
 app.use(cors());
 
 // 200 응답 핸들러 추가
-app.get('/api', (req, res) => {
-  res.status(200).json({ status: 'success', message: process.env.REACT_APP_VERSION + " " + process.env.ENV_NAME + ":OK" });
+app.get("/api", (req, res) => {
+  res
+    .status(200)
+    .json({
+      status: "success",
+      message:
+        process.env.REACT_APP_VERSION + " " + process.env.ENV_NAME + ":OK",
+    });
 });
 
 app.use("/api", indexRouter);
@@ -115,12 +121,12 @@ app.use("/api", (req, res, next) => {
   });
 });
 
-
 // 500 에러 처리
 app.use((err, req, res, next) => {
-  return res.status(500).json({
-    error: { message: `500::${err.cause}` },
+  console.error("Unhandled error:", err.message);
+  console.error(err.stack); // 스택 트레이스를 로그에 출력
+  res.status(500).json({
+    error: { message: `500::${err.message}` },
   });
 });
-
 module.exports = app;
