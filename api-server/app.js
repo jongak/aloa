@@ -57,7 +57,7 @@ app.use(cookieParser());
 // 서버가 다르면 추가
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 // app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 
 app.use("/api", indexRouter);
@@ -103,10 +103,9 @@ app.use("/api/proxy", proxy(), (req, res, next) => {
 
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
-  return res.status(200);
-  // return res.status(404).json({
-  //   error: { message: "404::존재하지 않는 API입니다." },
-  // });
+  return res.status(404).json({
+    error: { message: "404::존재하지 않는 API입니다." },
+  });
 });
 
 // React용 fallback 추가
