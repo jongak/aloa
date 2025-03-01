@@ -35,7 +35,7 @@ const accessLogStream = fs.createWriteStream(
 app.use(
   logger("combined", {
     skip: function (req, res) {
-      return !req.originalUrl.startsWith("/api");
+      return !req.originalUrl.startsWith("/api/");
     },
     stream: accessLogStream,
   })
@@ -56,9 +56,6 @@ app.use(cookieParser());
 // 교차출처 처리
 // 서버가 다르면 추가
 app.use(cors());
-
-// app.use(express.static(path.join(__dirname, "build")));
-// app.use(express.static(path.join(__dirname, "..", "app-server", "build")));
 
 // 200 응답 핸들러 추가
 app.get('/api', (req, res) => {
@@ -113,33 +110,9 @@ app.use("/api", (req, res, next) => {
   });
 });
 
-// React용 fallback 추가
-// app.use("/", (req, res, next) => {
-//   res.sendFile(path.join(__dirname, "..", "app-server", "build", "index.html"));
-// });
-
-// 언젠가 500에러가 안뜨게 해놨었는데 그걸 못찾아서 그냥 500에러뜨면 pm2 restart를 해줌
-// const pm2 = require("pm2");
-// function restartPM2() {
-//   pm2.connect(function (err) {
-//     if (err) {
-//       console.error(err);
-//       process.exit(2);
-//     }
-
-//     pm2.restart("aloa", function (err, proc) {
-//       pm2.disconnect();
-//       if (err) throw err;
-//     });
-//   });
-// }
 
 // 500 에러 처리
 app.use((err, req, res, next) => {
-  // console.error(err.stack);
-  // console.error(err.cause);
-  // restartPM2();
-
   return res.status(500).json({
     error: { message: `500::${err.cause}` },
   });
