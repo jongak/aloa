@@ -365,7 +365,7 @@ const CharacterService = {
 
               const _연마_횟수 = 악세[Type][isExisted].연마_효과.length;
               const Tooltip2 = dat["Element_004"]["value"]["Element_001"];
-              const matches2 = Tooltip2.match(/(힘|민첩|지능)\+(\d+)<BR>/);
+              const matches2 = Tooltip2.match(/(힘|민첩|지능) \+(\d+)<BR>/);
               악세[Type][isExisted]["statQuality"] = _4T_악세_품질_계산(
                 Type,
                 Number(matches2[1]),
