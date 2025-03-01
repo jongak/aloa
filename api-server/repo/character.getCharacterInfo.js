@@ -26,7 +26,7 @@ async function getCharacterInfo(characterName) {
     const res = await lostArk.get(url, { headers: headers });
     return res.data;
   } catch (err) {
-    throw new Error("API Error", { cause: err });
+    throw err;
   }
 }
 

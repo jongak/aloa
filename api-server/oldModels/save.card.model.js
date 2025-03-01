@@ -8,7 +8,7 @@ const SaveCardModel = {
       await conn.query(sql, [article]);
       return true;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //24시간 제한
@@ -27,7 +27,7 @@ const SaveCardModel = {
 
       return isWithin24Hours;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -38,7 +38,7 @@ const SaveCardModel = {
       const [data] = await conn.query(sql, [character_id]);
       return data;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //카드pid 리스트 확보
@@ -48,7 +48,7 @@ const SaveCardModel = {
       const [data] = await conn.query(sql, [character_id]);
       return data;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -59,7 +59,7 @@ const SaveCardModel = {
       const [data] = await conn.query(sql, [character_id]);
       return data.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -70,7 +70,7 @@ const SaveCardModel = {
       const [data] = await conn.query(sql, [character_id]);
       return data;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //카드 리스트 확보
@@ -83,7 +83,7 @@ const SaveCardModel = {
       const sliceData = uniqueData.slice(no * 6, (no + 1) * 6);
       return sliceData;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -96,7 +96,7 @@ const SaveCardModel = {
       const uniqueData = [...set];
       return Math.floor((uniqueData.length - 1) / 6);
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //카드 이펙트 리스트 확보
@@ -111,7 +111,7 @@ const SaveCardModel = {
       });
       return newData;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 };

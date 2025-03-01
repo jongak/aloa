@@ -21,7 +21,7 @@ const TableModel = {
       const [result] = await conn.query(sql);
       return result.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -34,7 +34,7 @@ const TableModel = {
       await s3Client.send(new DeleteObjectCommand(bucketParams));
       return true;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -44,7 +44,7 @@ const TableModel = {
       await conn.query(sql, [pid]);
       return true;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   async changeName(pid, new_id, conn = pool) {
@@ -53,7 +53,7 @@ const TableModel = {
       await conn.query(sql, [{ character_id: new_id }, { id: pid }]);
       return true;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 };

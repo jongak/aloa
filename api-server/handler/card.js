@@ -34,7 +34,6 @@ async function hCardExpedition(req, res, next) {
     const result = await CharacterService.getExpedition(characterName);
     res.json(result);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
@@ -47,7 +46,6 @@ async function hCardExpeditionRaw(req, res, next) {
     const result = await CharacterService.getExpeditionRaw(characterName);
     res.json(result);
   } catch (err) {
-    console.log(err);
     next(err);
   }
 }
@@ -60,7 +58,6 @@ async function hCardCharacterInfo(req, res, next) {
     const result = await CharacterService.getCharacterInfo(characterName);
     res.json(result);
   } catch (err) {
-    console.log(err)
     next(err);
   }
 }

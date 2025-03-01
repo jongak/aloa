@@ -9,7 +9,7 @@ const noticeModel = {
       const result = data.slice((no - 1) * max_num, no * max_num);
       return result;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //totalpage 구하기용
@@ -19,7 +19,7 @@ const noticeModel = {
       const [data] = await conn.query(sql);
       return data[0]["count"];
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //notice 추가하기
@@ -29,7 +29,7 @@ const noticeModel = {
       const [data] = await conn.query(sql, article);
       return data.insertId;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //notice 수정하기
@@ -39,7 +39,7 @@ const noticeModel = {
       const [result] = await conn.query(sql, [article, no]);
       return result.affectedRows;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   //notice 수정하기
@@ -49,7 +49,7 @@ const noticeModel = {
       const [result] = await conn.query(sql, [no]);
       return result.affectedRows;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 };

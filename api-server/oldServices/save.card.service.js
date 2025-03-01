@@ -20,7 +20,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -40,7 +40,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -62,7 +62,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -91,7 +91,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -123,7 +123,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -151,7 +151,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -171,7 +171,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);
@@ -192,7 +192,7 @@ const SaveCardService = {
     } catch (err) {
       // DB 작업 취소
       await conn.rollback();
-      throw new Error("Service Error", { cause: err });
+      throw err;
     } finally {
       // 커넥션 반납
       pool.releaseConnection(conn);

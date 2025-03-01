@@ -20,13 +20,15 @@ const CharacterService = {
       const data = new CharacterGetExpeditionModel(await _processData(res));
       return data;
     } catch (err) {
-      console.error(err.stack);
-      throw new Error("Service Error", { cause: err });
+      throw err;
     }
     function _sortData(arr) {
       return arr.sort((a, b) => {
-        if (a["ItemMaxLevel"] < b["ItemMaxLevel"]) return 1;
-        if (a["ItemMaxLevel"] > b["ItemMaxLevel"]) return -1;
+        const aItemMaxLevel = parseFloat(a["ItemMaxLevel"].replace(/,/g, ""));
+        const bItemMaxLevel = parseFloat(b["ItemMaxLevel"].replace(/,/g, ""));
+
+        if (aItemMaxLevel < bItemMaxLevel) return 1;
+        if (aItemMaxLevel > bItemMaxLevel) return -1;
         if (a["CharacterName"] > b["CharacterName"]) return 1;
         return -1;
       });
@@ -86,8 +88,7 @@ const CharacterService = {
 
       return res;
     } catch (err) {
-      console.error(err.stack);
-      throw new Error("Service Error", { cause: err });
+      throw err;
     }
   },
 
@@ -118,8 +119,8 @@ const CharacterService = {
 
       return data;
     } catch (err) {
-      console.error(err.stack);
-      throw new Error(err);
+      //
+      throw err;
     }
 
     function _parseArmoryEquipment(row, _딜러_여부 = true) {
@@ -492,8 +493,7 @@ const CharacterService = {
           팔찌,
         };
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -564,8 +564,7 @@ const CharacterService = {
 
         return "";
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -586,8 +585,7 @@ const CharacterService = {
             return "";
         }
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -618,8 +616,7 @@ const CharacterService = {
           )
         );
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -650,8 +647,7 @@ const CharacterService = {
         ret["EngravingSum"] = EngravingSum;
         return ret;
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -720,8 +716,7 @@ const CharacterService = {
 
         return ret;
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -831,8 +826,7 @@ const CharacterService = {
         }
         return { Cards, AwakeCount, AwakeName };
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
 
@@ -855,8 +849,7 @@ const CharacterService = {
 
         return { 진화, 깨달음, 도약 };
       } catch (err) {
-        console.error(err.stack);
-        throw new Error(err);
+        throw err;
       }
     }
   },
@@ -873,8 +866,7 @@ const CharacterService = {
       // ).map((e) => JSON.parse(e.Tooltip));
       return res;
     } catch (err) {
-      console.error(err.stack);
-      throw new Error("Service Error", { cause: err });
+      throw err;
     }
   },
 
@@ -887,8 +879,7 @@ const CharacterService = {
 
       return res.ArkPassive.IsArkPassive;
     } catch (err) {
-      console.error(err.stack);
-      throw new Error("Service Error", { cause: err });
+      throw err;
     }
   },
 };

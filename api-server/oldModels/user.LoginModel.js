@@ -15,7 +15,7 @@ const LoginModel = {
       const [result] = await conn.query(sql, [article.login_id]);
       return result.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -38,7 +38,7 @@ const LoginModel = {
       ]);
       return result[0];
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -50,7 +50,7 @@ const LoginModel = {
       const [result] = await conn.query(sql, [article]);
       return result.insertId;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 
@@ -65,7 +65,7 @@ const LoginModel = {
       const [result] = await conn.query(sql);
       return result[0].a;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 };

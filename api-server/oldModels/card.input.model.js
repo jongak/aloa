@@ -23,7 +23,7 @@ const CardInputModel = {
       // const [result] = await conn.query(sql);
       // return result.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   async newInput(id, front, back, date, conn = pool) {
@@ -48,7 +48,7 @@ const CardInputModel = {
       // const [result] = await conn.query(sql);
       // return result.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
   async newUpdate(id, date, conn = pool) {
@@ -67,7 +67,7 @@ const CardInputModel = {
       // const [result] = await conn.query(sql);
       // return result.length;
     } catch (err) {
-      throw new Error("DB Error", { cause: err });
+      throw err;
     }
   },
 };
