@@ -59,7 +59,7 @@ app.use(cors());
 
 // 200 응답 핸들러 추가
 app.get('/api', (req, res) => {
-  res.status(200).json({ status: 'success', message: 'API is running' });
+  res.status(200).json({ status: 'success', message: process.env.REACT_APP_VERSION + " " + process.env.ENV_NAME + ":OK" });
 });
 
 app.use("/api", indexRouter);

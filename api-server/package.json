@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production pm2 start ./bin/www --name 'aloa'",
     "dev": "cross-env NODE_ENV=development nodemon ./bin/www",
-    "local": "cross-env NODE_ENV=local nodemon ./bin/www",
+  "local": "cross-env NODE_ENV=local nodemon ./bin/www",
     "stop": "pm2 stop aloa",
     "restart": "pm2 restart aloa",
     "delete": "pm2 delete aloa",

@@ -2368,6 +2368,11 @@ Notice
 --------------------------------------------- 
 */
 
+.option-body.notice .userRow .userbody {
+  padding-left: 20px; 
+  padding-right: 20px;
+}
+
 .option-body.notice .userRow .userbody img {
   width: 20px;
   height: 20px;
