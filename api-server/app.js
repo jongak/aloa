@@ -30,6 +30,21 @@ const logsDir = path.join(__dirname, "logs");
 if (!fs.existsSync(logsDir)) {
   fs.mkdirSync(logsDir);
 }
+
+// 기존 access.log 파일이 있으면 이름 변경
+const accessLogPath = path.join(__dirname, "logs", "access.log");
+if (fs.existsSync(accessLogPath)) {
+  const date = new Date().toISOString().split("T")[0]; // YYYY-MM-DD 형식
+  const time = new Date().toTimeString().split(" ")[0].replace(/:/g, "-"); // HH-MM-SS 형식
+  const version = process.env.REACT_APP_VERSION || "unknown"; // 버전 정보
+  const newLogPath = path.join(
+    __dirname,
+    "logs",
+    `access_${version}_${date}_${time}.log`
+  );
+  fs.renameSync(accessLogPath, newLogPath);
+}
+
 // 로그 파일 스트림 생성
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "logs", "access.log"),

@@ -19,7 +19,6 @@ const ShareCard = function () {
   const characterId = useSelector((state) => state.itemSlice.characterId);
 
   if (!characterId || characterId == "") {
-    toast.error("아이디가 없습니다.");
     setTimeout(() => {
       navigate("../");
     }, 10);

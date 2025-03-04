@@ -188,13 +188,33 @@ const CharacterService = {
             },
           ],
         };
+        const 장비_struct = {
+          Type: "",
+          Name: "",
+          Icon: "",
+          Grade: "",
+          qualityValue: 0,
+          상급_재련: 0,
+          초월_등급: 0,
+          초월_레벨: 0,
+          Elixir00: {
+            효과: "",
+            레벨: "",
+          },
+          Elixir01: {
+            효과: "",
+            레벨: "",
+          },
+          아이템_레벨: 0,
+          아이템_등급: 0,
+        };
         const 장비 = {
-          무기: {},
-          투구: {},
-          상의: {},
-          하의: {},
-          장갑: {},
-          어깨: {},
+          무기: { ...장비_struct },
+          투구: { ...장비_struct },
+          상의: { ...장비_struct },
+          하의: { ...장비_struct },
+          장갑: { ...장비_struct },
+          어깨: { ...장비_struct },
         };
         const 어빌리티_스톤 = {
           Name: "",
@@ -246,7 +266,7 @@ const CharacterService = {
                 ) &&
                 dat_idx == "Element_000"
               ) {
-                아이템_등급 = Number(element_value.match(/\+(\d+)/)[1]);
+                아이템_등급 = Number(element_value.match(/\+(\d+)/)?.[1] ?? 0);
               }
               if (element_value.indexOf("상급 재련") != -1) {
                 상급_재련 = Number(
@@ -305,9 +325,10 @@ const CharacterService = {
                       엘릭서_레벨 += Elixir01.레벨;
                     }
                   } else if (Tooltip.indexOf("연성 추가 효과") != -1) {
-                    엘릭서_효과 = Tooltip.match(
-                      /<FONT SIZE='12' color='#91FE02'>([가-힣\s]+?) \((\d)단계\)<\/FONT>/
-                    )[1];
+                    엘릭서_효과 =
+                      Tooltip.match(
+                        /<FONT SIZE='12' color='#91FE02'>([가-힣\s]+?) \((\d)단계\)<\/FONT>/
+                      )?.[1] || "";
                   }
                 }
               } else if ("leftStr2" in element_value) {
@@ -345,7 +366,10 @@ const CharacterService = {
                 element_value["qualityValue"];
               악세_품질 += element_value["qualityValue"];
               // 연마효과
-              const Tooltip = dat["Element_005"]["value"]["Element_001"];
+              const Tooltip = dat["Element_005"]?.["value"]?.["Element_001"];
+              if (!Tooltip) {
+                return;
+              }
               const matches = [
                 ...Tooltip.matchAll(/>([^>]+ \+)([\d.]+)([^\s<]*)/g),
               ];
@@ -622,6 +646,10 @@ const CharacterService = {
 
     function _parseArmoryEngraving(row) {
       try {
+        if (!row) {
+          return [];
+        }
+
         const downEngraving = {
           유물: "전설",
           전설: "영웅",
@@ -653,10 +681,6 @@ const CharacterService = {
 
     function _parseArmoryGem(row) {
       try {
-        if (!row || !row.Gems?.length) {
-          return {};
-        }
-
         const ret = {
           option: {
             TenGup: 0,
@@ -670,7 +694,11 @@ const CharacterService = {
           },
           Gems: [],
         };
-        row.Gems.forEach((element) => {
+
+        if (!row) {
+          return ret;
+        }
+        row.Gems?.forEach((element) => {
           const dat = JSON.parse(element["Tooltip"]);
           let name = element["Name"].substring(
             element["Name"].indexOf("<FONT CO") + 22,
@@ -722,11 +750,15 @@ const CharacterService = {
 
     function _parseArmoryCard(row) {
       try {
+        if (!row) {
+          return { Cards: [], AwakeCount: 0, AwakeName: "" };
+        }
+
         var AwakeCount = 0;
         var AwakeName = "";
         const Cards = [];
 
-        row.Cards.forEach((element) => {
+        row.Cards?.forEach((element) => {
           const { Slot, Tooltip, ...filtered } = element;
           Cards.push(filtered);
           AwakeCount += element["AwakeCount"];

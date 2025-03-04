@@ -73,7 +73,6 @@ const SelectValue = function () {
   const navigate = useNavigate();
 
   if (!characterId || characterId == "") {
-    toast.error("아이디가 없습니다.");
     setTimeout(() => {
       navigate("../");
     }, 10);
