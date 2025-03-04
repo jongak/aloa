@@ -11,6 +11,7 @@ const itemSlice = createSlice({
     isName: true,
     isTitle: true,
     isLevel: false,
+    isGothic: false,
     acc: "-",
   },
   reducers: {
@@ -38,6 +39,9 @@ const itemSlice = createSlice({
     setIsLevel(state, action) {
       state.isLevel = action.payload.newIsLevel;
     },
+    setIsGothic(state, action) {
+      state.isGothic = action.payload.newIsGothic;
+    },
     setAcc(state, action) {
       state.acc = action.payload.newAcc;
     },
@@ -54,5 +58,6 @@ export const {
   setIsName,
   setIsTitle,
   setIsLevel,
+  setIsGothic,
   setAcc,
 } = itemSlice.actions;

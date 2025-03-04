@@ -5,7 +5,12 @@ import {
   setIsShadow,
   setIsShine,
 } from "../../store/captureSlice";
-import { setIsLevel, setIsName, setIsTitle } from "../../store/itemSlice";
+import {
+  setIsGothic,
+  setIsLevel,
+  setIsName,
+  setIsTitle,
+} from "../../store/itemSlice";
 
 const ToggleButton = function ({
   title,
@@ -33,8 +38,9 @@ const ToggleButton = function ({
     valueRef = useSelector((state) => state.captureSlice.isShine);
   } else if (titleRef == "isShadow") {
     valueRef = useSelector((state) => state.captureSlice.isShadow);
+  } else if (titleRef == "isGothic") {
+    valueRef = useSelector((state) => state.itemSlice.isGothic);
   }
-
   const setValueRef = function (item) {
     if (titleRef == "isName") {
       dispatch(
@@ -83,6 +89,12 @@ const ToggleButton = function ({
       dispatch(
         setIsShadow({
           newIsShadow: item,
+        })
+      );
+    } else if (titleRef == "isGothic") {
+      dispatch(
+        setIsGothic({
+          newIsGothic: item,
         })
       );
     }

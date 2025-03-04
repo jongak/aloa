@@ -68,6 +68,7 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
   const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const framePreset = useSelector((state) => state.captureSlice.framePreset);
   const frameColor = useSelector((state) => state.captureSlice.frameColor);
+  const isGothic = useSelector((state) => state.itemSlice.isGothic);
   const [characterImage, setCharacterImage] = useState("");
 
   useEffect(() => {
@@ -117,7 +118,11 @@ const CardFront = function ({ setIsLoading, style, divRef }) {
   }
 
   return (
-    <div className="cardCover front" ref={divRef} style={{ ...style }}>
+    <div
+      className={`cardCover front ${isGothic ? "gothic" : ""}`}
+      ref={divRef}
+      style={{ ...style }}
+    >
       <img
         id="cardFrame"
         src={`/assets/images/card_frame/${framePreset}/${frameColor}.png`}

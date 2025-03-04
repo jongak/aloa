@@ -103,6 +103,7 @@ const CardBack = function ({
   const isName = useSelector((state) => state.itemSlice.isName);
   const isLevel = useSelector((state) => state.itemSlice.isLevel);
   const optionItems = useSelector((state) => state.itemSlice.optionItems);
+  const isGothic = useSelector((state) => state.itemSlice.isGothic);
 
   // useEffect(() => {
   //   if (userData && userData["ArmoryProfile"]) {
@@ -121,7 +122,11 @@ const CardBack = function ({
   }
 
   return (
-    <div className="cardCover back" ref={divRef} style={{ ...style }}>
+    <div
+      className={`cardCover back ${isGothic ? "gothic" : ""}`}
+      ref={divRef}
+      style={{ ...style }}
+    >
       <div
         className="cardBody"
         style={{

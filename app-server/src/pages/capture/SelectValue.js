@@ -937,6 +937,13 @@ const SelectValue = function () {
                 isChanged={isChanged}
                 setIsChanged={setIsChanged}
               />
+              <ToggleButton
+                titleRef={"isGothic"}
+                title={"폰트 변경"}
+                body={"나눔고딕 폰트를 사용합니다."}
+                isChanged={isChanged}
+                setIsChanged={setIsChanged}
+              />
             </div>
           </Accordion.Body>
         </Accordion.Item>
