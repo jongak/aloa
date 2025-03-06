@@ -127,7 +127,7 @@ app.use("/api/proxy", proxy(), (req, res, next) => {
 });
 
 // sitemap.xml 라우트 추가 (cors와 api 라우트 설정 사이에 추가)
-app.get("/sitemap.xml", (req, res) => {
+app.get("/api/sitemap.xml", (req, res) => {
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
       <url>
