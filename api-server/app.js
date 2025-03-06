@@ -126,6 +126,34 @@ app.use("/api/proxy", proxy(), (req, res, next) => {
   }
 });
 
+// sitemap.xml 라우트 추가 (cors와 api 라우트 설정 사이에 추가)
+app.get("/sitemap.xml", (req, res) => {
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+      <url>
+        <loc>https://wwww.aloa.kr</loc>
+        <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+      </url>
+      <url>
+        <loc>https://wwww.aloa.kr/capture</loc>
+        <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+      </url>
+      <url>
+        <loc>https://wwww.aloa.kr/notice</loc>
+        <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+      </url>
+    </urlset>`;
+
+  res.header("Content-Type", "application/xml");
+  res.send(sitemap);
+});
+
 // 404 에러 처리
 app.use("/api", (req, res, next) => {
   return res.status(404).json({

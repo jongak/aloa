@@ -675,6 +675,38 @@ const SelectValue = function () {
             "반지: " +
             userData["ArmoryEquipment"]["악세"]["반지"][1]["연마_효과_단축"],
         },
+        {
+          id: "boxGup",
+          title: "겁화",
+          body: "겁화의 갯수와 평균레벨 입니다.",
+          value: `${userData["ArmoryGem"]["option"]["GupNum"]}겁 Lv ${
+            userData["ArmoryGem"]["option"]["GupLevel"]
+              ? userData["ArmoryGem"]["option"]["GupLevel"]
+              : "0"
+          }`,
+          cardValue: `${userData["ArmoryGem"]["option"]["GupNum"]}겁 Lv ${
+            userData["ArmoryGem"]["option"]["GupLevel"]
+              ? userData["ArmoryGem"]["option"]["GupLevel"]
+              : "0"
+          }`,
+        },
+        {
+          id: "boxJak",
+          title: "작열",
+          body: "작열의 갯수와 평균레벨 입니다.",
+          value: `${userData["ArmoryGem"]["option"]["JakNum"]}작 Lv ${
+            userData["ArmoryGem"]["option"]["JakLevel"]
+              ? userData["ArmoryGem"]["option"]["JakLevel"]
+              : "0"
+          }`,
+          cardValue:
+            `${userData["ArmoryGem"]["option"]["JakNum"]}작 ` +
+            `Lv ${
+              userData["ArmoryGem"]["option"]["JakLevel"]
+                ? userData["ArmoryGem"]["option"]["JakLevel"]
+                : "0"
+            }`,
+        },
       ],
 
       "todo Naesil": [],
@@ -802,8 +834,8 @@ const SelectValue = function () {
             `${userData["ArmoryGem"]["option"]["GupNum"]}겁 ` +
             `${userData["ArmoryGem"]["option"]["JakNum"]}작 ` +
             `Lv ${
-              userData["ArmoryGem"]["option"]["GupLevel"]
-                ? userData["ArmoryGem"]["option"]["GupLevel"]
+              userData["ArmoryGem"]["option"]["level"]
+                ? userData["ArmoryGem"]["option"]["level"]
                 : "0"
             }`,
           cardImg: "/assets/images/icons/10gup.webp",
@@ -811,8 +843,8 @@ const SelectValue = function () {
             `${userData["ArmoryGem"]["option"]["GupNum"]}겁 ` +
             `${userData["ArmoryGem"]["option"]["JakNum"]}작 ` +
             `Lv ${
-              userData["ArmoryGem"]["option"]["GupLevel"]
-                ? userData["ArmoryGem"]["option"]["GupLevel"]
+              userData["ArmoryGem"]["option"]["level"]
+                ? userData["ArmoryGem"]["option"]["level"]
                 : "0"
             }`,
           gridTwo: true,

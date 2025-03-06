@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { HelmetProvider } from "react-helmet-async";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -8,7 +9,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   //   </React.StrictMode>
-  <App />
+  <HelmetProvider>
+    <App />
+  </HelmetProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
