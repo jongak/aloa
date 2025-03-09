@@ -51,7 +51,7 @@ function App() {
           property="og:image"
           content="https://aloa.kr/assets/images/logo/logo_mark_light.png"
         />
-        <link rel="canonical" href="https://www.aloa.kr" />
+        <link rel="canonical" href="https://aloa.kr" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="로아 카드인장 생성기 - ALOA.KR" />
         <meta

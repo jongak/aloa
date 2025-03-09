@@ -16,14 +16,14 @@ var router = express.Router({ mergeParams: true });
 // const DBRouter = require("./db");
 // router.use("/db", DBRouter);
 
-// const loginRouter = require("./login");
-// router.use("/login", loginRouter);
-
 // const noticeRouter = require("./notice");
 // router.use("/notice", noticeRouter);
 
 // 시즌3
 const cardRouter = require("./card");
 router.use("/card", cardRouter);
+
+const loginRouter = require("./login");
+router.use("/login", loginRouter);
 
 module.exports = router;

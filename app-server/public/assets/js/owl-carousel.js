@@ -161,16 +161,16 @@
       ["onResize", "onThrottledResize"],
       $.proxy(function (i, handler) {
         this._handlers[handler] = $.proxy(this[handler], this);
-      }, this),
+      }, this)
     );
 
     $.each(
       Owl.Plugins,
       $.proxy(function (key, plugin) {
         this._plugins[key.charAt(0).toLowerCase() + key.slice(1)] = new plugin(
-          this,
+          this
         );
-      }, this),
+      }, this)
     );
 
     $.each(
@@ -180,7 +180,7 @@
           filter: worker.filter,
           run: $.proxy(worker.run, this),
         });
-      }, this),
+      }, this)
     );
 
     this.setup();
@@ -368,7 +368,7 @@
           clones.push(this.normalize(clones.length / 2, true));
           append = append + items[clones[clones.length - 1]][0].outerHTML;
           clones.push(
-            this.normalize(items.length - 1 - (clones.length - 1) / 2, true),
+            this.normalize(items.length - 1 - (clones.length - 1) / 2, true)
           );
           prepend = items[clones[clones.length - 1]][0].outerHTML + prepend;
           repeat -= 1;
@@ -448,7 +448,7 @@
           : 0;
         cache.current = Math.max(
           this.minimum(),
-          Math.min(this.maximum(), cache.current),
+          Math.min(this.maximum(), cache.current)
         );
         this.reset(cache.current);
       },
@@ -516,7 +516,7 @@
     }).wrap(
       $("<div/>", {
         class: this.settings.stageOuterClass,
-      }),
+      })
     );
 
     // append stage
@@ -638,8 +638,8 @@
             .attr("class")
             .replace(
               new RegExp("(" + this.options.responsiveClass + "-)\\S+\\s", "g"),
-              "$1" + match,
-            ),
+              "$1" + match
+            )
         );
       }
     }
@@ -760,7 +760,7 @@
     window.clearTimeout(this.resizeTimer);
     this.resizeTimer = window.setTimeout(
       this._handlers.onResize,
-      this.settings.responsiveRefreshRate,
+      this.settings.responsiveRefreshRate
     );
   };
 
@@ -806,7 +806,7 @@
     if ($.support.transition) {
       this.$stage.on(
         $.support.transition.end + ".owl.core",
-        $.proxy(this.onTransitionEnd, this),
+        $.proxy(this.onTransitionEnd, this)
       );
     }
 
@@ -871,7 +871,7 @@
 
     this.$element.toggleClass(
       this.options.grabClass,
-      event.type === "mousedown",
+      event.type === "mousedown"
     );
 
     this.speed(0);
@@ -884,7 +884,7 @@
 
     $(document).on(
       "mouseup.owl.core touchend.owl.core",
-      $.proxy(this.onDragEnd, this),
+      $.proxy(this.onDragEnd, this)
     );
 
     $(document).one(
@@ -894,7 +894,7 @@
 
         $(document).on(
           "mousemove.owl.core touchmove.owl.core",
-          $.proxy(this.onDragMove, this),
+          $.proxy(this.onDragMove, this)
         );
 
         if (Math.abs(delta.x) < Math.abs(delta.y) && this.is("valid")) {
@@ -905,7 +905,7 @@
 
         this.enter("dragging");
         this.trigger("drag");
-      }, this),
+      }, this)
     );
   };
 
@@ -968,7 +968,7 @@
     if ((delta.x !== 0 && this.is("dragging")) || !this.is("valid")) {
       this.speed(this.settings.dragEndSpeed || this.settings.smartSpeed);
       this.current(
-        this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction),
+        this.closest(stage.x, delta.x !== 0 ? direction : this._drag.direction)
       );
       this.invalidate("position");
       this.update();
@@ -1034,13 +1034,13 @@
               ">",
               coordinates[index + 1] !== undefined
                 ? coordinates[index + 1]
-                : value - width,
+                : value - width
             )
           ) {
             position = direction === "left" ? index + 1 : index;
           }
           return position === -1;
-        }, this),
+        }, this)
       );
     }
 
@@ -1089,7 +1089,7 @@
         },
         this.speed(),
         this.settings.fallbackEasing,
-        $.proxy(this.onTransitionEnd, this),
+        $.proxy(this.onTransitionEnd, this)
       );
     } else {
       this.$stage.css({
@@ -1350,7 +1350,7 @@
         this._coordinates,
         $.proxy(function (coordinate, index) {
           return this.coordinates(index);
-        }, this),
+        }, this)
       );
     }
 
@@ -1535,15 +1535,15 @@
             item
               .find("[data-merge]")
               .addBack("[data-merge]")
-              .attr("data-merge") * 1 || 1,
+              .attr("data-merge") * 1 || 1
           );
-        }, this),
+        }, this)
       );
 
     this.reset(
       this.isNumeric(this.settings.startPosition)
         ? this.settings.startPosition
-        : 0,
+        : 0
     );
 
     this.invalidate("items");
@@ -1577,7 +1577,7 @@
         content
           .find("[data-merge]")
           .addBack("[data-merge]")
-          .attr("data-merge") * 1 || 1,
+          .attr("data-merge") * 1 || 1
       );
     } else {
       this._items[position].before(content);
@@ -1588,7 +1588,7 @@
         content
           .find("[data-merge]")
           .addBack("[data-merge]")
-          .attr("data-merge") * 1 || 1,
+          .attr("data-merge") * 1 || 1
       );
     }
 
@@ -1646,15 +1646,15 @@
               !this.is("pre-loading") &&
                 !this.is("initializing") &&
                 this.refresh();
-            }, this),
+            }, this)
           )
           .attr(
             "src",
             element.attr("src") ||
               element.attr("data-src") ||
-              element.attr("data-src-retina"),
+              element.attr("data-src-retina")
           );
-      }, this),
+      }, this)
     );
   };
 
@@ -1695,8 +1695,8 @@
           .attr("class")
           .replace(
             new RegExp(this.options.responsiveClass + "-\\S+\\s", "g"),
-            "",
-          ),
+            ""
+          )
       )
       .removeData("owl.carousel");
   };
@@ -1776,11 +1776,11 @@
           return v;
         })
           .join("-")
-          .toLowerCase(),
+          .toLowerCase()
       ),
       event = $.Event(
         [name, "owl", namespace || "carousel"].join(".").toLowerCase(),
-        $.extend({ relatedTarget: this }, status, data),
+        $.extend({ relatedTarget: this }, status, data)
       );
 
     if (!this._supress[name]) {
@@ -1814,7 +1814,7 @@
         }
 
         this._states.current[name]++;
-      }, this),
+      }, this)
     );
   };
 
@@ -1827,7 +1827,7 @@
       [name].concat(this._states.tags[name] || []),
       $.proxy(function (i, name) {
         this._states.current[name]--;
-      }, this),
+      }, this)
     );
   };
 
@@ -1861,7 +1861,7 @@
         this._states.tags[object.name] = object.tags;
       } else {
         this._states.tags[object.name] = this._states.tags[object.name].concat(
-          object.tags,
+          object.tags
         );
       }
 
@@ -1869,7 +1869,7 @@
         this._states.tags[object.name],
         $.proxy(function (tag, i) {
           return $.inArray(tag, this._states.tags[object.name]) === i;
-        }, this),
+        }, this)
       );
     }
   };
@@ -1884,7 +1884,7 @@
       events,
       $.proxy(function (index, event) {
         this._supress[event] = true;
-      }, this),
+      }, this)
     );
   };
 
@@ -1898,7 +1898,7 @@
       events,
       $.proxy(function (index, event) {
         delete this._supress[event];
-      }, this),
+      }, this)
     );
   };
 
@@ -1994,9 +1994,9 @@
                   data[event].apply(this, [].slice.call(arguments, 1));
                   this.release([event]);
                 }
-              }, data),
+              }, data)
             );
-          },
+          }
         );
       }
 
@@ -2088,7 +2088,7 @@
     this._visible = this._core.isVisible();
     this._interval = window.setInterval(
       $.proxy(this.refresh, this),
-      this._core.settings.autoRefreshInterval,
+      this._core.settings.autoRefreshInterval
     );
   };
 
@@ -2256,9 +2256,9 @@
                 this._core.trigger(
                   "loaded",
                   { element: $element, url: url },
-                  "lazy",
+                  "lazy"
                 );
-              }, this),
+              }, this)
             )
             .attr("src", url);
         } else if ($element.is("source")) {
@@ -2269,9 +2269,9 @@
                 this._core.trigger(
                   "loaded",
                   { element: $element, url: url },
-                  "lazy",
+                  "lazy"
                 );
-              }, this),
+              }, this)
             )
             .attr("srcset", url);
         } else {
@@ -2284,12 +2284,12 @@
             this._core.trigger(
               "loaded",
               { element: $element, url: url },
-              "lazy",
+              "lazy"
             );
           }, this);
           image.src = url;
         }
-      }, this),
+      }, this)
     );
 
     this._loaded.push($item.get(0));
@@ -2543,7 +2543,7 @@
       ".owl-video-play-icon",
       $.proxy(function (e) {
         this.play(e);
-      }, this),
+      }, this)
     );
   };
 
@@ -2595,7 +2595,7 @@
 			*/
 
       id = url.match(
-        /(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com|be\-nocookie\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/,
+        /(http:|https:|)\/\/(player.|www.|app.)?(vimeo\.com|youtu(be\.com|\.be|be\.googleapis\.com|be\-nocookie\.com)|vzaar\.com)\/(video\/|videos\/|embed\/|channels\/.+\/|groups\/.+\/|watch\?v=|v\/)?([A-Za-z0-9._%-]*)(\&\S+)?/
       );
 
       if (id[3].indexOf("youtu") > -1) {
@@ -2666,7 +2666,7 @@
       $("<div/>", {
         class: "owl-video-wrapper",
         style: dimensions,
-      }),
+      })
     );
 
     if (this._core.settings.lazyLoad) {
@@ -2748,7 +2748,7 @@
     this._core.reset(item.index());
 
     html = $(
-      '<iframe frameborder="0" allowfullscreen mozallowfullscreen webkitAllowFullScreen ></iframe>',
+      '<iframe frameborder="0" allowfullscreen mozallowfullscreen webkitAllowFullScreen ></iframe>'
     );
     html.attr("height", height);
     html.attr("width", width);
@@ -2758,14 +2758,14 @@
         "//www.youtube.com/embed/" +
           video.id +
           "?autoplay=1&rel=0&v=" +
-          video.id,
+          video.id
       );
     } else if (video.type === "vimeo") {
       html.attr("src", "//player.vimeo.com/video/" + video.id + "?autoplay=1");
     } else if (video.type === "vzaar") {
       html.attr(
         "src",
-        "//view.vzaar.com/" + video.id + "/player?autoplay=true",
+        "//view.vzaar.com/" + video.id + "/player?autoplay=true"
       );
     }
 
@@ -2843,7 +2843,7 @@
             this.swapping = e.type == "translated";
           }
         },
-        this,
+        this
       ),
       "translate.owl.carousel": $.proxy(function (e) {
         if (
@@ -3086,7 +3086,7 @@
     this._call = window.setTimeout(
       $.proxy(this._next, this, speed),
       this._timeout * (Math.round(this.read() / this._timeout) + 1) -
-        this.read(),
+        this.read()
     );
 
     if (this._core.is("interacting") || document.hidden) {
@@ -3137,7 +3137,7 @@
     this._timeout = timeout;
     this._call = window.setTimeout(
       $.proxy(this._next, this, speed),
-      timeout - elapsed,
+      timeout - elapsed
     );
   };
 
@@ -3273,7 +3273,7 @@
                 .find("[data-dot]")
                 .addBack("[data-dot]")
                 .attr("data-dot") +
-              "</div>",
+              "</div>"
           );
         }
       }, this),
@@ -3370,7 +3370,7 @@
         "click",
         $.proxy(function (e) {
           this.prev(settings.navSpeed);
-        }, this),
+        }, this)
       );
     this._controls.$next = $("<" + settings.navElement + ">")
       .addClass(settings.navClass[1])
@@ -3380,7 +3380,7 @@
         "click",
         $.proxy(function (e) {
           this.next(settings.navSpeed);
-        }, this),
+        }, this)
       );
 
     // create DOM structure for absolute navigation
@@ -3410,7 +3410,7 @@
         e.preventDefault();
 
         this.to(index, settings.dotsSpeed);
-      }, this),
+      }, this)
     );
 
     /*$el.on('focusin', function() {
@@ -3515,17 +3515,17 @@
     if (settings.nav) {
       this._controls.$previous.toggleClass(
         "disabled",
-        !loop && index <= this._core.minimum(true),
+        !loop && index <= this._core.minimum(true)
       );
       this._controls.$next.toggleClass(
         "disabled",
-        !loop && index >= this._core.maximum(true),
+        !loop && index >= this._core.maximum(true)
       );
     }
 
     this._controls.$absolute.toggleClass(
       "disabled",
-      !settings.dots || disabled,
+      !settings.dots || disabled
     );
 
     if (settings.dots) {
@@ -3536,7 +3536,7 @@
         this._controls.$absolute.html(this._templates.join(""));
       } else if (difference > 0) {
         this._controls.$absolute.append(
-          new Array(difference + 1).join(this._templates[0]),
+          new Array(difference + 1).join(this._templates[0])
         );
       } else if (difference < 0) {
         this._controls.$absolute.children().slice(difference).remove();
@@ -3580,7 +3580,7 @@
       this._pages,
       $.proxy(function (page, index) {
         return page.start <= current && page.end >= current;
-      }, this),
+      }, this)
     ).pop();
   };
 
@@ -3642,7 +3642,7 @@
       length = this._pages.length;
       $.proxy(this._overrides.to, this._core)(
         this._pages[((position % length) + length) % length].start,
-        speed,
+        speed
       );
     } else {
       $.proxy(this._overrides.to, this._core)(position, speed);
@@ -3716,7 +3716,7 @@
       "changed.owl.carousel": $.proxy(function (e) {
         if (e.namespace && e.property.name === "position") {
           var current = this._core.items(
-              this._core.relative(this._core.current()),
+              this._core.relative(this._core.current())
             ),
             hash = $.map(this._hashes, function (item, hash) {
               return item === current ? hash : null;
@@ -3750,7 +3750,7 @@
         }
 
         this._core.to(this._core.relative(position), false, true);
-      }, this),
+      }, this)
     );
   };
 
@@ -3838,7 +3838,7 @@
           result = prefixed ? property : true;
           return false;
         }
-      },
+      }
     );
 
     return result;
