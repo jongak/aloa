@@ -1,6 +1,8 @@
 var sql = require("mssql");
 var { config } = require("./config.js");
 
+console.log(config.dbconfig);
+
 // Promise를 반환하는 pool 생성
 const connPool = new sql.ConnectionPool(config.dbconfig)
   .connect()
